@@ -1,0 +1,20 @@
+{
+  "private": true,
+  "name": "eslint-config",
+  "description": "Eslint configs generator",
+  "main": "src/configs.js",
+  "engines": {
+    "node": ">=7.4.0"
+  },
+  "scripts": {
+  	"build:reset": "rimraf packages",
+    "build:packages": "mocha build.js || true",
+    "build": "npm run build:reset && npm run build:packages",
+    "test": "mocha test/configs.tests.js || true"
+  },
+  "dependencies": {
+    "eslint": "^3.14.1",
+    "mocha": "^3.2.0",
+    "rimraf": "^2.5.4"
+  }
+}
