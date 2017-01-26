@@ -1,2 +1,3 @@
-# package-eslint
-Eslint presets
+# Eslint configs generator
+
+Generates the `@wildpeaks/eslint-config-*` packages.
