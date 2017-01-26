@@ -16,6 +16,7 @@
 !.gitattributes
 !.gitignore
 !.travis.yml
+!build.js
 !README.md
 !/src
 !/packages
