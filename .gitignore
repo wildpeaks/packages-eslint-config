@@ -11,11 +11,11 @@
 # But allow those files and folders:
 #-----------------------------------------------------------------------------#
 
-!*.sublime-project
 !.editorconfig
 !.eslintrc.json
 !.gitattributes
 !.gitignore
+!.travis.yml
 !README.md
 !/src
 !/packages
