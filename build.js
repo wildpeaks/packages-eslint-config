@@ -46,12 +46,19 @@ function getEslintSettings({es2015, commonjs, esmodules, react, flow}){
 		env: {
 			node: false,
 			browser: false,
-			commonjs,
-			es6: es2015 || esmodules
+			es6: es2015,
+			commonjs
+		},
+		parserOptions: {
+			ecmaVersion: es2015 ? 2015 : 5,
+			ecmaFeatures: {
+				arrowFunctions: es2015,
+				templateStrings: es2015
+			}
 		},
 		rules: {
 			'no-cond-assign': ['error', 'always'],
-			'no-console': 0,
+			'no-console': 'off',
 			'no-constant-condition': 'error',
 			'no-control-regex': 'error',
 			'no-debugger': 'error',
@@ -62,7 +69,7 @@ function getEslintSettings({es2015, commonjs, esmodules, react, flow}){
 			'no-empty-character-class': 'error',
 			'no-ex-assign': 'error',
 			'no-extra-boolean-cast': 'error',
-			'no-extra-parens': 0,
+			'no-extra-parens': 'off',
 			'no-extra-semi': 'warn',
 			'no-func-assign': 'error',
 			'no-inner-declarations': 'error',
@@ -85,7 +92,7 @@ function getEslintSettings({es2015, commonjs, esmodules, react, flow}){
 			'no-unreachable': 'error',
 			'no-unsafe-finally': 'error',
 			'use-isnan': 'error',
-			'valid-jsdoc': 0,
+			'valid-jsdoc': 'off',
 			'valid-typeof': 'error',
 
 			'accessor-pairs': [
@@ -99,11 +106,11 @@ function getEslintSettings({es2015, commonjs, esmodules, react, flow}){
 			'block-scoped-var': 'error',
 			'consistent-return': 'error',
 			'curly': 'error',
-			'default-case': 0,
+			'default-case': 'off',
 			'dot-location': ['error', 'property'],
 			'dot-notation': ['error'],
 			'eqeqeq': 'error',
-			'guard-for-in': 0,
+			'guard-for-in': 'off',
 			'no-alert': 'error',
 			'no-caller': 'error',
 			'no-case-declarations': 'error',
@@ -124,12 +131,12 @@ function getEslintSettings({es2015, commonjs, esmodules, react, flow}){
 			'no-labels': 'error',
 			'no-lone-blocks': 'error',
 			'no-loop-func': 'error',
-			'no-magic-numbers': 0,
+			'no-magic-numbers': 'off',
 			'no-multi-spaces': 'error',
 			'no-multi-str': 'error',
 			'no-native-reassign': 'error',
 			'no-new': 'error',
-			'no-new-func': 0,
+			'no-new-func': 'off',
 			'no-new-wrappers': 'error',
 			'no-octal': 'error',
 			'no-octal-escape': 'error',
@@ -160,7 +167,7 @@ function getEslintSettings({es2015, commonjs, esmodules, react, flow}){
 
 			'strict': [2, 'global'],
 
-			'init-declarations': 0,
+			'init-declarations': 'off',
 			'no-catch-shadow': 'error',
 			'no-delete-var': 'error',
 			'no-shadow': ['error', {
@@ -177,10 +184,10 @@ function getEslintSettings({es2015, commonjs, esmodules, react, flow}){
 				classes: true
 			}],
 
-			'callback-return': 0,
+			'callback-return': 'off',
 			'global-require': 'error',
 			'handle-callback-err': 'warn',
-			'no-mixed-requires': 0,
+			'no-mixed-requires': 'off',
 			'no-new-require': 'error',
 			'no-path-concat': 'error',
 			'no-process-env': 'warn',
@@ -190,17 +197,17 @@ function getEslintSettings({es2015, commonjs, esmodules, react, flow}){
 			'array-bracket-spacing': ['error', 'never'],
 			'block-spacing': ['error', 'never'],
 			'brace-style': [2, '1tbs', {allowSingleLine: false}],
-			'camelcase': 0,
+			'camelcase': 'off',
 			'comma-dangle': ['error', 'never'],
 			'comma-spacing': ['error', {before: false, after: true}],
 			'comma-style': ['error', 'last'],
 			'computed-property-spacing': ['error', 'never'],
 			'consistent-this': ['error', 'self'],
 			'eol-last': ['error'],
-			'func-names': 0,
+			'func-names': 'off',
 			'func-style': ['error', 'declaration', {allowArrowFunctions: true}],
-			'id-length': 0,
-			'id-match': 0,
+			'id-length': 'off',
+			'id-match': 'off',
 
 			// @warning That rule has no option to fix the "break" indent :(
 			// https://github.com/eslint/eslint/issues/1798#issuecomment-121328852
@@ -209,7 +216,7 @@ function getEslintSettings({es2015, commonjs, esmodules, react, flow}){
 			'jsx-quotes': ['error', 'prefer-double'],
 			'key-spacing': ['error', {beforeColon: false, afterColon: true}],
 			'linebreak-style': ['error', 'unix'],
-			'lines-around-comment': 0,
+			'lines-around-comment': 'off',
 			'max-depth': ['error', {max: 8}],
 			'max-len': [1, 120, 4, {ignoreComments: true, ignoreUrls: true}],
 			'max-lines': [0],
@@ -219,30 +226,30 @@ function getEslintSettings({es2015, commonjs, esmodules, react, flow}){
 			'max-statements-per-line': ['error', {max: 1}],
 			'new-cap': ['error', {newIsCap: true, capIsNew: true}],
 			'new-parens': 'error',
-			'newline-after-var': 0,
-			'newline-before-return': 0,
+			'newline-after-var': 'off',
+			'newline-before-return': 'off',
 			'newline-per-chained-call': ['error', {ignoreChainWithDepth: 3 }],
 			'no-array-constructor': 'error',
 			'no-bitwise': 'error',
 			'no-continue': 'error',
-			'no-inline-comments': 0,
+			'no-inline-comments': 'off',
 			'no-lonely-if': 'error',
 			'no-mixed-operators': 'error',
 			'no-mixed-spaces-and-tabs': 'error',
 			'no-multiple-empty-lines': ['error', {max: 2, maxEOF: 1, maxBOF: 1}],
-			'no-negated-condition': 0,
+			'no-negated-condition': 'off',
 			'no-nested-ternary': 'error',
 			'no-new-object': 'error',
-			'no-plusplus': 0,
+			'no-plusplus': 'off',
 			'no-spaced-func': 'error',
-			'no-ternary': 0,
+			'no-ternary': 'off',
 			'no-trailing-spaces': 'error',
 			'no-underscore-dangle': 'error',
 			'no-unneeded-ternary': 'error',
 			'no-whitespace-before-property': 'error',
-			'object-curly-newline': 0,
-			'object-curly-spacing': 0,
-			'object-property-newline': 0,
+			'object-curly-newline': 'off',
+			'object-curly-spacing': 'off',
+			'object-property-newline': 'off',
 			'one-var': ['error', 'never'],
 			'one-var-declaration-per-line': ['error', 'always'],
 			'operator-assignment': ['error', 'always'],
@@ -252,7 +259,7 @@ function getEslintSettings({es2015, commonjs, esmodules, react, flow}){
 			'quotes': [2, 'single', {allowTemplateLiterals: true}],
 			'semi': ['error', 'always'],
 			'semi-spacing': ['error', {before: false, after: true}],
-			'sort-vars': 0,
+			'sort-vars': 'off',
 			'space-before-blocks': ['error', {
 				functions: (flow ? 'always' : 'never'),
 				keywords: 'never',
@@ -262,9 +269,9 @@ function getEslintSettings({es2015, commonjs, esmodules, react, flow}){
 			'space-in-parens': ['error', 'never'],
 			'space-infix-ops': 'error',
 			'space-unary-ops': ['error', {words: true, nonwords: false}],
-			'spaced-comment': 0,
+			'spaced-comment': 'off',
 			'unicode-bom': 'error',
-			'wrap-regex': 0,
+			'wrap-regex': 'off',
 
 			'arrow-body-style': ['error', 'as-needed'],
 			'arrow-parens': ['error', (flow ? 'always' : 'as-needed')],
@@ -281,38 +288,31 @@ function getEslintSettings({es2015, commonjs, esmodules, react, flow}){
 			'no-useless-computed-key': 'error',
 			'no-useless-constructor': 'error',
 			'no-useless-rename': 'error',
-			'no-var': es2015 ? 'error' : 0,
+			'no-var': es2015 ? 'error' : 'off',
 			'object-shorthand': 'error',
 			'prefer-arrow-callback': 'error',
 			'prefer-const': ['error', {destructuring: 'all'}],
-			'prefer-reflect': 0,
+			'prefer-reflect': 'off',
 			'prefer-rest-params': 'error',
 			'prefer-spread': 'error',
 			'prefer-template': 'error',
 			'require-yield': 'error',
 			'rest-spread-spacing': ['error', 'never'],
-			'sort-imports': 0,
+			'sort-imports': 'off',
 			'template-curly-spacing': ['error', 'never'],
 			'yield-star-spacing': ['error', {before: false, after: true}]
 		}
 	};
-	if (es2015 || esmodules){
-		eslintSettings.parserOptions = {
-			ecmaVersion: 2015,
-			ecmaFeatures: {
-				arrowFunctions: true,
-				templateStrings: true
-			}
-		};
-		if (esmodules){
-			eslintSettings.parserOptions.sourceType = 'module';
-			eslintSettings.parserOptions.allowImportExportEverywhere = false;
-		}
-		if (react){
-			eslintSettings.parserOptions.ecmaFeatures.jsx = true;
-			eslintSettings.parserOptions.ecmaFeatures.experimentalObjectRestSpread = true;
-		}
+
+	if (esmodules){
+		eslintSettings.parserOptions.sourceType = 'module';
+		eslintSettings.parserOptions.allowImportExportEverywhere = false;
 	}
+	if (react){
+		eslintSettings.parserOptions.ecmaFeatures.jsx = true;
+		eslintSettings.parserOptions.ecmaFeatures.experimentalObjectRestSpread = true;
+	}
+
 	if (react || flow){
 		eslintSettings.plugins = [];
 	}
