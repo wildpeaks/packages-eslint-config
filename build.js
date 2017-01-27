@@ -281,7 +281,7 @@ function getEslintSettings({es2015, commonjs, esmodules, react, flow}){
 			'no-useless-computed-key': 'error',
 			'no-useless-constructor': 'error',
 			'no-useless-rename': 'error',
-			'no-var': 'error',
+			'no-var': es2015 ? 'error' : 0,
 			'object-shorthand': 'error',
 			'prefer-arrow-callback': 'error',
 			'prefer-const': ['error', {destructuring: 'all'}],
