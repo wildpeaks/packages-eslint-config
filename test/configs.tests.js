@@ -73,32 +73,33 @@ function test_package(id, done){
 
 		test_fixture(settings, 'var', config.es2015);
 		test_fixture(settings, 'implicit_global', true);
+
 		test_fixture(settings, 'arrow_function_single_param_without_parens', !config.es2015 || config.flow);
 		test_fixture(settings, 'arrow_function_single_param_with_parens', true);
 		test_fixture(settings, 'arrow_function_multiple_params_without_type', !config.es2015 || config.flow);
+
 		test_fixture(settings, 'class_empty', !config.es2015);
 		test_fixture(settings, 'class_method_without_type', !config.es2015 || config.flow);
 		test_fixture(settings, 'class_method_with_type', !config.flow);
+
 		test_fixture(settings, 'line_80', false);
 		test_fixture(settings, 'line_120', false);
 		test_fixture(settings, 'line_140', true);
 
-		//
+		test_fixture(settings, 'without_env_node', true);
+		test_fixture(settings, 'with_env_node', false);
+
+		test_fixture(settings, 'without_env_browser', true);
+		test_fixture(settings, 'with_env_browser', false);
+
+		test_fixture(settings, 'without_env_mocha', true);
+		test_fixture(settings, 'with_env_mocha', false);
+
 		// async
 		// commonjs
 		// esmodule
 		// flow
 		// react_jsx
-		//
-		// without_env_node
-		// with_env_node
-		//
-		// without_env_browser
-		// with_env_browser
-		//
-		// without_env_mocha
-		// with_env_mocha
-		//
 
 		done();
 	});
