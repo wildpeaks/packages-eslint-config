@@ -79,23 +79,25 @@ function test_package(id, done){
 		test_fixture(settings, 'class_empty', !config.es2015);
 		test_fixture(settings, 'class_method_without_type', !config.es2015 || config.flow);
 		test_fixture(settings, 'class_method_with_type', !config.flow);
+		test_fixture(settings, 'line_80', false);
+		test_fixture(settings, 'line_120', false);
+		test_fixture(settings, 'line_140', true);
 
 		//
 		// async
-		// class
 		// commonjs
 		// esmodule
 		// flow
-		// line-80
-		// line-140
-		// line-200
-		// react-jsx
-		// without-env-node
-		// with-env-node
-		// without-env-browser
-		// with-env-browser
-		// without-env-mocha
-		// with-env-mocha
+		// react_jsx
+		//
+		// without_env_node
+		// with_env_node
+		//
+		// without_env_browser
+		// with_env_browser
+		//
+		// without_env_mocha
+		// with_env_mocha
 		//
 
 		done();
