@@ -95,9 +95,9 @@ function test_package(id, done){
 		test_fixture(settings, 'without_env_mocha', true);
 		test_fixture(settings, 'with_env_mocha', false);
 
+		test_fixture(settings, 'esmodule', !config.esmodules);
+
 		// async
-		// commonjs
-		// esmodule
 		// flow
 		// react_jsx
 
@@ -117,8 +117,6 @@ describe('Packages', /* @this */ function(){
 		});
 	});
 
-	// it('eslint-config-legacy', test_package.bind(this, 'eslint-config-legacy'));
-	// it('eslint-config-commonjs-react', test_package.bind(this, 'eslint-config-commonjs-react'));
 	for (const id in configs){
 		it(id, test_package.bind(this, id));
 	}
