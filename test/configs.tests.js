@@ -71,39 +71,39 @@ function test_package(id, done){
 		strictEqual(typeof settings, 'object', 'Package exports an Object');
 		settings.useEslintrc = false;
 
-		test_fixture(settings, 'var', config.es2015);
-		test_fixture(settings, 'implicit_global', true);
+		// test_fixture(settings, 'var', config.es2015);
+		// test_fixture(settings, 'implicit_global', true);
 
-		test_fixture(settings, 'arrow_function_single_param_without_parens', !config.es2015 || config.flow);
-		test_fixture(settings, 'arrow_function_single_param_with_parens', true);
-		test_fixture(settings, 'arrow_function_multiple_params_without_type', !config.es2015 || config.flow);
+		// test_fixture(settings, 'arrow_function_single_param_without_parens', !config.es2015 || config.flow);
+		// test_fixture(settings, 'arrow_function_single_param_with_parens', true);
+		// test_fixture(settings, 'arrow_function_multiple_params_without_type', !config.es2015 || config.flow);
 
-		test_fixture(settings, 'class_empty', !config.es2015);
-		test_fixture(settings, 'class_method_without_type', !config.es2015 || config.flow);
-		test_fixture(settings, 'class_method_with_type', !config.flow);
+		// test_fixture(settings, 'class_empty', !config.es2015);
+		// test_fixture(settings, 'class_method_without_type', !config.es2015 || config.flow);
+		// test_fixture(settings, 'class_method_with_type', !config.flow);
 
-		test_fixture(settings, 'line_80', false);
-		test_fixture(settings, 'line_120', false);
-		test_fixture(settings, 'line_140', true);
+		// test_fixture(settings, 'line_80', false);
+		// test_fixture(settings, 'line_120', false);
+		// test_fixture(settings, 'line_140', true);
 
-		test_fixture(settings, 'without_env_node', true);
-		test_fixture(settings, 'with_env_node', false);
+		// test_fixture(settings, 'without_env_node', true);
+		// test_fixture(settings, 'with_env_node', false);
 
-		test_fixture(settings, 'without_env_browser', true);
-		test_fixture(settings, 'with_env_browser', false);
+		// test_fixture(settings, 'without_env_browser', true);
+		// test_fixture(settings, 'with_env_browser', false);
 
-		test_fixture(settings, 'without_env_mocha', true);
-		test_fixture(settings, 'with_env_mocha', false);
+		// test_fixture(settings, 'without_env_mocha', true);
+		// test_fixture(settings, 'with_env_mocha', false);
 
-		test_fixture(settings, 'esmodule', !config.esmodules);
+		// test_fixture(settings, 'esmodule', !config.esmodules);
 
 		// @warning Cannot enable this test because it acts differently in CLI mode and in Node API mode:
 		// https://github.com/zaggino/brackets-eslint/issues/51
 		// test_fixture(settings, 'promise', !config.es2015);
 
-		test_fixture(settings, 'react_jsx', !config.react && !config.flow);
+		// test_fixture(settings, 'react_jsx', !config.react && !config.flow);
 
-		// async/await
+		test_fixture(settings, 'await', !config.es2015);
 
 		done();
 	});
