@@ -46,13 +46,13 @@ function getEslintSettings({es2015, esmodules, react, flow}){
 		env: {
 			node: false,
 			browser: false,
-			es6: es2015
+			es6: Boolean(es2015)
 		},
 		parserOptions: {
 			ecmaVersion: es2015 ? 2015 : 5,
 			ecmaFeatures: {
-				arrowFunctions: es2015,
-				templateStrings: es2015
+				arrowFunctions: Boolean(es2015),
+				templateStrings: Boolean(es2015)
 			}
 		},
 		rules: {

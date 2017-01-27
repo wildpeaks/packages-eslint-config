@@ -97,9 +97,13 @@ function test_package(id, done){
 
 		test_fixture(settings, 'esmodule', !config.esmodules);
 
-		// async
-		// flow
-		// react_jsx
+		// @warning Cannot enable this test because it acts differently in CLI mode and in Node API mode:
+		// https://github.com/zaggino/brackets-eslint/issues/51
+		// test_fixture(settings, 'promise', !config.es2015);
+
+		test_fixture(settings, 'react_jsx', !config.react && !config.flow);
+
+		// async/await
 
 		done();
 	});
@@ -117,6 +121,7 @@ describe('Packages', /* @this */ function(){
 		});
 	});
 
+	// it('eslint-config-commonjs', test_package.bind(this, 'eslint-config-commonjs'));
 	for (const id in configs){
 		it(id, test_package.bind(this, id));
 	}
