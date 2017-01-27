@@ -8,11 +8,22 @@
     "node": ">=7.4.0"
   },
   "scripts": {
-  	"build:reset": "rimraf packages",
+    "build:reset": "rimraf packages",
     "build:packages": "mocha build.js || true",
     "build": "npm run build:reset && npm run build:packages",
     "test": "mocha test/configs.tests.js || true"
   },
+  "repository": "https://github.com/wildpeaks/packages-eslint-config",
+  "keywords": [
+    "wildpeaks",
+    "eslint"
+  ],
+  "author": "Cecile Muller",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/wildpeaks/packages-eslint-config/issues"
+  },
+  "homepage": "https://github.com/wildpeaks/packages-eslint-config#readme",
   "dependencies": {
     "eslint": "^3.14.1",
     "mocha": "^3.2.0",
