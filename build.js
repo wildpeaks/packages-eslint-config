@@ -10,7 +10,7 @@ const {version} = require('./package.json');
 
 function getPackageJson(id, {name, react, flow}){
 	const pkg = {
-		name: `@wildpeaks/dom-entry-context`,
+		name: `@wildpeaks/${id}`,
 		version,
 		description: `ESLint Config: ${name}`,
 		main: 'settings.js',
@@ -375,7 +375,7 @@ function build(id){
 	fs.mkdirSync(folder);
 	fs.writeFileSync(
 		path.join(folder, 'package.json'),
-		JSON.stringify(getPackageJson(id, version, config)),
+		JSON.stringify(getPackageJson(id, config)),
 		'utf8'
 	);
 	fs.writeFileSync(
@@ -394,7 +394,7 @@ function build(id){
 fs.mkdirSync(path.join(__dirname, 'packages'));
 describe('Packages', () => {
 	for (const id in configs){
-		it(id, build.bind(null, id, version));
+		it(id, build.bind(null, id));
 	}
 });
 
