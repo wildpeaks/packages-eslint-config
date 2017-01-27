@@ -5,6 +5,7 @@ const fs = require('fs');
 const path = require('path');
 const {strictEqual} = require('assert');
 const configs = require('..');
+const {version} = require('../package.json');
 const folderPackages = path.join(__dirname, '../packages');
 
 
@@ -23,7 +24,10 @@ function test_package(id, done){
 			throws = true;
 		}
 		strictEqual(throws, false, 'package.json can be read');
-		strictEqual(typeof packageJson, 'object', 'package.json is a JSON Object');
+		strictEqual(typeof packageJson, 'object', 'packageJson is a JSON Object');
+		strictEqual(packageJson.name, `@wildpeaks/${id}`, 'package.name');
+		strictEqual(packageJson.main, 'settings.js', 'package.main');
+		strictEqual(packageJson.version, version, 'package.version');
 
 		throws = false;
 		try {
