@@ -3,14 +3,28 @@
 'use strict';
 const fs = require('fs');
 const path = require('path');
-const {strictEqual} = require('assert');
+const {strictEqual, deepStrictEqual} = require('assert');
+const {linter} = require('eslint');
 const configs = require('..');
 const {version} = require('../package.json');
-const folderPackages = path.join(__dirname, '../packages');
+const packages = path.join(__dirname, '../packages');
+const fixtures = path.join(__dirname, 'fixtures');
+
+
+function test_fixture(settings, id, fails){
+	const code = fs.readFileSync(path.join(fixtures, `${id}.js`), 'utf8');
+	const errors = linter.verify(code, settings, {filename: 'fake.js'});
+	if (fails){
+		strictEqual(errors.length > 0, true, `Fixture: ${id}`);
+	} else {
+		deepStrictEqual(errors, [], `Fixture: ${id}`);
+	}
+}
 
 
 function test_package(id, done){
-	const folder = path.join(folderPackages, id);
+	const config = configs[id];
+	const folder = path.join(packages, id);
 	fs.access(folder, fs.constants.R_OK, folderError => {
 		strictEqual(folderError, null, 'Folder exists');
 
@@ -46,17 +60,37 @@ function test_package(id, done){
 		strictEqual(throws, false, 'README.md can be read');
 
 		throws = false;
-		let eslintSettings;
+		let settings;
 		try {
-			eslintSettings = require(`../packages/${id}`); // eslint-disable-line global-require
+			settings = require(`../packages/${id}`); // eslint-disable-line global-require
 		} catch(e){
 			throws = true;
 		}
 		strictEqual(throws, false, 'Package can be required');
-		strictEqual(typeof eslintSettings, 'object', 'Package exports an Object');
+		strictEqual(typeof settings, 'object', 'Package exports an Object');
+
+		test_fixture(settings, 'var', config.es2015);
+		test_fixture(settings, 'implicit_global', true);
+		test_fixture(settings, 'arrow_function_single_param_without_parens', !config.es2015 && !config.flow);
+		test_fixture(settings, 'arrow_function_single_param_with_parens', true);
+		test_fixture(settings, 'arrow_function_multiple_params', !config.es2015);
 
 		//
-		// TODO test every fixture against the eslint config
+		// async
+		// class
+		// commonjs
+		// esmodule
+		// flow
+		// line-80
+		// line-140
+		// line-200
+		// react-jsx
+		// without-env-node
+		// with-env-node
+		// without-env-browser
+		// with-env-browser
+		// without-env-mocha
+		// with-env-mocha
 		//
 
 		done();
@@ -64,14 +98,19 @@ function test_package(id, done){
 }
 
 
-describe('Packages', () => {
+describe('Packages', /* @this */ function(){
+	this.slow(1000);
+	this.timeout(2000);
+
 	before(done => {
-		fs.access(folderPackages, fs.constants.R_OK, err => {
+		fs.access(packages, fs.constants.R_OK, err => {
 			strictEqual(err, null, 'Folder packages exists');
 			done();
 		});
 	});
+
+	// it('eslint-config-legacy', test_package.bind(this, 'eslint-config-legacy')); // TODELETE
 	for (const id in configs){
-		it(id, test_package.bind(null, id));
+		it(id, test_package.bind(this, id));
 	}
 });
