@@ -380,7 +380,7 @@ function build(id){
 	);
 	fs.writeFileSync(
 		path.join(folder, 'settings.js'),
-		JSON.stringify(getEslintSettings(config)),
+		'module.exports = ' + JSON.stringify(getEslintSettings(config)) + ';', // eslint-disable-line prefer-template
 		'utf8'
 	);
 	fs.writeFileSync(
