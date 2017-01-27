@@ -41,13 +41,12 @@ function getPackageJson(id, {name, react, flow}){
 }
 
 
-function getEslintSettings({es2015, commonjs, esmodules, react, flow}){
+function getEslintSettings({es2015, esmodules, react, flow}){
 	const eslintSettings = {
 		env: {
 			node: false,
 			browser: false,
-			es6: es2015,
-			commonjs
+			es6: es2015
 		},
 		parserOptions: {
 			ecmaVersion: es2015 ? 2015 : 5,
@@ -355,13 +354,12 @@ function getEslintSettings({es2015, commonjs, esmodules, react, flow}){
 }
 
 
-function getReadme(id, {name, es2015, commonjs, esmodules, react, flow}){
+function getReadme(id, {name, es2015, esmodules, react, flow}){
 	return `# ESLint Config: ${name}
 
 Generated using the following [settings](https://github.com/wildpeaks/packages-eslint-config#readme):
 
 - \`es2015\`: ${es2015 ? 'true' : 'false'}
-- \`commonjs\`: ${commonjs ? 'true' : 'false'}
 - \`esmodules\`: ${esmodules ? 'true' : 'false'}
 - \`react\`: ${react ? 'true' : 'false'}
 - \`flow\`: ${flow ? 'true' : 'false'}

@@ -8,8 +8,7 @@ module.exports = {
 
 	'eslint-config-commonjs': {
 		name: 'ES2015, CommonJS',
-		es2015: true,
-		commonjs: true
+		es2015: true
 	},
 	'eslint-config-esmodules': {
 		name: 'ES2015, ES Modules',
@@ -21,7 +20,6 @@ module.exports = {
 	'eslint-config-commonjs-react': {
 		name: 'ES2015, CommonJS, React, JSX',
 		es2015: true,
-		commonjs: true,
 		react: true
 	},
 	'eslint-config-esmodules-react': {
@@ -35,7 +33,6 @@ module.exports = {
 	'eslint-config-commonjs-flow': {
 		name: 'ES2015, CommonJS, Flow',
 		es2015: true,
-		commonjs: true,
 		flow: true
 	},
 	'eslint-config-esmodules-flow': {
@@ -49,7 +46,6 @@ module.exports = {
 	'eslint-config-commonjs-react-flow': {
 		name: 'ES2015, CommonJS, React, JSX, Flow',
 		es2015: true,
-		commonjs: true,
 		react: true,
 		flow: true
 	},
