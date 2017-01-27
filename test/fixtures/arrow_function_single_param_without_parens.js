@@ -1,5 +1,5 @@
 /* eslint-env browser */
-'use strict';
+/* eslint-disable strict */
 
 window.myfunction = param1 => {
 	console.log(param1);

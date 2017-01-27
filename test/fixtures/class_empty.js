@@ -1,6 +1,5 @@
-/* global console */
 /* eslint-disable no-implicit-globals */
+/* eslint-disable no-unused-vars */
 /* eslint-disable strict */
 
-var myvar = 123;
-console.log(myvar);
+class Kittens {}

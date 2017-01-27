@@ -1,5 +1,6 @@
 /* global console */
+/* eslint-disable no-var */
 'use strict';
 
-var kittens = 123;
-console.log(kittens);
+var myvar = 123;
+console.log(myvar);
