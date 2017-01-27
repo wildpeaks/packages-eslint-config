@@ -1,7 +1,44 @@
 /* eslint-env node, mocha */
+/* eslint-disable no-sync */
 /* eslint quote-props: ["error", "consistent-as-needed"] */
 'use strict';
+const fs = require('fs');
+const path = require('path');
 const configs = require('.');
+const {version} = require('./package.json');
+
+
+function getPackageJson(id, {name, react, flow}){
+	const pkg = {
+		name: `@wildpeaks/dom-entry-context`,
+		version,
+		description: `ESLint Config: ${name}`,
+		main: 'settings.js',
+		files: ['settings.js'],
+		repository: 'https://github.com/wildpeaks/packages-eslint-config',
+		keywords: ['wildpeaks', 'eslint'],
+		author: 'Cecile Muller',
+		license: 'MIT',
+		bugs: {
+			url: 'https://github.com/wildpeaks/packages-eslint-config/issues'
+		},
+		homepage: 'https://github.com/wildpeaks/packages-eslint-config#readme',
+		peerDependencies: {
+			eslint: '>=3.14.1'
+		}
+	};
+	if (react || flow){
+		pkg.dependencies = {};
+	}
+	if (react){
+		pkg.dependencies['eslint-plugin-react'] = '6.9.0';
+	}
+	if (flow){
+		pkg.dependencies['babel-eslint'] = '7.1.1';
+		pkg.dependencies['eslint-plugin-flowtype'] = '2.30.0';
+	}
+	return pkg;
+}
 
 
 function getEslintSettings({es2015, commonjs, esmodules, react, flow}){
@@ -318,58 +355,46 @@ function getEslintSettings({es2015, commonjs, esmodules, react, flow}){
 }
 
 
-function getPackageJson(id, version, {name, react, flow}){
-	const pkg = {
-		version,
-		name: `ESLint Config: ${name}`,
-		main: 'settings.js',
-		files: ['settings.js'],
-		peerDependencies: {
-			eslint: '>=3.14.1'
-		}
-	};
-	if (react || flow){
-		pkg.dependencies = {};
-	}
-	if (react){
-		pkg.dependencies['eslint-plugin-react'] = '6.9.0';
-	}
-	if (flow){
-		pkg.dependencies['babel-eslint'] = '7.1.1';
-		pkg.dependencies['eslint-plugin-flowtype'] = '2.30.0';
-	}
-	return pkg;
+function getReadme(id, {name, es2015, commonjs, esmodules, react, flow}){
+	return `# ESLint Config: ${name}
+
+Generated using the following [settings](https://github.com/wildpeaks/packages-eslint-config#readme):
+
+- \`es2015\`: ${es2015 ? 'true' : 'false'}
+- \`commonjs\`: ${commonjs ? 'true' : 'false'}
+- \`esmodules\`: ${esmodules ? 'true' : 'false'}
+- \`react\`: ${react ? 'true' : 'false'}
+- \`flow\`: ${flow ? 'true' : 'false'}
+	`;
 }
 
 
-function getReadme(id, {name}){
-	return `ESLint Config: ${name}\n\n (${id}\n\nSee AAAAAAAAAAAAAAAAAAAAAAAA`;
+function build(id){
+	const config = configs[id];
+	const folder = path.join(__dirname, 'packages', id);
+	fs.mkdirSync(folder);
+	fs.writeFileSync(
+		path.join(folder, 'package.json'),
+		JSON.stringify(getPackageJson(id, version, config)),
+		'utf8'
+	);
+	fs.writeFileSync(
+		path.join(folder, 'settings.js'),
+		JSON.stringify(getEslintSettings(config)),
+		'utf8'
+	);
+	fs.writeFileSync(
+		path.join(folder, 'README.md'),
+		getReadme(id, config),
+		'utf8'
+	);
 }
 
 
+fs.mkdirSync(path.join(__dirname, 'packages'));
 describe('Packages', () => {
-	let version = '1.0.0';
-	before(() => {
-		//
-		// TODO read the version number
-		//
-		version = '2.0.0';
-	});
 	for (const id in configs){
-		it(id, () => {
-			const config = configs[id];
-			const eslintSettings = getEslintSettings(config);
-			// const packageJson = getPackageJson(id, version, config);
-			// const markdown = getReadme(id, config);
-
-			//
-			// TODO Create /packages/:id folder
-			//
-			// TODO Write settings.js
-			//
-			// TODO Write README.md
-			//
-		});
+		it(id, build.bind(null, id, version));
 	}
 });
 
