@@ -3,8 +3,8 @@
 'use strict';
 const fs = require('fs');
 const path = require('path');
-const {strictEqual, deepStrictEqual} = require('assert');
-const {linter} = require('eslint');
+const {strictEqual, deepStrictEqual, notDeepStrictEqual} = require('assert');
+const {CLIEngine} = require('eslint');
 const configs = require('..');
 const {version} = require('../package.json');
 const packages = path.join(__dirname, '../packages');
@@ -13,11 +13,12 @@ const fixtures = path.join(__dirname, 'fixtures');
 
 function test_fixture(settings, id, fails){
 	const code = fs.readFileSync(path.join(fixtures, `${id}.js`), 'utf8');
-	const errors = linter.verify(code, settings, {filename: 'fake.js'});
+	const cli = new CLIEngine(settings);
+	const report = cli.executeOnText(code);
 	if (fails){
-		strictEqual(errors.length > 0, true, `Fixture: ${id}`);
+		notDeepStrictEqual(report.results[0].messages, [], `Fixture "${id}" should have errors`);
 	} else {
-		deepStrictEqual(errors, [], `Fixture: ${id}`);
+		deepStrictEqual(report.results[0].messages, [], `Fixture "${id}" should pass`);
 	}
 }
 
@@ -68,12 +69,16 @@ function test_package(id, done){
 		}
 		strictEqual(throws, false, 'Package can be required');
 		strictEqual(typeof settings, 'object', 'Package exports an Object');
+		settings.useEslintrc = false;
 
 		test_fixture(settings, 'var', config.es2015);
 		test_fixture(settings, 'implicit_global', true);
-		test_fixture(settings, 'arrow_function_single_param_without_parens', !config.es2015 && !config.flow);
+		test_fixture(settings, 'arrow_function_single_param_without_parens', !config.es2015 || config.flow);
 		test_fixture(settings, 'arrow_function_single_param_with_parens', true);
-		test_fixture(settings, 'arrow_function_multiple_params', !config.es2015);
+		test_fixture(settings, 'arrow_function_multiple_params_without_type', !config.es2015 || config.flow);
+		test_fixture(settings, 'class_empty', !config.es2015);
+		test_fixture(settings, 'class_method_without_type', !config.es2015 || config.flow);
+		test_fixture(settings, 'class_method_with_type', !config.flow);
 
 		//
 		// async
@@ -109,7 +114,8 @@ describe('Packages', /* @this */ function(){
 		});
 	});
 
-	// it('eslint-config-legacy', test_package.bind(this, 'eslint-config-legacy')); // TODELETE
+	// it('eslint-config-legacy', test_package.bind(this, 'eslint-config-legacy'));
+	// it('eslint-config-commonjs-react', test_package.bind(this, 'eslint-config-commonjs-react'));
 	for (const id in configs){
 		it(id, test_package.bind(this, id));
 	}
