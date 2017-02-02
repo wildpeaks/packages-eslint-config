@@ -356,9 +356,6 @@ function getEslintSettings({commonjs, es2015, esmodules, react, flow}){
 		// @see https://github.com/eslint/eslint/issues/892
 		// @see https://github.com/eslint/eslint/pull/6922
 		// @see https://github.com/eslint/eslint/issues/7967
-		// eslintSettings.globals = {
-		// 	module: true
-		// };
 		eslintSettings.globals = ['module'];
 	}
 	return eslintSettings;
