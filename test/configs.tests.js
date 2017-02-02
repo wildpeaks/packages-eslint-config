@@ -96,6 +96,7 @@ function test_package(id, done){
 		test_fixture(settings, 'with_env_mocha', false);
 
 		test_fixture(settings, 'esmodule', !config.esmodules);
+		test_fixture(settings, 'commonjs', !config.commonjs);
 
 		// @warning Cannot enable this test because it acts differently in CLI mode and in Node API mode:
 		// https://github.com/zaggino/brackets-eslint/issues/51
