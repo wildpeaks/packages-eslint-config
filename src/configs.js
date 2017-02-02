@@ -1,14 +1,14 @@
 'use strict';
 
 module.exports = {
-	// ES5 only, no CommonJS, no ES Modules, No React, No Preact, No classes, No promises, No Async, etc...
 	'eslint-config-legacy': {
 		name: 'ES5 Legacy'
 	},
 
 	'eslint-config-commonjs': {
 		name: 'ES2015, CommonJS',
-		es2015: true
+		es2015: true,
+		commonjs: true
 	},
 	'eslint-config-esmodules': {
 		name: 'ES2015, ES Modules',
@@ -16,10 +16,10 @@ module.exports = {
 		esmodules: true
 	},
 
-	// ES2015, React + JSX
 	'eslint-config-commonjs-react': {
 		name: 'ES2015, CommonJS, React, JSX',
 		es2015: true,
+		commonjs: true,
 		react: true
 	},
 	'eslint-config-esmodules-react': {
@@ -29,10 +29,10 @@ module.exports = {
 		react: true
 	},
 
-	// ES2015, Flow without React
 	'eslint-config-commonjs-flow': {
 		name: 'ES2015, CommonJS, Flow',
 		es2015: true,
+		commonjs: true,
 		flow: true
 	},
 	'eslint-config-esmodules-flow': {
@@ -42,10 +42,10 @@ module.exports = {
 		flow: true
 	},
 
-	// ES2015, Flow + React + JSX
 	'eslint-config-commonjs-react-flow': {
 		name: 'ES2015, CommonJS, React, JSX, Flow',
 		es2015: true,
+		commonjs: true,
 		react: true,
 		flow: true
 	},

@@ -41,11 +41,12 @@ function getPackageJson(id, {name, react, flow}){
 }
 
 
-function getEslintSettings({es2015, esmodules, react, flow}){
+function getEslintSettings({commonjs, es2015, esmodules, react, flow}){
 	const eslintSettings = {
 		env: {
 			node: false,
 			browser: false,
+			commonjs: Boolean(commonjs),
 			es6: Boolean(es2015)
 		},
 		parserOptions: {
@@ -350,15 +351,23 @@ function getEslintSettings({es2015, esmodules, react, flow}){
 			'ExportDefaultDeclaration', 'ExportNamedDeclaration', 'ExportAllDeclaration', 'ExportSpecifier'
 		];
 	}
+
+	if (commonjs){
+		// @see https://github.com/eslint/eslint/issues/892
+		// @see https://github.com/eslint/eslint/pull/6922
+		// @see https://github.com/eslint/eslint/issues/7967
+		eslintSettings.globals = ['module'];
+	}
 	return eslintSettings;
 }
 
 
-function getReadme(id, {name, es2015, esmodules, react, flow}){
+function getReadme(id, {name, commonjs, es2015, esmodules, react, flow}){
 	return `# ESLint Config: ${name}
 
 Generated using the following [settings](https://github.com/wildpeaks/packages-eslint-config#readme):
 
+- \`commonjs\`: ${commonjs ? 'true' : 'false'}
 - \`es2015\`: ${es2015 ? 'true' : 'false'}
 - \`esmodules\`: ${esmodules ? 'true' : 'false'}
 - \`react\`: ${react ? 'true' : 'false'}
