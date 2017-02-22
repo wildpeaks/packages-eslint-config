@@ -11,7 +11,8 @@
     "build:reset": "rimraf packages",
     "build:packages": "mocha build.js || true",
     "build": "npm run build:reset && npm run build:packages",
-    "test": "mocha test/configs.tests.js || true"
+    "lint": "eslint src",
+    "test": "mocha test/configs.tests.js"
   },
   "repository": "https://github.com/wildpeaks/packages-eslint-config",
   "keywords": [
