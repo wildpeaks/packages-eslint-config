@@ -255,7 +255,7 @@ function getEslintSettings({commonjs, es2015, esmodules, react, flow}){
 			'operator-assignment': ['error', 'always'],
 			'operator-linebreak': ['error', 'before'],
 			'padded-blocks': ['error', 'never'],
-			'quote-props': ['error', 'as-needed'],
+			'quote-props': ['error', 'consistent-as-needed'],
 			'quotes': [2, 'single', {allowTemplateLiterals: true}],
 			'semi': ['error', 'always'],
 			'semi-spacing': ['error', {before: false, after: true}],
