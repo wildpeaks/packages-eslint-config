@@ -1,6 +1,5 @@
 /* eslint-env node, mocha */
 /* eslint-disable no-sync */
-/* eslint quote-props: ["error", "consistent-as-needed"] */
 'use strict';
 const fs = require('fs');
 const path = require('path');
