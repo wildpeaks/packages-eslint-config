@@ -4,8 +4,8 @@
 'use strict';
 const fs = require('fs');
 const path = require('path');
-const configs = require('.');
-const {version} = require('./package.json');
+const configs = require('..');
+const {version} = require('../package.json');
 
 
 function getPackageJson(id, {name, react, flow}){
@@ -24,14 +24,14 @@ function getPackageJson(id, {name, react, flow}){
 		},
 		homepage: 'https://github.com/wildpeaks/packages-eslint-config#readme',
 		peerDependencies: {
-			eslint: '>=3.14.1'
+			eslint: '>=3.16.0'
 		}
 	};
 	if (react || flow){
 		pkg.dependencies = {};
 	}
 	if (react){
-		pkg.dependencies['eslint-plugin-react'] = '6.9.0';
+		pkg.dependencies['eslint-plugin-react'] = '6.10.0';
 	}
 	if (flow){
 		pkg.dependencies['babel-eslint'] = '7.1.1';
@@ -378,7 +378,7 @@ Generated using the following [settings](https://github.com/wildpeaks/packages-e
 
 function build(id){
 	const config = configs[id];
-	const folder = path.join(__dirname, 'packages', id);
+	const folder = path.join(__dirname, '../packages', id);
 	fs.mkdirSync(folder);
 	fs.writeFileSync(
 		path.join(folder, 'package.json'),
@@ -398,7 +398,7 @@ function build(id){
 }
 
 
-fs.mkdirSync(path.join(__dirname, 'packages'));
+fs.mkdirSync(path.join(__dirname, '../packages'));
 describe('Packages', () => {
 	for (const id in configs){
 		it(id, build.bind(null, id));

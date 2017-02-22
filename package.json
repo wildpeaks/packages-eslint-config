@@ -9,7 +9,7 @@
   },
   "scripts": {
     "build:reset": "rimraf packages",
-    "build:packages": "mocha build.js || true",
+    "build:packages": "mocha src/build.js",
     "build": "npm run build:reset && npm run build:packages",
     "test:lint": "eslint src",
     "test:mocha": "mocha test/configs.tests.js",
