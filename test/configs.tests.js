@@ -106,6 +106,15 @@ function test_package(id, done){
 
 		test_fixture(settings, 'await', !config.es2015);
 
+		test_fixture(settings, 'quotes_property_inconsistent_single', true);
+		test_fixture(settings, 'quotes_property_consistent_single', false);
+		test_fixture(settings, 'quotes_property_backtick', true);
+		test_fixture(settings, 'quotes_property_single', false);
+		test_fixture(settings, 'quotes_backtick', !config.es2015);
+		test_fixture(settings, 'quotes_single', false);
+		test_fixture(settings, 'quotes_property_double', true);
+		test_fixture(settings, 'quotes_double', true);
+
 		done();
 	});
 }
