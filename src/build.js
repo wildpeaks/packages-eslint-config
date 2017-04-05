@@ -22,19 +22,18 @@ function getPackageJson(id, {name, react, flow}){
 			url: 'https://github.com/wildpeaks/packages-eslint-config/issues'
 		},
 		homepage: 'https://github.com/wildpeaks/packages-eslint-config#readme',
+		dependencies: {},
 		peerDependencies: {
-			eslint: '>=3.16.0'
+			eslint: '>=3.19.0'
 		}
 	};
-	if (react || flow){
-		pkg.dependencies = {};
-	}
 	if (react){
-		pkg.dependencies['eslint-plugin-react'] = '6.10.0';
+		pkg.dependencies['eslint-plugin-react'] = '6.10.3';
 	}
 	if (flow){
-		pkg.dependencies['babel-eslint'] = '7.1.1';
-		pkg.dependencies['eslint-plugin-flowtype'] = '2.30.0';
+		pkg.dependencies['babel-eslint'] = '7.2.1';
+		pkg.dependencies['eslint-plugin-babel'] = '4.1.1';
+		pkg.dependencies['eslint-plugin-flowtype'] = '2.30.4';
 	}
 	return pkg;
 }
@@ -55,6 +54,7 @@ function getEslintSettings({commonjs, es2015, esmodules, react, flow}){
 				templateStrings: Boolean(es2015)
 			}
 		},
+		plugins: [],
 		rules: {
 			'no-cond-assign': ['error', 'always'],
 			'no-console': 'off',
@@ -69,7 +69,11 @@ function getEslintSettings({commonjs, es2015, esmodules, react, flow}){
 			'no-ex-assign': 'error',
 			'no-extra-boolean-cast': 'error',
 			'no-extra-parens': 'off',
-			'no-extra-semi': 'warn',
+
+			// @warning Semicolons after a stage2 static function or arrow function trigger this rule by mistake,
+			// so it has to be disabled when stage2 is allowed until it's fixed.
+			'no-extra-semi': flow ? 'off' : 'warn',
+
 			'no-func-assign': 'error',
 			'no-inner-declarations': 'error',
 			'no-invalid-regexp': 'error',
@@ -307,39 +311,66 @@ function getEslintSettings({commonjs, es2015, esmodules, react, flow}){
 		eslintSettings.parserOptions.sourceType = 'module';
 		eslintSettings.parserOptions.allowImportExportEverywhere = false;
 	}
+
 	if (react){
 		eslintSettings.parserOptions.ecmaFeatures.jsx = true;
 		eslintSettings.parserOptions.ecmaFeatures.experimentalObjectRestSpread = true;
-	}
-
-	if (react || flow){
-		eslintSettings.plugins = [];
-	}
-	if (react){
 		eslintSettings.plugins.push('react');
 		eslintSettings.extends = ['plugin:react/recommended'];
 		eslintSettings.rules['react/prop-types'] = ['error', {ignore: ['children']}];
 	}
+
 	if (flow){
 		eslintSettings.parser = 'babel-eslint';
+
+		eslintSettings.plugins.push('babel');
+		eslintSettings.rules['babel/new-cap'] = eslintSettings.rules['new-cap'];
+		eslintSettings.rules['babel/object-curly-spacing'] = eslintSettings.rules['object-curly-spacing'];
+		eslintSettings.rules['babel/no-invalid-this'] = eslintSettings.rules['no-invalid-this'];
+		eslintSettings.rules['babel/semi'] = eslintSettings.rules.semi;
+		eslintSettings.rules['new-cap'] = 'off';
+		eslintSettings.rules['object-curly-spacing'] = 'off';
+		eslintSettings.rules['no-invalid-this'] = 'off';
+		eslintSettings.rules.semi = 'off';
+
 		eslintSettings.plugins.push('flowtype');
 		eslintSettings.settings = {
 			flowtype: {
 				onlyFilesWithFlowAnnotation: true
 			}
 		};
-		eslintSettings.rules['flowtype/define-flow-type'] = 1;
-		eslintSettings.rules['flowtype/require-parameter-type'] = 1;
+		eslintSettings.rules['flowtype/boolean-style'] = ['error', 'boolean'];
+		eslintSettings.rules['flowtype/define-flow-type'] = 'error';
+		eslintSettings.rules['flowtype/delimiter-dangle'] = ['error', 'never'];
+		eslintSettings.rules['flowtype/generic-spacing'] = ['error', 'never'];
+		eslintSettings.rules['flowtype/no-dupe-keys'] = 'error';
+		eslintSettings.rules['flowtype/no-primitive-constructor-types'] = 'error';
+		eslintSettings.rules['flowtype/no-weak-types'] = ['warn', {
+			any: true,
+			Object: true,
+			Function: true
+		}];
+		eslintSettings.rules['flowtype/object-type-delimiter'] = ['error', 'comma'];
+		eslintSettings.rules['flowtype/require-parameter-type'] = ['error', {
+			excludeParameterMatch: '^_',
+			excludeArrowFunctions: 'expressionsOnly'
+		}];
 		eslintSettings.rules['flowtype/require-return-type'] = ['error', 'always', {
 			excludeArrowFunctions: true,
 			annotateUndefined: 'always'
 		}];
-		eslintSettings.rules['flowtype/space-after-type-colon'] = [1, 'always'];
-		eslintSettings.rules['flowtype/space-before-type-colon'] = [1, 'never'];
-		eslintSettings.rules['flowtype/type-id-match'] = [1, '^([A-Z][a-z0-9]+)+Type$'];
-		eslintSettings.rules['flowtype/use-flow-type'] = 1;
-		eslintSettings.rules['flowtype/valid-syntax'] = 1;
+		eslintSettings.rules['flowtype/require-variable-type'] = ['error', {excludeVariableMatch: '^_'}];
+		eslintSettings.rules['flowtype/require-valid-file-annotation'] = 'off';
+		eslintSettings.rules['flowtype/semi'] = ['error', 'always'];
+		eslintSettings.rules['flowtype/sort-keys'] = 'off';
+		eslintSettings.rules['flowtype/space-after-type-colon'] = ['error', 'always'];
+		eslintSettings.rules['flowtype/space-before-generic-bracket'] = ['error', 'never'];
+		eslintSettings.rules['flowtype/space-before-type-colon'] = ['error', 'never'];
+		eslintSettings.rules['flowtype/type-id-match'] = ['error', '^([A-Z][a-z0-9]+)+Type$'];
+		eslintSettings.rules['flowtype/union-intersection-spacing'] = ['error', 'never'];
+		eslintSettings.rules['flowtype/use-flow-type'] = 'error';
 	}
+
 	if (esmodules){
 		eslintSettings.rules['no-restricted-syntax'] = ['error', 'WithStatement'];
 	} else {

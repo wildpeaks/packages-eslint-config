@@ -1,7 +1,7 @@
 {
   "private": true,
   "name": "eslint-config",
-  "version": "1.2.0",
+  "version": "2.0.0",
   "description": "Eslint configs generator",
   "main": "src/configs.js",
   "engines": {
@@ -11,6 +11,9 @@
     "build:reset": "rimraf packages",
     "build:packages": "mocha src/build.js",
     "build": "npm run build:reset && npm run build:packages",
+
+    "todelete": "mocha test/configs.tests.js || true",
+
     "test:lint": "eslint src",
     "test:mocha": "mocha test/configs.tests.js",
     "test": "npm run test:lint && npm run test:mocha"
@@ -28,12 +31,13 @@
   "homepage": "https://github.com/wildpeaks/packages-eslint-config#readme",
   "dependencies": {
     "mocha": "3.2.0",
-    "rimraf": "2.6.0"
+    "rimraf": "2.6.1"
   },
   "devDependencies": {
-    "babel-eslint": "7.1.1",
-    "eslint": "3.16.0",
-    "eslint-plugin-flowtype": "2.30.0",
-    "eslint-plugin-react": "6.10.0"
+    "babel-eslint": "7.2.1",
+    "eslint": "3.19.0",
+    "eslint-plugin-babel": "4.1.1",
+    "eslint-plugin-flowtype": "2.30.4",
+    "eslint-plugin-react": "6.10.3"
   }
 }
