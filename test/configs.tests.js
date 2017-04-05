@@ -1,5 +1,6 @@
 /* eslint-env node, mocha */
 /* eslint-disable no-sync */
+/* eslint-disable max-len */
 'use strict';
 const fs = require('fs');
 const path = require('path');
@@ -79,8 +80,39 @@ function test_package(id, done){
 		test_fixture(settings, 'arrow_function_multiple_params_without_type', !config.es2015 || config.flow);
 
 		test_fixture(settings, 'class_empty', !config.es2015);
-		test_fixture(settings, 'class_method_without_type', !config.es2015 || config.flow);
-		test_fixture(settings, 'class_method_with_type', !config.flow);
+		test_fixture(settings, 'class_stage0_method_without_type', !config.es2015 || config.flow);
+		test_fixture(settings, 'class_stage0_method_with_type', !config.flow);
+
+		test_fixture(settings, 'flow_type_bool', true);
+		test_fixture(settings, 'flow_type_boolean', !config.flow);
+		test_fixture(settings, 'flow_type_boolean_primitive', true);
+		test_fixture(settings, 'flow_type_number', !config.flow);
+		test_fixture(settings, 'flow_type_number_primitive', true);
+		test_fixture(settings, 'flow_type_string', !config.flow);
+		test_fixture(settings, 'flow_type_string_primitive', true);
+
+		// @warning There appears no way to force it to require a type on class properties
+		// Probably will be available once it's out of stage2 phase.
+		test_fixture(settings, 'class_stage2_instance_property_without_type', !config.flow);
+		test_fixture(settings, 'class_stage2_static_property_without_type', !config.flow);
+
+		test_fixture(settings, 'class_stage2_instance_function_method_without_type', true);
+		test_fixture(settings, 'class_stage2_static_function_method_without_type', true);
+
+		test_fixture(settings, 'class_stage2_instance_arrow_method_without_type', true);
+		test_fixture(settings, 'class_stage2_static_arrow_method_without_type', true);
+
+
+		test_fixture(settings, 'class_stage2_instance_property_with_type', !config.flow);
+		test_fixture(settings, 'class_stage2_static_property_with_type', !config.flow);
+
+		test_fixture(settings, 'class_stage2_instance_function_method_with_type', !config.flow);
+		test_fixture(settings, 'class_stage2_static_function_method_with_type', !config.flow);
+
+		// @warning I'd rather those failed because both instance and static function methods
+		// get transpiled to smaller code than arrow methods.
+		test_fixture(settings, 'class_stage2_instance_arrow_method_with_type', !config.flow);
+		test_fixture(settings, 'class_stage2_static_arrow_method_with_type', !config.flow);
 
 		test_fixture(settings, 'line_80', false);
 		test_fixture(settings, 'line_120', false);
@@ -95,8 +127,15 @@ function test_package(id, done){
 		test_fixture(settings, 'without_env_mocha', true);
 		test_fixture(settings, 'with_env_mocha', false);
 
-		test_fixture(settings, 'esmodule', !config.esmodules);
 		test_fixture(settings, 'commonjs', !config.commonjs);
+		test_fixture(settings, 'export_var', !config.esmodules);
+		test_fixture(settings, 'export_const', !config.esmodules);
+		test_fixture(settings, 'export_arrow', true);
+		test_fixture(settings, 'export_function', !config.esmodules);
+		test_fixture(settings, 'export_default_var', !config.esmodules);
+		test_fixture(settings, 'export_default_const', true);
+		test_fixture(settings, 'export_default_arrow', !config.esmodules);
+		test_fixture(settings, 'export_default_function', !config.esmodules);
 
 		// @warning Cannot enable this test because it acts differently in CLI mode and in Node API mode:
 		// https://github.com/zaggino/brackets-eslint/issues/51
