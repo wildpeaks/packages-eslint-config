@@ -346,7 +346,7 @@ function getEslintSettings({commonjs, es2015, esmodules, react, flow}){
 		eslintSettings.rules['flowtype/no-dupe-keys'] = 'error';
 		eslintSettings.rules['flowtype/no-primitive-constructor-types'] = 'error';
 		eslintSettings.rules['flowtype/no-weak-types'] = ['warn', {
-			any: true,
+			any: false,
 			Object: true,
 			Function: true
 		}];
