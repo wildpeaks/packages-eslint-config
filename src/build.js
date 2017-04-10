@@ -359,7 +359,7 @@ function getEslintSettings({commonjs, es2015, esmodules, react, flow}){
 			excludeArrowFunctions: true,
 			annotateUndefined: 'always'
 		}];
-		eslintSettings.rules['flowtype/require-variable-type'] = ['error', {excludeVariableMatch: '^_'}];
+		eslintSettings.rules['flowtype/require-variable-type'] = 'off';
 		eslintSettings.rules['flowtype/require-valid-file-annotation'] = 'off';
 		eslintSettings.rules['flowtype/semi'] = ['error', 'always'];
 		eslintSettings.rules['flowtype/sort-keys'] = 'off';
