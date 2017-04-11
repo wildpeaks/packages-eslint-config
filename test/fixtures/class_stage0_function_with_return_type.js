@@ -1,5 +1,5 @@
 /* @flow */
-/* global console */
+/* eslint-disable flowtype/require-variable-type */
 /* eslint-disable no-implicit-globals */
 /* eslint-disable no-unused-vars */
 /* eslint-disable strict */
@@ -7,7 +7,7 @@
 class BaseClass {}
 
 class MyClass extends BaseClass {
-	mymethod(param1){
-		console.log(param1);
+	mymethod(): number {
+		return 123;
 	}
 }

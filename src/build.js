@@ -317,7 +317,7 @@ function getEslintSettings({commonjs, es2015, esmodules, react, flow}){
 		eslintSettings.parserOptions.ecmaFeatures.experimentalObjectRestSpread = true;
 		eslintSettings.plugins.push('react');
 		eslintSettings.extends = ['plugin:react/recommended'];
-		eslintSettings.rules['react/prop-types'] = ['error', {ignore: ['children']}];
+		eslintSettings.rules['react/prop-types'] = flow ? 'off' : ['error', {ignore: ['children']}];
 	}
 
 	if (flow){
@@ -346,7 +346,7 @@ function getEslintSettings({commonjs, es2015, esmodules, react, flow}){
 		eslintSettings.rules['flowtype/no-dupe-keys'] = 'error';
 		eslintSettings.rules['flowtype/no-primitive-constructor-types'] = 'error';
 		eslintSettings.rules['flowtype/no-weak-types'] = ['warn', {
-			any: true,
+			any: false,
 			Object: true,
 			Function: true
 		}];
@@ -356,17 +356,17 @@ function getEslintSettings({commonjs, es2015, esmodules, react, flow}){
 			excludeArrowFunctions: 'expressionsOnly'
 		}];
 		eslintSettings.rules['flowtype/require-return-type'] = ['error', 'always', {
-			excludeArrowFunctions: true,
+			excludeArrowFunctions: 'expressionsOnly',
 			annotateUndefined: 'always'
 		}];
-		eslintSettings.rules['flowtype/require-variable-type'] = ['error', {excludeVariableMatch: '^_'}];
+		eslintSettings.rules['flowtype/require-variable-type'] = 'off';
 		eslintSettings.rules['flowtype/require-valid-file-annotation'] = 'off';
 		eslintSettings.rules['flowtype/semi'] = ['error', 'always'];
 		eslintSettings.rules['flowtype/sort-keys'] = 'off';
 		eslintSettings.rules['flowtype/space-after-type-colon'] = ['error', 'always'];
 		eslintSettings.rules['flowtype/space-before-generic-bracket'] = ['error', 'never'];
 		eslintSettings.rules['flowtype/space-before-type-colon'] = ['error', 'never'];
-		eslintSettings.rules['flowtype/type-id-match'] = ['error', '^([A-Z][a-z0-9]+)+Type$'];
+		eslintSettings.rules['flowtype/type-id-match'] = ['error', '^([A-Z][a-z0-9]+)+$'];
 		eslintSettings.rules['flowtype/union-intersection-spacing'] = ['error', 'never'];
 		eslintSettings.rules['flowtype/use-flow-type'] = 'error';
 	}
