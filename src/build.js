@@ -317,7 +317,7 @@ function getEslintSettings({commonjs, es2015, esmodules, react, flow}){
 		eslintSettings.parserOptions.ecmaFeatures.experimentalObjectRestSpread = true;
 		eslintSettings.plugins.push('react');
 		eslintSettings.extends = ['plugin:react/recommended'];
-		eslintSettings.rules['react/prop-types'] = ['error', {ignore: ['children']}];
+		eslintSettings.rules['react/prop-types'] = flow ? 'off' : ['error', {ignore: ['children']}];
 	}
 
 	if (flow){
