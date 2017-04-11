@@ -366,7 +366,7 @@ function getEslintSettings({commonjs, es2015, esmodules, react, flow}){
 		eslintSettings.rules['flowtype/space-after-type-colon'] = ['error', 'always'];
 		eslintSettings.rules['flowtype/space-before-generic-bracket'] = ['error', 'never'];
 		eslintSettings.rules['flowtype/space-before-type-colon'] = ['error', 'never'];
-		eslintSettings.rules['flowtype/type-id-match'] = ['error', '^([A-Z][a-z0-9]+)+Type$'];
+		eslintSettings.rules['flowtype/type-id-match'] = ['error', '^([A-Z][a-z0-9]+)+$'];
 		eslintSettings.rules['flowtype/union-intersection-spacing'] = ['error', 'never'];
 		eslintSettings.rules['flowtype/use-flow-type'] = 'error';
 	}
