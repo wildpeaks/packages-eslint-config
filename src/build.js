@@ -356,7 +356,7 @@ function getEslintSettings({commonjs, es2015, esmodules, react, flow}){
 			excludeArrowFunctions: 'expressionsOnly'
 		}];
 		eslintSettings.rules['flowtype/require-return-type'] = ['error', 'always', {
-			excludeArrowFunctions: true,
+			excludeArrowFunctions: 'expressionsOnly',
 			annotateUndefined: 'always'
 		}];
 		eslintSettings.rules['flowtype/require-variable-type'] = 'off';
