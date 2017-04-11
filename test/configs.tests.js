@@ -25,6 +25,7 @@ function test_fixture(settings, id, fails){
 
 
 function test_package(id, done){
+	/* eslint-disable max-statements */
 	const config = configs[id];
 	const folder = path.join(packages, id);
 	fs.access(folder, fs.constants.R_OK, folderError => {
@@ -80,8 +81,8 @@ function test_package(id, done){
 		test_fixture(settings, 'arrow_function_multiple_params_without_type', !config.es2015 || config.flow);
 
 		test_fixture(settings, 'class_empty', !config.es2015);
-		test_fixture(settings, 'class_stage0_method_without_type', !config.es2015 || config.flow);
-		test_fixture(settings, 'class_stage0_method_with_type', !config.flow);
+		test_fixture(settings, 'class_stage0_function_without_return_type', !config.es2015 || config.flow);
+		test_fixture(settings, 'class_stage0_function_with_return_type', !config.flow);
 
 		test_fixture(settings, 'flow_type_bool', true);
 		test_fixture(settings, 'flow_type_boolean', !config.flow);
@@ -90,29 +91,70 @@ function test_package(id, done){
 		test_fixture(settings, 'flow_type_number_primitive', true);
 		test_fixture(settings, 'flow_type_string', !config.flow);
 		test_fixture(settings, 'flow_type_string_primitive', true);
+		test_fixture(settings, 'flow_type_void', !config.flow);
+		test_fixture(settings, 'flow_return_type_void', !config.flow);
+		test_fixture(settings, 'flow_type_undefined', true);
+		test_fixture(settings, 'flow_return_type_undefined', true);
 
-		// @warning There appears no way to force it to require a type on class properties
+		test_fixture(settings, 'flow_type_lowercase', true);
+		test_fixture(settings, 'flow_type_uppercase', true);
+		test_fixture(settings, 'flow_type_lower_camelcase', true);
+		test_fixture(settings, 'flow_type_upper_camelcase', !config.flow);
+		test_fixture(settings, 'flow_type_number_lower_camelcase', true);
+		test_fixture(settings, 'flow_type_number_upper_camelcase', true);
+		test_fixture(settings, 'flow_type_single_letter_lowercase', true);
+		test_fixture(settings, 'flow_type_single_letter_uppercase', true);
+
+		// @warning There appears no way to force it to require a type on class properties.
 		// Probably will be available once it's out of stage2 phase.
 		test_fixture(settings, 'class_stage2_instance_property_without_type', !config.flow);
 		test_fixture(settings, 'class_stage2_static_property_without_type', !config.flow);
-
-		test_fixture(settings, 'class_stage2_instance_function_method_without_type', true);
-		test_fixture(settings, 'class_stage2_static_function_method_without_type', true);
-
-		test_fixture(settings, 'class_stage2_instance_arrow_method_without_type', true);
-		test_fixture(settings, 'class_stage2_static_arrow_method_without_type', true);
-
-
 		test_fixture(settings, 'class_stage2_instance_property_with_type', !config.flow);
 		test_fixture(settings, 'class_stage2_static_property_with_type', !config.flow);
 
-		test_fixture(settings, 'class_stage2_instance_function_method_with_type', !config.flow);
-		test_fixture(settings, 'class_stage2_static_function_method_with_type', !config.flow);
+		test_fixture(settings, 'class_stage2_instance_function_without_return_type', true);
+		test_fixture(settings, 'class_stage2_static_function_without_return_type', true);
+		test_fixture(settings, 'class_stage2_instance_arrow_without_return_type', true);
+		test_fixture(settings, 'class_stage2_static_arrow_without_return_type', true);
+		test_fixture(settings, 'class_stage2_instance_expression_without_return_type', !config.flow);
+		test_fixture(settings, 'class_stage2_static_expression_without_return_type', !config.flow);
 
-		// @warning I'd rather those failed because both instance and static function methods
-		// get transpiled to smaller code than arrow methods.
-		test_fixture(settings, 'class_stage2_instance_arrow_method_with_type', !config.flow);
-		test_fixture(settings, 'class_stage2_static_arrow_method_with_type', !config.flow);
+		// @warning I would prefer "instance function" always fails (because it should use arrow or expression),
+		// but there is no rule for that yet.
+		test_fixture(settings, 'class_stage2_instance_function_with_return_type', !config.flow);
+		test_fixture(settings, 'class_stage2_static_function_with_return_type', !config.flow);
+		test_fixture(settings, 'class_stage2_instance_arrow_with_return_type', !config.flow);
+		test_fixture(settings, 'class_stage2_static_arrow_with_return_type', !config.flow);
+		test_fixture(settings, 'class_stage2_instance_expression_with_return_type', !config.flow);
+		test_fixture(settings, 'class_stage2_static_expression_with_return_type', !config.flow);
+
+		test_fixture(settings, 'class_stage2_instance_function_without_params_type', true);
+		test_fixture(settings, 'class_stage2_static_function_without_params_type', true);
+		test_fixture(settings, 'class_stage2_instance_arrow_without_params_type', true);
+		test_fixture(settings, 'class_stage2_static_arrow_without_params_type', true);
+		test_fixture(settings, 'class_stage2_instance_expression_without_params_type', !config.flow);
+		test_fixture(settings, 'class_stage2_static_expression_without_params_type', !config.flow);
+
+		test_fixture(settings, 'class_stage2_instance_function_with_params_type', !config.flow);
+		test_fixture(settings, 'class_stage2_static_function_with_params_type', !config.flow);
+		test_fixture(settings, 'class_stage2_instance_arrow_with_params_type', !config.flow);
+		test_fixture(settings, 'class_stage2_static_arrow_with_params_type', !config.flow);
+		test_fixture(settings, 'class_stage2_instance_expression_with_params_type', !config.flow);
+		test_fixture(settings, 'class_stage2_static_expression_with_params_type', !config.flow);
+
+		test_fixture(settings, 'class_stage2_instance_function_underscore_params_without_type', !config.flow);
+		test_fixture(settings, 'class_stage2_static_function_underscore_params_without_type', !config.flow);
+		test_fixture(settings, 'class_stage2_instance_arrow_underscore_params_without_type', !config.flow);
+		test_fixture(settings, 'class_stage2_static_arrow_underscore_params_without_type', !config.flow);
+		test_fixture(settings, 'class_stage2_instance_expression_underscore_params_without_type', !config.flow);
+		test_fixture(settings, 'class_stage2_static_expression_underscore_params_without_type', !config.flow);
+
+		test_fixture(settings, 'class_stage2_instance_function_underscore_params_with_type', !config.flow);
+		test_fixture(settings, 'class_stage2_static_function_underscore_params_with_type', !config.flow);
+		test_fixture(settings, 'class_stage2_instance_arrow_underscore_params_with_type', !config.flow);
+		test_fixture(settings, 'class_stage2_static_arrow_underscore_params_with_type', !config.flow);
+		test_fixture(settings, 'class_stage2_instance_expression_underscore_params_with_type', !config.flow);
+		test_fixture(settings, 'class_stage2_static_expression_underscore_params_with_type', !config.flow);
 
 		test_fixture(settings, 'line_80', false);
 		test_fixture(settings, 'line_120', false);
