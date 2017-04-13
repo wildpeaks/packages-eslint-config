@@ -3,6 +3,7 @@
 Generated using the following [settings](https://github.com/wildpeaks/packages-eslint-config#readme):
 
 - `commonjs`: false
+- `stage2`: false
 - `es2015`: true
 - `esmodules`: true
 - `react`: true

@@ -2,6 +2,7 @@
 /* eslint-disable flowtype/require-return-type */
 /* eslint-disable no-implicit-globals */
 /* eslint-disable no-unused-vars */
+/* eslint-disable space-before-blocks */
 /* eslint-disable strict */
 /* global console */
 
