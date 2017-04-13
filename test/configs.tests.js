@@ -8,26 +8,137 @@ const {strictEqual, deepStrictEqual, notDeepStrictEqual} = require('assert');
 const {CLIEngine} = require('eslint');
 const configs = require('..');
 const {version} = require('../package.json');
-const packages = path.join(__dirname, '../packages');
-const fixtures = path.join(__dirname, 'fixtures');
+const dirPackages = path.join(__dirname, '../packages');
+const dirFixtures = path.join(__dirname, 'fixtures');
 
 
-function test_fixture(settings, id, fails){
-	const code = fs.readFileSync(path.join(fixtures, `${id}.js`), 'utf8');
-	const cli = new CLIEngine(settings);
-	const report = cli.executeOnText(code);
-	if (fails){
-		notDeepStrictEqual(report.results[0].messages, [], `Fixture "${id}" should have errors`);
-	} else {
-		deepStrictEqual(report.results[0].messages, [], `Fixture "${id}" should pass`);
-	}
-}
+function testPackage(packageId, done){
+	const {commonjs, esmodules, stage2, es2015, react, flow} = configs[packageId];
+	const babelParser = flow || stage2;
+	const expected = {
+		var: es2015,
 
+		arrow_function_single_param_without_parens: !es2015 || flow,
+		arrow_function_single_param_with_parens: true,
+		arrow_function_multiple_params_without_type: !es2015 || flow,
 
-function test_package(id, done){
-	/* eslint-disable max-statements */
-	const config = configs[id];
-	const folder = path.join(packages, id);
+		class_empty: !es2015,
+		class_stage0_function_without_return_type: !es2015 || flow,
+		class_stage0_function_with_return_type: !babelParser,
+
+		flow_type_bool: !babelParser || flow,
+		flow_type_boolean: !babelParser,
+		flow_type_boolean_primitive: !babelParser || flow,
+		flow_type_number: !babelParser,
+		flow_type_number_primitive: !babelParser || flow,
+		flow_type_string: !babelParser,
+		flow_type_string_primitive: !babelParser || flow,
+		flow_type_void: !babelParser,
+		flow_return_type_void: !babelParser,
+		flow_type_undefined: true,
+		flow_return_type_undefined: true,
+
+		flow_type_lowercase: !babelParser || flow,
+		flow_type_uppercase: !babelParser || flow,
+		flow_type_lower_camelcase: !babelParser || flow,
+		flow_type_upper_camelcase: !babelParser,
+		flow_type_number_lower_camelcase: true,
+		flow_type_number_upper_camelcase: true,
+		flow_type_single_letter_lowercase: !babelParser || flow,
+		flow_type_single_letter_uppercase: !babelParser || flow,
+
+		// @warning There appears no way to force it to require a type on class properties.
+		// Probably will be available once it's out of stage2 phase.
+		class_stage2_instance_property_without_type: !babelParser,
+		class_stage2_static_property_without_type: !babelParser,
+		class_stage2_instance_property_with_type: !babelParser,
+		class_stage2_static_property_with_type: !babelParser,
+
+		class_stage2_instance_function_without_return_type: !babelParser || flow,
+		class_stage2_static_function_without_return_type: !babelParser || flow,
+		class_stage2_instance_arrow_without_return_type: !babelParser || flow,
+		class_stage2_static_arrow_without_return_type: !babelParser || flow,
+		class_stage2_instance_expression_without_return_type: !babelParser,
+		class_stage2_static_expression_without_return_type: !babelParser,
+
+		// @warning I would prefer "instance function" always fails (because it should use arrow or expression),
+		// but there is no rule for that yet.
+		class_stage2_instance_function_with_return_type: !babelParser,
+		class_stage2_static_function_with_return_type: !babelParser,
+		class_stage2_instance_arrow_with_return_type: !babelParser,
+		class_stage2_static_arrow_with_return_type: !babelParser,
+		class_stage2_instance_expression_with_return_type: !babelParser,
+		class_stage2_static_expression_with_return_type: !babelParser,
+
+		class_stage2_instance_function_without_params_type: !babelParser || flow,
+		class_stage2_static_function_without_params_type: !babelParser || flow,
+		class_stage2_instance_arrow_without_params_type: !babelParser || flow,
+		class_stage2_static_arrow_without_params_type: !babelParser || flow,
+		class_stage2_instance_expression_without_params_type: !babelParser,
+		class_stage2_static_expression_without_params_type: !babelParser,
+
+		class_stage2_instance_function_with_params_type: !babelParser,
+		class_stage2_static_function_with_params_type: !babelParser,
+		class_stage2_instance_arrow_with_params_type: !babelParser,
+		class_stage2_static_arrow_with_params_type: !babelParser,
+		class_stage2_instance_expression_with_params_type: !babelParser,
+		class_stage2_static_expression_with_params_type: !babelParser,
+
+		class_stage2_instance_function_underscore_params_without_type: !babelParser,
+		class_stage2_static_function_underscore_params_without_type: !babelParser,
+		class_stage2_instance_arrow_underscore_params_without_type: !babelParser,
+		class_stage2_static_arrow_underscore_params_without_type: !babelParser,
+		class_stage2_instance_expression_underscore_params_without_type: !babelParser,
+		class_stage2_static_expression_underscore_params_without_type: !babelParser,
+
+		class_stage2_instance_function_underscore_params_with_type: !babelParser,
+		class_stage2_static_function_underscore_params_with_type: !babelParser,
+		class_stage2_instance_arrow_underscore_params_with_type: !babelParser,
+		class_stage2_static_arrow_underscore_params_with_type: !babelParser,
+		class_stage2_instance_expression_underscore_params_with_type: !babelParser,
+		class_stage2_static_expression_underscore_params_with_type: !babelParser,
+
+		line_80: false,
+		line_120: false,
+		line_140: true,
+
+		without_env_node: true,
+		with_env_node: false,
+
+		without_env_browser: true,
+		with_env_browser: false,
+
+		without_env_mocha: true,
+		with_env_mocha: false,
+
+		commonjs: !commonjs,
+		export_var: !esmodules,
+		export_const: !esmodules,
+		export_arrow: true,
+		export_function: !esmodules,
+		export_default_var: !esmodules,
+		export_default_const: true,
+		export_default_arrow: !esmodules,
+		export_default_function: !esmodules,
+
+		// @warning Cannot enable this test because it acts differently in CLI mode and in Node API mode:
+		// https://github.com/zaggino/brackets-eslint/issues/51
+		// promise: !es2015,
+
+		react_jsx: !babelParser && !react,
+		await: !es2015,
+
+		quotes_property_inconsistent_single: true,
+		quotes_property_consistent_single: false,
+		quotes_property_backtick: true,
+		quotes_property_single: false,
+		quotes_backtick: !es2015,
+		quotes_single: false,
+		quotes_property_double: true,
+		quotes_double: true
+	};
+
+	const folder = path.join(dirPackages, packageId);
 	fs.access(folder, fs.constants.R_OK, folderError => {
 		strictEqual(folderError, null, 'Folder exists');
 
@@ -42,7 +153,7 @@ function test_package(id, done){
 		}
 		strictEqual(throws, false, 'package.json can be read');
 		strictEqual(typeof packageJson, 'object', 'packageJson is a JSON Object');
-		strictEqual(packageJson.name, `@wildpeaks/${id}`, 'package.name');
+		strictEqual(packageJson.name, `@wildpeaks/${packageId}`, 'package.name');
 		strictEqual(packageJson.main, 'settings.js', 'package.main');
 		strictEqual(packageJson.version, version, 'package.version');
 
@@ -65,7 +176,7 @@ function test_package(id, done){
 		throws = false;
 		let settings;
 		try {
-			settings = require(`../packages/${id}`); // eslint-disable-line global-require
+			settings = require(`../packages/${packageId}`); // eslint-disable-line global-require
 		} catch(e){
 			throws = true;
 		}
@@ -73,128 +184,32 @@ function test_package(id, done){
 		strictEqual(typeof settings, 'object', 'Package exports an Object');
 		settings.useEslintrc = false;
 
-		test_fixture(settings, 'var', config.es2015);
-		test_fixture(settings, 'implicit_global', true);
+		const cli = new CLIEngine(settings);
+		const report = cli.executeOnFiles([dirFixtures]);
+		const actual = {};
+		report.results.forEach(result => {
+			const rules = {};
+			result.messages.forEach(message => {
+				if (message.fatal){
+					rules.fatal = message.message;
+				} else {
+					rules[message.ruleId] = message.message;
+				}
+			});
+			const fixtureId = path.basename(result.filePath, '.js');
+			actual[fixtureId] = rules;
+		});
 
-		test_fixture(settings, 'arrow_function_single_param_without_parens', !config.es2015 || config.flow);
-		test_fixture(settings, 'arrow_function_single_param_with_parens', true);
-		test_fixture(settings, 'arrow_function_multiple_params_without_type', !config.es2015 || config.flow);
-
-		test_fixture(settings, 'class_empty', !config.es2015);
-		test_fixture(settings, 'class_stage0_function_without_return_type', !config.es2015 || config.flow);
-		test_fixture(settings, 'class_stage0_function_with_return_type', !config.flow);
-
-		test_fixture(settings, 'flow_type_bool', true);
-		test_fixture(settings, 'flow_type_boolean', !config.flow);
-		test_fixture(settings, 'flow_type_boolean_primitive', true);
-		test_fixture(settings, 'flow_type_number', !config.flow);
-		test_fixture(settings, 'flow_type_number_primitive', true);
-		test_fixture(settings, 'flow_type_string', !config.flow);
-		test_fixture(settings, 'flow_type_string_primitive', true);
-		test_fixture(settings, 'flow_type_void', !config.flow);
-		test_fixture(settings, 'flow_return_type_void', !config.flow);
-		test_fixture(settings, 'flow_type_undefined', true);
-		test_fixture(settings, 'flow_return_type_undefined', true);
-
-		test_fixture(settings, 'flow_type_lowercase', true);
-		test_fixture(settings, 'flow_type_uppercase', true);
-		test_fixture(settings, 'flow_type_lower_camelcase', true);
-		test_fixture(settings, 'flow_type_upper_camelcase', !config.flow);
-		test_fixture(settings, 'flow_type_number_lower_camelcase', true);
-		test_fixture(settings, 'flow_type_number_upper_camelcase', true);
-		test_fixture(settings, 'flow_type_single_letter_lowercase', true);
-		test_fixture(settings, 'flow_type_single_letter_uppercase', true);
-
-		// @warning There appears no way to force it to require a type on class properties.
-		// Probably will be available once it's out of stage2 phase.
-		test_fixture(settings, 'class_stage2_instance_property_without_type', !config.flow);
-		test_fixture(settings, 'class_stage2_static_property_without_type', !config.flow);
-		test_fixture(settings, 'class_stage2_instance_property_with_type', !config.flow);
-		test_fixture(settings, 'class_stage2_static_property_with_type', !config.flow);
-
-		test_fixture(settings, 'class_stage2_instance_function_without_return_type', true);
-		test_fixture(settings, 'class_stage2_static_function_without_return_type', true);
-		test_fixture(settings, 'class_stage2_instance_arrow_without_return_type', true);
-		test_fixture(settings, 'class_stage2_static_arrow_without_return_type', true);
-		test_fixture(settings, 'class_stage2_instance_expression_without_return_type', !config.flow);
-		test_fixture(settings, 'class_stage2_static_expression_without_return_type', !config.flow);
-
-		// @warning I would prefer "instance function" always fails (because it should use arrow or expression),
-		// but there is no rule for that yet.
-		test_fixture(settings, 'class_stage2_instance_function_with_return_type', !config.flow);
-		test_fixture(settings, 'class_stage2_static_function_with_return_type', !config.flow);
-		test_fixture(settings, 'class_stage2_instance_arrow_with_return_type', !config.flow);
-		test_fixture(settings, 'class_stage2_static_arrow_with_return_type', !config.flow);
-		test_fixture(settings, 'class_stage2_instance_expression_with_return_type', !config.flow);
-		test_fixture(settings, 'class_stage2_static_expression_with_return_type', !config.flow);
-
-		test_fixture(settings, 'class_stage2_instance_function_without_params_type', true);
-		test_fixture(settings, 'class_stage2_static_function_without_params_type', true);
-		test_fixture(settings, 'class_stage2_instance_arrow_without_params_type', true);
-		test_fixture(settings, 'class_stage2_static_arrow_without_params_type', true);
-		test_fixture(settings, 'class_stage2_instance_expression_without_params_type', !config.flow);
-		test_fixture(settings, 'class_stage2_static_expression_without_params_type', !config.flow);
-
-		test_fixture(settings, 'class_stage2_instance_function_with_params_type', !config.flow);
-		test_fixture(settings, 'class_stage2_static_function_with_params_type', !config.flow);
-		test_fixture(settings, 'class_stage2_instance_arrow_with_params_type', !config.flow);
-		test_fixture(settings, 'class_stage2_static_arrow_with_params_type', !config.flow);
-		test_fixture(settings, 'class_stage2_instance_expression_with_params_type', !config.flow);
-		test_fixture(settings, 'class_stage2_static_expression_with_params_type', !config.flow);
-
-		test_fixture(settings, 'class_stage2_instance_function_underscore_params_without_type', !config.flow);
-		test_fixture(settings, 'class_stage2_static_function_underscore_params_without_type', !config.flow);
-		test_fixture(settings, 'class_stage2_instance_arrow_underscore_params_without_type', !config.flow);
-		test_fixture(settings, 'class_stage2_static_arrow_underscore_params_without_type', !config.flow);
-		test_fixture(settings, 'class_stage2_instance_expression_underscore_params_without_type', !config.flow);
-		test_fixture(settings, 'class_stage2_static_expression_underscore_params_without_type', !config.flow);
-
-		test_fixture(settings, 'class_stage2_instance_function_underscore_params_with_type', !config.flow);
-		test_fixture(settings, 'class_stage2_static_function_underscore_params_with_type', !config.flow);
-		test_fixture(settings, 'class_stage2_instance_arrow_underscore_params_with_type', !config.flow);
-		test_fixture(settings, 'class_stage2_static_arrow_underscore_params_with_type', !config.flow);
-		test_fixture(settings, 'class_stage2_instance_expression_underscore_params_with_type', !config.flow);
-		test_fixture(settings, 'class_stage2_static_expression_underscore_params_with_type', !config.flow);
-
-		test_fixture(settings, 'line_80', false);
-		test_fixture(settings, 'line_120', false);
-		test_fixture(settings, 'line_140', true);
-
-		test_fixture(settings, 'without_env_node', true);
-		test_fixture(settings, 'with_env_node', false);
-
-		test_fixture(settings, 'without_env_browser', true);
-		test_fixture(settings, 'with_env_browser', false);
-
-		test_fixture(settings, 'without_env_mocha', true);
-		test_fixture(settings, 'with_env_mocha', false);
-
-		test_fixture(settings, 'commonjs', !config.commonjs);
-		test_fixture(settings, 'export_var', !config.esmodules);
-		test_fixture(settings, 'export_const', !config.esmodules);
-		test_fixture(settings, 'export_arrow', true);
-		test_fixture(settings, 'export_function', !config.esmodules);
-		test_fixture(settings, 'export_default_var', !config.esmodules);
-		test_fixture(settings, 'export_default_const', true);
-		test_fixture(settings, 'export_default_arrow', !config.esmodules);
-		test_fixture(settings, 'export_default_function', !config.esmodules);
-
-		// @warning Cannot enable this test because it acts differently in CLI mode and in Node API mode:
-		// https://github.com/zaggino/brackets-eslint/issues/51
-		// test_fixture(settings, 'promise', !config.es2015);
-
-		test_fixture(settings, 'react_jsx', !config.react && !config.flow);
-
-		test_fixture(settings, 'await', !config.es2015);
-
-		test_fixture(settings, 'quotes_property_inconsistent_single', true);
-		test_fixture(settings, 'quotes_property_consistent_single', false);
-		test_fixture(settings, 'quotes_property_backtick', true);
-		test_fixture(settings, 'quotes_property_single', false);
-		test_fixture(settings, 'quotes_backtick', !config.es2015);
-		test_fixture(settings, 'quotes_single', false);
-		test_fixture(settings, 'quotes_property_double', true);
-		test_fixture(settings, 'quotes_double', true);
+		for (const fixtureId in expected){
+			const expectedError = expected[fixtureId];
+			const actualError = actual[fixtureId];
+			const rules = Object.keys(actualError);
+			if (expectedError){
+				notDeepStrictEqual(rules, [], `Fixture "${fixtureId}" should have errors`);
+			} else {
+				deepStrictEqual(rules, [], `Fixture "${fixtureId}" should pass`);
+			}
+		}
 
 		done();
 	});
@@ -202,17 +217,15 @@ function test_package(id, done){
 
 
 describe('Packages', /* @this */ function(){
-	this.slow(1000);
-	this.timeout(2000);
-
+	this.slow(3000);
+	this.timeout(5000);
 	before(done => {
-		fs.access(packages, fs.constants.R_OK, err => {
-			strictEqual(err, null, 'Folder packages exists');
+		fs.access(dirPackages, fs.constants.R_OK, err => {
+			strictEqual(err, null, 'Folder "packages" exists');
 			done();
 		});
 	});
-
 	for (const id in configs){
-		it(id, test_package.bind(this, id));
+		it(id, testPackage.bind(this, id));
 	}
 });
