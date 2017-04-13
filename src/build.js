@@ -7,7 +7,7 @@ const configs = require('..');
 const {version} = require('../package.json');
 
 
-function getPackageJson(id, {name, react, flow}){
+function getPackageJson(id, {name, stage2, react, flow}){
 	const pkg = {
 		name: `@wildpeaks/${id}`,
 		version,
@@ -30,16 +30,18 @@ function getPackageJson(id, {name, react, flow}){
 	if (react){
 		pkg.dependencies['eslint-plugin-react'] = '6.10.3';
 	}
-	if (flow){
+	if (stage2 || flow){
 		pkg.dependencies['babel-eslint'] = '7.2.1';
 		pkg.dependencies['eslint-plugin-babel'] = '4.1.1';
+	}
+	if (flow){
 		pkg.dependencies['eslint-plugin-flowtype'] = '2.30.4';
 	}
 	return pkg;
 }
 
 
-function getEslintSettings({commonjs, es2015, esmodules, react, flow}){
+function getEslintSettings({commonjs, stage2, es2015, esmodules, react, flow}){
 	const eslintSettings = {
 		env: {
 			node: false,
@@ -127,7 +129,7 @@ function getEslintSettings({commonjs, es2015, esmodules, react, flow}){
 			'no-fallthrough': 'error',
 			'no-floating-decimal': 'error',
 			'no-implicit-coercion': 'error',
-			'no-implicit-globals': 'error',
+			'no-implicit-globals': 'off',
 			'no-implied-eval': 'error',
 			'no-invalid-this': 'error',
 			'no-iterator': 'error',
@@ -312,17 +314,8 @@ function getEslintSettings({commonjs, es2015, esmodules, react, flow}){
 		eslintSettings.parserOptions.allowImportExportEverywhere = false;
 	}
 
-	if (react){
-		eslintSettings.parserOptions.ecmaFeatures.jsx = true;
-		eslintSettings.parserOptions.ecmaFeatures.experimentalObjectRestSpread = true;
-		eslintSettings.plugins.push('react');
-		eslintSettings.extends = ['plugin:react/recommended'];
-		eslintSettings.rules['react/prop-types'] = flow ? 'off' : ['error', {ignore: ['children']}];
-	}
-
-	if (flow){
+	if (stage2 || flow){
 		eslintSettings.parser = 'babel-eslint';
-
 		eslintSettings.plugins.push('babel');
 		eslintSettings.rules['babel/new-cap'] = eslintSettings.rules['new-cap'];
 		eslintSettings.rules['babel/object-curly-spacing'] = eslintSettings.rules['object-curly-spacing'];
@@ -332,7 +325,17 @@ function getEslintSettings({commonjs, es2015, esmodules, react, flow}){
 		eslintSettings.rules['object-curly-spacing'] = 'off';
 		eslintSettings.rules['no-invalid-this'] = 'off';
 		eslintSettings.rules.semi = 'off';
+	}
 
+	if (react){
+		eslintSettings.parserOptions.ecmaFeatures.jsx = true;
+		eslintSettings.parserOptions.ecmaFeatures.experimentalObjectRestSpread = true;
+		eslintSettings.plugins.push('react');
+		eslintSettings.extends = ['plugin:react/recommended'];
+		eslintSettings.rules['react/prop-types'] = flow ? 'off' : ['error', {ignore: ['children']}];
+	}
+
+	if (flow){
 		eslintSettings.plugins.push('flowtype');
 		eslintSettings.settings = {
 			flowtype: {
@@ -392,12 +395,13 @@ function getEslintSettings({commonjs, es2015, esmodules, react, flow}){
 }
 
 
-function getReadme(id, {name, commonjs, es2015, esmodules, react, flow}){
+function getReadme(id, {name, commonjs, stage2, es2015, esmodules, react, flow}){
 	return `# ESLint Config: ${name}
 
 Generated using the following [settings](https://github.com/wildpeaks/packages-eslint-config#readme):
 
 - \`commonjs\`: ${commonjs ? 'true' : 'false'}
+- \`stage2\`: ${stage2 ? 'true' : 'false'}
 - \`es2015\`: ${es2015 ? 'true' : 'false'}
 - \`esmodules\`: ${esmodules ? 'true' : 'false'}
 - \`react\`: ${react ? 'true' : 'false'}
