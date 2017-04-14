@@ -42,6 +42,21 @@ module.exports = {
 		react: true
 	},
 
+	'eslint-config-commonjs-react-stage2': {
+		name: 'ES2015, CommonJS, React, JSX',
+		stage2: true,
+		es2015: true,
+		commonjs: true,
+		react: true
+	},
+	'eslint-config-esmodules-react-stage2': {
+		name: 'ES2015, ES Modules, React, JSX',
+		stage2: true,
+		es2015: true,
+		esmodules: true,
+		react: true
+	},
+
 	'eslint-config-commonjs-flow': {
 		name: 'ES2015, CommonJS, Flow',
 		stage2: true,

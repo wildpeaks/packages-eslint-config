@@ -31,7 +31,7 @@ function getPackageJson(id, {name, stage2, react, flow}){
 		pkg.dependencies['eslint-plugin-react'] = '6.10.3';
 	}
 	if (stage2 || flow){
-		pkg.dependencies['babel-eslint'] = '7.2.1';
+		pkg.dependencies['babel-eslint'] = '7.2.2';
 		pkg.dependencies['eslint-plugin-babel'] = '4.1.1';
 	}
 	if (flow){
