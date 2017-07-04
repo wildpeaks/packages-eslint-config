@@ -24,18 +24,18 @@ function getPackageJson(id, {name, stage2, react, flow}){
 		homepage: 'https://github.com/wildpeaks/packages-eslint-config#readme',
 		dependencies: {},
 		peerDependencies: {
-			eslint: '>=3.19.0'
+			eslint: '>=4.1.1'
 		}
 	};
 	if (react){
-		pkg.dependencies['eslint-plugin-react'] = '6.10.3';
+		pkg.dependencies['eslint-plugin-react'] = '7.1.0';
 	}
 	if (stage2 || flow){
-		pkg.dependencies['babel-eslint'] = '7.2.2';
+		pkg.dependencies['babel-eslint'] = '7.2.3';
 		pkg.dependencies['eslint-plugin-babel'] = '4.1.1';
 	}
 	if (flow){
-		pkg.dependencies['eslint-plugin-flowtype'] = '2.30.4';
+		pkg.dependencies['eslint-plugin-flowtype'] = '2.34.1';
 	}
 	return pkg;
 }
