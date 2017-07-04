@@ -1,0 +1,34 @@
+{
+	"files.exclude": {
+		"LICENSE": true,
+		"*.lnk": true,
+		"*.url": true,
+		"*.zip": true,
+		"*.txt": true,
+		"*.log": true,
+		".DS_Store": true,
+		".editorconfig": true,
+		".gitignore": true,
+		".gitattributes": true,
+		".chrome": true,
+		".vscode": true,
+		"node_modules": true,
+		"package-lock.json": true
+	},
+	"search.exclude": {
+		"LICENSE": true,
+		"*.lnk": true,
+		"*.url": true,
+		"*.zip": true,
+		"*.txt": true,
+		"*.log": true,
+		".DS_Store": true,
+		".editorconfig": true,
+		".gitignore": true,
+		".gitattributes": true,
+		".chrome": true,
+		".vscode": true,
+		"node_modules": true,
+		"package-lock.json": true
+	}
+}
