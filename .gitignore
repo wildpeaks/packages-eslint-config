@@ -11,13 +11,13 @@
 # But allow those files and folders:
 #-----------------------------------------------------------------------------#
 
-!.editorconfig
-!.eslintrc.json
-!.gitattributes
-!.gitignore
-!.travis.yml
-!build.js
-!README.md
+!/.editorconfig
+!/.eslintrc.json
+!/.gitattributes
+!/.gitignore
+!/.travis.yml
+!/README.md
+!/.vscode
 !/src
 !/packages
 !/test
