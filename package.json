@@ -1,7 +1,7 @@
 {
   "private": true,
   "name": "eslint-config",
-  "version": "3.0.0",
+  "version": "3.1.0",
   "description": "Eslint configs generator",
   "main": "src/configs.js",
   "engines": {
@@ -32,9 +32,9 @@
   },
   "devDependencies": {
     "babel-eslint": "7.2.3",
-    "eslint": "4.1.1",
+    "eslint": "4.2.0",
     "eslint-plugin-babel": "4.1.1",
-    "eslint-plugin-flowtype": "2.34.1",
+    "eslint-plugin-flowtype": "2.35.0",
     "eslint-plugin-react": "7.1.0"
   }
 }
