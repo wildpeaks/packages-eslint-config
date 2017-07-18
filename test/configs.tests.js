@@ -184,6 +184,14 @@ function testPackage(packageId, done){
 		strictEqual(typeof settings, 'object', 'Package exports an Object');
 		settings.useEslintrc = false;
 
+		// Real configs need an Object, CLIEngine needs an Array.
+		// @see https://github.com/eslint/eslint/issues/892
+		// @see https://github.com/eslint/eslint/pull/6922
+		// @see https://github.com/eslint/eslint/issues/7967
+		if (typeof settings.globals === 'object'){
+			settings.globals = Object.keys(settings.globals);
+		}
+
 		const cli = new CLIEngine(settings);
 		const report = cli.executeOnFiles([dirFixtures]);
 		const actual = {};

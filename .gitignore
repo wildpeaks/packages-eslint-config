@@ -16,12 +16,13 @@
 !/.gitattributes
 !/.gitignore
 !/.travis.yml
-!/README.md
 !/.vscode
-!/src
+!/README.md
 !/packages
+!/src
 !/test
 !/package.json
+!/package-lock.json
 
 
 #-----------------------------------------------------------------------------#
