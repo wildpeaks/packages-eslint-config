@@ -24,7 +24,7 @@ function getPackageJson(id, {name, stage2, react, flow}){
 		homepage: 'https://github.com/wildpeaks/packages-eslint-config#readme',
 		dependencies: {},
 		peerDependencies: {
-			eslint: '>=4.1.1'
+			eslint: '>=4.2.0'
 		}
 	};
 	if (react){
@@ -35,7 +35,7 @@ function getPackageJson(id, {name, stage2, react, flow}){
 		pkg.dependencies['eslint-plugin-babel'] = '4.1.1';
 	}
 	if (flow){
-		pkg.dependencies['eslint-plugin-flowtype'] = '2.34.1';
+		pkg.dependencies['eslint-plugin-flowtype'] = '2.35.0';
 	}
 	return pkg;
 }
@@ -386,10 +386,9 @@ function getEslintSettings({commonjs, stage2, es2015, esmodules, react, flow}){
 	}
 
 	if (commonjs){
-		// @see https://github.com/eslint/eslint/issues/892
-		// @see https://github.com/eslint/eslint/pull/6922
-		// @see https://github.com/eslint/eslint/issues/7967
-		eslintSettings.globals = ['module'];
+		eslintSettings.globals = {
+			module: true
+		};
 	}
 	return eslintSettings;
 }
