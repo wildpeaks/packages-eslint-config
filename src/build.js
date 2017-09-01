@@ -24,18 +24,18 @@ function getPackageJson(id, {name, stage2, react, flow}){
 		homepage: 'https://github.com/wildpeaks/packages-eslint-config#readme',
 		dependencies: {},
 		peerDependencies: {
-			eslint: '>=4.2.0'
+			eslint: '>=4.5.0'
 		}
 	};
 	if (react){
-		pkg.dependencies['eslint-plugin-react'] = '7.1.0';
+		pkg.dependencies['eslint-plugin-react'] = '7.3.0';
 	}
 	if (stage2 || flow){
 		pkg.dependencies['babel-eslint'] = '7.2.3';
-		pkg.dependencies['eslint-plugin-babel'] = '4.1.1';
+		pkg.dependencies['eslint-plugin-babel'] = '4.1.2';
 	}
 	if (flow){
-		pkg.dependencies['eslint-plugin-flowtype'] = '2.35.0';
+		pkg.dependencies['eslint-plugin-flowtype'] = '2.35.1';
 	}
 	return pkg;
 }
@@ -216,7 +216,7 @@ function getEslintSettings({commonjs, stage2, es2015, esmodules, react, flow}){
 
 			// @warning That rule has no option to fix the "break" indent :(
 			// https://github.com/eslint/eslint/issues/1798#issuecomment-121328852
-			'indent': ['error', 'tab', {SwitchCase: 1}],
+			'indent': ['error', 'tab', {SwitchCase: 1, MemberExpression: 'off'}],
 
 			'jsx-quotes': ['error', 'prefer-double'],
 			'key-spacing': ['error', {beforeColon: false, afterColon: true}],
@@ -233,7 +233,7 @@ function getEslintSettings({commonjs, stage2, es2015, esmodules, react, flow}){
 			'new-parens': 'error',
 			'newline-after-var': 'off',
 			'newline-before-return': 'off',
-			'newline-per-chained-call': ['error', {ignoreChainWithDepth: 3 }],
+			'newline-per-chained-call': ['error', {ignoreChainWithDepth: 5}],
 			'no-array-constructor': 'error',
 			'no-bitwise': 'error',
 			'no-continue': 'error',
