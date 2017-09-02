@@ -15,6 +15,8 @@ const dirFixtures = path.join(__dirname, 'fixtures');
 function testPackage(packageId, done){
 	const {commonjs, esmodules, stage2, es2015, react, flow} = configs[packageId];
 	const babelParser = flow || stage2;
+
+	// Describes when it's expected to fail (e.g. `true` means always, `false` means never).
 	const expected = {
 		var: es2015,
 
@@ -135,7 +137,14 @@ function testPackage(packageId, done){
 		quotes_backtick: !es2015,
 		quotes_single: false,
 		quotes_property_double: true,
-		quotes_double: true
+		quotes_double: true,
+
+		chained_two_methods_single_line: false,
+		chained_two_methods_multiple_lines: false,
+		chained_four_methods_single_line: false,
+		chained_four_methods_multiple_lines: false,
+		chained_six_methods_single_line: true,
+		chained_six_methods_multiple_lines: false
 	};
 
 	const folder = path.join(dirPackages, packageId);
