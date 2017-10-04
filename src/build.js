@@ -4,7 +4,7 @@
 const fs = require('fs');
 const path = require('path');
 const configs = require('..');
-const {version} = require('../package.json');
+const {version, devDependencies} = require('../package.json');
 
 
 function getPackageJson(id, {name, stage2, react, flow}){
@@ -24,18 +24,18 @@ function getPackageJson(id, {name, stage2, react, flow}){
 		homepage: 'https://github.com/wildpeaks/packages-eslint-config#readme',
 		dependencies: {},
 		peerDependencies: {
-			eslint: '>=4.5.0'
+			eslint: `>=${devDependencies.eslint}`
 		}
 	};
 	if (react){
-		pkg.dependencies['eslint-plugin-react'] = '7.3.0';
+		pkg.dependencies['eslint-plugin-react'] = devDependencies['eslint-plugin-react'];
 	}
 	if (stage2 || flow){
-		pkg.dependencies['babel-eslint'] = '7.2.3';
-		pkg.dependencies['eslint-plugin-babel'] = '4.1.2';
+		pkg.dependencies['babel-eslint'] = devDependencies['babel-eslint'];
+		pkg.dependencies['eslint-plugin-babel'] = devDependencies['eslint-plugin-babel'];
 	}
 	if (flow){
-		pkg.dependencies['eslint-plugin-flowtype'] = '2.35.1';
+		pkg.dependencies['eslint-plugin-flowtype'] = devDependencies['eslint-plugin-flowtype'];
 	}
 	return pkg;
 }
