@@ -259,7 +259,7 @@ function getEslintSettings({commonjs, stage2, es2015, esmodules, react, flow}){
 			'one-var-declaration-per-line': ['error', 'always'],
 			'operator-assignment': ['error', 'always'],
 			'operator-linebreak': ['error', 'before'],
-			'padded-blocks': ['error', 'never'],
+			'padded-blocks': 'off', // Not specific enough: I'd want 0 or 1 at the beginning, 0 at the end, 1 or 2 before multiline comments
 			'quote-props': ['error', 'consistent-as-needed'],
 			'quotes': [2, 'single', {allowTemplateLiterals: true}],
 			'semi': ['error', 'always'],
