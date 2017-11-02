@@ -5,6 +5,7 @@
 /* eslint-disable space-before-blocks */
 /* eslint-disable strict */
 /* global console */
+/* eslint-disable class-methods-use-this */
 
 class MyClass {
 	boundFunction = (_param1: number = 100, _param2: number): void => console.log(_param1 + _param2);

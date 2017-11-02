@@ -307,7 +307,8 @@ function getEslintSettings({commonjs, stage2, es2015, esmodules, react, flow}){
 			'template-curly-spacing': ['error', 'never'],
 			'yield-star-spacing': ['error', {before: false, after: true}],
 			'no-return-await': 'error',
-			'no-await-in-loop': 'error'
+			'no-await-in-loop': 'error',
+			'class-methods-use-this': 'error'
 		}
 	};
 
