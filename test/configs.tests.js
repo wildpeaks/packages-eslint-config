@@ -150,7 +150,8 @@ function testPackage(packageId, done){
 		this_function: false,
 		this_arrow: true,
 		this_class_constructor: !es2015,
-		this_class_method: !es2015
+		this_class_method: !es2015,
+		this_class_static: !es2015 // @warning I would rather `true`, but only checkJs catches that issue, not even "class-methods-use-this" rule
 	};
 
 	const folder = path.join(dirPackages, packageId);
