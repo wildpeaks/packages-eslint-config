@@ -4,8 +4,7 @@ Generated using the following [settings](https://github.com/wildpeaks/packages-e
 
 - `commonjs`: false
 - `stage2`: false
-- `es2015`: false
+- `es2017`: false
 - `esmodules`: false
 - `react`: false
-- `flow`: false
 	
