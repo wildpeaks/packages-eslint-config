@@ -5,6 +5,7 @@
 /* eslint-disable space-before-blocks */
 /* eslint-disable strict */
 /* global console */
+/* eslint-disable class-methods-use-this */
 
 class MyClass {
 	static staticFunction = function(param1: number = 100, param2: number): void {
