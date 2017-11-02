@@ -4,10 +4,10 @@
 const fs = require('fs');
 const path = require('path');
 const configs = require('..');
-const {version, devDependencies} = require('../package.json');
+const {version, dependencies} = require('../package.json');
 
 
-function getPackageJson(id, {name, stage2, react, flow}){
+function getPackageJson(id, {name, stage2, react}){
 	const pkg = {
 		name: `@wildpeaks/${id}`,
 		version,
@@ -24,36 +24,33 @@ function getPackageJson(id, {name, stage2, react, flow}){
 		homepage: 'https://github.com/wildpeaks/packages-eslint-config#readme',
 		dependencies: {},
 		peerDependencies: {
-			eslint: `>=${devDependencies.eslint}`
+			eslint: `>=${dependencies.eslint}`
 		}
 	};
 	if (react){
-		pkg.dependencies['eslint-plugin-react'] = devDependencies['eslint-plugin-react'];
+		pkg.dependencies['eslint-plugin-react'] = dependencies['eslint-plugin-react'];
 	}
-	if (stage2 || flow){
-		pkg.dependencies['babel-eslint'] = devDependencies['babel-eslint'];
-		pkg.dependencies['eslint-plugin-babel'] = devDependencies['eslint-plugin-babel'];
-	}
-	if (flow){
-		pkg.dependencies['eslint-plugin-flowtype'] = devDependencies['eslint-plugin-flowtype'];
+	if (stage2){
+		pkg.dependencies['babel-eslint'] = dependencies['babel-eslint'];
+		pkg.dependencies['eslint-plugin-babel'] = dependencies['eslint-plugin-babel'];
 	}
 	return pkg;
 }
 
 
-function getEslintSettings({commonjs, stage2, es2015, esmodules, react, flow}){
+function getEslintSettings({commonjs, stage2, es2017, esmodules, react}){
 	const eslintSettings = {
 		env: {
 			node: false,
 			browser: false,
 			commonjs: Boolean(commonjs),
-			es6: Boolean(es2015)
+			es6: Boolean(es2017)
 		},
 		parserOptions: {
-			ecmaVersion: es2015 ? 2017 : 5,
+			ecmaVersion: es2017 ? 2017 : 5,
 			ecmaFeatures: {
-				arrowFunctions: Boolean(es2015),
-				templateStrings: Boolean(es2015)
+				arrowFunctions: Boolean(es2017),
+				templateStrings: Boolean(es2017)
 			}
 		},
 		plugins: [],
@@ -71,11 +68,7 @@ function getEslintSettings({commonjs, stage2, es2015, esmodules, react, flow}){
 			'no-ex-assign': 'error',
 			'no-extra-boolean-cast': 'error',
 			'no-extra-parens': 'off',
-
-			// @warning Semicolons after a stage2 static function or arrow function trigger this rule by mistake,
-			// so it has to be disabled when stage2 is allowed until it's fixed.
-			'no-extra-semi': flow ? 'off' : 'warn',
-
+			'no-extra-semi': 'warn',
 			'no-func-assign': 'error',
 			'no-inner-declarations': 'error',
 			'no-invalid-regexp': 'error',
@@ -266,7 +259,7 @@ function getEslintSettings({commonjs, stage2, es2015, esmodules, react, flow}){
 			'semi-spacing': ['error', {before: false, after: true}],
 			'sort-vars': 'off',
 			'space-before-blocks': ['error', {
-				functions: (flow ? 'always' : 'never'),
+				functions: 'never',
 				keywords: 'never',
 				classes: 'always'
 			}],
@@ -279,7 +272,7 @@ function getEslintSettings({commonjs, stage2, es2015, esmodules, react, flow}){
 			'wrap-regex': 'off',
 
 			'arrow-body-style': ['error', 'as-needed'],
-			'arrow-parens': ['error', (flow ? 'always' : 'as-needed')],
+			'arrow-parens': ['error', 'as-needed'],
 			'arrow-spacing': ['error', {before: true, after: true}],
 			'constructor-super': 'error',
 			'generator-star-spacing': ['error', {before: false, after: true}],
@@ -293,7 +286,7 @@ function getEslintSettings({commonjs, stage2, es2015, esmodules, react, flow}){
 			'no-useless-computed-key': 'error',
 			'no-useless-constructor': 'error',
 			'no-useless-rename': 'error',
-			'no-var': es2015 ? 'error' : 'off',
+			'no-var': es2017 ? 'error' : 'off',
 			'object-shorthand': 'error',
 			'prefer-arrow-callback': 'error',
 			'prefer-const': ['error', {destructuring: 'all'}],
@@ -317,7 +310,7 @@ function getEslintSettings({commonjs, stage2, es2015, esmodules, react, flow}){
 		eslintSettings.parserOptions.allowImportExportEverywhere = false;
 	}
 
-	if (stage2 || flow){
+	if (stage2){
 		eslintSettings.parser = 'babel-eslint';
 		eslintSettings.plugins.push('babel');
 		eslintSettings.rules['babel/new-cap'] = eslintSettings.rules['new-cap'];
@@ -335,46 +328,7 @@ function getEslintSettings({commonjs, stage2, es2015, esmodules, react, flow}){
 		eslintSettings.parserOptions.ecmaFeatures.experimentalObjectRestSpread = true;
 		eslintSettings.plugins.push('react');
 		eslintSettings.extends = ['plugin:react/recommended'];
-		eslintSettings.rules['react/prop-types'] = flow ? 'off' : ['error', {ignore: ['children']}];
-	}
-
-	if (flow){
-		eslintSettings.plugins.push('flowtype');
-		eslintSettings.settings = {
-			flowtype: {
-				onlyFilesWithFlowAnnotation: true
-			}
-		};
-		eslintSettings.rules['flowtype/boolean-style'] = ['error', 'boolean'];
-		eslintSettings.rules['flowtype/define-flow-type'] = 'error';
-		eslintSettings.rules['flowtype/delimiter-dangle'] = ['error', 'never'];
-		eslintSettings.rules['flowtype/generic-spacing'] = ['error', 'never'];
-		eslintSettings.rules['flowtype/no-dupe-keys'] = 'error';
-		eslintSettings.rules['flowtype/no-primitive-constructor-types'] = 'error';
-		eslintSettings.rules['flowtype/no-weak-types'] = ['warn', {
-			any: false,
-			Object: true,
-			Function: true
-		}];
-		eslintSettings.rules['flowtype/object-type-delimiter'] = ['error', 'comma'];
-		eslintSettings.rules['flowtype/require-parameter-type'] = ['error', {
-			excludeParameterMatch: '^_',
-			excludeArrowFunctions: 'expressionsOnly'
-		}];
-		eslintSettings.rules['flowtype/require-return-type'] = ['error', 'always', {
-			excludeArrowFunctions: 'expressionsOnly',
-			annotateUndefined: 'always'
-		}];
-		eslintSettings.rules['flowtype/require-variable-type'] = 'off';
-		eslintSettings.rules['flowtype/require-valid-file-annotation'] = 'off';
-		eslintSettings.rules['flowtype/semi'] = ['error', 'always'];
-		eslintSettings.rules['flowtype/sort-keys'] = 'off';
-		eslintSettings.rules['flowtype/space-after-type-colon'] = ['error', 'always'];
-		eslintSettings.rules['flowtype/space-before-generic-bracket'] = ['error', 'never'];
-		eslintSettings.rules['flowtype/space-before-type-colon'] = ['error', 'never'];
-		eslintSettings.rules['flowtype/type-id-match'] = ['error', '^([A-Z][a-z0-9]+)+$'];
-		eslintSettings.rules['flowtype/union-intersection-spacing'] = ['error', 'never'];
-		eslintSettings.rules['flowtype/use-flow-type'] = 'error';
+		eslintSettings.rules['react/prop-types'] = ['error', {ignore: ['children']}];
 	}
 
 	if (esmodules){
@@ -397,17 +351,16 @@ function getEslintSettings({commonjs, stage2, es2015, esmodules, react, flow}){
 }
 
 
-function getReadme(id, {name, commonjs, stage2, es2015, esmodules, react, flow}){
+function getReadme(id, {name, commonjs, stage2, es2017, esmodules, react}){
 	return `# ESLint Config: ${name}
 
 Generated using the following [settings](https://github.com/wildpeaks/packages-eslint-config#readme):
 
 - \`commonjs\`: ${commonjs ? 'true' : 'false'}
 - \`stage2\`: ${stage2 ? 'true' : 'false'}
-- \`es2015\`: ${es2015 ? 'true' : 'false'}
+- \`es2017\`: ${es2017 ? 'true' : 'false'}
 - \`esmodules\`: ${esmodules ? 'true' : 'false'}
 - \`react\`: ${react ? 'true' : 'false'}
-- \`flow\`: ${flow ? 'true' : 'false'}
 	`;
 }
 
