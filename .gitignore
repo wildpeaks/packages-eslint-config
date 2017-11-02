@@ -15,6 +15,7 @@
 !/.eslintrc.json
 !/.gitattributes
 !/.gitignore
+!/.npmrc
 !/.travis.yml
 !/.vscode
 !/README.md
