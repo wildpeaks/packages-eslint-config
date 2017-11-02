@@ -144,7 +144,13 @@ function testPackage(packageId, done){
 		chained_four_methods_single_line: false,
 		chained_four_methods_multiple_lines: false,
 		chained_six_methods_single_line: true,
-		chained_six_methods_multiple_lines: false
+		chained_six_methods_multiple_lines: false,
+
+		this_root: true,
+		this_function: false,
+		this_arrow: true,
+		this_class_constructor: !es2015,
+		this_class_method: !es2015
 	};
 
 	const folder = path.join(dirPackages, packageId);
