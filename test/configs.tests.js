@@ -151,7 +151,28 @@ function testPackage(packageId, done){
 		this_arrow: true,
 		this_class_constructor: !es2015,
 		this_class_method: !es2015,
-		this_class_static: !es2015 // @warning I would rather `true`, but only checkJs catches that issue, not even "class-methods-use-this" rule
+		this_class_static: !es2015, // @warning I'd rather `true`, but only checkJs catches that issue, not even "class-methods-use-this" rule
+
+		padding_class_beginning_zero_lines: !es2015,
+		padding_class_beginning_one_line: !es2015,
+		padding_class_beginning_two_lines: !es2015, // @warning I'd rather `true`
+		padding_class_end_zero_lines: !es2015,
+		padding_class_end_one_line: !es2015, // @warning I'd rather `true`
+		padding_class_end_two_lines: !es2015, // @warning I'd rather `true`
+
+		padding_class_method_beginning_zero_lines: !es2015,
+		padding_class_method_beginning_one_line: !es2015,
+		padding_class_method_beginning_two_lines: !es2015, // @warning I'd rather `true`
+		padding_class_method_end_zero_lines: !es2015,
+		padding_class_method_end_one_line: !es2015, // @warning I'd rather `true`
+		padding_class_method_end_two_lines: !es2015, // @warning I'd rather `true`
+
+		padding_function_beginning_zero_lines: false,
+		padding_function_beginning_one_line: false,
+		padding_function_beginning_two_lines: false, // @warning I'd rather `true`
+		padding_function_end_zero_lines: false,
+		padding_function_end_one_line: false, // @warning I'd rather `true`
+		padding_function_end_two_lines: false // @warning I'd rather `true`
 	};
 
 	const folder = path.join(dirPackages, packageId);
