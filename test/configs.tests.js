@@ -1,10 +1,11 @@
 /* eslint-env node, mocha */
 /* eslint-disable no-sync */
 /* eslint-disable max-len */
+/* eslint-disable no-nested-ternary */
 'use strict';
 const fs = require('fs');
 const path = require('path');
-const {strictEqual, deepStrictEqual, notDeepStrictEqual} = require('assert');
+const {strictEqual, deepStrictEqual} = require('assert');
 const {CLIEngine} = require('eslint');
 const configs = require('..');
 const {version} = require('../package.json');
@@ -13,166 +14,141 @@ const dirFixtures = path.join(__dirname, 'fixtures');
 
 
 function testPackage(packageId, done){
-	const {commonjs, esmodules, stage2, es2015, react, flow} = configs[packageId];
-	const babelParser = flow || stage2;
+	const {commonjs, esmodules, stage2, es2017, react} = configs[packageId];
+	const babelParser = stage2;
 
 	// Describes when it's expected to fail (e.g. `true` means always, `false` means never).
 	const expected = {
-		var: es2015,
+		var: es2017 ? ['no-var'] : [],
 
-		arrow_function_single_param_without_parens: !es2015 || flow,
-		arrow_function_single_param_with_parens: true,
-		arrow_function_multiple_params_without_type: !es2015 || flow,
+		arrow_function_single_param_without_parens: es2017 ? [] : ['fatal'],
+		arrow_function_single_param_with_parens: es2017 ? ['arrow-parens'] : ['fatal'],
+		arrow_function_multiple_params_without_type: es2017 ? [] : ['fatal'],
 
-		class_empty: !es2015,
-		class_stage0_function_without_return_type: !es2015 || flow,
-		class_stage0_function_with_return_type: !babelParser,
+		class_empty: es2017 ? [] : ['fatal'],
+		class_stage0_function_without_return_type: es2017 ? [] : ['fatal'],
+		class_stage0_function_with_return_type: babelParser ? [] : ['fatal'],
 
-		flow_type_bool: !babelParser || flow,
-		flow_type_boolean: !babelParser,
-		flow_type_boolean_primitive: !babelParser || flow,
-		flow_type_number: !babelParser,
-		flow_type_number_primitive: !babelParser || flow,
-		flow_type_string: !babelParser,
-		flow_type_string_primitive: !babelParser || flow,
-		flow_type_void: !babelParser,
-		flow_return_type_void: !babelParser,
-		flow_type_undefined: true,
-		flow_return_type_undefined: true,
+		class_stage2_instance_property_without_type: babelParser ? [] : ['fatal'],
+		class_stage2_static_property_without_type: babelParser ? [] : ['fatal'],
+		class_stage2_instance_property_with_type: babelParser ? [] : ['fatal'],
+		class_stage2_static_property_with_type: babelParser ? [] : ['fatal'],
 
-		flow_type_lowercase: !babelParser || flow,
-		flow_type_uppercase: !babelParser || flow,
-		flow_type_lower_camelcase: !babelParser || flow,
-		flow_type_upper_camelcase: !babelParser,
-		flow_type_number_lower_camelcase: true,
-		flow_type_number_upper_camelcase: true,
-		flow_type_single_letter_lowercase: !babelParser || flow,
-		flow_type_single_letter_uppercase: !babelParser || flow,
+		class_stage2_instance_function_without_return_type: babelParser ? [] : ['fatal'],
+		class_stage2_static_function_without_return_type: babelParser ? [] : ['fatal'],
+		class_stage2_instance_arrow_without_return_type: babelParser ? [] : ['fatal'],
+		class_stage2_static_arrow_without_return_type: babelParser ? [] : ['fatal'],
+		class_stage2_instance_expression_without_return_type: babelParser ? [] : ['fatal'],
+		class_stage2_static_expression_without_return_type: babelParser ? [] : ['fatal'],
 
-		// @warning There appears no way to force it to require a type on class properties.
-		// Probably will be available once it's out of stage2 phase.
-		class_stage2_instance_property_without_type: !babelParser,
-		class_stage2_static_property_without_type: !babelParser,
-		class_stage2_instance_property_with_type: !babelParser,
-		class_stage2_static_property_with_type: !babelParser,
+		class_stage2_instance_function_with_return_type: babelParser ? [] : ['fatal'],
+		class_stage2_static_function_with_return_type: babelParser ? [] : ['fatal'],
+		class_stage2_instance_arrow_with_return_type: babelParser ? [] : ['fatal'],
+		class_stage2_static_arrow_with_return_type: babelParser ? [] : ['fatal'],
+		class_stage2_instance_expression_with_return_type: babelParser ? [] : ['fatal'],
+		class_stage2_static_expression_with_return_type: babelParser ? [] : ['fatal'],
 
-		class_stage2_instance_function_without_return_type: !babelParser || flow,
-		class_stage2_static_function_without_return_type: !babelParser || flow,
-		class_stage2_instance_arrow_without_return_type: !babelParser || flow,
-		class_stage2_static_arrow_without_return_type: !babelParser || flow,
-		class_stage2_instance_expression_without_return_type: !babelParser,
-		class_stage2_static_expression_without_return_type: !babelParser,
+		class_stage2_instance_function_without_params_type: babelParser ? [] : ['fatal'],
+		class_stage2_static_function_without_params_type: babelParser ? [] : ['fatal'],
+		class_stage2_instance_arrow_without_params_type: babelParser ? [] : ['fatal'],
+		class_stage2_static_arrow_without_params_type: babelParser ? [] : ['fatal'],
+		class_stage2_instance_expression_without_params_type: babelParser ? [] : ['fatal'],
+		class_stage2_static_expression_without_params_type: babelParser ? [] : ['fatal'],
 
-		// @warning I would prefer "instance function" always fails (because it should use arrow or expression),
-		// but there is no rule for that yet.
-		class_stage2_instance_function_with_return_type: !babelParser,
-		class_stage2_static_function_with_return_type: !babelParser,
-		class_stage2_instance_arrow_with_return_type: !babelParser,
-		class_stage2_static_arrow_with_return_type: !babelParser,
-		class_stage2_instance_expression_with_return_type: !babelParser,
-		class_stage2_static_expression_with_return_type: !babelParser,
+		class_stage2_instance_function_with_params_type: babelParser ? [] : ['fatal'],
+		class_stage2_static_function_with_params_type: babelParser ? [] : ['fatal'],
+		class_stage2_instance_arrow_with_params_type: babelParser ? [] : ['fatal'],
+		class_stage2_static_arrow_with_params_type: babelParser ? [] : ['fatal'],
+		class_stage2_instance_expression_with_params_type: babelParser ? [] : ['fatal'],
+		class_stage2_static_expression_with_params_type: babelParser ? [] : ['fatal'],
 
-		class_stage2_instance_function_without_params_type: !babelParser || flow,
-		class_stage2_static_function_without_params_type: !babelParser || flow,
-		class_stage2_instance_arrow_without_params_type: !babelParser || flow,
-		class_stage2_static_arrow_without_params_type: !babelParser || flow,
-		class_stage2_instance_expression_without_params_type: !babelParser,
-		class_stage2_static_expression_without_params_type: !babelParser,
+		class_stage2_instance_function_underscore_params_without_type: babelParser ? [] : ['fatal'],
+		class_stage2_static_function_underscore_params_without_type: babelParser ? [] : ['fatal'],
+		class_stage2_instance_arrow_underscore_params_without_type: babelParser ? [] : ['fatal'],
+		class_stage2_static_arrow_underscore_params_without_type: babelParser ? [] : ['fatal'],
+		class_stage2_instance_expression_underscore_params_without_type: babelParser ? [] : ['fatal'],
+		class_stage2_static_expression_underscore_params_without_type: babelParser ? [] : ['fatal'],
 
-		class_stage2_instance_function_with_params_type: !babelParser,
-		class_stage2_static_function_with_params_type: !babelParser,
-		class_stage2_instance_arrow_with_params_type: !babelParser,
-		class_stage2_static_arrow_with_params_type: !babelParser,
-		class_stage2_instance_expression_with_params_type: !babelParser,
-		class_stage2_static_expression_with_params_type: !babelParser,
+		class_stage2_instance_function_underscore_params_with_type: babelParser ? [] : ['fatal'],
+		class_stage2_static_function_underscore_params_with_type: babelParser ? [] : ['fatal'],
+		class_stage2_instance_arrow_underscore_params_with_type: babelParser ? [] : ['fatal'],
+		class_stage2_static_arrow_underscore_params_with_type: babelParser ? [] : ['fatal'],
+		class_stage2_instance_expression_underscore_params_with_type: babelParser ? [] : ['fatal'],
+		class_stage2_static_expression_underscore_params_with_type: babelParser ? [] : ['fatal'],
 
-		class_stage2_instance_function_underscore_params_without_type: !babelParser,
-		class_stage2_static_function_underscore_params_without_type: !babelParser,
-		class_stage2_instance_arrow_underscore_params_without_type: !babelParser,
-		class_stage2_static_arrow_underscore_params_without_type: !babelParser,
-		class_stage2_instance_expression_underscore_params_without_type: !babelParser,
-		class_stage2_static_expression_underscore_params_without_type: !babelParser,
+		line_80: [],
+		line_120: [],
+		line_140: ['max-len'],
 
-		class_stage2_instance_function_underscore_params_with_type: !babelParser,
-		class_stage2_static_function_underscore_params_with_type: !babelParser,
-		class_stage2_instance_arrow_underscore_params_with_type: !babelParser,
-		class_stage2_static_arrow_underscore_params_with_type: !babelParser,
-		class_stage2_instance_expression_underscore_params_with_type: !babelParser,
-		class_stage2_static_expression_underscore_params_with_type: !babelParser,
+		without_env_node: ['no-undef'],
+		with_env_node: [],
 
-		line_80: false,
-		line_120: false,
-		line_140: true,
+		without_env_browser: ['no-undef'],
+		with_env_browser: [],
 
-		without_env_node: true,
-		with_env_node: false,
+		without_env_mocha: ['no-undef'],
+		with_env_mocha: [],
 
-		without_env_browser: true,
-		with_env_browser: false,
-
-		without_env_mocha: true,
-		with_env_mocha: false,
-
-		commonjs: !commonjs,
-		export_var: !esmodules,
-		export_const: !esmodules,
-		export_arrow: true,
-		export_function: !esmodules,
-		export_default_var: !esmodules,
-		export_default_const: true,
-		export_default_arrow: !esmodules,
-		export_default_function: !esmodules,
+		commonjs: commonjs ? [] : ['no-undef'],
+		export_var: esmodules ? [] : (stage2 ? ['no-restricted-syntax'] : ['fatal']),
+		export_const: esmodules ? [] : (stage2 ? ['no-restricted-syntax'] : ['fatal']),
+		export_arrow: ['fatal'],
+		export_function: esmodules ? [] : (stage2 ? ['no-restricted-syntax'] : ['fatal']),
+		export_default_var: esmodules ? [] : (stage2 ? ['no-restricted-syntax'] : ['fatal']),
+		export_default_const: ['fatal'],
+		export_default_arrow: esmodules ? [] : (stage2 ? ['no-restricted-syntax'] : ['fatal']),
+		export_default_function: esmodules ? [] : (stage2 ? ['no-restricted-syntax'] : ['fatal']),
 
 		// @warning Cannot enable this test because it acts differently in CLI mode and in Node API mode:
 		// https://github.com/zaggino/brackets-eslint/issues/51
-		// promise: !es2015,
+		// promise: es2017 ? [] : ['no-undef'],
 
-		react_jsx: !babelParser && !react,
-		await: !es2015,
+		react_jsx: (babelParser || react) ? [] : ['fatal'],
+		await: es2017 ? [] : ['fatal'],
 
-		quotes_property_inconsistent_single: true,
-		quotes_property_consistent_single: false,
-		quotes_property_backtick: true,
-		quotes_property_single: false,
-		quotes_backtick: !es2015,
-		quotes_single: false,
-		quotes_property_double: true,
-		quotes_double: true,
+		quotes_property_inconsistent_single: ['quote-props'],
+		quotes_property_consistent_single: [],
+		quotes_property_backtick: ['fatal'],
+		quotes_property_single: [],
+		quotes_backtick: es2017 ? [] : ['fatal'],
+		quotes_single: [],
+		quotes_property_double: ['quotes'],
+		quotes_double: ['quotes'],
 
-		chained_two_methods_single_line: false,
-		chained_two_methods_multiple_lines: false,
-		chained_four_methods_single_line: false,
-		chained_four_methods_multiple_lines: false,
-		chained_six_methods_single_line: true,
-		chained_six_methods_multiple_lines: false,
+		chained_two_methods_single_line: [],
+		chained_two_methods_multiple_lines: [],
+		chained_four_methods_single_line: [],
+		chained_four_methods_multiple_lines: [],
+		chained_six_methods_single_line: ['newline-per-chained-call'],
+		chained_six_methods_multiple_lines: [],
 
-		this_root: true,
-		this_function: false,
-		this_arrow: true,
-		this_class_constructor: !es2015,
-		this_class_method: !es2015,
-		this_class_static: !es2015, // @warning I'd rather `true`, but only checkJs catches that issue, not even "class-methods-use-this" rule
+		this_root: babelParser ? ['babel/no-invalid-this'] : ['no-invalid-this'],
+		this_function: [],
+		this_arrow: babelParser ? ['babel/no-invalid-this'] : (es2017 ? ['no-invalid-this'] : ['fatal']),
+		this_class_constructor: es2017 ? [] : ['fatal'],
+		this_class_method: es2017 ? [] : ['fatal'],
+		this_class_static: es2017 ? [] : ['fatal'], // @warning I'd rather always an error, but only checkJs catches that issue, not even "class-methods-use-this" rule
 
-		padding_class_beginning_zero_lines: !es2015,
-		padding_class_beginning_one_line: !es2015,
-		padding_class_beginning_two_lines: !es2015, // @warning I'd rather `true`
-		padding_class_end_zero_lines: !es2015,
-		padding_class_end_one_line: !es2015, // @warning I'd rather `true`
-		padding_class_end_two_lines: !es2015, // @warning I'd rather `true`
+		padding_class_beginning_zero_lines: es2017 ? [] : ['fatal'],
+		padding_class_beginning_one_line: es2017 ? [] : ['fatal'],
+		padding_class_beginning_two_lines: es2017 ? [] : ['fatal'], // @warning I'd rather always an error
+		padding_class_end_zero_lines: es2017 ? [] : ['fatal'],
+		padding_class_end_one_line: es2017 ? [] : ['fatal'], // @warning I'd rather always an error
+		padding_class_end_two_lines: es2017 ? [] : ['fatal'], // @warning I'd rather always an error
 
-		padding_class_method_beginning_zero_lines: !es2015,
-		padding_class_method_beginning_one_line: !es2015,
-		padding_class_method_beginning_two_lines: !es2015, // @warning I'd rather `true`
-		padding_class_method_end_zero_lines: !es2015,
-		padding_class_method_end_one_line: !es2015, // @warning I'd rather `true`
-		padding_class_method_end_two_lines: !es2015, // @warning I'd rather `true`
+		padding_class_method_beginning_zero_lines: es2017 ? [] : ['fatal'],
+		padding_class_method_beginning_one_line: es2017 ? [] : ['fatal'],
+		padding_class_method_beginning_two_lines: es2017 ? [] : ['fatal'], // @warning I'd rather always an error
+		padding_class_method_end_zero_lines: es2017 ? [] : ['fatal'],
+		padding_class_method_end_one_line: es2017 ? [] : ['fatal'], // @warning I'd rather always an error
+		padding_class_method_end_two_lines: es2017 ? [] : ['fatal'], // @warning I'd rather always an error
 
-		padding_function_beginning_zero_lines: false,
-		padding_function_beginning_one_line: false,
-		padding_function_beginning_two_lines: false, // @warning I'd rather `true`
-		padding_function_end_zero_lines: false,
-		padding_function_end_one_line: false, // @warning I'd rather `true`
-		padding_function_end_two_lines: false // @warning I'd rather `true`
+		padding_function_beginning_zero_lines: [],
+		padding_function_beginning_one_line: [],
+		padding_function_beginning_two_lines: [], // @warning I'd rather always an error
+		padding_function_end_zero_lines: [],
+		padding_function_end_one_line: [], // @warning I'd rather always an error
+		padding_function_end_two_lines: [] // @warning I'd rather always an error
 	};
 
 	const folder = path.join(dirPackages, packageId);
@@ -246,13 +222,12 @@ function testPackage(packageId, done){
 		});
 
 		for (const fixtureId in expected){
-			const expectedError = expected[fixtureId];
-			const actualError = actual[fixtureId];
-			const rules = Object.keys(actualError);
-			if (expectedError){
-				notDeepStrictEqual(rules, [], `Fixture "${fixtureId}" should have errors`);
+			const expectedError = expected[fixtureId].sort();
+			const actualError = Object.keys(actual[fixtureId]).sort();
+			if (expectedError.length > 0){
+				deepStrictEqual(actualError, expectedError, `Fixture "${fixtureId}" should have errors`);
 			} else {
-				deepStrictEqual(rules, [], `Fixture "${fixtureId}" should pass`);
+				deepStrictEqual(actualError, [], `Fixture "${fixtureId}" should pass`);
 			}
 		}
 
