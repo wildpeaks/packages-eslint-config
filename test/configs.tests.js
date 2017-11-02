@@ -13,58 +13,33 @@ const dirFixtures = path.join(__dirname, 'fixtures');
 
 
 function testPackage(packageId, done){
-	const {commonjs, esmodules, stage2, es2015, react, flow} = configs[packageId];
-	const babelParser = flow || stage2;
+	const {commonjs, esmodules, stage2, es2017, react} = configs[packageId];
+	const babelParser = stage2;
 
 	// Describes when it's expected to fail (e.g. `true` means always, `false` means never).
 	const expected = {
-		var: es2015,
+		var: es2017,
 
-		arrow_function_single_param_without_parens: !es2015 || flow,
+		arrow_function_single_param_without_parens: !es2017,
 		arrow_function_single_param_with_parens: true,
-		arrow_function_multiple_params_without_type: !es2015 || flow,
+		arrow_function_multiple_params_without_type: !es2017,
 
-		class_empty: !es2015,
-		class_stage0_function_without_return_type: !es2015 || flow,
+		class_empty: !es2017,
+		class_stage0_function_without_return_type: !es2017,
 		class_stage0_function_with_return_type: !babelParser,
 
-		flow_type_bool: !babelParser || flow,
-		flow_type_boolean: !babelParser,
-		flow_type_boolean_primitive: !babelParser || flow,
-		flow_type_number: !babelParser,
-		flow_type_number_primitive: !babelParser || flow,
-		flow_type_string: !babelParser,
-		flow_type_string_primitive: !babelParser || flow,
-		flow_type_void: !babelParser,
-		flow_return_type_void: !babelParser,
-		flow_type_undefined: true,
-		flow_return_type_undefined: true,
-
-		flow_type_lowercase: !babelParser || flow,
-		flow_type_uppercase: !babelParser || flow,
-		flow_type_lower_camelcase: !babelParser || flow,
-		flow_type_upper_camelcase: !babelParser,
-		flow_type_number_lower_camelcase: true,
-		flow_type_number_upper_camelcase: true,
-		flow_type_single_letter_lowercase: !babelParser || flow,
-		flow_type_single_letter_uppercase: !babelParser || flow,
-
-		// @warning There appears no way to force it to require a type on class properties.
-		// Probably will be available once it's out of stage2 phase.
 		class_stage2_instance_property_without_type: !babelParser,
 		class_stage2_static_property_without_type: !babelParser,
 		class_stage2_instance_property_with_type: !babelParser,
 		class_stage2_static_property_with_type: !babelParser,
 
-		class_stage2_instance_function_without_return_type: !babelParser || flow,
-		class_stage2_static_function_without_return_type: !babelParser || flow,
-		class_stage2_instance_arrow_without_return_type: !babelParser || flow,
-		class_stage2_static_arrow_without_return_type: !babelParser || flow,
+		class_stage2_instance_function_without_return_type: !babelParser,
+		class_stage2_static_function_without_return_type: !babelParser,
+		class_stage2_instance_arrow_without_return_type: !babelParser,
+		class_stage2_static_arrow_without_return_type: !babelParser,
 		class_stage2_instance_expression_without_return_type: !babelParser,
 		class_stage2_static_expression_without_return_type: !babelParser,
 
-		// @warning I would prefer "instance function" always fails (because it should use arrow or expression),
-		// but there is no rule for that yet.
 		class_stage2_instance_function_with_return_type: !babelParser,
 		class_stage2_static_function_with_return_type: !babelParser,
 		class_stage2_instance_arrow_with_return_type: !babelParser,
@@ -72,10 +47,10 @@ function testPackage(packageId, done){
 		class_stage2_instance_expression_with_return_type: !babelParser,
 		class_stage2_static_expression_with_return_type: !babelParser,
 
-		class_stage2_instance_function_without_params_type: !babelParser || flow,
-		class_stage2_static_function_without_params_type: !babelParser || flow,
-		class_stage2_instance_arrow_without_params_type: !babelParser || flow,
-		class_stage2_static_arrow_without_params_type: !babelParser || flow,
+		class_stage2_instance_function_without_params_type: !babelParser,
+		class_stage2_static_function_without_params_type: !babelParser,
+		class_stage2_instance_arrow_without_params_type: !babelParser,
+		class_stage2_static_arrow_without_params_type: !babelParser,
 		class_stage2_instance_expression_without_params_type: !babelParser,
 		class_stage2_static_expression_without_params_type: !babelParser,
 
@@ -125,16 +100,16 @@ function testPackage(packageId, done){
 
 		// @warning Cannot enable this test because it acts differently in CLI mode and in Node API mode:
 		// https://github.com/zaggino/brackets-eslint/issues/51
-		// promise: !es2015,
+		// promise: !es2017,
 
 		react_jsx: !babelParser && !react,
-		await: !es2015,
+		await: !es2017,
 
 		quotes_property_inconsistent_single: true,
 		quotes_property_consistent_single: false,
 		quotes_property_backtick: true,
 		quotes_property_single: false,
-		quotes_backtick: !es2015,
+		quotes_backtick: !es2017,
 		quotes_single: false,
 		quotes_property_double: true,
 		quotes_double: true,
@@ -149,23 +124,23 @@ function testPackage(packageId, done){
 		this_root: true,
 		this_function: false,
 		this_arrow: true,
-		this_class_constructor: !es2015,
-		this_class_method: !es2015,
-		this_class_static: !es2015, // @warning I'd rather `true`, but only checkJs catches that issue, not even "class-methods-use-this" rule
+		this_class_constructor: !es2017,
+		this_class_method: !es2017,
+		this_class_static: !es2017, // @warning I'd rather `true`, but only checkJs catches that issue, not even "class-methods-use-this" rule
 
-		padding_class_beginning_zero_lines: !es2015,
-		padding_class_beginning_one_line: !es2015,
-		padding_class_beginning_two_lines: !es2015, // @warning I'd rather `true`
-		padding_class_end_zero_lines: !es2015,
-		padding_class_end_one_line: !es2015, // @warning I'd rather `true`
-		padding_class_end_two_lines: !es2015, // @warning I'd rather `true`
+		padding_class_beginning_zero_lines: !es2017,
+		padding_class_beginning_one_line: !es2017,
+		padding_class_beginning_two_lines: !es2017, // @warning I'd rather `true`
+		padding_class_end_zero_lines: !es2017,
+		padding_class_end_one_line: !es2017, // @warning I'd rather `true`
+		padding_class_end_two_lines: !es2017, // @warning I'd rather `true`
 
-		padding_class_method_beginning_zero_lines: !es2015,
-		padding_class_method_beginning_one_line: !es2015,
-		padding_class_method_beginning_two_lines: !es2015, // @warning I'd rather `true`
-		padding_class_method_end_zero_lines: !es2015,
-		padding_class_method_end_one_line: !es2015, // @warning I'd rather `true`
-		padding_class_method_end_two_lines: !es2015, // @warning I'd rather `true`
+		padding_class_method_beginning_zero_lines: !es2017,
+		padding_class_method_beginning_one_line: !es2017,
+		padding_class_method_beginning_two_lines: !es2017, // @warning I'd rather `true`
+		padding_class_method_end_zero_lines: !es2017,
+		padding_class_method_end_one_line: !es2017, // @warning I'd rather `true`
+		padding_class_method_end_two_lines: !es2017, // @warning I'd rather `true`
 
 		padding_function_beginning_zero_lines: false,
 		padding_function_beginning_one_line: false,
