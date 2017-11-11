@@ -3,6 +3,5 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable no-var */
 
-var myobj = {
-	'my-prop': 1
-};
+var myvar1 = `hello`;
+var myvar2 = `${myvar1} world`;
