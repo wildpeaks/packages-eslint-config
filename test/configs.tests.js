@@ -156,7 +156,9 @@ function testPackage(packageId, done){
 		padding_function_beginning_two_lines: [], // @warning I'd rather always an error
 		padding_function_end_zero_lines: [],
 		padding_function_end_one_line: [], // @warning I'd rather always an error
-		padding_function_end_two_lines: [] // @warning I'd rather always an error
+		padding_function_end_two_lines: [], // @warning I'd rather always an error
+
+		ternary: []
 	};
 
 	const folder = path.join(dirPackages, packageId);
