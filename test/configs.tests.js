@@ -14,151 +14,156 @@ const dirFixtures = path.join(__dirname, 'fixtures');
 
 
 function testPackage(packageId, done){
-	const {commonjs, esmodules, stage2, es2017, react} = configs[packageId];
-	const babelParser = stage2;
+	const {commonjs, esmodules, stage2, es2017, react, typescript} = configs[packageId];
 
 	// Describes when it's expected to fail (e.g. `true` means always, `false` means never).
 	const expected = {
-		var: es2017 ? ['no-var'] : [],
+		'var.js': es2017 ? ['no-var'] : [],
 
-		arrow_function_single_param_without_parens: es2017 ? [] : ['fatal'],
-		arrow_function_single_param_with_parens: es2017 ? ['arrow-parens'] : ['fatal'],
-		arrow_function_multiple_params_without_type: es2017 ? [] : ['fatal'],
+		'arrow_function_single_param_without_parens.js': es2017 ? [] : ['fatal'],
+		'arrow_function_single_param_with_parens.js': es2017 ? ['arrow-parens'] : ['fatal'],
+		'arrow_function_multiple_params_without_type.js': es2017 ? [] : ['fatal'],
 
-		class_empty: es2017 ? [] : ['fatal'],
-		class_stage0_function_without_return_type: es2017 ? [] : ['fatal'],
-		class_stage0_function_with_return_type: babelParser ? [] : ['fatal'],
+		'class_empty.js': es2017 ? [] : ['fatal'],
+		'class_stage0_function_without_return_type.js': es2017 ? [] : ['fatal'],
+		'class_stage0_function_with_return_type.js': (stage2 || typescript) ? [] : ['fatal'],
 
-		class_stage2_instance_property_without_type: babelParser ? [] : ['fatal'],
-		class_stage2_static_property_without_type: babelParser ? [] : ['fatal'],
-		class_stage2_instance_property_with_type: babelParser ? [] : ['fatal'],
-		class_stage2_static_property_with_type: babelParser ? [] : ['fatal'],
+		'class_stage2_instance_property_without_type.js': (stage2 || typescript) ? [] : ['fatal'],
+		'class_stage2_static_property_without_type.js': (stage2 || typescript) ? [] : ['fatal'],
+		'class_stage2_instance_property_with_type.js': (stage2 || typescript) ? [] : ['fatal'],
+		'class_stage2_static_property_with_type.js': (stage2 || typescript) ? [] : ['fatal'],
 
-		class_stage2_instance_function_without_return_type: babelParser ? [] : ['fatal'],
-		class_stage2_static_function_without_return_type: babelParser ? [] : ['fatal'],
-		class_stage2_instance_arrow_without_return_type: babelParser ? [] : ['fatal'],
-		class_stage2_static_arrow_without_return_type: babelParser ? [] : ['fatal'],
-		class_stage2_instance_expression_without_return_type: babelParser ? [] : ['fatal'],
-		class_stage2_static_expression_without_return_type: babelParser ? [] : ['fatal'],
+		'class_stage2_instance_function_without_return_type.js': stage2 ? [] : (typescript ? ['no-invalid-this'] : ['fatal']),
+		'class_stage2_static_function_without_return_type.js': (stage2 || typescript) ? [] : ['fatal'],
+		'class_stage2_instance_arrow_without_return_type.js': (stage2 || typescript) ? [] : ['fatal'],
+		'class_stage2_static_arrow_without_return_type.js': (stage2 || typescript) ? [] : ['fatal'],
+		'class_stage2_instance_expression_without_return_type.js': (stage2 || typescript) ? [] : ['fatal'],
+		'class_stage2_static_expression_without_return_type.js': (stage2 || typescript) ? [] : ['fatal'],
 
-		class_stage2_instance_function_with_return_type: babelParser ? [] : ['fatal'],
-		class_stage2_static_function_with_return_type: babelParser ? [] : ['fatal'],
-		class_stage2_instance_arrow_with_return_type: babelParser ? [] : ['fatal'],
-		class_stage2_static_arrow_with_return_type: babelParser ? [] : ['fatal'],
-		class_stage2_instance_expression_with_return_type: babelParser ? [] : ['fatal'],
-		class_stage2_static_expression_with_return_type: babelParser ? [] : ['fatal'],
+		'class_stage2_instance_function_with_return_type.js': stage2 ? [] : (typescript ? ['no-invalid-this'] : ['fatal']),
+		'class_stage2_static_function_with_return_type.js': (stage2 || typescript) ? [] : ['fatal'],
+		'class_stage2_instance_arrow_with_return_type.js': (stage2 || typescript) ? [] : ['fatal'],
+		'class_stage2_static_arrow_with_return_type.js': (stage2 || typescript) ? [] : ['fatal'],
+		'class_stage2_instance_expression_with_return_type.js': (stage2 || typescript) ? [] : ['fatal'],
+		'class_stage2_static_expression_with_return_type.js': (stage2 || typescript) ? [] : ['fatal'],
 
-		class_stage2_instance_function_without_params_type: babelParser ? [] : ['fatal'],
-		class_stage2_static_function_without_params_type: babelParser ? [] : ['fatal'],
-		class_stage2_instance_arrow_without_params_type: babelParser ? [] : ['fatal'],
-		class_stage2_static_arrow_without_params_type: babelParser ? [] : ['fatal'],
-		class_stage2_instance_expression_without_params_type: babelParser ? [] : ['fatal'],
-		class_stage2_static_expression_without_params_type: babelParser ? [] : ['fatal'],
+		'class_stage2_instance_function_without_params_type.js': (stage2 || typescript) ? [] : ['fatal'],
+		'class_stage2_static_function_without_params_type.js': (stage2 || typescript) ? [] : ['fatal'],
+		'class_stage2_instance_arrow_without_params_type.js': (stage2 || typescript) ? [] : ['fatal'],
+		'class_stage2_static_arrow_without_params_type.js': (stage2 || typescript) ? [] : ['fatal'],
+		'class_stage2_instance_expression_without_params_type.js': (stage2 || typescript) ? [] : ['fatal'],
+		'class_stage2_static_expression_without_params_type.js': (stage2 || typescript) ? [] : ['fatal'],
 
-		class_stage2_instance_function_with_params_type: babelParser ? [] : ['fatal'],
-		class_stage2_static_function_with_params_type: babelParser ? [] : ['fatal'],
-		class_stage2_instance_arrow_with_params_type: babelParser ? [] : ['fatal'],
-		class_stage2_static_arrow_with_params_type: babelParser ? [] : ['fatal'],
-		class_stage2_instance_expression_with_params_type: babelParser ? [] : ['fatal'],
-		class_stage2_static_expression_with_params_type: babelParser ? [] : ['fatal'],
+		'class_stage2_instance_function_with_params_type.js': (stage2 || typescript) ? [] : ['fatal'],
+		'class_stage2_static_function_with_params_type.js': (stage2 || typescript) ? [] : ['fatal'],
+		'class_stage2_instance_arrow_with_params_type.js': (stage2 || typescript) ? [] : ['fatal'],
+		'class_stage2_static_arrow_with_params_type.js': (stage2 || typescript) ? [] : ['fatal'],
+		'class_stage2_instance_expression_with_params_type.js': (stage2 || typescript) ? [] : ['fatal'],
+		'class_stage2_static_expression_with_params_type.js': (stage2 || typescript) ? [] : ['fatal'],
 
-		class_stage2_instance_function_underscore_params_without_type: babelParser ? [] : ['fatal'],
-		class_stage2_static_function_underscore_params_without_type: babelParser ? [] : ['fatal'],
-		class_stage2_instance_arrow_underscore_params_without_type: babelParser ? [] : ['fatal'],
-		class_stage2_static_arrow_underscore_params_without_type: babelParser ? [] : ['fatal'],
-		class_stage2_instance_expression_underscore_params_without_type: babelParser ? [] : ['fatal'],
-		class_stage2_static_expression_underscore_params_without_type: babelParser ? [] : ['fatal'],
+		'class_stage2_instance_function_underscore_params_without_type.js': (stage2 || typescript) ? [] : ['fatal'],
+		'class_stage2_static_function_underscore_params_without_type.js': (stage2 || typescript) ? [] : ['fatal'],
+		'class_stage2_instance_arrow_underscore_params_without_type.js': (stage2 || typescript) ? [] : ['fatal'],
+		'class_stage2_static_arrow_underscore_params_without_type.js': (stage2 || typescript) ? [] : ['fatal'],
+		'class_stage2_instance_expression_underscore_params_without_type.js': (stage2 || typescript) ? [] : ['fatal'],
+		'class_stage2_static_expression_underscore_params_without_type.js': (stage2 || typescript) ? [] : ['fatal'],
 
-		class_stage2_instance_function_underscore_params_with_type: babelParser ? [] : ['fatal'],
-		class_stage2_static_function_underscore_params_with_type: babelParser ? [] : ['fatal'],
-		class_stage2_instance_arrow_underscore_params_with_type: babelParser ? [] : ['fatal'],
-		class_stage2_static_arrow_underscore_params_with_type: babelParser ? [] : ['fatal'],
-		class_stage2_instance_expression_underscore_params_with_type: babelParser ? [] : ['fatal'],
-		class_stage2_static_expression_underscore_params_with_type: babelParser ? [] : ['fatal'],
+		'class_stage2_instance_function_underscore_params_with_type.js': (stage2 || typescript) ? [] : ['fatal'],
+		'class_stage2_static_function_underscore_params_with_type.js': (stage2 || typescript) ? [] : ['fatal'],
+		'class_stage2_instance_arrow_underscore_params_with_type.js': (stage2 || typescript) ? [] : ['fatal'],
+		'class_stage2_static_arrow_underscore_params_with_type.js': (stage2 || typescript) ? [] : ['fatal'],
+		'class_stage2_instance_expression_underscore_params_with_type.js': (stage2 || typescript) ? [] : ['fatal'],
+		'class_stage2_static_expression_underscore_params_with_type.js': (stage2 || typescript) ? [] : ['fatal'],
 
-		line_80: [],
-		line_120: [],
-		line_140: ['max-len'],
+		'line_80.js': [],
+		'line_120.js': [],
+		'line_140.js': ['max-len'],
 
-		without_env_node: ['no-undef'],
-		with_env_node: [],
+		'without_env_node.js': typescript ? [] : ['no-undef'],
+		'with_env_node.js': [],
 
-		without_env_browser: ['no-undef'],
-		with_env_browser: [],
+		'without_env_browser.js': typescript ? [] : ['no-undef'],
+		'with_env_browser.js': [],
 
-		without_env_mocha: ['no-undef'],
-		with_env_mocha: [],
+		'without_env_mocha.js': typescript ? [] : ['no-undef'],
+		'with_env_mocha.js': [],
 
-		commonjs: commonjs ? [] : ['no-undef'],
-		export_var: esmodules ? [] : (stage2 ? ['no-restricted-syntax'] : ['fatal']),
-		export_const: esmodules ? [] : (stage2 ? ['no-restricted-syntax'] : ['fatal']),
-		export_arrow: ['fatal'],
-		export_function: esmodules ? [] : (stage2 ? ['no-restricted-syntax'] : ['fatal']),
-		export_default_var: esmodules ? [] : (stage2 ? ['no-restricted-syntax'] : ['fatal']),
-		export_default_const: ['fatal'],
-		export_default_arrow: esmodules ? [] : (stage2 ? ['no-restricted-syntax'] : ['fatal']),
-		export_default_function: esmodules ? [] : (stage2 ? ['no-restricted-syntax'] : ['fatal']),
+		'commonjs.js': commonjs ? [] : ['no-undef'],
+		'export_var.js': esmodules ? [] : (stage2 ? ['no-restricted-syntax'] : ['fatal']),
+		'export_const.js': esmodules ? [] : (stage2 ? ['no-restricted-syntax'] : ['fatal']),
+		'export_arrow.js': ['fatal'],
+		'export_function.js': esmodules ? [] : (stage2 ? ['no-restricted-syntax'] : ['fatal']),
+		'export_default_var.js': esmodules ? [] : (stage2 ? ['no-restricted-syntax'] : ['fatal']),
+		'export_default_const.js': ['fatal'],
+		'export_default_arrow.js': esmodules ? [] : (stage2 ? ['no-restricted-syntax'] : ['fatal']),
+		'export_default_function.js': esmodules ? [] : (stage2 ? ['no-restricted-syntax'] : ['fatal']),
 
 		// @warning Cannot enable this test because it acts differently in CLI mode and in Node API mode:
 		// https://github.com/zaggino/brackets-eslint/issues/51
-		// promise: es2017 ? [] : ['no-undef'],
+		// 'promise.js': es2017 ? [] : ['no-undef'],
 
-		react_jsx: (babelParser || react) ? [] : ['fatal'],
-		await: es2017 ? [] : ['fatal'],
+		'react_jsx.js': (stage2 || react) ? [] : ['fatal'],
+		'await.js': es2017 ? [] : ['fatal'],
 
-		quotes_property_inconsistent_single: ['quote-props'],
-		quotes_property_consistent_single: [],
-		quotes_property_backtick: ['fatal'],
-		quotes_property_single: [],
-		quotes_backtick: es2017 ? [] : ['fatal'],
-		quotes_single: [],
-		quotes_property_double: ['quotes'],
-		quotes_double: ['quotes'],
+		'quotes_property_inconsistent_single.js': ['quote-props'],
+		'quotes_property_consistent_single.js': [],
+		'quotes_property_backtick.js': ['fatal'],
+		'quotes_property_single.js': [],
+		'quotes_backtick.js': es2017 ? [] : ['fatal'],
+		'quotes_single.js': [],
+		'quotes_property_double.js': ['quotes'],
+		'quotes_double.js': ['quotes'],
 
-		quotes_concatenate_number_number: [],
-		quotes_concatenate_number_string_single: es2017 ? ['prefer-template'] : [],
-		quotes_concatenate_number_string_double: es2017 ? ['prefer-template', 'quotes'] : ['quotes'],
-		quotes_concatenate_number_string_backtick: es2017 ? [] : ['fatal'],
-		quotes_concatenate_string_string_single: es2017 ? ['prefer-template'] : [],
-		quotes_concatenate_string_string_double: es2017 ? ['prefer-template', 'quotes'] : ['quotes'],
-		quotes_concatenate_string_string_backtick: es2017 ? [] : ['fatal'],
+		'quotes_concatenate_number_number.js': [],
+		'quotes_concatenate_number_string_single.js': es2017 ? ['prefer-template'] : [],
+		'quotes_concatenate_number_string_double.js': es2017 ? ['prefer-template', 'quotes'] : ['quotes'],
+		'quotes_concatenate_number_string_backtick.js': es2017 ? [] : ['fatal'],
+		'quotes_concatenate_string_string_single.js': es2017 ? ['prefer-template'] : [],
+		'quotes_concatenate_string_string_double.js': es2017 ? ['prefer-template', 'quotes'] : ['quotes'],
+		'quotes_concatenate_string_string_backtick.js': es2017 ? [] : ['fatal'],
 
-		chained_two_methods_single_line: [],
-		chained_two_methods_multiple_lines: [],
-		chained_four_methods_single_line: [],
-		chained_four_methods_multiple_lines: [],
-		chained_six_methods_single_line: ['newline-per-chained-call'],
-		chained_six_methods_multiple_lines: [],
+		'chained_two_methods_single_line.js': [],
+		'chained_two_methods_multiple_lines.js': [],
+		'chained_four_methods_single_line.js': [],
+		'chained_four_methods_multiple_lines.js': [],
+		'chained_six_methods_single_line.js': ['newline-per-chained-call'],
+		'chained_six_methods_multiple_lines.js': [],
 
-		this_root: babelParser ? ['babel/no-invalid-this'] : ['no-invalid-this'],
-		this_function: [],
-		this_arrow: babelParser ? ['babel/no-invalid-this'] : (es2017 ? ['no-invalid-this'] : ['fatal']),
-		this_class_constructor: es2017 ? [] : ['fatal'],
-		this_class_method: es2017 ? [] : ['fatal'],
-		this_class_static: es2017 ? [] : ['fatal'], // @warning I'd rather always an error, but only checkJs catches that issue, not even "class-methods-use-this" rule
+		'this_root.js': stage2 ? ['babel/no-invalid-this'] : ['no-invalid-this'],
+		'this_function.js': [],
+		'this_arrow.js': stage2 ? ['babel/no-invalid-this'] : (es2017 ? ['no-invalid-this'] : ['fatal']),
+		'this_class_constructor.js': es2017 ? [] : ['fatal'],
+		'this_class_method.js': es2017 ? [] : ['fatal'],
+		'this_class_static.js': es2017 ? [] : ['fatal'], // @warning I'd rather always an error, but only checkJs catches that issue, not even "class-methods-use-this" rule
 
-		padding_class_beginning_zero_lines: es2017 ? [] : ['fatal'],
-		padding_class_beginning_one_line: es2017 ? [] : ['fatal'],
-		padding_class_beginning_two_lines: es2017 ? [] : ['fatal'], // @warning I'd rather always an error
-		padding_class_end_zero_lines: es2017 ? [] : ['fatal'],
-		padding_class_end_one_line: es2017 ? [] : ['fatal'], // @warning I'd rather always an error
-		padding_class_end_two_lines: es2017 ? [] : ['fatal'], // @warning I'd rather always an error
+		'padding_class_beginning_zero_lines.js': es2017 ? [] : ['fatal'],
+		'padding_class_beginning_one_line.js': es2017 ? [] : ['fatal'],
+		'padding_class_beginning_two_lines.js': es2017 ? [] : ['fatal'], // @warning I'd rather always an error
+		'padding_class_end_zero_lines.js': es2017 ? [] : ['fatal'],
+		'padding_class_end_one_line.js': es2017 ? [] : ['fatal'], // @warning I'd rather always an error
+		'padding_class_end_two_lines.js': es2017 ? [] : ['fatal'], // @warning I'd rather always an error
 
-		padding_class_method_beginning_zero_lines: es2017 ? [] : ['fatal'],
-		padding_class_method_beginning_one_line: es2017 ? [] : ['fatal'],
-		padding_class_method_beginning_two_lines: es2017 ? [] : ['fatal'], // @warning I'd rather always an error
-		padding_class_method_end_zero_lines: es2017 ? [] : ['fatal'],
-		padding_class_method_end_one_line: es2017 ? [] : ['fatal'], // @warning I'd rather always an error
-		padding_class_method_end_two_lines: es2017 ? [] : ['fatal'], // @warning I'd rather always an error
+		'padding_class_method_beginning_zero_lines.js': es2017 ? [] : ['fatal'],
+		'padding_class_method_beginning_one_line.js': es2017 ? [] : ['fatal'],
+		'padding_class_method_beginning_two_lines.js': es2017 ? [] : ['fatal'], // @warning I'd rather always an error
+		'padding_class_method_end_zero_lines.js': es2017 ? [] : ['fatal'],
+		'padding_class_method_end_one_line.js': es2017 ? [] : ['fatal'], // @warning I'd rather always an error
+		'padding_class_method_end_two_lines.js': es2017 ? [] : ['fatal'], // @warning I'd rather always an error
 
-		padding_function_beginning_zero_lines: [],
-		padding_function_beginning_one_line: [],
-		padding_function_beginning_two_lines: [], // @warning I'd rather always an error
-		padding_function_end_zero_lines: [],
-		padding_function_end_one_line: [], // @warning I'd rather always an error
-		padding_function_end_two_lines: [], // @warning I'd rather always an error
+		'padding_function_beginning_zero_lines.js': [],
+		'padding_function_beginning_one_line.js': [],
+		'padding_function_beginning_two_lines.js': [], // @warning I'd rather always an error
+		'padding_function_end_zero_lines.js': [],
+		'padding_function_end_one_line.js': [], // @warning I'd rather always an error
+		'padding_function_end_two_lines.js': [], // @warning I'd rather always an error
 
-		ternary: []
+		'ternary.js': [],
+
+		'typescript_type.ts': (stage2 || typescript) ? [] : ['fatal'],
+		'typescript_enum.ts': typescript ? [] : ['fatal'],
+		'typescript_interface.ts': (stage2 || typescript) ? [] : ['fatal'],
+		'typescript_generic.ts': typescript ? [] : (stage2 ? ['space-before-blocks'] : ['fatal']),
+		'typescript_optional_parameter.ts': typescript ? [] : (stage2 ? ['space-before-blocks'] : ['fatal'])
 	};
 
 	const folder = path.join(dirPackages, packageId);
@@ -206,6 +211,7 @@ function testPackage(packageId, done){
 		strictEqual(throws, false, 'Package can be required');
 		strictEqual(typeof settings, 'object', 'Package exports an Object');
 		settings.useEslintrc = false;
+		settings.extensions = ['.js', '.ts'];
 
 		// Real configs need an Object, CLIEngine needs an Array.
 		// @see https://github.com/eslint/eslint/issues/892
@@ -227,7 +233,7 @@ function testPackage(packageId, done){
 					rules[message.ruleId] = message.message;
 				}
 			});
-			const fixtureId = path.basename(result.filePath, '.js');
+			const fixtureId = path.basename(result.filePath);
 			actual[fixtureId] = rules;
 		});
 

@@ -9,6 +9,7 @@ LICENSE         text
 README          text
 *.txt           text
 *.md            text
+*.ts            text
 *.js            text
 *.jsx           text
 *.json          text
