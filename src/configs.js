@@ -55,5 +55,12 @@ module.exports = {
 		es2017: true,
 		esmodules: true,
 		react: true
+	},
+	'eslint-config-typescript': {
+		name: 'ES2017, ES Modules, Typescript',
+		es2017: true,
+		commonjs: true,
+		esmodules: true,
+		typescript: true
 	}
 };
