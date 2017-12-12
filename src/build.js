@@ -308,7 +308,7 @@ function getEslintSettings({commonjs, stage2, es2017, esmodules, react, typescri
 			'sort-keys': 'off',
 			'sort-vars': 'off',
 			'space-before-blocks': ['error', {
-				functions: 'never',
+				functions: typescript ? 'always' : 'never',
 				keywords: 'never',
 				classes: 'always'
 			}],
@@ -363,6 +363,10 @@ function getEslintSettings({commonjs, stage2, es2017, esmodules, react, typescri
 		eslintSettings.rules['no-unused-vars'] = 'off'; // @see https://github.com/eslint/typescript-eslint-parser/issues/77
 		eslintSettings.rules['no-useless-constructor'] = 'off'; // @see https://github.com/eslint/typescript-eslint-parser/issues/77
 		eslintSettings.rules['space-infix-ops'] = 'off'; // @see https://github.com/eslint/typescript-eslint-parser/issues/224
+
+		// The rule ignores tsconfig.alwaysStrict
+		eslintSettings.rules.strict = 'off';
+		eslintSettings.parserOptions.ecmaFeatures.impliedStrict = true;
 	}
 
 	if (esmodules){
