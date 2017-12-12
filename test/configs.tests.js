@@ -259,8 +259,7 @@ describe('Packages', /* @this */ function(){
 			done();
 		});
 	});
-	// for (const id in configs){
-	// 	it(id, testPackage.bind(this, id));
-	// }
-	it('eslint-config-typescript', testPackage.bind(this, 'eslint-config-typescript')); //TODELETE
+	for (const id in configs){
+		it(id, testPackage.bind(this, id));
+	}
 });
