@@ -7,7 +7,7 @@ const configs = require('..');
 const {version, dependencies} = require('../package.json');
 
 
-function getPackageJson(id, {name, stage2, react}){
+function getPackageJson(id, {name, stage2, react, typescript}){
 	const pkg = {
 		name: `@wildpeaks/${id}`,
 		version,
@@ -27,6 +27,10 @@ function getPackageJson(id, {name, stage2, react}){
 			eslint: `>=${dependencies.eslint}`
 		}
 	};
+	if (typescript){
+		pkg.dependencies.typescript = dependencies.typescript;
+		pkg.dependencies['typescript-eslint-parser'] = dependencies['typescript-eslint-parser'];
+	}
 	if (react){
 		pkg.dependencies['eslint-plugin-react'] = dependencies['eslint-plugin-react'];
 	}
@@ -38,7 +42,14 @@ function getPackageJson(id, {name, stage2, react}){
 }
 
 
-function getEslintSettings({commonjs, stage2, es2017, esmodules, react}){
+function getEslintSettings({commonjs, stage2, es2017, esmodules, react, typescript}){
+	if (typescript && react){
+		// @see https://github.com/eslint/typescript-eslint-parser/issues/213
+		throw new Error(`The Typescript parser isn't compatible with the React plugin`);
+	}
+	if (typescript && stage2){
+		throw new Error(`Typescript already supports better class properties than stage2`);
+	}
 	const eslintSettings = {
 		env: {
 			node: false,
@@ -345,6 +356,15 @@ function getEslintSettings({commonjs, stage2, es2017, esmodules, react}){
 		}
 	};
 
+	// Known issues in the experimental Typescript parser
+	if (typescript){
+		eslintSettings.parser = 'typescript-eslint-parser';
+		eslintSettings.rules['no-undef'] = 'off'; // @see https://github.com/eslint/typescript-eslint-parser/issues/77
+		eslintSettings.rules['no-unused-vars'] = 'off'; // @see https://github.com/eslint/typescript-eslint-parser/issues/77
+		eslintSettings.rules['no-useless-constructor'] = 'off'; // @see https://github.com/eslint/typescript-eslint-parser/issues/77
+		eslintSettings.rules['space-infix-ops'] = 'off'; // @see https://github.com/eslint/typescript-eslint-parser/issues/224
+	}
+
 	if (esmodules){
 		eslintSettings.parserOptions.sourceType = 'module';
 		eslintSettings.parserOptions.allowImportExportEverywhere = false;
@@ -391,7 +411,7 @@ function getEslintSettings({commonjs, stage2, es2017, esmodules, react}){
 }
 
 
-function getReadme(id, {name, commonjs, stage2, es2017, esmodules, react}){
+function getReadme(id, {name, commonjs, stage2, es2017, esmodules, react, typescript}){
 	return `# ESLint Config: ${name}
 
 Generated using the following [settings](https://github.com/wildpeaks/packages-eslint-config#readme):
@@ -401,6 +421,7 @@ Generated using the following [settings](https://github.com/wildpeaks/packages-e
 - \`es2017\`: ${es2017 ? 'true' : 'false'}
 - \`esmodules\`: ${esmodules ? 'true' : 'false'}
 - \`react\`: ${react ? 'true' : 'false'}
+- \`typescript\`: ${typescript ? 'true' : 'false'}
 	`;
 }
 
