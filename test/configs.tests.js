@@ -14,8 +14,7 @@ const dirFixtures = path.join(__dirname, 'fixtures');
 
 
 function testPackage(packageId, done){
-	const {commonjs, esmodules, stage2, es2017, react} = configs[packageId];
-	const babelParser = stage2;
+	const {commonjs, esmodules, stage2, es2017, react, typescript} = configs[packageId];
 
 	// Describes when it's expected to fail (e.g. `true` means always, `false` means never).
 	const expected = {
@@ -27,66 +26,66 @@ function testPackage(packageId, done){
 
 		class_empty: es2017 ? [] : ['fatal'],
 		class_stage0_function_without_return_type: es2017 ? [] : ['fatal'],
-		class_stage0_function_with_return_type: babelParser ? [] : ['fatal'],
+		class_stage0_function_with_return_type: (stage2 || typescript) ? [] : ['fatal'],
 
-		class_stage2_instance_property_without_type: babelParser ? [] : ['fatal'],
-		class_stage2_static_property_without_type: babelParser ? [] : ['fatal'],
-		class_stage2_instance_property_with_type: babelParser ? [] : ['fatal'],
-		class_stage2_static_property_with_type: babelParser ? [] : ['fatal'],
+		class_stage2_instance_property_without_type: (stage2 || typescript) ? [] : ['fatal'],
+		class_stage2_static_property_without_type: (stage2 || typescript) ? [] : ['fatal'],
+		class_stage2_instance_property_with_type: (stage2 || typescript) ? [] : ['fatal'],
+		class_stage2_static_property_with_type: (stage2 || typescript) ? [] : ['fatal'],
 
-		class_stage2_instance_function_without_return_type: babelParser ? [] : ['fatal'],
-		class_stage2_static_function_without_return_type: babelParser ? [] : ['fatal'],
-		class_stage2_instance_arrow_without_return_type: babelParser ? [] : ['fatal'],
-		class_stage2_static_arrow_without_return_type: babelParser ? [] : ['fatal'],
-		class_stage2_instance_expression_without_return_type: babelParser ? [] : ['fatal'],
-		class_stage2_static_expression_without_return_type: babelParser ? [] : ['fatal'],
+		class_stage2_instance_function_without_return_type: stage2 ? [] : (typescript ? ['no-invalid-this'] : ['fatal']),
+		class_stage2_static_function_without_return_type: (stage2 || typescript) ? [] : ['fatal'],
+		class_stage2_instance_arrow_without_return_type: (stage2 || typescript) ? [] : ['fatal'],
+		class_stage2_static_arrow_without_return_type: (stage2 || typescript) ? [] : ['fatal'],
+		class_stage2_instance_expression_without_return_type: (stage2 || typescript) ? [] : ['fatal'],
+		class_stage2_static_expression_without_return_type: (stage2 || typescript) ? [] : ['fatal'],
 
-		class_stage2_instance_function_with_return_type: babelParser ? [] : ['fatal'],
-		class_stage2_static_function_with_return_type: babelParser ? [] : ['fatal'],
-		class_stage2_instance_arrow_with_return_type: babelParser ? [] : ['fatal'],
-		class_stage2_static_arrow_with_return_type: babelParser ? [] : ['fatal'],
-		class_stage2_instance_expression_with_return_type: babelParser ? [] : ['fatal'],
-		class_stage2_static_expression_with_return_type: babelParser ? [] : ['fatal'],
+		class_stage2_instance_function_with_return_type: stage2 ? [] : (typescript ? ['no-invalid-this'] : ['fatal']),
+		class_stage2_static_function_with_return_type: (stage2 || typescript) ? [] : ['fatal'],
+		class_stage2_instance_arrow_with_return_type: (stage2 || typescript) ? [] : ['fatal'],
+		class_stage2_static_arrow_with_return_type: (stage2 || typescript) ? [] : ['fatal'],
+		class_stage2_instance_expression_with_return_type: (stage2 || typescript) ? [] : ['fatal'],
+		class_stage2_static_expression_with_return_type: (stage2 || typescript) ? [] : ['fatal'],
 
-		class_stage2_instance_function_without_params_type: babelParser ? [] : ['fatal'],
-		class_stage2_static_function_without_params_type: babelParser ? [] : ['fatal'],
-		class_stage2_instance_arrow_without_params_type: babelParser ? [] : ['fatal'],
-		class_stage2_static_arrow_without_params_type: babelParser ? [] : ['fatal'],
-		class_stage2_instance_expression_without_params_type: babelParser ? [] : ['fatal'],
-		class_stage2_static_expression_without_params_type: babelParser ? [] : ['fatal'],
+		class_stage2_instance_function_without_params_type: (stage2 || typescript) ? [] : ['fatal'],
+		class_stage2_static_function_without_params_type: (stage2 || typescript) ? [] : ['fatal'],
+		class_stage2_instance_arrow_without_params_type: (stage2 || typescript) ? [] : ['fatal'],
+		class_stage2_static_arrow_without_params_type: (stage2 || typescript) ? [] : ['fatal'],
+		class_stage2_instance_expression_without_params_type: (stage2 || typescript) ? [] : ['fatal'],
+		class_stage2_static_expression_without_params_type: (stage2 || typescript) ? [] : ['fatal'],
 
-		class_stage2_instance_function_with_params_type: babelParser ? [] : ['fatal'],
-		class_stage2_static_function_with_params_type: babelParser ? [] : ['fatal'],
-		class_stage2_instance_arrow_with_params_type: babelParser ? [] : ['fatal'],
-		class_stage2_static_arrow_with_params_type: babelParser ? [] : ['fatal'],
-		class_stage2_instance_expression_with_params_type: babelParser ? [] : ['fatal'],
-		class_stage2_static_expression_with_params_type: babelParser ? [] : ['fatal'],
+		class_stage2_instance_function_with_params_type: (stage2 || typescript) ? [] : ['fatal'],
+		class_stage2_static_function_with_params_type: (stage2 || typescript) ? [] : ['fatal'],
+		class_stage2_instance_arrow_with_params_type: (stage2 || typescript) ? [] : ['fatal'],
+		class_stage2_static_arrow_with_params_type: (stage2 || typescript) ? [] : ['fatal'],
+		class_stage2_instance_expression_with_params_type: (stage2 || typescript) ? [] : ['fatal'],
+		class_stage2_static_expression_with_params_type: (stage2 || typescript) ? [] : ['fatal'],
 
-		class_stage2_instance_function_underscore_params_without_type: babelParser ? [] : ['fatal'],
-		class_stage2_static_function_underscore_params_without_type: babelParser ? [] : ['fatal'],
-		class_stage2_instance_arrow_underscore_params_without_type: babelParser ? [] : ['fatal'],
-		class_stage2_static_arrow_underscore_params_without_type: babelParser ? [] : ['fatal'],
-		class_stage2_instance_expression_underscore_params_without_type: babelParser ? [] : ['fatal'],
-		class_stage2_static_expression_underscore_params_without_type: babelParser ? [] : ['fatal'],
+		class_stage2_instance_function_underscore_params_without_type: (stage2 || typescript) ? [] : ['fatal'],
+		class_stage2_static_function_underscore_params_without_type: (stage2 || typescript) ? [] : ['fatal'],
+		class_stage2_instance_arrow_underscore_params_without_type: (stage2 || typescript) ? [] : ['fatal'],
+		class_stage2_static_arrow_underscore_params_without_type: (stage2 || typescript) ? [] : ['fatal'],
+		class_stage2_instance_expression_underscore_params_without_type: (stage2 || typescript) ? [] : ['fatal'],
+		class_stage2_static_expression_underscore_params_without_type: (stage2 || typescript) ? [] : ['fatal'],
 
-		class_stage2_instance_function_underscore_params_with_type: babelParser ? [] : ['fatal'],
-		class_stage2_static_function_underscore_params_with_type: babelParser ? [] : ['fatal'],
-		class_stage2_instance_arrow_underscore_params_with_type: babelParser ? [] : ['fatal'],
-		class_stage2_static_arrow_underscore_params_with_type: babelParser ? [] : ['fatal'],
-		class_stage2_instance_expression_underscore_params_with_type: babelParser ? [] : ['fatal'],
-		class_stage2_static_expression_underscore_params_with_type: babelParser ? [] : ['fatal'],
+		class_stage2_instance_function_underscore_params_with_type: (stage2 || typescript) ? [] : ['fatal'],
+		class_stage2_static_function_underscore_params_with_type: (stage2 || typescript) ? [] : ['fatal'],
+		class_stage2_instance_arrow_underscore_params_with_type: (stage2 || typescript) ? [] : ['fatal'],
+		class_stage2_static_arrow_underscore_params_with_type: (stage2 || typescript) ? [] : ['fatal'],
+		class_stage2_instance_expression_underscore_params_with_type: (stage2 || typescript) ? [] : ['fatal'],
+		class_stage2_static_expression_underscore_params_with_type: (stage2 || typescript) ? [] : ['fatal'],
 
 		line_80: [],
 		line_120: [],
 		line_140: ['max-len'],
 
-		without_env_node: ['no-undef'],
+		without_env_node: typescript ? [] : ['no-undef'],
 		with_env_node: [],
 
-		without_env_browser: ['no-undef'],
+		without_env_browser: typescript ? [] : ['no-undef'],
 		with_env_browser: [],
 
-		without_env_mocha: ['no-undef'],
+		without_env_mocha: typescript ? [] : ['no-undef'],
 		with_env_mocha: [],
 
 		commonjs: commonjs ? [] : ['no-undef'],
@@ -103,7 +102,7 @@ function testPackage(packageId, done){
 		// https://github.com/zaggino/brackets-eslint/issues/51
 		// promise: es2017 ? [] : ['no-undef'],
 
-		react_jsx: (babelParser || react) ? [] : ['fatal'],
+		react_jsx: (stage2 || react) ? [] : ['fatal'],
 		await: es2017 ? [] : ['fatal'],
 
 		quotes_property_inconsistent_single: ['quote-props'],
@@ -130,9 +129,9 @@ function testPackage(packageId, done){
 		chained_six_methods_single_line: ['newline-per-chained-call'],
 		chained_six_methods_multiple_lines: [],
 
-		this_root: babelParser ? ['babel/no-invalid-this'] : ['no-invalid-this'],
+		this_root: stage2 ? ['babel/no-invalid-this'] : ['no-invalid-this'],
 		this_function: [],
-		this_arrow: babelParser ? ['babel/no-invalid-this'] : (es2017 ? ['no-invalid-this'] : ['fatal']),
+		this_arrow: stage2 ? ['babel/no-invalid-this'] : (es2017 ? ['no-invalid-this'] : ['fatal']),
 		this_class_constructor: es2017 ? [] : ['fatal'],
 		this_class_method: es2017 ? [] : ['fatal'],
 		this_class_static: es2017 ? [] : ['fatal'], // @warning I'd rather always an error, but only checkJs catches that issue, not even "class-methods-use-this" rule
@@ -159,6 +158,10 @@ function testPackage(packageId, done){
 		padding_function_end_two_lines: [], // @warning I'd rather always an error
 
 		ternary: []
+
+		//
+		// TODO typescript tests
+		//
 	};
 
 	const folder = path.join(dirPackages, packageId);
@@ -206,6 +209,7 @@ function testPackage(packageId, done){
 		strictEqual(throws, false, 'Package can be required');
 		strictEqual(typeof settings, 'object', 'Package exports an Object');
 		settings.useEslintrc = false;
+		settings.extensions = ['.js', '.ts'];
 
 		// Real configs need an Object, CLIEngine needs an Array.
 		// @see https://github.com/eslint/eslint/issues/892
@@ -255,7 +259,8 @@ describe('Packages', /* @this */ function(){
 			done();
 		});
 	});
-	for (const id in configs){
-		it(id, testPackage.bind(this, id));
-	}
+	// for (const id in configs){
+	// 	it(id, testPackage.bind(this, id));
+	// }
+	it('eslint-config-typescript', testPackage.bind(this, 'eslint-config-typescript')); //TODELETE
 });
