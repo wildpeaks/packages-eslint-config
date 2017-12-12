@@ -7,4 +7,5 @@ Generated using the following [settings](https://github.com/wildpeaks/packages-e
 - `es2017`: false
 - `esmodules`: false
 - `react`: false
+- `typescript`: false
 	
