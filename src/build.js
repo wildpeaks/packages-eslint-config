@@ -246,7 +246,7 @@ function getEslintSettings({commonjs, stage2, es2017, esmodules, react, typescri
 			'id-length': 'off',
 			'id-match': 'off',
 
-			// @warning That rule has no option to fix the "break" indent :(
+			// @warning That rule has no option to align "break" with "case" :(
 			// https://github.com/eslint/eslint/issues/1798#issuecomment-121328852
 			'indent': ['error', 'tab', {SwitchCase: 1, MemberExpression: 'off'}],
 
