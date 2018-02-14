@@ -77,7 +77,8 @@ function testPackage(packageId, done){
 
 		'line_80.js': [],
 		'line_120.js': [],
-		'line_140.js': ['max-len'],
+		'line_240.js': [],
+		'line_300.js': ['max-len'],
 
 		'without_env_node.js': typescript ? [] : ['no-undef'],
 		'with_env_node.js': [],
@@ -166,7 +167,14 @@ function testPackage(packageId, done){
 		'typescript_optional_parameter.ts': typescript ? [] : (stage2 ? ['space-before-blocks'] : ['fatal']),
 
 		// @warning Known issue: for some reason, `@param` triggers a false positive for "indent".
-		'typescript_jsdoc.ts': typescript ? ['indent'] : (stage2 ? ['space-before-blocks'] : ['fatal'])
+		'typescript_jsdoc.ts': typescript ? ['indent'] : (stage2 ? ['space-before-blocks'] : ['fatal']),
+
+		'object_param_dot.js': es2017 ? ['prefer-destructuring'] : [],
+		'object_param_bracket.js': es2017 ? ['prefer-destructuring'] : [],
+		'object_param_destructured.js': es2017 ? [] : ['fatal'],
+		'array_value_index.js': [],
+		'array_destructured_first.js': es2017 ? [] : ['fatal'],
+		'array_destructured_second.js': es2017 ? [] : ['fatal']
 	};
 
 	const folder = path.join(dirPackages, packageId);
