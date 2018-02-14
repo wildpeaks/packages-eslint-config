@@ -1,7 +1,7 @@
 {
   "private": true,
   "name": "eslint-config",
-  "version": "4.4.0",
+  "version": "4.5.0",
   "description": "Eslint configs generator",
   "main": "src/configs.js",
   "engines": {
@@ -31,9 +31,9 @@
     "eslint": "4.17.0",
     "eslint-plugin-babel": "4.1.2",
     "eslint-plugin-react": "7.6.1",
-    "mocha": "5.0.0",
+    "mocha": "5.0.1",
     "rimraf": "2.6.2",
-    "typescript": "2.6.2",
-    "typescript-eslint-parser": "12.0.0"
+    "typescript": "2.7.1",
+    "typescript-eslint-parser": "13.0.0"
   }
 }
