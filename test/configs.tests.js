@@ -165,9 +165,7 @@ function testPackage(packageId, done){
 		'typescript_interface.ts': (stage2 || typescript) ? [] : ['fatal'],
 		'typescript_generic.ts': typescript ? [] : (stage2 ? ['space-before-blocks'] : ['fatal']),
 		'typescript_optional_parameter.ts': typescript ? [] : (stage2 ? ['space-before-blocks'] : ['fatal']),
-
-		// @warning Known issue: for some reason, `@param` triggers a false positive for "indent".
-		'typescript_jsdoc.ts': typescript ? ['indent'] : (stage2 ? ['space-before-blocks'] : ['fatal']),
+		'typescript_jsdoc.ts': typescript ? [] : (stage2 ? ['space-before-blocks'] : ['fatal']),
 
 		'object_param_dot.js': es2017 ? ['prefer-destructuring'] : [],
 		'object_param_bracket.js': es2017 ? ['prefer-destructuring'] : [],
