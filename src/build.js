@@ -206,7 +206,11 @@ function getEslintSettings({commonjs, stage2, es2017, esmodules, react, typescri
 			'no-undef': 'error',
 			'no-undef-init': 'error',
 			'no-undefined': 'error',
-			'no-unused-vars': 'error',
+			'no-unused-vars': ['error', {
+				ignoreRestSiblings: true,
+				argsIgnorePattern: '^_',
+				varsIgnorePattern: '^_'
+			}],
 			'no-use-before-define': ['error', {
 				functions: false,
 				classes: true
@@ -286,7 +290,7 @@ function getEslintSettings({commonjs, stage2, es2017, esmodules, react, typescri
 			'no-tabs': 'off',
 			'no-ternary': 'off',
 			'no-trailing-spaces': 'error',
-			'no-underscore-dangle': 'error',
+			'no-underscore-dangle': 'off',
 			'no-unneeded-ternary': 'error',
 			'no-whitespace-before-property': 'error',
 			'nonblock-statement-body-position': 'off',

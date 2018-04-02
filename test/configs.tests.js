@@ -172,7 +172,18 @@ function testPackage(packageId, done){
 		'object_param_destructured.js': es2017 ? [] : ['fatal'],
 		'array_value_index.js': [],
 		'array_destructured_first.js': es2017 ? [] : ['fatal'],
-		'array_destructured_second.js': es2017 ? [] : ['fatal']
+		'array_destructured_second.js': es2017 ? [] : ['fatal'],
+
+		'unused_param_without_underscore_first.js': [],
+		'unused_param_without_underscore_last.js': typescript ? [] : ['no-unused-vars'],
+		'unused_param_with_underscore_first.js': [],
+		'unused_param_with_underscore_last.js': [],
+		'unused_var_without_underscore.js': typescript ? [] : ['no-unused-vars'],
+		'unused_var_with_underscore.js': [],
+
+		// I'd rather only variables starting with _ were ignored, but it's all of nothing
+		'unused_rest_without_underscore.js': (stage2 || typescript || react) ? [] : ['fatal'],
+		'unused_rest_with_underscore.js': (stage2 || typescript || react) ? [] : ['fatal']
 	};
 
 	const folder = path.join(dirPackages, packageId);
