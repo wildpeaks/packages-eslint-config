@@ -350,7 +350,7 @@ function getEslintSettings({commonjs, stage2, es2017, esmodules, react, typescri
 			'prefer-numeric-literals': es2017 ? 'error' : 'off',
 			'prefer-rest-params': es2017 ? 'error' : 'off',
 			'prefer-spread': 'error',
-			'prefer-template': es2017 ? 'error' : 'off',
+			'prefer-template': 'off',
 			'require-yield': es2017 ? 'error' : 'off',
 			'rest-spread-spacing': ['error', 'never'],
 			'sort-imports': 'off',
