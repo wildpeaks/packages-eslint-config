@@ -116,11 +116,11 @@ function testPackage(packageId, done){
 		'quotes_double.js': ['quotes'],
 
 		'quotes_concatenate_number_number.js': [],
-		'quotes_concatenate_number_string_single.js': es2017 ? ['prefer-template'] : [],
-		'quotes_concatenate_number_string_double.js': es2017 ? ['prefer-template', 'quotes'] : ['quotes'],
+		'quotes_concatenate_number_string_single.js': [],
+		'quotes_concatenate_number_string_double.js': ['quotes'],
 		'quotes_concatenate_number_string_backtick.js': es2017 ? [] : ['fatal'],
-		'quotes_concatenate_string_string_single.js': es2017 ? ['prefer-template'] : [],
-		'quotes_concatenate_string_string_double.js': es2017 ? ['prefer-template', 'quotes'] : ['quotes'],
+		'quotes_concatenate_string_string_single.js': [],
+		'quotes_concatenate_string_string_double.js': ['quotes'],
 		'quotes_concatenate_string_string_backtick.js': es2017 ? [] : ['fatal'],
 
 		'chained_two_methods_single_line.js': [],
