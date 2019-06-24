@@ -29,7 +29,7 @@ function getPackageJson(id, {name, stage2, react, typescript}){
 	};
 	if (typescript){
 		pkg.dependencies.typescript = dependencies.typescript;
-		pkg.dependencies['typescript-eslint-parser'] = dependencies['typescript-eslint-parser'];
+		pkg.dependencies['@typescript-eslint/parser'] = dependencies['@typescript-eslint/parser'];
 	}
 	if (react){
 		pkg.dependencies['eslint-plugin-react'] = dependencies['eslint-plugin-react'];
@@ -362,11 +362,17 @@ function getEslintSettings({commonjs, stage2, es2017, esmodules, react, typescri
 
 	// Known issues in the experimental Typescript parser
 	if (typescript){
-		eslintSettings.parser = 'typescript-eslint-parser';
-		eslintSettings.rules['no-undef'] = 'off'; // @see https://github.com/eslint/typescript-eslint-parser/issues/77
-		eslintSettings.rules['no-unused-vars'] = 'off'; // @see https://github.com/eslint/typescript-eslint-parser/issues/77
-		eslintSettings.rules['no-useless-constructor'] = 'off'; // @see https://github.com/eslint/typescript-eslint-parser/issues/77
-		eslintSettings.rules['space-infix-ops'] = 'off'; // @see https://github.com/eslint/typescript-eslint-parser/issues/224
+		eslintSettings.parser = '@typescript-eslint/parser';
+
+		// https://github.com/scottohara/eslint-config-oharagroup/issues/3#issuecomment-456228458
+		eslintSettings.rules['@typescript-eslint/no-unused-vars'] = eslintSettings.rules['no-unused-vars'];
+		eslintSettings.rules['no-unused-vars'] = 'off';
+		eslintSettings.rules['no-empty-function'] = 'off';
+
+		// 2019: does the new package fix these ?
+		// eslintSettings.rules['no-undef'] = 'off'; // @see https://github.com/eslint/typescript-eslint-parser/issues/77
+		// eslintSettings.rules['no-useless-constructor'] = 'off'; // @see https://github.com/eslint/typescript-eslint-parser/issues/77
+		// eslintSettings.rules['space-infix-ops'] = 'off'; // @see https://github.com/eslint/typescript-eslint-parser/issues/224
 
 		// The rule ignores tsconfig.alwaysStrict
 		eslintSettings.rules.strict = 'off';
