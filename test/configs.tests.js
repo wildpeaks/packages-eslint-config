@@ -60,23 +60,23 @@ function testPackage(packageId, done){
 		},
 		'class_stage2_static_function_without_return_type.js': {
 			expected: typescript ? [] : ['fatal'],
-			ignored: ['strict', 'no-implicit-globals', 'no-unused-vars', '@typescript-eslint/no-unused-vars', 'space-before-blocks', 'class-methods-use-this']
+			ignored: ['strict', 'no-implicit-globals', 'no-unused-vars', '@typescript-eslint/no-unused-vars', 'space-before-blocks', 'class-methods-use-this', '@typescript-eslint/restrict-plus-operands']
 		},
 		'class_stage2_instance_arrow_without_return_type.js': {
 			expected: typescript ? ['no-invalid-this'] : ['fatal'],
-			ignored: ['strict', 'no-implicit-globals', 'no-unused-vars', '@typescript-eslint/no-unused-vars', 'space-before-blocks', 'class-methods-use-this']
+			ignored: ['strict', 'no-implicit-globals', 'no-unused-vars', '@typescript-eslint/no-unused-vars', 'space-before-blocks', 'class-methods-use-this', '@typescript-eslint/restrict-plus-operands']
 		},
 		'class_stage2_static_arrow_without_return_type.js': {
 			expected: typescript ? [] : ['fatal'],
-			ignored: ['strict', 'no-implicit-globals', 'no-unused-vars', '@typescript-eslint/no-unused-vars', 'space-before-blocks', 'class-methods-use-this']
+			ignored: ['strict', 'no-implicit-globals', 'no-unused-vars', '@typescript-eslint/no-unused-vars', 'space-before-blocks', 'class-methods-use-this', '@typescript-eslint/restrict-plus-operands']
 		},
 		'class_stage2_instance_expression_without_return_type.js': {
 			expected: typescript ? ['no-invalid-this'] : ['fatal'],
-			ignored: ['strict', 'no-implicit-globals', 'no-unused-vars', '@typescript-eslint/no-unused-vars', 'space-before-blocks', 'class-methods-use-this']
+			ignored: ['strict', 'no-implicit-globals', 'no-unused-vars', '@typescript-eslint/no-unused-vars', 'space-before-blocks', 'class-methods-use-this', '@typescript-eslint/restrict-plus-operands']
 		},
 		'class_stage2_static_expression_without_return_type.js': {
 			expected: typescript ? [] : ['fatal'],
-			ignored: ['strict', 'no-implicit-globals', 'no-unused-vars', '@typescript-eslint/no-unused-vars', 'space-before-blocks', 'class-methods-use-this']
+			ignored: ['strict', 'no-implicit-globals', 'no-unused-vars', '@typescript-eslint/no-unused-vars', 'space-before-blocks', 'class-methods-use-this', '@typescript-eslint/restrict-plus-operands']
 		},
 
 		'class_stage2_instance_function_without_params_type.js': {
@@ -89,44 +89,44 @@ function testPackage(packageId, done){
 		},
 		'class_stage2_instance_arrow_without_params_type.js': {
 			expected: typescript ? [] : ['fatal'],
-			ignored: ['strict', 'no-implicit-globals', 'no-unused-vars', '@typescript-eslint/no-unused-vars', 'space-before-blocks', 'class-methods-use-this']
+			ignored: ['strict', 'no-implicit-globals', 'no-unused-vars', '@typescript-eslint/no-unused-vars', 'space-before-blocks', 'class-methods-use-this', '@typescript-eslint/restrict-plus-operands']
 		},
 		'class_stage2_static_arrow_without_params_type.js': {
 			expected: typescript ? [] : ['fatal'],
-			ignored: ['strict', 'no-implicit-globals', 'no-unused-vars', '@typescript-eslint/no-unused-vars', 'space-before-blocks', 'class-methods-use-this']
+			ignored: ['strict', 'no-implicit-globals', 'no-unused-vars', '@typescript-eslint/no-unused-vars', 'space-before-blocks', 'class-methods-use-this', '@typescript-eslint/restrict-plus-operands']
 		},
 		'class_stage2_instance_expression_without_params_type.js': {
 			expected: typescript ? [] : ['fatal'],
-			ignored: ['strict', 'no-implicit-globals', 'no-unused-vars', '@typescript-eslint/no-unused-vars', 'space-before-blocks', 'class-methods-use-this']
+			ignored: ['strict', 'no-implicit-globals', 'no-unused-vars', '@typescript-eslint/no-unused-vars', 'space-before-blocks', 'class-methods-use-this', '@typescript-eslint/restrict-plus-operands']
 		},
 		'class_stage2_static_expression_without_params_type.js': {
 			expected: typescript ? [] : ['fatal'],
-			ignored: ['strict','no-implicit-globals','no-unused-vars','@typescript-eslint/no-unused-vars','space-before-blocks','class-methods-use-this']
+			ignored: ['strict','no-implicit-globals','no-unused-vars','@typescript-eslint/no-unused-vars','space-before-blocks','class-methods-use-this', '@typescript-eslint/restrict-plus-operands']
 		},
 
 		'class_stage2_instance_function_underscore_params_without_type.js': {
 			expected: typescript ? [] : ['fatal'],
-			ignored: ['strict', 'no-implicit-globals', 'no-unused-vars', '@typescript-eslint/no-unused-vars', 'space-before-blocks', 'class-methods-use-this']
+			ignored: ['strict', 'no-implicit-globals', 'no-unused-vars', '@typescript-eslint/no-unused-vars', 'space-before-blocks', 'class-methods-use-this', '@typescript-eslint/restrict-plus-operands']
 		},
 		'class_stage2_static_function_underscore_params_without_type.js': {
 			expected: typescript ? [] : ['fatal'],
-			ignored: ['strict', 'no-implicit-globals', 'no-unused-vars', '@typescript-eslint/no-unused-vars', 'space-before-blocks', 'class-methods-use-this']
+			ignored: ['strict', 'no-implicit-globals', 'no-unused-vars', '@typescript-eslint/no-unused-vars', 'space-before-blocks', 'class-methods-use-this', '@typescript-eslint/restrict-plus-operands']
 		},
 		'class_stage2_instance_arrow_underscore_params_without_type.js': {
 			expected: typescript ? [] : ['fatal'],
-			ignored: ['strict', 'no-implicit-globals', 'no-unused-vars', '@typescript-eslint/no-unused-vars', 'space-before-blocks', 'class-methods-use-this']
+			ignored: ['strict', 'no-implicit-globals', 'no-unused-vars', '@typescript-eslint/no-unused-vars', 'space-before-blocks', 'class-methods-use-this', '@typescript-eslint/restrict-plus-operands']
 		},
 		'class_stage2_static_arrow_underscore_params_without_type.js': {
 			expected: typescript ? [] : ['fatal'],
-			ignored: ['strict', 'no-implicit-globals', 'no-unused-vars', '@typescript-eslint/no-unused-vars', 'space-before-blocks', 'class-methods-use-this']
+			ignored: ['strict', 'no-implicit-globals', 'no-unused-vars', '@typescript-eslint/no-unused-vars', 'space-before-blocks', 'class-methods-use-this', '@typescript-eslint/restrict-plus-operands']
 		},
 		'class_stage2_instance_expression_underscore_params_without_type.js': {
 			expected: typescript ? [] : ['fatal'],
-			ignored: ['strict', 'no-implicit-globals', 'no-unused-vars', '@typescript-eslint/no-unused-vars', 'space-before-blocks', 'class-methods-use-this']
+			ignored: ['strict', 'no-implicit-globals', 'no-unused-vars', '@typescript-eslint/no-unused-vars', 'space-before-blocks', 'class-methods-use-this', '@typescript-eslint/restrict-plus-operands']
 		},
 		'class_stage2_static_expression_underscore_params_without_type.js': {
 			expected: typescript ? [] : ['fatal'],
-			ignored: ['strict', 'no-implicit-globals', 'no-unused-vars', '@typescript-eslint/no-unused-vars', 'space-before-blocks', 'class-methods-use-this']
+			ignored: ['strict', 'no-implicit-globals', 'no-unused-vars', '@typescript-eslint/no-unused-vars', 'space-before-blocks', 'class-methods-use-this', '@typescript-eslint/restrict-plus-operands']
 		},
 
 		'line_80.js': {
@@ -147,7 +147,7 @@ function testPackage(packageId, done){
 		},
 
 		'without_env_node.js': {
-			expected: typescript ? [] : ['no-undef'],
+			expected: ['no-undef'],
 			ignored: ['strict']
 		},
 		'with_env_node.js': {
@@ -156,7 +156,7 @@ function testPackage(packageId, done){
 		},
 
 		'without_env_browser.js': {
-			expected: typescript ? [] : ['no-undef'],
+			expected: ['no-undef'],
 			ignored: ['strict']
 		},
 		'with_env_browser.js': {
@@ -165,7 +165,7 @@ function testPackage(packageId, done){
 		},
 
 		'without_env_mocha.js': {
-			expected: typescript ? [] : ['no-undef'],
+			expected: ['no-undef'],
 			ignored: ['strict']
 		},
 		'with_env_mocha.js': {
@@ -269,15 +269,15 @@ function testPackage(packageId, done){
 			ignored: ['strict', 'no-implicit-globals', 'no-unused-vars', '@typescript-eslint/no-unused-vars', 'no-var']
 		},
 		'quotes_concatenate_number_string_single.js': {
-			expected: [],
+			expected: typescript ? ['@typescript-eslint/restrict-plus-operands'] : [],
 			ignored: ['strict', 'no-implicit-globals', 'no-unused-vars', '@typescript-eslint/no-unused-vars', 'no-var']
 		},
 		'quotes_concatenate_number_string_double.js': {
-			expected: ['quotes'],
+			expected: typescript ? ['quotes', '@typescript-eslint/restrict-plus-operands'] : ['quotes'],
 			ignored: ['strict', 'no-implicit-globals', 'no-unused-vars', '@typescript-eslint/no-unused-vars', 'no-var']
 		},
 		'quotes_concatenate_number_string_backtick.js': {
-			expected: es2017 ? [] : ['fatal'],
+			expected: (es2017 ? [] : ['fatal']),
 			ignored: ['strict', 'no-implicit-globals', 'no-unused-vars', '@typescript-eslint/no-unused-vars', 'no-var']
 		},
 		'quotes_concatenate_string_string_single.js': {

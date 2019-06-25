@@ -348,10 +348,6 @@ function getEslintSettings({commonjs, es2017, esmodules, typescript}){
 	};
 
 	if (typescript){
-		eslintSettings.parser = '@typescript-eslint/parser';
-		eslintSettings.plugins.push('@typescript-eslint');
-		eslintSettings.parserOptions.project = './tsconfig.json';
-
 		// Core rules that have a better Typescript-AST-compatible version
 		[
 			'func-call-spacing',
@@ -457,22 +453,19 @@ function getEslintSettings({commonjs, es2017, esmodules, typescript}){
 		eslintSettings.rules['@typescript-eslint/unbound-method'] = 'off';
 		eslintSettings.rules['@typescript-eslint/unified-signatures'] = 'off';
 
-		// AAAAAAAAAAAAAAAAA: does the new package fix these ?
-		// https://github.com/scottohara/eslint-config-oharagroup/issues/3#issuecomment-456228458
-		// eslintSettings.rules['no-undef'] = 'off'; // @see https://github.com/eslint/typescript-eslint-parser/issues/77
-		// eslintSettings.rules['space-infix-ops'] = 'off'; // @see https://github.com/eslint/typescript-eslint-parser/issues/224
-
-		// The rule ignores tsconfig.alwaysStrict
+		// The rule ignores "tsconfig.alwaysStrict"
 		eslintSettings.rules.strict = 'off';
 		eslintSettings.parserOptions.ecmaFeatures.impliedStrict = true;
+
+		// Typescript parser & rules
+		eslintSettings.parser = '@typescript-eslint/parser';
+		eslintSettings.plugins.push('@typescript-eslint');
+		eslintSettings.parserOptions.project = './tsconfig.json';
 	}
 
 	if (esmodules){
 		eslintSettings.parserOptions.sourceType = 'module';
 		eslintSettings.parserOptions.allowImportExportEverywhere = false;
-	}
-
-	if (esmodules){
 		eslintSettings.rules['no-restricted-syntax'] = ['error', 'WithStatement'];
 	} else {
 		eslintSettings.rules['no-restricted-syntax'] = [
