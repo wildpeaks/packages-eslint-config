@@ -14,7 +14,7 @@ const dirFixtures = path.join(__dirname, 'fixtures');
 
 
 function testPackage(packageId, done){
-	const {commonjs, esmodules, stage2, es2017, react, typescript} = configs[packageId];
+	const {commonjs, esmodules, es2017, typescript} = configs[packageId];
 
 	// Describes when it's expected to fail (e.g. `true` means always, `false` means never).
 	const fixtures = {
@@ -38,76 +38,127 @@ function testPackage(packageId, done){
 
 		'class_empty.js': {
 			expected: es2017 ? [] : ['fatal'],
-			ignored: ['strict', 'no-implicit-globals', 'no-unused-vars', '@typescript-eslint/no-unused-vars',]
+			ignored: ['strict', 'no-implicit-globals', 'no-unused-vars', '@typescript-eslint/no-unused-vars']
 		},
-		// 'class_stage0_function_without_return_type.js': es2017 ? [] : ['fatal'],
-		// 'class_stage0_function_with_return_type.js': (stage2 || typescript) ? [] : ['fatal'],
+		'class_stage0_function_without_return_type.js': {
+			expected: es2017 ? [] : ['fatal'],
+			ignored: ['strict', 'no-implicit-globals', 'no-unused-vars', '@typescript-eslint/no-unused-vars', 'space-before-blocks', 'class-methods-use-this']
+		},
+		'class_stage0_function_with_return_type.js': {
+			// expected: (stage2 || typescript) ? [] : ['fatal'],
+			expected: (typescript) ? [] : ['fatal'],
+			ignored: ['strict', 'no-implicit-globals', 'no-unused-vars', '@typescript-eslint/no-unused-vars', 'space-before-blocks', 'class-methods-use-this']
+		},
 
-		// // 'class_stage2_instance_property_without_type.js': (stage2 || typescript) ? [] : ['fatal'],
-		// // 'class_stage2_static_property_without_type.js': (stage2 || typescript) ? [] : ['fatal'],
-		// // 'class_stage2_instance_property_with_type.js': (stage2 || typescript) ? [] : ['fatal'],
-		// // 'class_stage2_static_property_with_type.js': (stage2 || typescript) ? [] : ['fatal'],
+		// 'class_stage2_instance_property_without_type.js': (stage2 || typescript) ? [] : ['fatal'],
+		// 'class_stage2_static_property_without_type.js': (stage2 || typescript) ? [] : ['fatal'],
+		// 'class_stage2_instance_property_with_type.js': (stage2 || typescript) ? [] : ['fatal'],
+		// 'class_stage2_static_property_with_type.js': (stage2 || typescript) ? [] : ['fatal'],
 
-		// // 'class_stage2_instance_function_without_return_type.js': stage2 ? [] : (typescript ? ['no-invalid-this'] : ['fatal']),
-		// // 'class_stage2_static_function_without_return_type.js': (stage2 || typescript) ? [] : ['fatal'],
-		// // 'class_stage2_instance_arrow_without_return_type.js': (stage2 || typescript) ? [] : ['fatal'],
-		// // 'class_stage2_static_arrow_without_return_type.js': (stage2 || typescript) ? [] : ['fatal'],
-		// // 'class_stage2_instance_expression_without_return_type.js': (stage2 || typescript) ? [] : ['fatal'],
-		// // 'class_stage2_static_expression_without_return_type.js': (stage2 || typescript) ? [] : ['fatal'],
+		// 'class_stage2_instance_function_without_return_type.js': stage2 ? [] : (typescript ? ['no-invalid-this'] : ['fatal']),
+		// 'class_stage2_static_function_without_return_type.js': (stage2 || typescript) ? [] : ['fatal'],
+		// 'class_stage2_instance_arrow_without_return_type.js': (stage2 || typescript) ? [] : ['fatal'],
+		// 'class_stage2_static_arrow_without_return_type.js': (stage2 || typescript) ? [] : ['fatal'],
+		// 'class_stage2_instance_expression_without_return_type.js': (stage2 || typescript) ? [] : ['fatal'],
+		// 'class_stage2_static_expression_without_return_type.js': (stage2 || typescript) ? [] : ['fatal'],
 
-		// // 'class_stage2_instance_function_with_return_type.js': stage2 ? [] : (typescript ? ['no-invalid-this'] : ['fatal']),
-		// // 'class_stage2_static_function_with_return_type.js': (stage2 || typescript) ? [] : ['fatal'],
-		// // 'class_stage2_instance_arrow_with_return_type.js': (stage2 || typescript) ? [] : ['fatal'],
-		// // 'class_stage2_static_arrow_with_return_type.js': (stage2 || typescript) ? [] : ['fatal'],
-		// // 'class_stage2_instance_expression_with_return_type.js': (stage2 || typescript) ? [] : ['fatal'],
-		// // 'class_stage2_static_expression_with_return_type.js': (stage2 || typescript) ? [] : ['fatal'],
+		// 'class_stage2_instance_function_with_return_type.js': stage2 ? [] : (typescript ? ['no-invalid-this'] : ['fatal']),
+		// 'class_stage2_static_function_with_return_type.js': (stage2 || typescript) ? [] : ['fatal'],
+		// 'class_stage2_instance_arrow_with_return_type.js': (stage2 || typescript) ? [] : ['fatal'],
+		// 'class_stage2_static_arrow_with_return_type.js': (stage2 || typescript) ? [] : ['fatal'],
+		// 'class_stage2_instance_expression_with_return_type.js': (stage2 || typescript) ? [] : ['fatal'],
+		// 'class_stage2_static_expression_with_return_type.js': (stage2 || typescript) ? [] : ['fatal'],
 
-		// // 'class_stage2_instance_function_without_params_type.js': (stage2 || typescript) ? [] : ['fatal'],
-		// // 'class_stage2_static_function_without_params_type.js': (stage2 || typescript) ? [] : ['fatal'],
-		// // 'class_stage2_instance_arrow_without_params_type.js': (stage2 || typescript) ? [] : ['fatal'],
-		// // 'class_stage2_static_arrow_without_params_type.js': (stage2 || typescript) ? [] : ['fatal'],
-		// // 'class_stage2_instance_expression_without_params_type.js': (stage2 || typescript) ? [] : ['fatal'],
-		// // 'class_stage2_static_expression_without_params_type.js': (stage2 || typescript) ? [] : ['fatal'],
+		// 'class_stage2_instance_function_without_params_type.js': (stage2 || typescript) ? [] : ['fatal'],
+		// 'class_stage2_static_function_without_params_type.js': (stage2 || typescript) ? [] : ['fatal'],
+		// 'class_stage2_instance_arrow_without_params_type.js': (stage2 || typescript) ? [] : ['fatal'],
+		// 'class_stage2_static_arrow_without_params_type.js': (stage2 || typescript) ? [] : ['fatal'],
+		// 'class_stage2_instance_expression_without_params_type.js': (stage2 || typescript) ? [] : ['fatal'],
+		// 'class_stage2_static_expression_without_params_type.js': (stage2 || typescript) ? [] : ['fatal'],
 
-		// // 'class_stage2_instance_function_with_params_type.js': (stage2 || typescript) ? [] : ['fatal'],
-		// // 'class_stage2_static_function_with_params_type.js': (stage2 || typescript) ? [] : ['fatal'],
-		// // 'class_stage2_instance_arrow_with_params_type.js': (stage2 || typescript) ? [] : ['fatal'],
-		// // 'class_stage2_static_arrow_with_params_type.js': (stage2 || typescript) ? [] : ['fatal'],
-		// // 'class_stage2_instance_expression_with_params_type.js': (stage2 || typescript) ? [] : ['fatal'],
-		// // 'class_stage2_static_expression_with_params_type.js': (stage2 || typescript) ? [] : ['fatal'],
+		// 'class_stage2_instance_function_with_params_type.js': (stage2 || typescript) ? [] : ['fatal'],
+		// 'class_stage2_static_function_with_params_type.js': (stage2 || typescript) ? [] : ['fatal'],
+		// 'class_stage2_instance_arrow_with_params_type.js': (stage2 || typescript) ? [] : ['fatal'],
+		// 'class_stage2_static_arrow_with_params_type.js': (stage2 || typescript) ? [] : ['fatal'],
+		// 'class_stage2_instance_expression_with_params_type.js': (stage2 || typescript) ? [] : ['fatal'],
+		// 'class_stage2_static_expression_with_params_type.js': (stage2 || typescript) ? [] : ['fatal'],
 
-		// // 'class_stage2_instance_function_underscore_params_without_type.js': (stage2 || typescript) ? [] : ['fatal'],
-		// // 'class_stage2_static_function_underscore_params_without_type.js': (stage2 || typescript) ? [] : ['fatal'],
-		// // 'class_stage2_instance_arrow_underscore_params_without_type.js': (stage2 || typescript) ? [] : ['fatal'],
-		// // 'class_stage2_static_arrow_underscore_params_without_type.js': (stage2 || typescript) ? [] : ['fatal'],
-		// // 'class_stage2_instance_expression_underscore_params_without_type.js': (stage2 || typescript) ? [] : ['fatal'],
-		// // 'class_stage2_static_expression_underscore_params_without_type.js': (stage2 || typescript) ? [] : ['fatal'],
+		// 'class_stage2_instance_function_underscore_params_without_type.js': (stage2 || typescript) ? [] : ['fatal'],
+		// 'class_stage2_static_function_underscore_params_without_type.js': (stage2 || typescript) ? [] : ['fatal'],
+		// 'class_stage2_instance_arrow_underscore_params_without_type.js': (stage2 || typescript) ? [] : ['fatal'],
+		// 'class_stage2_static_arrow_underscore_params_without_type.js': (stage2 || typescript) ? [] : ['fatal'],
+		// 'class_stage2_instance_expression_underscore_params_without_type.js': (stage2 || typescript) ? [] : ['fatal'],
+		// 'class_stage2_static_expression_underscore_params_without_type.js': (stage2 || typescript) ? [] : ['fatal'],
 
-		// // 'class_stage2_instance_function_underscore_params_with_type.js': (stage2 || typescript) ? [] : ['fatal'],
-		// // 'class_stage2_static_function_underscore_params_with_type.js': (stage2 || typescript) ? [] : ['fatal'],
-		// // 'class_stage2_instance_arrow_underscore_params_with_type.js': (stage2 || typescript) ? [] : ['fatal'],
-		// // 'class_stage2_static_arrow_underscore_params_with_type.js': (stage2 || typescript) ? [] : ['fatal'],
-		// // 'class_stage2_instance_expression_underscore_params_with_type.js': (stage2 || typescript) ? [] : ['fatal'],
-		// // 'class_stage2_static_expression_underscore_params_with_type.js': (stage2 || typescript) ? [] : ['fatal'],
+		// 'class_stage2_instance_function_underscore_params_with_type.js': (stage2 || typescript) ? [] : ['fatal'],
+		// 'class_stage2_static_function_underscore_params_with_type.js': (stage2 || typescript) ? [] : ['fatal'],
+		// 'class_stage2_instance_arrow_underscore_params_with_type.js': (stage2 || typescript) ? [] : ['fatal'],
+		// 'class_stage2_static_arrow_underscore_params_with_type.js': (stage2 || typescript) ? [] : ['fatal'],
+		// 'class_stage2_instance_expression_underscore_params_with_type.js': (stage2 || typescript) ? [] : ['fatal'],
+		// 'class_stage2_static_expression_underscore_params_with_type.js': (stage2 || typescript) ? [] : ['fatal'],
 
-		// 'line_80.js': [],
-		// 'line_120.js': [],
-		// 'line_240.js': [],
-		// 'line_300.js': ['max-len'],
+		'line_80.js': {
+			expected: [],
+			ignored: ['strict']
+		},
+		'line_120.js': {
+			expected: [],
+			ignored: ['strict']
+		},
+		'line_240.js': {
+			expected: [],
+			ignored: ['strict']
+		},
+		'line_300.js': {
+			expected: ['max-len'],
+			ignored: ['strict']
+		},
 
-		// 'without_env_node.js': typescript ? [] : ['no-undef'],
-		// 'with_env_node.js': [],
+		'without_env_node.js': {
+			expected: typescript ? [] : ['no-undef'],
+			ignored: ['strict']
+		},
+		'with_env_node.js': {
+			expected: [],
+			ignored: ['strict']
+		},
 
-		// 'without_env_browser.js': typescript ? [] : ['no-undef'],
-		// 'with_env_browser.js': [],
+		'without_env_browser.js': {
+			expected: typescript ? [] : ['no-undef'],
+			ignored: ['strict']
+		},
+		'with_env_browser.js': {
+			expected: [],
+			ignored: ['strict']
+		},
 
-		// 'without_env_mocha.js': typescript ? [] : ['no-undef'],
-		// 'with_env_mocha.js': [],
+		'without_env_mocha.js': {
+			expected: typescript ? [] : ['no-undef'],
+			ignored: ['strict']
+		},
+		'with_env_mocha.js': {
+			expected: [],
+			ignored: ['strict']
+		},
 
-		// 'commonjs.js': commonjs ? [] : ['no-undef'],
-		// 'export_var.js': esmodules ? [] : (stage2 ? ['no-restricted-syntax'] : ['fatal']),
-		// 'export_const.js': esmodules ? [] : (stage2 ? ['no-restricted-syntax'] : ['fatal']),
-		// 'export_arrow.js': ['fatal'],
+		'commonjs.js': {
+			expected: commonjs ? [] : ['no-undef'],
+			ignored: ['strict']
+		},
+		'export_var.js': {
+			// expected: esmodules ? [] : (stage2 ? ['no-restricted-syntax'] : ['fatal']),
+			expected: esmodules ? [] : ['fatal'],
+			ignored: ['strict', 'no-var']
+		},
+		'export_const.js': {
+			// expected: esmodules ? [] : (stage2 ? ['no-restricted-syntax'] : ['fatal']),
+			expected: esmodules ? [] : ['fatal'],
+			ignored: ['strict']
+		},
+		'export_arrow.js': {
+			expected: ['fatal'],
+			ignored: ['strict', 'arrow-body-style', 'space-before-blocks']
+		},
 		// 'export_function.js': esmodules ? [] : (stage2 ? ['no-restricted-syntax'] : ['fatal']),
 		// 'export_default_var.js': esmodules ? [] : (stage2 ? ['no-restricted-syntax'] : ['fatal']),
 		// 'export_default_const.js': ['fatal'],
@@ -261,9 +312,9 @@ function testPackage(packageId, done){
 		const actual = {};
 		report.results.forEach(result => {
 			const rules = {};
-// console.log('-----------------------------------------------');
-// console.log(result.messages);
-// console.log('-----------------------------------------------');
+			// console.log('-----------------------------------------------');
+			// console.log(result.messages);
+			// console.log('-----------------------------------------------');
 			result.messages.forEach(message => {
 				if (message.fatal){
 					rules.fatal = message.message;
@@ -277,36 +328,24 @@ function testPackage(packageId, done){
 
 		for (const fixtureId in fixtures){
 			const fixture = fixtures[fixtureId];
-
-			/* BEFORE ESLINT-DISABLE IN JS
-			const expectedError = fixture.expected.sort();
-			// const actualError = Object.keys(actual[fixtureId]).sort(); // before eslint-ignore moved to JS
-			const actualError = Object.keys(actual[fixtureId]).sort();
-			if (expectedError.length > 0){
-				deepStrictEqual(actualError, expectedError, `Fixture "${fixtureId}" should have errors`);
-			} else {
-				deepStrictEqual(actualError, [], `Fixture "${fixtureId}" should pass`);
-			}
-			*/
-
-			const messages = [];
 			const expectedErrors = fixture.expected;
 			const ignoredErrors = fixture.ignored;
 			const actualErrors = Object.keys(actual[fixtureId]);
+
+			const messages = [];
 			for (const expectedError of expectedErrors){
 				if (!actualErrors.includes(expectedError)){
-					messages.push(`Missing "${expectedError}"`);
+					messages.push(`MISSING "${expectedError}"`);
 				}
 			}
 			for (const actualError of actualErrors){
 				if (!expectedErrors.includes(actualError) && !ignoredErrors.includes(actualError)){
-					messages.push(`Unexpected "${actualError}"`);
+					messages.push(`UNEXPECTED "${actualError}"`);
 				}
 			}
 			if (messages.length > 0){
 				fail(messages.join(', '));
 			}
-
 		}
 
 		done();
