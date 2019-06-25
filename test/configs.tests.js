@@ -44,215 +44,87 @@ function testPackage(packageId, done){
 			expected: es2017 ? [] : ['fatal'],
 			ignored: ['strict', 'no-implicit-globals', 'no-unused-vars', '@typescript-eslint/no-unused-vars', 'space-before-blocks', 'class-methods-use-this']
 		},
-		'class_stage0_function_with_return_type.js': {
-			// expected: (stage2 || typescript) ? [] : ['fatal'],
-			expected: (typescript) ? [] : ['fatal'],
-			ignored: ['strict', 'no-implicit-globals', 'no-unused-vars', '@typescript-eslint/no-unused-vars', 'space-before-blocks', 'class-methods-use-this']
-		},
 
 		'class_stage2_instance_property_without_type.js': {
-			// expected: (stage2 || typescript) ? [] : ['fatal'],
 			expected: typescript ? [] : ['fatal'],
 			ignored: ['strict', 'no-implicit-globals', 'no-unused-vars', '@typescript-eslint/no-unused-vars', 'space-before-blocks', 'class-methods-use-this'],
 		},
 		'class_stage2_static_property_without_type.js': {
-			// expected: (stage2 || typescript) ? [] : ['fatal'],
-			expected: typescript ? [] : ['fatal'],
-			ignored: ['strict', 'no-implicit-globals', 'no-unused-vars', '@typescript-eslint/no-unused-vars', 'space-before-blocks', 'class-methods-use-this']
-		},
-		'class_stage2_instance_property_with_type.js': {
-			// expected: (stage2 || typescript) ? [] : ['fatal'],
-			expected: typescript ? [] : ['fatal'],
-			ignored: ['strict', 'no-implicit-globals', 'no-unused-vars', '@typescript-eslint/no-unused-vars', 'space-before-blocks', 'class-methods-use-this']
-		},
-		'class_stage2_static_property_with_type.js': {
-			// expected: (stage2 || typescript) ? [] : ['fatal'],
 			expected: typescript ? [] : ['fatal'],
 			ignored: ['strict', 'no-implicit-globals', 'no-unused-vars', '@typescript-eslint/no-unused-vars', 'space-before-blocks', 'class-methods-use-this']
 		},
 
 		'class_stage2_instance_function_without_return_type.js': {
-			// expected: stage2 ? [] : (typescript ? ['no-invalid-this'] : ['fatal']),
 			expected: typescript ? ['no-invalid-this'] : ['fatal'],
-			ignored: ['strict', 'no-implicit-globals', 'no-unused-vars', '@typescript-eslint/no-unused-vars', 'space-before-blocks', 'class-methods-use-this']
+			ignored: ['strict', 'no-implicit-globals', 'no-unused-vars', '@typescript-eslint/no-unused-vars', 'space-before-blocks', 'class-methods-use-this', '@typescript-eslint/restrict-plus-operands']
 		},
 		'class_stage2_static_function_without_return_type.js': {
-			// expected: (stage2 || typescript) ? [] : ['fatal'],
 			expected: typescript ? [] : ['fatal'],
 			ignored: ['strict', 'no-implicit-globals', 'no-unused-vars', '@typescript-eslint/no-unused-vars', 'space-before-blocks', 'class-methods-use-this']
 		},
 		'class_stage2_instance_arrow_without_return_type.js': {
-			// expected: (stage2 || typescript) ? [] : ['fatal'],
-			expected: typescript ? [] : ['fatal'],
+			expected: typescript ? ['no-invalid-this'] : ['fatal'],
 			ignored: ['strict', 'no-implicit-globals', 'no-unused-vars', '@typescript-eslint/no-unused-vars', 'space-before-blocks', 'class-methods-use-this']
 		},
 		'class_stage2_static_arrow_without_return_type.js': {
-			// expected: (stage2 || typescript) ? [] : ['fatal'],
 			expected: typescript ? [] : ['fatal'],
 			ignored: ['strict', 'no-implicit-globals', 'no-unused-vars', '@typescript-eslint/no-unused-vars', 'space-before-blocks', 'class-methods-use-this']
 		},
 		'class_stage2_instance_expression_without_return_type.js': {
-			// expected: (stage2 || typescript) ? [] : ['fatal'],
-			expected: typescript ? [] : ['fatal'],
-			ignored: ['strict', 'no-implicit-globals', 'no-unused-vars', '@typescript-eslint/no-unused-vars', 'space-before-blocks', 'class-methods-use-this']
-		},
-		'class_stage2_static_expression_without_return_type.js': {
-			// expected: (stage2 || typescript) ? [] : ['fatal'],
-			expected: typescript ? [] : ['fatal'],
-			ignored: ['strict', 'no-implicit-globals', 'no-unused-vars', '@typescript-eslint/no-unused-vars', 'space-before-blocks', 'class-methods-use-this']
-		},
-
-		'class_stage2_instance_function_with_return_type.js': {
-			// expected: stage2 ? [] : (typescript ? ['no-invalid-this'] : ['fatal']),
 			expected: typescript ? ['no-invalid-this'] : ['fatal'],
 			ignored: ['strict', 'no-implicit-globals', 'no-unused-vars', '@typescript-eslint/no-unused-vars', 'space-before-blocks', 'class-methods-use-this']
 		},
-		'class_stage2_static_function_with_return_type.js': {
-			// expected: (stage2 || typescript) ? [] : ['fatal'],
-			expected: typescript ? [] : ['fatal'],
-			ignored: ['strict', 'no-implicit-globals', 'no-unused-vars', '@typescript-eslint/no-unused-vars', 'space-before-blocks', 'class-methods-use-this']
-		},
-		'class_stage2_instance_arrow_with_return_type.js': {
-			// expected: (stage2 || typescript) ? [] : ['fatal'],
-			expected: typescript ? [] : ['fatal'],
-			ignored: ['strict', 'no-implicit-globals', 'no-unused-vars', '@typescript-eslint/no-unused-vars', 'space-before-blocks', 'class-methods-use-this']
-		},
-		'class_stage2_static_arrow_with_return_type.js': {
-			// expected: (stage2 || typescript) ? [] : ['fatal'],
-			expected: typescript ? [] : ['fatal'],
-			ignored: ['strict', 'no-implicit-globals', 'no-unused-vars', '@typescript-eslint/no-unused-vars', 'space-before-blocks', 'class-methods-use-this']
-		},
-		'class_stage2_instance_expression_with_return_type.js': {
-			// expected: (stage2 || typescript) ? [] : ['fatal'],
-			expected: typescript ? [] : ['fatal'],
-			ignored: ['strict', 'no-implicit-globals', 'no-unused-vars', '@typescript-eslint/no-unused-vars', 'space-before-blocks', 'class-methods-use-this']
-		},
-		'class_stage2_static_expression_with_return_type.js': {
-			// expected: (stage2 || typescript) ? [] : ['fatal'],
+		'class_stage2_static_expression_without_return_type.js': {
 			expected: typescript ? [] : ['fatal'],
 			ignored: ['strict', 'no-implicit-globals', 'no-unused-vars', '@typescript-eslint/no-unused-vars', 'space-before-blocks', 'class-methods-use-this']
 		},
 
 		'class_stage2_instance_function_without_params_type.js': {
-			// expected: (stage2 || typescript) ? [] : ['fatal'],
 			expected: typescript ? [] : ['fatal'],
-			ignored: ['strict', 'no-implicit-globals', 'no-unused-vars', '@typescript-eslint/no-unused-vars', 'space-before-blocks', 'class-methods-use-this']
+			ignored: ['strict', 'no-implicit-globals', 'no-unused-vars', '@typescript-eslint/no-unused-vars', 'space-before-blocks', 'class-methods-use-this', '@typescript-eslint/restrict-plus-operands']
 		},
 		'class_stage2_static_function_without_params_type.js': {
-			// expected: (stage2 || typescript) ? [] : ['fatal'],
 			expected: typescript ? [] : ['fatal'],
-			ignored: ['strict', 'no-implicit-globals', 'no-unused-vars', '@typescript-eslint/no-unused-vars', 'space-before-blocks', 'class-methods-use-this']
+			ignored: ['strict', 'no-implicit-globals', 'no-unused-vars', '@typescript-eslint/no-unused-vars', 'space-before-blocks', 'class-methods-use-this', '@typescript-eslint/restrict-plus-operands']
 		},
 		'class_stage2_instance_arrow_without_params_type.js': {
-			// expected: (stage2 || typescript) ? [] : ['fatal'],
 			expected: typescript ? [] : ['fatal'],
 			ignored: ['strict', 'no-implicit-globals', 'no-unused-vars', '@typescript-eslint/no-unused-vars', 'space-before-blocks', 'class-methods-use-this']
 		},
 		'class_stage2_static_arrow_without_params_type.js': {
-			// expected: (stage2 || typescript) ? [] : ['fatal'],
 			expected: typescript ? [] : ['fatal'],
 			ignored: ['strict', 'no-implicit-globals', 'no-unused-vars', '@typescript-eslint/no-unused-vars', 'space-before-blocks', 'class-methods-use-this']
 		},
 		'class_stage2_instance_expression_without_params_type.js': {
-			// expected: (stage2 || typescript) ? [] : ['fatal'],
 			expected: typescript ? [] : ['fatal'],
 			ignored: ['strict', 'no-implicit-globals', 'no-unused-vars', '@typescript-eslint/no-unused-vars', 'space-before-blocks', 'class-methods-use-this']
 		},
 		'class_stage2_static_expression_without_params_type.js': {
-			// expected: (stage2 || typescript) ? [] : ['fatal'],
 			expected: typescript ? [] : ['fatal'],
 			ignored: ['strict','no-implicit-globals','no-unused-vars','@typescript-eslint/no-unused-vars','space-before-blocks','class-methods-use-this']
 		},
 
-		'class_stage2_instance_function_with_params_type.js': {
-			// expected: (stage2 || typescript) ? [] : ['fatal'],
-			expected: typescript ? [] : ['fatal'],
-			ignored: ['strict', 'no-implicit-globals', 'no-unused-vars', '@typescript-eslint/no-unused-vars', 'space-before-blocks', 'class-methods-use-this']
-		},
-		'class_stage2_static_function_with_params_type.js': {
-			// expected: (stage2 || typescript) ? [] : ['fatal'],
-			expected: typescript ? [] : ['fatal'],
-			ignored: ['strict', 'no-implicit-globals', 'no-unused-vars', '@typescript-eslint/no-unused-vars', 'space-before-blocks', 'class-methods-use-this']
-		},
-		'class_stage2_instance_arrow_with_params_type.js': {
-			// expected: (stage2 || typescript) ? [] : ['fatal'],
-			expected: typescript ? [] : ['fatal'],
-			ignored: ['strict', 'no-implicit-globals', 'no-unused-vars', '@typescript-eslint/no-unused-vars', 'space-before-blocks', 'class-methods-use-this']
-		},
-		'class_stage2_static_arrow_with_params_type.js': {
-			// expected: (stage2 || typescript) ? [] : ['fatal'],
-			expected: typescript ? [] : ['fatal'],
-			ignored: ['strict', 'no-implicit-globals', 'no-unused-vars', '@typescript-eslint/no-unused-vars', 'space-before-blocks', 'class-methods-use-this']
-		},
-		'class_stage2_instance_expression_with_params_type.js': {
-			// expected: (stage2 || typescript) ? [] : ['fatal'],
-			expected: typescript ? [] : ['fatal'],
-			ignored: ['strict', 'no-implicit-globals', 'no-unused-vars', '@typescript-eslint/no-unused-vars', 'space-before-blocks', 'class-methods-use-this']
-		},
-		'class_stage2_static_expression_with_params_type.js': {
-			// expected: (stage2 || typescript) ? [] : ['fatal'],
-			expected: typescript ? [] : ['fatal'],
-			ignored: ['strict', 'no-implicit-globals', 'no-unused-vars', '@typescript-eslint/no-unused-vars', 'space-before-blocks', 'class-methods-use-this']
-		},
-
 		'class_stage2_instance_function_underscore_params_without_type.js': {
-			// expected: (stage2 || typescript) ? [] : ['fatal'],
 			expected: typescript ? [] : ['fatal'],
 			ignored: ['strict', 'no-implicit-globals', 'no-unused-vars', '@typescript-eslint/no-unused-vars', 'space-before-blocks', 'class-methods-use-this']
 		},
 		'class_stage2_static_function_underscore_params_without_type.js': {
-			// expected: (stage2 || typescript) ? [] : ['fatal'],
 			expected: typescript ? [] : ['fatal'],
 			ignored: ['strict', 'no-implicit-globals', 'no-unused-vars', '@typescript-eslint/no-unused-vars', 'space-before-blocks', 'class-methods-use-this']
 		},
 		'class_stage2_instance_arrow_underscore_params_without_type.js': {
-			// expected: (stage2 || typescript) ? [] : ['fatal'],
 			expected: typescript ? [] : ['fatal'],
 			ignored: ['strict', 'no-implicit-globals', 'no-unused-vars', '@typescript-eslint/no-unused-vars', 'space-before-blocks', 'class-methods-use-this']
 		},
 		'class_stage2_static_arrow_underscore_params_without_type.js': {
-			// expected: (stage2 || typescript) ? [] : ['fatal'],
 			expected: typescript ? [] : ['fatal'],
 			ignored: ['strict', 'no-implicit-globals', 'no-unused-vars', '@typescript-eslint/no-unused-vars', 'space-before-blocks', 'class-methods-use-this']
 		},
 		'class_stage2_instance_expression_underscore_params_without_type.js': {
-			// expected: (stage2 || typescript) ? [] : ['fatal'],
 			expected: typescript ? [] : ['fatal'],
 			ignored: ['strict', 'no-implicit-globals', 'no-unused-vars', '@typescript-eslint/no-unused-vars', 'space-before-blocks', 'class-methods-use-this']
 		},
 		'class_stage2_static_expression_underscore_params_without_type.js': {
-			// expected: (stage2 || typescript) ? [] : ['fatal'],
-			expected: typescript ? [] : ['fatal'],
-			ignored: ['strict', 'no-implicit-globals', 'no-unused-vars', '@typescript-eslint/no-unused-vars', 'space-before-blocks', 'class-methods-use-this']
-		},
-
-		'class_stage2_instance_function_underscore_params_with_type.js': {
-			// expected: (stage2 || typescript) ? [] : ['fatal'],
-			expected: typescript ? [] : ['fatal'],
-			ignored: ['strict', 'no-implicit-globals', 'no-unused-vars', '@typescript-eslint/no-unused-vars', 'space-before-blocks', 'class-methods-use-this']
-		},
-		'class_stage2_static_function_underscore_params_with_type.js': {
-			// expected: (stage2 || typescript) ? [] : ['fatal'],
-			expected: typescript ? [] : ['fatal'],
-			ignored: ['strict', 'no-implicit-globals', 'no-unused-vars', '@typescript-eslint/no-unused-vars', 'space-before-blocks', 'class-methods-use-this']
-		},
-		'class_stage2_instance_arrow_underscore_params_with_type.js': {
-			// expected: (stage2 || typescript) ? [] : ['fatal'],
-			expected: typescript ? [] : ['fatal'],
-			ignored: ['strict', 'no-implicit-globals', 'no-unused-vars', '@typescript-eslint/no-unused-vars', 'space-before-blocks', 'class-methods-use-this']
-		},
-		'class_stage2_static_arrow_underscore_params_with_type.js': {
-			// expected: (stage2 || typescript) ? [] : ['fatal'],
-			expected: typescript ? [] : ['fatal'],
-			ignored: ['strict', 'no-implicit-globals', 'no-unused-vars', '@typescript-eslint/no-unused-vars', 'space-before-blocks', 'class-methods-use-this']
-		},
-		'class_stage2_instance_expression_underscore_params_with_type.js': {
-			// expected: (stage2 || typescript) ? [] : ['fatal'],
-			expected: typescript ? [] : ['fatal'],
-			ignored: ['strict', 'no-implicit-globals', 'no-unused-vars', '@typescript-eslint/no-unused-vars', 'space-before-blocks', 'class-methods-use-this']
-		},
-		'class_stage2_static_expression_underscore_params_with_type.js': {
-			// expected: (stage2 || typescript) ? [] : ['fatal'],
 			expected: typescript ? [] : ['fatal'],
 			ignored: ['strict', 'no-implicit-globals', 'no-unused-vars', '@typescript-eslint/no-unused-vars', 'space-before-blocks', 'class-methods-use-this']
 		},
@@ -306,12 +178,10 @@ function testPackage(packageId, done){
 			ignored: ['strict']
 		},
 		'export_var.js': {
-			// expected: esmodules ? [] : (stage2 ? ['no-restricted-syntax'] : ['fatal']),
-			expected: esmodules ? [] : ['fatal'],
-			ignored: ['strict', 'no-var']
+			expected: esmodules ? ['no-var'] : ['fatal'],
+			ignored: ['strict']
 		},
 		'export_const.js': {
-			// expected: esmodules ? [] : (stage2 ? ['no-restricted-syntax'] : ['fatal']),
 			expected: esmodules ? [] : ['fatal'],
 			ignored: ['strict']
 		},
@@ -320,12 +190,10 @@ function testPackage(packageId, done){
 			ignored: ['strict', 'arrow-body-style', 'space-before-blocks']
 		},
 		'export_function.js': {
-			// expected: esmodules ? [] : (stage2 ? ['no-restricted-syntax'] : ['fatal']),
 			expected: esmodules ? [] : ['fatal'],
 			ignored: ['strict', 'space-before-blocks']
 		},
 		'export_default_var.js': {
-			// expected: esmodules ? [] : (stage2 ? ['no-restricted-syntax'] : ['fatal']),
 			expected: esmodules ? [] : ['fatal'],
 			ignored: ['strict', 'no-var']
 		},
@@ -334,12 +202,10 @@ function testPackage(packageId, done){
 			ignored: ['strict']
 		},
 		'export_default_arrow.js': {
-			// expected: esmodules ? [] : (stage2 ? ['no-restricted-syntax'] : ['fatal']),
 			expected: esmodules ? [] : ['fatal'],
 			ignored: ['strict', 'arrow-body-style', 'space-before-blocks']
 		},
 		'export_default_function.js': {
-			// expected: esmodules ? [] : (stage2 ? ['no-restricted-syntax'] : ['fatal']),
 			expected: esmodules ? [] : ['fatal'],
 			ignored: ['strict', 'space-before-blocks']
 		},
@@ -351,11 +217,15 @@ function testPackage(packageId, done){
 		// 	ignored: ['strict']
 		// },
 
-		'react_jsx.js': {
-			// expected: (stage2 || react) ? [] : ['fatal'],
+		'jsx_without_require.jsx': {
 			expected: ['fatal'],
 			ignored: ['strict']
 		},
+		'tsx_without_import.tsx': {
+			expected: ['fatal'],
+			ignored: ['strict']
+		},
+
 		'await.js': {
 			expected: es2017 ? [] : ['fatal'],
 			ignored: ['strict', 'no-unused-vars', '@typescript-eslint/no-unused-vars', 'no-implicit-globals', 'space-before-blocks']
@@ -449,7 +319,6 @@ function testPackage(packageId, done){
 		},
 
 		'this_root.js': {
-			// expected: stage2 ? ['babel/no-invalid-this'] : ['no-invalid-this'],
 			expected: ['no-invalid-this'],
 			ignored: ['no-unused-vars', '@typescript-eslint/no-unused-vars', 'space-before-blocks', 'strict']
 		},
@@ -458,7 +327,6 @@ function testPackage(packageId, done){
 			ignored: ['strict', 'no-unused-vars', '@typescript-eslint/no-unused-vars', 'space-before-blocks']
 		},
 		'this_arrow.js': {
-			// expected: stage2 ? ['babel/no-invalid-this'] : (es2017 ? ['no-invalid-this'] : ['fatal']),
 			expected: (es2017 ? ['no-invalid-this'] : ['fatal']),
 			ignored: ['strict', 'no-unused-vars', '@typescript-eslint/no-unused-vars', 'space-before-blocks']
 		},
@@ -555,32 +423,46 @@ function testPackage(packageId, done){
 			ignored: ['strict', 'no-var', 'no-unused-vars', '@typescript-eslint/no-unused-vars']
 		},
 
-		'typescript_type.ts': {
-			// expected: (stage2 || typescript) ? [] : ['fatal'],
+		'typescript_enum_commas.ts': {
 			expected: typescript ? [] : ['fatal'],
 			ignored: ['no-unused-vars', '@typescript-eslint/no-unused-vars']
 		},
-		'typescript_enum.ts': {
+		'typescript_enum_semicolons.ts': {
+			expected: ['fatal'],
+			ignored: ['no-unused-vars', '@typescript-eslint/no-unused-vars']
+		},
+
+		'typescript_type_union.ts': {
 			expected: typescript ? [] : ['fatal'],
 			ignored: ['no-unused-vars', '@typescript-eslint/no-unused-vars']
 		},
-		'typescript_interface.ts': {
-			// expected: (stage2 || typescript) ? [] : ['fatal'],
+		'typescript_type_commas.ts': {
 			expected: typescript ? [] : ['fatal'],
 			ignored: ['no-unused-vars', '@typescript-eslint/no-unused-vars']
 		},
+		'typescript_type_semicolons.ts': {
+			expected: typescript ? ['@typescript-eslint/member-delimiter-style'] : ['fatal'],
+			ignored: ['no-unused-vars', '@typescript-eslint/no-unused-vars']
+		},
+
+		'typescript_interface_commas.ts': {
+			expected: typescript ? [] : ['fatal'],
+			ignored: ['no-unused-vars', '@typescript-eslint/no-unused-vars']
+		},
+		'typescript_interface_semicolons.ts': {
+			expected: typescript ? ['@typescript-eslint/member-delimiter-style'] : ['fatal'],
+			ignored: ['no-unused-vars', '@typescript-eslint/no-unused-vars']
+		},
+
 		'typescript_generic.ts': {
-			// expected: typescript ? [] : (stage2 ? ['space-before-blocks'] : ['fatal']),
 			expected: typescript ? [] : ['fatal'],
 			ignored: ['no-unused-vars', '@typescript-eslint/no-unused-vars']
 		},
 		'typescript_optional_parameter.ts': {
-			// expected: typescript ? [] : (stage2 ? ['space-before-blocks'] : ['fatal']),
 			expected: typescript ? [] : ['fatal'],
 			ignored: ['no-unused-vars', '@typescript-eslint/no-unused-vars']
 		},
 		'typescript_jsdoc.ts': {
-			// expected: typescript ? [] : (stage2 ? ['space-before-blocks'] : ['fatal']),
 			expected: typescript ? [] : ['fatal'],
 			ignored: ['no-unused-vars', '@typescript-eslint/no-unused-vars']
 		},
@@ -637,12 +519,10 @@ function testPackage(packageId, done){
 
 		// I'd rather only variables starting with _ were ignored, but it's all of nothing
 		'unused_rest_without_underscore.js': {
-			// expected: (typescript || stage2 || react) ? [] : ['fatal'],
 			expected: typescript ? [] : ['fatal'],
 			ignored: ['strict', 'no-var']
 		},
 		'unused_rest_with_underscore.js': {
-			// expected: (typescript || stage2 || react) ? [] : ['fatal'],
 			expected: typescript ? [] : ['fatal'],
 			ignored: []
 		}
@@ -723,20 +603,24 @@ function testPackage(packageId, done){
 		});
 
 		for (const fixtureId in fixtures){
-			const fixture = fixtures[fixtureId];
-			const expectedErrors = fixture.expected;
-			const ignoredErrors = fixture.ignored;
-			const actualErrors = Object.keys(actual[fixtureId]);
-
 			const messages = [];
-			for (const expectedError of expectedErrors){
-				if (!actualErrors.includes(expectedError)){
-					messages.push(`MISSING ${expectedError}`);
+			const actualFixture = actual[fixtureId];
+			if ((actualFixture === null )|| (typeof actualFixture !== 'object')){
+				messages.push('FIXTURE NOT FOUND');
+			} else {
+				const expectedFixture = fixtures[fixtureId];
+				const expectedErrors = expectedFixture.expected;
+				const ignoredErrors = expectedFixture.ignored;
+				const actualErrors = Object.keys(actualFixture);
+				for (const expectedError of expectedErrors){
+					if (!actualErrors.includes(expectedError)){
+						messages.push(`MISSING ${expectedError}`);
+					}
 				}
-			}
-			for (const actualError of actualErrors){
-				if (!expectedErrors.includes(actualError) && !ignoredErrors.includes(actualError)){
-					messages.push(`UNEXPECTED ${actualError}`);
+				for (const actualError of actualErrors){
+					if (!expectedErrors.includes(actualError) && !ignoredErrors.includes(actualError)){
+						messages.push(`UNEXPECTED ${actualError}`);
+					}
 				}
 			}
 			deepStrictEqual(messages, [], fixtureId);
