@@ -573,7 +573,7 @@ function testPackage(packageId, done){
 		strictEqual(throws, false, 'Package can be required');
 		strictEqual(typeof settings, 'object', 'Package exports an Object');
 		settings.useEslintrc = false;
-		settings.extensions = ['.js', '.ts'];
+		settings.extensions = ['.js', '.jsx', '.ts', '.tsx'];
 
 		// Real configs need an Object, CLIEngine needs an Array.
 		// @see https://github.com/eslint/eslint/issues/892
