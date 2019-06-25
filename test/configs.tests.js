@@ -159,49 +159,161 @@ function testPackage(packageId, done){
 			expected: ['fatal'],
 			ignored: ['strict', 'arrow-body-style', 'space-before-blocks']
 		},
-		// 'export_function.js': esmodules ? [] : (stage2 ? ['no-restricted-syntax'] : ['fatal']),
-		// 'export_default_var.js': esmodules ? [] : (stage2 ? ['no-restricted-syntax'] : ['fatal']),
-		// 'export_default_const.js': ['fatal'],
-		// 'export_default_arrow.js': esmodules ? [] : (stage2 ? ['no-restricted-syntax'] : ['fatal']),
-		// 'export_default_function.js': esmodules ? [] : (stage2 ? ['no-restricted-syntax'] : ['fatal']),
+		'export_function.js': {
+			// expected: esmodules ? [] : (stage2 ? ['no-restricted-syntax'] : ['fatal']),
+			expected: esmodules ? [] : ['fatal'],
+			ignored: ['strict', 'space-before-blocks']
+		},
+		'export_default_var.js': {
+			// expected: esmodules ? [] : (stage2 ? ['no-restricted-syntax'] : ['fatal']),
+			expected: esmodules ? [] : ['fatal'],
+			ignored: ['strict', 'no-var']
+		},
+		'export_default_const.js': {
+			expected: ['fatal'],
+			ignored: ['strict']
+		},
+		'export_default_arrow.js': {
+			// expected: esmodules ? [] : (stage2 ? ['no-restricted-syntax'] : ['fatal']),
+			expected: esmodules ? [] : ['fatal'],
+			ignored: ['strict', 'arrow-body-style', 'space-before-blocks']
+		},
+		'export_default_function.js': {
+			// expected: esmodules ? [] : (stage2 ? ['no-restricted-syntax'] : ['fatal']),
+			expected: esmodules ? [] : ['fatal'],
+			ignored: ['strict', 'space-before-blocks']
+		},
 
-		// // @warning Cannot enable this test because it acts differently in CLI mode and in Node API mode:
-		// // https://github.com/zaggino/brackets-eslint/issues/51
-		// // 'promise.js': es2017 ? [] : ['no-undef'],
+		// @warning Cannot enable this test because it acts differently in CLI mode and in Node API mode:
+		// https://github.com/zaggino/brackets-eslint/issues/51
+		// 'promise.js': {
+		// 	expected: es2017 ? [] : ['no-undef'],
+		// 	ignored: ['strict']
+		// },
 
-		// // 'react_jsx.js': (stage2 || react) ? [] : ['fatal'],
-		// 'await.js': es2017 ? [] : ['fatal'],
+		// 'react_jsx.js': {
+		// 	// expected: (stage2 || react) ? [] : ['fatal'],
+		// 	expected: ['fatal'],
+		// 	ignored: ['strict']
+		// },
+		// 'await.js': {
+		// 	expected: es2017 ? [] : ['fatal'],
+		// 	ignored: ['strict', 'no-unused-vars', '@typescript-eslint/no-unused-vars', 'no-implicit-globals', 'space-before-blocks']
+		// },
 
-		// 'quotes_property_inconsistent_single.js': ['quote-props']
-		// 'quotes_property_consistent_single.js': [],
-		// 'quotes_property_backtick.js': ['fatal'],
-		// 'quotes_property_single.js': [],
-		// 'quotes_backtick.js': es2017 ? [] : ['fatal'],
-		// 'quotes_single.js': [],
-		// 'quotes_property_double.js': ['quotes'],
-		// 'quotes_double.js': ['quotes'],
+		// 'quotes_property_inconsistent_single.js': {
+		// 	expected: ['quote-props'],
+		// 	ignored: ['strict', 'no-implicit-globals', 'no-unused-vars', '@typescript-eslint/no-unused-vars', 'no-var']
+		// }
+		// 'quotes_property_consistent_single.js': {
+		// 	expected: [],
+		// 	ignored: ['strict', 'no-implicit-globals', 'no-unused-vars', '@typescript-eslint/no-unused-vars', 'no-var']
+		// },
+		// 'quotes_property_backtick.js': {
+		// 	expected: ['fatal'],
+		// 	ignored: ['strict', 'no-implicit-globals', 'no-unused-vars', '@typescript-eslint/no-unused-vars', 'no-var']
+		// },
+		// 'quotes_property_single.js': {
+		// 	expected: [],
+		// 	ignored: ['strict', 'no-implicit-globals', 'no-unused-vars', '@typescript-eslint/no-unused-vars', 'no-var']
+		// },
+		// 'quotes_backtick.js': {
+		// 	expected: es2017 ? [] : ['fatal'],
+		// 	ignored: ['strict', 'no-implicit-globals', 'no-unused-vars', '@typescript-eslint/no-unused-vars', 'no-var']
+		// },
+		// 'quotes_single.js': {
+		// 	expected: [],
+		// 	ignored: ['strict', 'no-implicit-globals', 'no-unused-vars', '@typescript-eslint/no-unused-vars', 'no-var']
+		// },
+		// 'quotes_property_double.js': {
+		// 	expected: ['quotes'],
+		// 	ignored: ['strict', 'no-implicit-globals', 'no-unused-vars', '@typescript-eslint/no-unused-vars', 'no-var']
+		// },
+		// 'quotes_double.js': {
+		// 	expected: ['quotes'],
+		// 	ignored: ['strict', 'no-implicit-globals', 'no-unused-vars', '@typescript-eslint/no-unused-vars', 'no-var']
+		// },
 
-		// 'quotes_concatenate_number_number.js': [],
-		// 'quotes_concatenate_number_string_single.js': [],
-		// 'quotes_concatenate_number_string_double.js': ['quotes'],
-		// 'quotes_concatenate_number_string_backtick.js': es2017 ? [] : ['fatal'],
-		// 'quotes_concatenate_string_string_single.js': [],
-		// 'quotes_concatenate_string_string_double.js': ['quotes'],
-		// 'quotes_concatenate_string_string_backtick.js': es2017 ? [] : ['fatal'],
+		// 'quotes_concatenate_number_number.js': {
+		// 	expected: [],
+		// 	ignored: ['strict', 'no-implicit-globals', 'no-unused-vars', '@typescript-eslint/no-unused-vars', 'no-var']
+		// },
+		// 'quotes_concatenate_number_string_single.js': {
+		// 	expected: [],
+		// 	ignored: ['strict', 'no-implicit-globals', 'no-unused-vars', '@typescript-eslint/no-unused-vars', 'no-var']
+		// },
+		// 'quotes_concatenate_number_string_double.js': {
+		// 	expected: ['quotes'],
+		// 	ignored: ['strict', 'no-implicit-globals', 'no-unused-vars', '@typescript-eslint/no-unused-vars', 'no-var']
+		// },
+		// 'quotes_concatenate_number_string_backtick.js': {
+		// 	expected: es2017 ? [] : ['fatal'],
+		// 	ignored: ['strict', 'no-implicit-globals', 'no-unused-vars', '@typescript-eslint/no-unused-vars', 'no-var']
+		// },
+		// 'quotes_concatenate_string_string_single.js': {
+		// 	expected: [],
+		// 	ignored: ['strict', 'no-implicit-globals', 'no-unused-vars', '@typescript-eslint/no-unused-vars', 'no-var']
+		// },
+		// 'quotes_concatenate_string_string_double.js': {
+		// 	expected: ['quotes'],
+		// 	ignored: ['strict', 'no-implicit-globals', 'no-unused-vars', '@typescript-eslint/no-unused-vars', 'no-var']
+		// },
+		// 'quotes_concatenate_string_string_backtick.js': {
+		// 	expected: es2017 ? [] : ['fatal'],
+		// 	ignored: ['strict', 'no-implicit-globals', 'no-unused-vars', '@typescript-eslint/no-unused-vars', 'no-var']
+		// },
 
-		// 'chained_two_methods_single_line.js': [],
-		// 'chained_two_methods_multiple_lines.js': [],
-		// 'chained_four_methods_single_line.js': [],
-		// 'chained_four_methods_multiple_lines.js': [],
-		// 'chained_six_methods_single_line.js': ['newline-per-chained-call'],
-		// 'chained_six_methods_multiple_lines.js': [],
+		// 'chained_two_methods_single_line.js': {
+		// 	expected: [],
+		// 	ignored: ['strict']
+		// },
+		// 'chained_two_methods_multiple_lines.js': {
+		// 	expected: [],
+		// 	ignored: ['strict']
+		// },
+		// 'chained_four_methods_single_line.js': {
+		// 	expected: [],
+		// 	ignored: ['strict']
+		// },
+		// 'chained_four_methods_multiple_lines.js': {
+		// 	expected: [],
+		// 	ignored: ['strict']
+		// },
+		// 'chained_six_methods_single_line.js': {
+		// 	expected: ['newline-per-chained-call'],
+		// 	ignored: ['strict']
+		// },
+		// 'chained_six_methods_multiple_lines.js': {
+		// 	expected: [],
+		// 	ignored: ['strict']
+		// },
 
-		// 'this_root.js': stage2 ? ['babel/no-invalid-this'] : ['no-invalid-this'],
-		// 'this_function.js': [],
-		// 'this_arrow.js': stage2 ? ['babel/no-invalid-this'] : (es2017 ? ['no-invalid-this'] : ['fatal']),
-		// 'this_class_constructor.js': es2017 ? [] : ['fatal'],
-		// 'this_class_method.js': es2017 ? [] : ['fatal'],
-		// 'this_class_static.js': es2017 ? [] : ['fatal'], // @warning I'd rather always an error, but only checkJs catches that issue, not even "class-methods-use-this" rule
+		// 'this_root.js': {
+		// 	// expected: stage2 ? ['babel/no-invalid-this'] : ['no-invalid-this'],
+		// 	expected: ['no-invalid-this'],
+		// 	ignored: ['no-unused-vars', '@typescript-eslint/no-unused-vars', 'space-before-blocks', 'strict']
+		// },
+		// 'this_function.js': {
+		// 	expected: [],
+		// 	ignored: ['strict', 'no-unused-vars', '@typescript-eslint/no-unused-vars', 'space-before-blocks']
+		// },
+		// 'this_arrow.js': {
+		// 	// expected: stage2 ? ['babel/no-invalid-this'] : (es2017 ? ['no-invalid-this'] : ['fatal']),
+		// 	expected: (es2017 ? ['no-invalid-this'] : ['fatal']),
+		// 	ignored: ['strict', 'no-unused-vars', '@typescript-eslint/no-unused-vars', 'space-before-blocks']
+		// },
+		// 'this_class_constructor.js': {
+		// 	expected: es2017 ? [] : ['fatal'],
+		// 	ignored: ['strict', 'no-unused-vars', '@typescript-eslint/no-unused-vars', 'space-before-blocks']
+		// },
+		// 'this_class_method.js': {
+		// 	expected: es2017 ? [] : ['fatal'],
+		// 	ignored: ['strict', 'no-unused-vars', '@typescript-eslint/no-unused-vars', 'space-before-blocks']
+		// },
+		'this_class_static.js': {
+			expected: es2017 ? [] : ['fatal'], // @warning I'd rather always an error, but only checkJs catches that issue, not even "class-methods-use-this" rule
+			ignored: ['strict', 'no-unused-vars', '@typescript-eslint/no-unused-vars', 'space-before-blocks']
+		},
 
 		// 'padding_class_beginning_zero_lines.js': es2017 ? [] : ['fatal'],
 		// 'padding_class_beginning_one_line.js': es2017 ? [] : ['fatal'],
