@@ -218,11 +218,11 @@ function testPackage(packageId, done){
 		// },
 
 		'jsx_without_require.jsx': {
-			expected: ['fatal'],
+			expected: typescript ? [] : ['fatal'],
 			ignored: ['strict']
 		},
 		'tsx_without_import.tsx': {
-			expected: ['fatal'],
+			expected: typescript ? [] : ['fatal'],
 			ignored: ['strict']
 		},
 
