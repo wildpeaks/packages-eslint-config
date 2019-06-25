@@ -18,7 +18,7 @@ function testPackage(packageId, done){
 
 	// Describes when it's expected to fail (e.g. `true` means always, `false` means never).
 	const expected = {
-		'var.js': es2017 ? ['no-var'] : [],
+		'var.js': (es2017 || typescript) ? ['no-var'] : [],
 
 		'arrow_function_single_param_without_parens.js': es2017 ? [] : ['fatal'],
 		'arrow_function_single_param_with_parens.js': es2017 ? ['arrow-parens'] : ['fatal'],
@@ -28,52 +28,52 @@ function testPackage(packageId, done){
 		'class_stage0_function_without_return_type.js': es2017 ? [] : ['fatal'],
 		'class_stage0_function_with_return_type.js': (stage2 || typescript) ? [] : ['fatal'],
 
-		'class_stage2_instance_property_without_type.js': (stage2 || typescript) ? [] : ['fatal'],
-		'class_stage2_static_property_without_type.js': (stage2 || typescript) ? [] : ['fatal'],
-		'class_stage2_instance_property_with_type.js': (stage2 || typescript) ? [] : ['fatal'],
-		'class_stage2_static_property_with_type.js': (stage2 || typescript) ? [] : ['fatal'],
+		// 'class_stage2_instance_property_without_type.js': (stage2 || typescript) ? [] : ['fatal'],
+		// 'class_stage2_static_property_without_type.js': (stage2 || typescript) ? [] : ['fatal'],
+		// 'class_stage2_instance_property_with_type.js': (stage2 || typescript) ? [] : ['fatal'],
+		// 'class_stage2_static_property_with_type.js': (stage2 || typescript) ? [] : ['fatal'],
 
-		'class_stage2_instance_function_without_return_type.js': stage2 ? [] : (typescript ? ['no-invalid-this'] : ['fatal']),
-		'class_stage2_static_function_without_return_type.js': (stage2 || typescript) ? [] : ['fatal'],
-		'class_stage2_instance_arrow_without_return_type.js': (stage2 || typescript) ? [] : ['fatal'],
-		'class_stage2_static_arrow_without_return_type.js': (stage2 || typescript) ? [] : ['fatal'],
-		'class_stage2_instance_expression_without_return_type.js': (stage2 || typescript) ? [] : ['fatal'],
-		'class_stage2_static_expression_without_return_type.js': (stage2 || typescript) ? [] : ['fatal'],
+		// 'class_stage2_instance_function_without_return_type.js': stage2 ? [] : (typescript ? ['no-invalid-this'] : ['fatal']),
+		// 'class_stage2_static_function_without_return_type.js': (stage2 || typescript) ? [] : ['fatal'],
+		// 'class_stage2_instance_arrow_without_return_type.js': (stage2 || typescript) ? [] : ['fatal'],
+		// 'class_stage2_static_arrow_without_return_type.js': (stage2 || typescript) ? [] : ['fatal'],
+		// 'class_stage2_instance_expression_without_return_type.js': (stage2 || typescript) ? [] : ['fatal'],
+		// 'class_stage2_static_expression_without_return_type.js': (stage2 || typescript) ? [] : ['fatal'],
 
-		'class_stage2_instance_function_with_return_type.js': stage2 ? [] : (typescript ? ['no-invalid-this'] : ['fatal']),
-		'class_stage2_static_function_with_return_type.js': (stage2 || typescript) ? [] : ['fatal'],
-		'class_stage2_instance_arrow_with_return_type.js': (stage2 || typescript) ? [] : ['fatal'],
-		'class_stage2_static_arrow_with_return_type.js': (stage2 || typescript) ? [] : ['fatal'],
-		'class_stage2_instance_expression_with_return_type.js': (stage2 || typescript) ? [] : ['fatal'],
-		'class_stage2_static_expression_with_return_type.js': (stage2 || typescript) ? [] : ['fatal'],
+		// 'class_stage2_instance_function_with_return_type.js': stage2 ? [] : (typescript ? ['no-invalid-this'] : ['fatal']),
+		// 'class_stage2_static_function_with_return_type.js': (stage2 || typescript) ? [] : ['fatal'],
+		// 'class_stage2_instance_arrow_with_return_type.js': (stage2 || typescript) ? [] : ['fatal'],
+		// 'class_stage2_static_arrow_with_return_type.js': (stage2 || typescript) ? [] : ['fatal'],
+		// 'class_stage2_instance_expression_with_return_type.js': (stage2 || typescript) ? [] : ['fatal'],
+		// 'class_stage2_static_expression_with_return_type.js': (stage2 || typescript) ? [] : ['fatal'],
 
-		'class_stage2_instance_function_without_params_type.js': (stage2 || typescript) ? [] : ['fatal'],
-		'class_stage2_static_function_without_params_type.js': (stage2 || typescript) ? [] : ['fatal'],
-		'class_stage2_instance_arrow_without_params_type.js': (stage2 || typescript) ? [] : ['fatal'],
-		'class_stage2_static_arrow_without_params_type.js': (stage2 || typescript) ? [] : ['fatal'],
-		'class_stage2_instance_expression_without_params_type.js': (stage2 || typescript) ? [] : ['fatal'],
-		'class_stage2_static_expression_without_params_type.js': (stage2 || typescript) ? [] : ['fatal'],
+		// 'class_stage2_instance_function_without_params_type.js': (stage2 || typescript) ? [] : ['fatal'],
+		// 'class_stage2_static_function_without_params_type.js': (stage2 || typescript) ? [] : ['fatal'],
+		// 'class_stage2_instance_arrow_without_params_type.js': (stage2 || typescript) ? [] : ['fatal'],
+		// 'class_stage2_static_arrow_without_params_type.js': (stage2 || typescript) ? [] : ['fatal'],
+		// 'class_stage2_instance_expression_without_params_type.js': (stage2 || typescript) ? [] : ['fatal'],
+		// 'class_stage2_static_expression_without_params_type.js': (stage2 || typescript) ? [] : ['fatal'],
 
-		'class_stage2_instance_function_with_params_type.js': (stage2 || typescript) ? [] : ['fatal'],
-		'class_stage2_static_function_with_params_type.js': (stage2 || typescript) ? [] : ['fatal'],
-		'class_stage2_instance_arrow_with_params_type.js': (stage2 || typescript) ? [] : ['fatal'],
-		'class_stage2_static_arrow_with_params_type.js': (stage2 || typescript) ? [] : ['fatal'],
-		'class_stage2_instance_expression_with_params_type.js': (stage2 || typescript) ? [] : ['fatal'],
-		'class_stage2_static_expression_with_params_type.js': (stage2 || typescript) ? [] : ['fatal'],
+		// 'class_stage2_instance_function_with_params_type.js': (stage2 || typescript) ? [] : ['fatal'],
+		// 'class_stage2_static_function_with_params_type.js': (stage2 || typescript) ? [] : ['fatal'],
+		// 'class_stage2_instance_arrow_with_params_type.js': (stage2 || typescript) ? [] : ['fatal'],
+		// 'class_stage2_static_arrow_with_params_type.js': (stage2 || typescript) ? [] : ['fatal'],
+		// 'class_stage2_instance_expression_with_params_type.js': (stage2 || typescript) ? [] : ['fatal'],
+		// 'class_stage2_static_expression_with_params_type.js': (stage2 || typescript) ? [] : ['fatal'],
 
-		'class_stage2_instance_function_underscore_params_without_type.js': (stage2 || typescript) ? [] : ['fatal'],
-		'class_stage2_static_function_underscore_params_without_type.js': (stage2 || typescript) ? [] : ['fatal'],
-		'class_stage2_instance_arrow_underscore_params_without_type.js': (stage2 || typescript) ? [] : ['fatal'],
-		'class_stage2_static_arrow_underscore_params_without_type.js': (stage2 || typescript) ? [] : ['fatal'],
-		'class_stage2_instance_expression_underscore_params_without_type.js': (stage2 || typescript) ? [] : ['fatal'],
-		'class_stage2_static_expression_underscore_params_without_type.js': (stage2 || typescript) ? [] : ['fatal'],
+		// 'class_stage2_instance_function_underscore_params_without_type.js': (stage2 || typescript) ? [] : ['fatal'],
+		// 'class_stage2_static_function_underscore_params_without_type.js': (stage2 || typescript) ? [] : ['fatal'],
+		// 'class_stage2_instance_arrow_underscore_params_without_type.js': (stage2 || typescript) ? [] : ['fatal'],
+		// 'class_stage2_static_arrow_underscore_params_without_type.js': (stage2 || typescript) ? [] : ['fatal'],
+		// 'class_stage2_instance_expression_underscore_params_without_type.js': (stage2 || typescript) ? [] : ['fatal'],
+		// 'class_stage2_static_expression_underscore_params_without_type.js': (stage2 || typescript) ? [] : ['fatal'],
 
-		'class_stage2_instance_function_underscore_params_with_type.js': (stage2 || typescript) ? [] : ['fatal'],
-		'class_stage2_static_function_underscore_params_with_type.js': (stage2 || typescript) ? [] : ['fatal'],
-		'class_stage2_instance_arrow_underscore_params_with_type.js': (stage2 || typescript) ? [] : ['fatal'],
-		'class_stage2_static_arrow_underscore_params_with_type.js': (stage2 || typescript) ? [] : ['fatal'],
-		'class_stage2_instance_expression_underscore_params_with_type.js': (stage2 || typescript) ? [] : ['fatal'],
-		'class_stage2_static_expression_underscore_params_with_type.js': (stage2 || typescript) ? [] : ['fatal'],
+		// 'class_stage2_instance_function_underscore_params_with_type.js': (stage2 || typescript) ? [] : ['fatal'],
+		// 'class_stage2_static_function_underscore_params_with_type.js': (stage2 || typescript) ? [] : ['fatal'],
+		// 'class_stage2_instance_arrow_underscore_params_with_type.js': (stage2 || typescript) ? [] : ['fatal'],
+		// 'class_stage2_static_arrow_underscore_params_with_type.js': (stage2 || typescript) ? [] : ['fatal'],
+		// 'class_stage2_instance_expression_underscore_params_with_type.js': (stage2 || typescript) ? [] : ['fatal'],
+		// 'class_stage2_static_expression_underscore_params_with_type.js': (stage2 || typescript) ? [] : ['fatal'],
 
 		'line_80.js': [],
 		'line_120.js': [],
@@ -103,7 +103,7 @@ function testPackage(packageId, done){
 		// https://github.com/zaggino/brackets-eslint/issues/51
 		// 'promise.js': es2017 ? [] : ['no-undef'],
 
-		'react_jsx.js': (stage2 || react) ? [] : ['fatal'],
+		// 'react_jsx.js': (stage2 || react) ? [] : ['fatal'],
 		'await.js': es2017 ? [] : ['fatal'],
 
 		'quotes_property_inconsistent_single.js': ['quote-props'],
@@ -174,16 +174,16 @@ function testPackage(packageId, done){
 		'array_destructured_first.js': es2017 ? [] : ['fatal'],
 		'array_destructured_second.js': es2017 ? [] : ['fatal'],
 
-		'unused_param_without_underscore_first.js': [],
-		'unused_param_without_underscore_last.js': typescript ? [] : ['no-unused-vars'],
-		'unused_param_with_underscore_first.js': [],
-		'unused_param_with_underscore_last.js': [],
-		'unused_var_without_underscore.js': typescript ? [] : ['no-unused-vars'],
+		'unused_param_without_underscore_first.js': typescript ? [] : [],
+		'unused_param_without_underscore_last.js': typescript ? ['@typescript-eslint/no-unused-vars'] : ['no-unused-vars'],
+		'unused_param_with_underscore_first.js': typescript ? [] : [],
+		'unused_param_with_underscore_last.js': typescript ? [] : [],
+		'unused_var_without_underscore.js': typescript ? ['@typescript-eslint/no-unused-vars'] : ['no-unused-vars'],
 		'unused_var_with_underscore.js': [],
 
-		// I'd rather only variables starting with _ were ignored, but it's all of nothing
-		'unused_rest_without_underscore.js': (stage2 || typescript || react) ? [] : ['fatal'],
-		'unused_rest_with_underscore.js': (stage2 || typescript || react) ? [] : ['fatal']
+		// // I'd rather only variables starting with _ were ignored, but it's all of nothing
+		'unused_rest_without_underscore.js': (typescript /*|| stage2 || react*/) ? [] : ['fatal'],
+		'unused_rest_with_underscore.js': (typescript /*|| stage2 || react*/) ? [] : ['fatal']
 	};
 
 	const folder = path.join(dirPackages, packageId);
@@ -246,6 +246,9 @@ function testPackage(packageId, done){
 		const actual = {};
 		report.results.forEach(result => {
 			const rules = {};
+// console.log('-----------------------------------------------');
+// console.log(result.messages);
+// console.log('-----------------------------------------------');
 			result.messages.forEach(message => {
 				if (message.fatal){
 					rules.fatal = message.message;
@@ -273,8 +276,8 @@ function testPackage(packageId, done){
 
 
 describe('Packages', /* @this */ function(){
-	this.slow(3000);
-	this.timeout(5000);
+	this.slow(25000);
+	this.timeout(30000);
 	before(done => {
 		fs.access(dirPackages, fs.constants.R_OK, err => {
 			strictEqual(err, null, 'Folder "packages" exists');
