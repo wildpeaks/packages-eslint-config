@@ -28,8 +28,9 @@ function getPackageJson(id, {name, typescript}){
 		}
 	};
 	if (typescript){
-		pkg.dependencies.typescript = dependencies.typescript;
-		pkg.dependencies['@typescript-eslint/parser'] = dependencies['@typescript-eslint/parser'];
+		for (const packageId of ['typescript', '@typescript-eslint/eslint-plugin', '@typescript-eslint/parser']){
+			pkg.dependencies[packageId] = dependencies[packageId];
+		}
 	}
 	return pkg;
 }
@@ -382,7 +383,7 @@ function getEslintSettings({commonjs, es2017, esmodules, typescript}){
 			}
 		];
 		eslintSettings.rules['@typescript-eslint/member-delimiter-style'] = [
-			'warn',
+			'error',
 			{
 				multiline: {
 					delimiter: 'comma',
