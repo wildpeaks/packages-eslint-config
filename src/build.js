@@ -7,7 +7,7 @@ const configs = require('..');
 const {version, dependencies} = require('../package.json');
 
 
-function getPackageJson(id, {name, stage2, react, typescript}){
+function getPackageJson(id, {name, typescript}){
 	const pkg = {
 		name: `@wildpeaks/${id}`,
 		version,
@@ -28,28 +28,15 @@ function getPackageJson(id, {name, stage2, react, typescript}){
 		}
 	};
 	if (typescript){
-		pkg.dependencies.typescript = dependencies.typescript;
-		pkg.dependencies['typescript-eslint-parser'] = dependencies['typescript-eslint-parser'];
-	}
-	if (react){
-		pkg.dependencies['eslint-plugin-react'] = dependencies['eslint-plugin-react'];
-	}
-	if (stage2){
-		pkg.dependencies['babel-eslint'] = dependencies['babel-eslint'];
-		pkg.dependencies['eslint-plugin-babel'] = dependencies['eslint-plugin-babel'];
+		for (const packageId of ['typescript', '@typescript-eslint/eslint-plugin', '@typescript-eslint/parser']){
+			pkg.dependencies[packageId] = dependencies[packageId];
+		}
 	}
 	return pkg;
 }
 
 
-function getEslintSettings({commonjs, stage2, es2017, esmodules, react, typescript}){
-	if (typescript && react){
-		// @see https://github.com/eslint/typescript-eslint-parser/issues/213
-		throw new Error(`The Typescript parser isn't compatible with the React plugin`);
-	}
-	if (typescript && stage2){
-		throw new Error(`Typescript already supports better class properties than stage2`);
-	}
+function getEslintSettings({commonjs, es2017, esmodules, typescript}){
 	const eslintSettings = {
 		env: {
 			node: false,
@@ -360,46 +347,125 @@ function getEslintSettings({commonjs, stage2, es2017, esmodules, react, typescri
 		}
 	};
 
-	// Known issues in the experimental Typescript parser
 	if (typescript){
-		eslintSettings.parser = 'typescript-eslint-parser';
-		eslintSettings.rules['no-undef'] = 'off'; // @see https://github.com/eslint/typescript-eslint-parser/issues/77
-		eslintSettings.rules['no-unused-vars'] = 'off'; // @see https://github.com/eslint/typescript-eslint-parser/issues/77
-		eslintSettings.rules['no-useless-constructor'] = 'off'; // @see https://github.com/eslint/typescript-eslint-parser/issues/77
-		eslintSettings.rules['space-infix-ops'] = 'off'; // @see https://github.com/eslint/typescript-eslint-parser/issues/224
+		// Core rules that have a better Typescript-AST-compatible version
+		[
+			'func-call-spacing',
+			'indent',
+			'no-unused-vars',
+			'no-empty-function',
+			'no-extra-parens',
+			'no-use-before-define',
+			'no-useless-constructor',
+			'semi'
+		].forEach(ruleId => {
+			eslintSettings.rules[`@typescript-eslint/${ruleId}`] = eslintSettings.rules[ruleId];
+			eslintSettings.rules[ruleId] = 'off';
+		});
 
-		// The rule ignores tsconfig.alwaysStrict
+		eslintSettings.rules['@typescript-eslint/await-thenable'] = 'error';
+		eslintSettings.rules['@typescript-eslint/explicit-function-return-type'] = [
+			'error',
+			{
+				allowExpressions: true,
+				allowHigherOrderFunctions: true,
+				allowTypedFunctionExpressions: true
+			}
+		];
+		eslintSettings.rules['@typescript-eslint/explicit-member-accessibility'] = [
+			'error',
+			{
+				accessibility: 'explicit'
+			}
+		];
+		eslintSettings.rules['@typescript-eslint/member-delimiter-style'] = [
+			'error',
+			{
+				multiline: {
+					delimiter: 'semi',
+					requireLast: true
+				},
+				singleline: {
+					delimiter: 'semi',
+					requireLast: true
+				}
+			}
+		];
+		eslintSettings.rules['@typescript-eslint/no-empty-interface'] = [
+			'error',
+			{
+				allowSingleExtends: false
+			}
+		];
+		eslintSettings.rules['@typescript-eslint/no-floating-promises'] = 'error';
+		eslintSettings.rules['@typescript-eslint/no-for-in-array'] = 'error';
+		eslintSettings.rules['@typescript-eslint/no-misused-new'] = 'error';
+		eslintSettings.rules['@typescript-eslint/no-parameter-properties'] = ['error', {allows: ['readonly']}];
+		eslintSettings.rules['@typescript-eslint/no-this-alias'] = [
+			'error',
+			{
+				allowedNames: ['self'],
+				allowDestructuring: true
+			}
+		];
+		eslintSettings.rules['@typescript-eslint/no-var-requires'] = 'error';
+		eslintSettings.rules['@typescript-eslint/prefer-includes'] = 'warn';
+		eslintSettings.rules['@typescript-eslint/prefer-regexp-exec'] = 'error';
+		eslintSettings.rules['@typescript-eslint/prefer-string-starts-ends-with'] = 'error';
+		eslintSettings.rules['@typescript-eslint/require-array-sort-compare'] = 'warn';
+		eslintSettings.rules['@typescript-eslint/restrict-plus-operands'] = 'error';
+
+		// AAAAAAAAAAAAAAAAA - ENABLE
+		// https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/type-annotation-spacing.md <-- needs a bunch of tests too
+
+		// AAAAAAAAAAAAAAAAA - MAYBE
+		// https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/no-angle-bracket-type-assertion.md <-- says it's useful for TSX
+		// https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/promise-function-async.md <-- would it force async for functions where I manually create a new Promise to be able to call resolve() & reject() from a callback ?
+
+		eslintSettings.rules['@typescript-eslint/adjacent-overload-signatures'] = 'off';
+		eslintSettings.rules['@typescript-eslint/array-type'] = 'off';
+		eslintSettings.rules['@typescript-eslint/ban-ts-ignore'] = 'off';
+		eslintSettings.rules['@typescript-eslint/ban-types'] = 'off';
+		eslintSettings.rules['@typescript-eslint/camelcase'] = 'off';
+		eslintSettings.rules['@typescript-eslint/class-name-casing'] = 'off';
+		eslintSettings.rules['@typescript-eslint/consistent-type-definitions'] = 'off';
+		eslintSettings.rules['@typescript-eslint/generic-type-naming'] = 'off';
+		eslintSettings.rules['@typescript-eslint/interface-name-prefix'] = 'off';
+		eslintSettings.rules['@typescript-eslint/member-naming'] = 'off';
+		eslintSettings.rules['@typescript-eslint/member-ordering'] = 'off';
+		eslintSettings.rules['@typescript-eslint/no-array-constructor'] = 'off';
+		eslintSettings.rules['@typescript-eslint/no-explicit-any'] = 'off';
+		eslintSettings.rules['@typescript-eslint/no-extra-parens'] = 'off';
+		eslintSettings.rules['@typescript-eslint/no-extraneous-class'] = 'off';
+		eslintSettings.rules['@typescript-eslint/no-inferrable-types'] = 'off';
+		eslintSettings.rules['@typescript-eslint/no-magic-numbers'] = 'off';
+		eslintSettings.rules['@typescript-eslint/no-namespace'] = 'off';
+		eslintSettings.rules['@typescript-eslint/no-non-null-assertion'] = 'off';
+		eslintSettings.rules['@typescript-eslint/no-object-literal-type-assertion'] = 'off';
+		eslintSettings.rules['@typescript-eslint/no-require-imports'] = 'off';
+		eslintSettings.rules['@typescript-eslint/no-triple-slash-reference'] = 'off';
+		eslintSettings.rules['@typescript-eslint/no-type-alias'] = 'off';
+		eslintSettings.rules['@typescript-eslint/no-unnecessary-qualifier'] = 'off';
+		eslintSettings.rules['@typescript-eslint/no-unnecessary-type-assertion'] = 'off';
+		eslintSettings.rules['@typescript-eslint/prefer-for-of'] = 'off';
+		eslintSettings.rules['@typescript-eslint/prefer-function-type'] = 'off';
+		eslintSettings.rules['@typescript-eslint/prefer-namespace-keyword'] = 'off';
+		eslintSettings.rules['@typescript-eslint/unbound-method'] = 'off';
+		eslintSettings.rules['@typescript-eslint/unified-signatures'] = 'off';
+
+		// The rule ignores "tsconfig.alwaysStrict"
 		eslintSettings.rules.strict = 'off';
 		eslintSettings.parserOptions.ecmaFeatures.impliedStrict = true;
+
+		// Typescript parser & rules
+		eslintSettings.parser = '@typescript-eslint/parser';
+		eslintSettings.plugins.push('@typescript-eslint');
+		eslintSettings.parserOptions.project = './tsconfig.json';
 	}
 
 	if (esmodules){
 		eslintSettings.parserOptions.sourceType = 'module';
 		eslintSettings.parserOptions.allowImportExportEverywhere = false;
-	}
-
-	if (stage2){
-		eslintSettings.parser = 'babel-eslint';
-		eslintSettings.plugins.push('babel');
-		eslintSettings.rules['babel/new-cap'] = eslintSettings.rules['new-cap'];
-		eslintSettings.rules['babel/object-curly-spacing'] = eslintSettings.rules['object-curly-spacing'];
-		eslintSettings.rules['babel/no-invalid-this'] = eslintSettings.rules['no-invalid-this'];
-		eslintSettings.rules['babel/semi'] = eslintSettings.rules.semi;
-		eslintSettings.rules['new-cap'] = 'off';
-		eslintSettings.rules['object-curly-spacing'] = 'off';
-		eslintSettings.rules['no-invalid-this'] = 'off';
-		eslintSettings.rules.semi = 'off';
-	}
-
-	if (react){
-		eslintSettings.parserOptions.ecmaFeatures.jsx = true;
-		eslintSettings.parserOptions.ecmaFeatures.experimentalObjectRestSpread = true;
-		eslintSettings.plugins.push('react');
-		eslintSettings.extends = ['plugin:react/recommended'];
-		eslintSettings.rules['react/prop-types'] = ['error', {ignore: ['children']}];
-	}
-
-	if (esmodules){
 		eslintSettings.rules['no-restricted-syntax'] = ['error', 'WithStatement'];
 	} else {
 		eslintSettings.rules['no-restricted-syntax'] = [
@@ -419,16 +485,14 @@ function getEslintSettings({commonjs, stage2, es2017, esmodules, react, typescri
 }
 
 
-function getReadme(id, {name, commonjs, stage2, es2017, esmodules, react, typescript}){
+function getReadme(_id, {name, commonjs, es2017, esmodules, typescript}){
 	return `# ESLint Config: ${name}
 
 Generated using the following [settings](https://github.com/wildpeaks/packages-eslint-config#readme):
 
 - \`commonjs\`: ${commonjs ? 'true' : 'false'}
-- \`stage2\`: ${stage2 ? 'true' : 'false'}
-- \`es2017\`: ${es2017 ? 'true' : 'false'}
 - \`esmodules\`: ${esmodules ? 'true' : 'false'}
-- \`react\`: ${react ? 'true' : 'false'}
+- \`es2017\`: ${es2017 ? 'true' : 'false'}
 - \`typescript\`: ${typescript ? 'true' : 'false'}
 	`;
 }
@@ -445,7 +509,7 @@ function build(id){
 	);
 	fs.writeFileSync(
 		path.join(folder, 'settings.js'),
-		'module.exports = ' + JSON.stringify(getEslintSettings(config)) + ';', // eslint-disable-line prefer-template
+		'module.exports = ' + JSON.stringify(getEslintSettings(config)) + ';',
 		'utf8'
 	);
 	fs.writeFileSync(

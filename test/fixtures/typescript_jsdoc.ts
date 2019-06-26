@@ -1,5 +1,3 @@
-/* eslint-disable no-unused-vars */
-
 /**
  * Description of function
  * @param myparam Description of myparam

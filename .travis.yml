@@ -1,5 +1,4 @@
 language: node_js
 node_js:
-  - '8.9.3'
-  - '9.2.1'
-sudo: false
+  - 'stable'
+  - 'lts/*'
