@@ -437,20 +437,20 @@ function testPackage(packageId, done){
 			ignored: ['no-unused-vars', '@typescript-eslint/no-unused-vars']
 		},
 		'typescript_type_commas.ts': {
-			expected: typescript ? [] : ['fatal'],
+			expected: typescript ? ['@typescript-eslint/member-delimiter-style'] : ['fatal'],
 			ignored: ['no-unused-vars', '@typescript-eslint/no-unused-vars']
 		},
 		'typescript_type_semicolons.ts': {
-			expected: typescript ? ['@typescript-eslint/member-delimiter-style'] : ['fatal'],
+			expected: typescript ? [] : ['fatal'],
 			ignored: ['no-unused-vars', '@typescript-eslint/no-unused-vars']
 		},
 
 		'typescript_interface_commas.ts': {
-			expected: typescript ? [] : ['fatal'],
+			expected: typescript ? ['@typescript-eslint/member-delimiter-style'] : ['fatal'],
 			ignored: ['no-unused-vars', '@typescript-eslint/no-unused-vars']
 		},
 		'typescript_interface_semicolons.ts': {
-			expected: typescript ? ['@typescript-eslint/member-delimiter-style'] : ['fatal'],
+			expected: typescript ? [] : ['fatal'],
 			ignored: ['no-unused-vars', '@typescript-eslint/no-unused-vars']
 		},
 

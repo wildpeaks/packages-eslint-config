@@ -382,12 +382,12 @@ function getEslintSettings({commonjs, es2017, esmodules, typescript}){
 			'error',
 			{
 				multiline: {
-					delimiter: 'comma',
-					requireLast: false
+					delimiter: 'semi',
+					requireLast: true
 				},
 				singleline: {
-					delimiter: 'comma',
-					requireLast: false
+					delimiter: 'semi',
+					requireLast: true
 				}
 			}
 		];
