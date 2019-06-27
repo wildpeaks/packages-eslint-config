@@ -525,6 +525,31 @@ function testPackage(packageId, done){
 		'unused_rest_with_underscore.js': {
 			expected: typescript ? [] : ['fatal'],
 			ignored: []
+		},
+
+		'require_var.js': {
+			expected: es2017 ? ['no-var'] : [],
+			ignored: ['strict', 'no-undef', 'no-unused-vars', '@typescript-eslint/no-unused-vars']
+		},
+		'require_destructure_var.js': {
+			expected: typescript ? ['no-var'] : (es2017 ? ['no-var'] : ['fatal']),
+			ignored: ['strict', 'no-undef', 'no-unused-vars', '@typescript-eslint/no-unused-vars']
+		},
+		'require_const.js': {
+			expected: es2017 ? [] : ['fatal'],
+			ignored: ['strict', 'no-undef', 'no-unused-vars', '@typescript-eslint/no-unused-vars']
+		},
+		'require_destructure_const.js': {
+			expected: typescript ? [] : (es2017 ? [] : ['fatal']),
+			ignored: ['strict', 'no-undef', 'no-unused-vars', '@typescript-eslint/no-unused-vars']
+		},
+		'require_import.js': {
+			expected: typescript ? [] : ['fatal'],
+			ignored: ['strict', '@typescript-eslint/no-unused-vars']
+		},
+		'require_destructure_import.js': {
+			expected: ['fatal'],
+			ignored: []
 		}
 	};
 
