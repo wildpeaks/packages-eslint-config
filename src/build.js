@@ -408,19 +408,11 @@ function getEslintSettings({commonjs, es2017, esmodules, typescript}){
 				allowDestructuring: true
 			}
 		];
-		eslintSettings.rules['@typescript-eslint/no-var-requires'] = 'error';
 		eslintSettings.rules['@typescript-eslint/prefer-includes'] = 'warn';
 		eslintSettings.rules['@typescript-eslint/prefer-regexp-exec'] = 'error';
 		eslintSettings.rules['@typescript-eslint/prefer-string-starts-ends-with'] = 'error';
 		eslintSettings.rules['@typescript-eslint/require-array-sort-compare'] = 'warn';
 		eslintSettings.rules['@typescript-eslint/restrict-plus-operands'] = 'error';
-
-		// AAAAAAAAAAAAAAAAA - ENABLE
-		// https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/type-annotation-spacing.md <-- needs a bunch of tests too
-
-		// AAAAAAAAAAAAAAAAA - MAYBE
-		// https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/no-angle-bracket-type-assertion.md <-- says it's useful for TSX
-		// https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/promise-function-async.md <-- would it force async for functions where I manually create a new Promise to be able to call resolve() & reject() from a callback ?
 
 		eslintSettings.rules['@typescript-eslint/adjacent-overload-signatures'] = 'off';
 		eslintSettings.rules['@typescript-eslint/array-type'] = 'off';
@@ -447,6 +439,7 @@ function getEslintSettings({commonjs, es2017, esmodules, typescript}){
 		eslintSettings.rules['@typescript-eslint/no-type-alias'] = 'off';
 		eslintSettings.rules['@typescript-eslint/no-unnecessary-qualifier'] = 'off';
 		eslintSettings.rules['@typescript-eslint/no-unnecessary-type-assertion'] = 'off';
+		eslintSettings.rules['@typescript-eslint/no-var-requires'] = 'off';
 		eslintSettings.rules['@typescript-eslint/prefer-for-of'] = 'off';
 		eslintSettings.rules['@typescript-eslint/prefer-function-type'] = 'off';
 		eslintSettings.rules['@typescript-eslint/prefer-namespace-keyword'] = 'off';
