@@ -9,7 +9,9 @@
     "build:packages": "mocha --exit src/build.js",
     "build": "npm run build:reset && npm run build:packages",
     "test:mocha": "mocha --exit test/configs.tests.js",
-    "test": "npm run build && npm run test:mocha"
+    "test": "npm run build && npm run test:mocha",
+    "snyk-protect": "snyk protect",
+    "prepublish": "npm run snyk-protect"
   },
   "repository": "https://github.com/wildpeaks/packages-eslint-config",
   "keywords": [
@@ -28,6 +30,8 @@
     "eslint": "6.0.0",
     "mocha": "6.1.4",
     "rimraf": "2.6.3",
-    "typescript": "3.5.2"
-  }
+    "typescript": "3.5.2",
+    "snyk": "^1.189.0"
+  },
+  "snyk": true
 }
