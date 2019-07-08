@@ -18,6 +18,7 @@
 !/.npmrc
 !/.travis.yml
 !/.vscode
+!/azure-pipelines.yml
 !/README.md
 !/packages
 !/src
