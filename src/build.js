@@ -411,7 +411,6 @@ function getEslintSettings({commonjs, es2017, esmodules, typescript}){
 		eslintSettings.rules['@typescript-eslint/prefer-includes'] = 'warn';
 		eslintSettings.rules['@typescript-eslint/prefer-regexp-exec'] = 'error';
 		eslintSettings.rules['@typescript-eslint/prefer-string-starts-ends-with'] = 'error';
-		eslintSettings.rules['@typescript-eslint/require-array-sort-compare'] = 'warn';
 		eslintSettings.rules['@typescript-eslint/restrict-plus-operands'] = 'error';
 
 		eslintSettings.rules['@typescript-eslint/adjacent-overload-signatures'] = 'off';
@@ -443,6 +442,7 @@ function getEslintSettings({commonjs, es2017, esmodules, typescript}){
 		eslintSettings.rules['@typescript-eslint/prefer-for-of'] = 'off';
 		eslintSettings.rules['@typescript-eslint/prefer-function-type'] = 'off';
 		eslintSettings.rules['@typescript-eslint/prefer-namespace-keyword'] = 'off';
+		eslintSettings.rules['@typescript-eslint/require-array-sort-compare'] = 'off';
 		eslintSettings.rules['@typescript-eslint/unbound-method'] = 'off';
 		eslintSettings.rules['@typescript-eslint/unified-signatures'] = 'off';
 
