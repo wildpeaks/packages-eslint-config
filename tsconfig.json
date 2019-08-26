@@ -1,18 +1,23 @@
 {
 	"compilerOptions": {
-		"moduleResolution": "node",
 		"newLine": "LF",
 		"alwaysStrict": true,
 		"noEmitOnError": true,
 		"noImplicitAny": true,
 		"noImplicitReturns": true,
 		"noImplicitThis": true,
+		"noUnusedLocals": true,
+		"noUnusedParameters": true,
 		"strictNullChecks": true,
 		"preserveConstEnums": true,
-		"removeComments": true,
-		"sourceMap": true,
+
+		"moduleResolution": "node",
+		"allowJs": true,
 		"module": "commonjs",
+		"lib": ["es2017", "dom"],
 		"target": "es5",
-		"lib": ["es2017"]
-	}
+		"sourceMap": true
+	},
+	"exclude": [],
+	"include": ["./test/fixtures/**/*.*"]
 }
