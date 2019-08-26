@@ -411,7 +411,7 @@ function getEslintSettings({commonjs, es2017, esmodules, typescript}){
 		eslintSettings.rules['@typescript-eslint/prefer-includes'] = 'warn';
 		eslintSettings.rules['@typescript-eslint/prefer-regexp-exec'] = 'error';
 		eslintSettings.rules['@typescript-eslint/prefer-string-starts-ends-with'] = 'error';
-		eslintSettings.rules['@typescript-eslint/restrict-plus-operands'] = 'error';
+		eslintSettings.rules['@typescript-eslint/restrict-plus-operands'] = 'off';
 
 		eslintSettings.rules['@typescript-eslint/adjacent-overload-signatures'] = 'off';
 		eslintSettings.rules['@typescript-eslint/array-type'] = 'off';
