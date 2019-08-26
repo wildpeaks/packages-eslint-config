@@ -454,7 +454,6 @@ function getEslintSettings({commonjs, es2017, esmodules, typescript}){
 		eslintSettings.parser = '@typescript-eslint/parser';
 		eslintSettings.plugins.push('@typescript-eslint');
 		eslintSettings.parserOptions.project = './tsconfig.json';
-		eslintSettings.parserOptions.createDefaultProgram = true;
 	}
 
 	if (esmodules){
