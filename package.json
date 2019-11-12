@@ -1,7 +1,7 @@
 {
   "private": true,
   "name": "eslint-config",
-  "version": "7.1.0",
+  "version": "7.2.0",
   "description": "Eslint configs generator",
   "main": "src/configs.js",
   "scripts": {
