@@ -24,7 +24,7 @@
   "homepage": "https://github.com/wildpeaks/packages-eslint-config#readme",
   "dependencies": {
     "@typescript-eslint/eslint-plugin": "2.10.0",
-    "@typescript-eslint/parser": "2.7.0",
+    "@typescript-eslint/parser": "2.10.0",
     "eslint": "6.6.0",
     "mocha": "6.2.2",
     "rimraf": "3.0.0",
