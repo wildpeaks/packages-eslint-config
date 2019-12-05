@@ -192,7 +192,7 @@ function getEslintSettings({commonjs, es2017, esmodules, typescript}){
 			'no-shadow-restricted-names': 'error',
 			'no-undef': 'error',
 			'no-undef-init': 'error',
-			'no-undefined': 'error',
+			'no-undefined': 'off',
 			'no-unused-vars': ['error', {
 				ignoreRestSiblings: true,
 				argsIgnorePattern: '^_',
