@@ -4,12 +4,25 @@
   "version": "7.3.0",
   "description": "Eslint configs generator",
   "main": "src/configs.js",
+  "prettier": {
+    "printWidth": 120,
+    "tabWidth": 4,
+    "semi": true,
+    "singleQuote": false,
+    "quoteProps": "preserve",
+    "jsxSingleQuote": false,
+    "trailingComma": "none",
+    "bracketSpacing": false,
+    "jsxBracketSameLine": false,
+    "arrowParens": "avoid"
+  },
   "scripts": {
     "build:reset": "rimraf packages",
     "build:packages": "mocha --exit src/build.js",
     "build": "npm run build:reset && npm run build:packages",
-    "test:mocha": "mocha --exit test/configs.tests.js",
-    "test": "npm run build && npm run test:mocha"
+    "test:eslint": "mocha --exit test/eslint.tests.js",
+    "test:prettier": "mocha --exit test/prettier.tests.js",
+    "test": "npm run build && npm run test:eslint && npm run test:prettier"
   },
   "repository": "https://github.com/wildpeaks/packages-eslint-config",
   "keywords": [
