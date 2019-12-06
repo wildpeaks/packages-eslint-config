@@ -20,8 +20,8 @@
     "build:reset": "rimraf packages",
     "build:packages": "mocha --exit src/build.js",
     "build": "npm run build:reset && npm run build:packages",
-    "test:eslint": "mocha --exit test/eslint.tests.js",
-    "test:prettier": "mocha --exit test/prettier.tests.js",
+    "test:eslint": "mocha --exit test/eslint.test.js",
+    "test:prettier": "mocha --exit test/prettier.test.js",
     "test": "npm run build && npm run test:eslint && npm run test:prettier"
   },
   "repository": "https://github.com/wildpeaks/packages-eslint-config",
