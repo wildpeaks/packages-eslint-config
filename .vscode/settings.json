@@ -7,16 +7,5 @@
 		"node_modules": true,
 		"packages": true,
 		"package-lock.json": true
-	},
-	"search.exclude": {
-		"LICENSE": true,
-		"*.lnk": true,
-		"*.log": true,
-		".editorconfig": true,
-		".gitignore": true,
-		".gitattributes": true,
-		"node_modules": true,
-		"packages": true,
-		"package-lock.json": true
 	}
 }
