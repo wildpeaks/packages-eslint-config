@@ -1,19 +1,15 @@
 /* eslint-env node, mocha */
-/* eslint-disable no-sync */
-/* eslint-disable max-len */
-/* eslint-disable no-nested-ternary */
 'use strict';
 const fs = require('fs');
 const path = require('path');
 const {strictEqual, deepStrictEqual} = require('assert');
 const {CLIEngine} = require('eslint');
 const configs = require('..');
-const {version} = require('../package.json');
 const dirPackages = path.join(__dirname, '../packages');
 const dirFixtures = path.join(__dirname, 'fixtures');
 
 
-function testPackage(packageId, done){
+function testPackage(packageId/*, done*/){
 	const {commonjs, esmodules, es2017, typescript} = configs[packageId];
 
 	// Describes when it's expected to fail (e.g. `true` means always, `false` means never).
@@ -553,118 +549,66 @@ function testPackage(packageId, done){
 		}
 	};
 
-	const folder = path.join(dirPackages, packageId);
-	fs.access(folder, fs.constants.R_OK, folderError => {
-		strictEqual(folderError, null, 'Folder exists');
+	const settings = require(`../packages/${packageId}`); // eslint-disable-line global-require
+	settings.useEslintrc = false;
+	settings.extensions = ['.js', '.jsx', '.ts', '.tsx'];
 
-		let throws = false;
-		let packageJson;
-		try {
-			packageJson = JSON.parse(
-				fs.readFileSync(path.join(folder, 'package.json'), 'utf8')
-			);
-		} catch(e){
-			throws = true;
-		}
-		strictEqual(throws, false, 'package.json can be read');
-		strictEqual(typeof packageJson, 'object', 'packageJson is a JSON Object');
-		strictEqual(packageJson.name, `@wildpeaks/${packageId}`, 'package.name');
-		strictEqual(packageJson.main, 'settings.js', 'package.main');
-		strictEqual(packageJson.version, version, 'package.version');
+	// Real configs need an Object, CLIEngine needs an Array.
+	// @see https://github.com/eslint/eslint/issues/892
+	// @see https://github.com/eslint/eslint/pull/6922
+	// @see https://github.com/eslint/eslint/issues/7967
+	if (typeof settings.globals === 'object'){
+		settings.globals = Object.keys(settings.globals);
+	}
 
-		throws = false;
-		try {
-			fs.readFileSync(path.join(folder, 'settings.js'), 'utf8');
-		} catch(e){
-			throws = true;
-		}
-		strictEqual(throws, false, 'settings.js can be read');
-
-		throws = false;
-		try {
-			fs.readFileSync(path.join(folder, 'README.md'), 'utf8');
-		} catch(e){
-			throws = true;
-		}
-		strictEqual(throws, false, 'README.md can be read');
-
-		throws = false;
-		let settings;
-		try {
-			settings = require(`../packages/${packageId}`); // eslint-disable-line global-require
-		} catch(e){
-			throws = true;
-		}
-		strictEqual(throws, false, 'Package can be required');
-		strictEqual(typeof settings, 'object', 'Package exports an Object');
-		settings.useEslintrc = false;
-		settings.extensions = ['.js', '.jsx', '.ts', '.tsx'];
-
-		// Real configs need an Object, CLIEngine needs an Array.
-		// @see https://github.com/eslint/eslint/issues/892
-		// @see https://github.com/eslint/eslint/pull/6922
-		// @see https://github.com/eslint/eslint/issues/7967
-		if (typeof settings.globals === 'object'){
-			settings.globals = Object.keys(settings.globals);
-		}
-
-		const cli = new CLIEngine(settings);
-		const report = cli.executeOnFiles([dirFixtures]);
-		const actual = {};
-		report.results.forEach(result => {
-			const rules = {};
-			// console.log('-----------------------------------------------');
-			// console.log(result.messages);
-			// console.log('-----------------------------------------------');
-			result.messages.forEach(message => {
-				if (message.fatal){
-					rules.fatal = message.message;
-				} else {
-					rules[message.ruleId] = message.message;
-				}
-			});
-			const fixtureId = path.basename(result.filePath);
-			actual[fixtureId] = rules;
-		});
-
-		for (const fixtureId in fixtures){
-			const messages = [];
-			const actualFixture = actual[fixtureId];
-			if ((actualFixture === null )|| (typeof actualFixture !== 'object')){
-				messages.push('FIXTURE NOT FOUND');
+	const cli = new CLIEngine(settings);
+	const report = cli.executeOnFiles([dirFixtures]);
+	const actual = {};
+	report.results.forEach(result => {
+		const rules = {};
+		// console.log('-----------------------------------------------');
+		// console.log(result.messages);
+		// console.log('-----------------------------------------------');
+		result.messages.forEach(message => {
+			if (message.fatal){
+				rules.fatal = message.message;
 			} else {
-				const expectedFixture = fixtures[fixtureId];
-				const expectedErrors = expectedFixture.expected;
-				const ignoredErrors = expectedFixture.ignored;
-				const actualErrors = Object.keys(actualFixture);
-				for (const expectedError of expectedErrors){
-					if (!actualErrors.includes(expectedError)){
-						messages.push(`MISSING ${expectedError}`);
-					}
-				}
-				for (const actualError of actualErrors){
-					if (!expectedErrors.includes(actualError) && !ignoredErrors.includes(actualError)){
-						messages.push(`UNEXPECTED ${actualError}`);
-					}
+				rules[message.ruleId] = message.message;
+			}
+		});
+		const fixtureId = path.basename(result.filePath);
+		actual[fixtureId] = rules;
+	});
+
+	for (const fixtureId in fixtures){
+		const messages = [];
+		const actualFixture = actual[fixtureId];
+		if ((actualFixture === null )|| (typeof actualFixture !== 'object')){
+			messages.push('FIXTURE NOT FOUND');
+		} else {
+			const expectedFixture = fixtures[fixtureId];
+			const expectedErrors = expectedFixture.expected;
+			const ignoredErrors = expectedFixture.ignored;
+			const actualErrors = Object.keys(actualFixture);
+			for (const expectedError of expectedErrors){
+				if (!actualErrors.includes(expectedError)){
+					messages.push(`MISSING ${expectedError}`);
 				}
 			}
-			deepStrictEqual(messages, [], fixtureId);
+			for (const actualError of actualErrors){
+				if (!expectedErrors.includes(actualError) && !ignoredErrors.includes(actualError)){
+					messages.push(`UNEXPECTED ${actualError}`);
+				}
+			}
 		}
-
-		done();
-	});
+		deepStrictEqual(messages, [], fixtureId);
+	}
 }
 
 
-describe('Packages', /* @this */ function(){
-	this.slow(25000);
-	this.timeout(30000);
-	before(done => {
-		fs.access(dirPackages, fs.constants.R_OK, err => {
-			strictEqual(err, null, 'Folder "packages" exists');
-			done();
-		});
-	});
+describe('Eslint', /* @this */ function(){
+	this.slow(8000);
+	this.timeout(10000);
 	for (const id in configs){
 		it(id, testPackage.bind(this, id));
 	}
