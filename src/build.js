@@ -7,11 +7,11 @@ const configs = require('..');
 const {version, dependencies} = require('../package.json');
 
 
-function getPackageJson(id, {name, typescript}){
+function getPackageJson(configId, {description, typescript}){
 	const pkg = {
-		name: `@wildpeaks/${id}`,
+		name: `@wildpeaks/eslint-config-${configId}`,
 		version,
-		description: `ESLint Config: ${name}`,
+		description: `ESLint Config: ${description}`,
 		main: 'settings.js',
 		files: ['settings.js'],
 		repository: 'https://github.com/wildpeaks/packages-eslint-config',
@@ -478,8 +478,8 @@ function getEslintSettings({commonjs, es2017, esmodules, typescript}){
 }
 
 
-function getReadme(_id, {name, commonjs, es2017, esmodules, typescript}){
-	return `# ESLint Config: ${name}
+function getReadme({description, commonjs, es2017, esmodules, typescript}){
+	return `# ESLint Config: ${description}
 
 Generated using the following [settings](https://github.com/wildpeaks/packages-eslint-config#readme):
 
@@ -491,13 +491,13 @@ Generated using the following [settings](https://github.com/wildpeaks/packages-e
 }
 
 
-function build(id){
-	const config = configs[id];
-	const folder = path.join(__dirname, '../packages', id);
+function build(configId){
+	const config = configs[configId];
+	const folder = path.join(__dirname, '../packages', configId);
 	fs.mkdirSync(folder);
 	fs.writeFileSync(
 		path.join(folder, 'package.json'),
-		JSON.stringify(getPackageJson(id, config)),
+		JSON.stringify(getPackageJson(configId, config)),
 		'utf8'
 	);
 	fs.writeFileSync(
@@ -507,16 +507,16 @@ function build(id){
 	);
 	fs.writeFileSync(
 		path.join(folder, 'README.md'),
-		getReadme(id, config),
+		getReadme(config),
 		'utf8'
 	);
 }
 
 
 fs.mkdirSync(path.join(__dirname, '../packages'));
-describe('Packages', () => {
-	for (const id in configs){
-		it(id, build.bind(null, id));
+describe('Build', () => {
+	for (const configId in configs){
+		it(configId, build.bind(null, configId));
 	}
 });
 

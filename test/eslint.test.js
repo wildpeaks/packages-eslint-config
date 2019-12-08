@@ -2,17 +2,15 @@
 'use strict';
 const fs = require('fs');
 const path = require('path');
-const {strictEqual, deepStrictEqual} = require('assert');
+const {deepStrictEqual} = require('assert');
 const {CLIEngine} = require('eslint');
 const configs = require('..');
-const dirPackages = path.join(__dirname, '../packages');
 const dirFixtures = path.join(__dirname, 'fixtures');
 
 
-function testPackage(packageId/*, done*/){
-	const {commonjs, esmodules, es2017, typescript} = configs[packageId];
+function runTest(configId){
+	const {commonjs, esmodules, es2017, typescript} = configs[configId];
 
-	// Describes when it's expected to fail (e.g. `true` means always, `false` means never).
 	const fixtures = {
 		'var.js': {
 			expected: (es2017 || typescript) ? ['no-var'] : [],
@@ -549,7 +547,7 @@ function testPackage(packageId/*, done*/){
 		}
 	};
 
-	const settings = require(`../packages/${packageId}`); // eslint-disable-line global-require
+	const settings = require(`../packages/${configId}`); // eslint-disable-line global-require
 	settings.useEslintrc = false;
 	settings.extensions = ['.js', '.jsx', '.ts', '.tsx'];
 
@@ -609,7 +607,7 @@ function testPackage(packageId/*, done*/){
 describe('Eslint', /* @this */ function(){
 	this.slow(8000);
 	this.timeout(10000);
-	for (const id in configs){
-		it(id, testPackage.bind(this, id));
+	for (const configId in configs){
+		it(configId, runTest.bind(this, configId));
 	}
 });
