@@ -17,7 +17,7 @@
     "test:lint": "mocha --exit test/lint.test.js",
     "test:eslint": "mocha --exit test/eslint.test.js",
     "test:prettier": "mocha --exit test/prettier.test.js",
-    "test": "npm run build && npm run test:lint && npm run test:eslint && npm run test:prettier"
+    "test": "npm run build && npm run test:lint && npm run test:eslint"
   },
   "repository": "https://github.com/wildpeaks/packages-eslint-config",
   "keywords": [

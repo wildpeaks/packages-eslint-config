@@ -9,11 +9,6 @@ module.exports = {
 		es2017: true,
 		commonjs: true
 	},
-	'esmodules': {
-		title: 'ES2017, ES Modules',
-		es2017: true,
-		esmodules: true
-	},
 	'typescript': {
 		title: 'ES2017, ES Modules, Typescript',
 		es2017: true,
