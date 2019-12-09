@@ -1,3 +1,3 @@
-export function myfunction(){
+export function myfunction() {
 	return Date.now();
 }

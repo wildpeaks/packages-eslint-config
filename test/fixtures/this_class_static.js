@@ -2,7 +2,7 @@
 "use strict";
 
 class MyClass {
-	static mystatic(){
+	static mystatic() {
 		console.log(this.hello);
 	}
 }

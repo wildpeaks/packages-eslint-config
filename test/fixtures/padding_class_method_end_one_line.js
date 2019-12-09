@@ -2,7 +2,7 @@
 "use strict";
 
 class MyClass {
-	mymethod(){
+	mymethod() {
 		console.log("Hello");
 
 	}

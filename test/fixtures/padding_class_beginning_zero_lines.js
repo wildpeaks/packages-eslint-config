@@ -2,7 +2,7 @@
 "use strict";
 
 class MyClass {
-	constructor(){
+	constructor() {
 		console.log("Hello");
 	}
 }
