@@ -1,4 +1,4 @@
 var myobject = {
 	myparam: 111
 };
-var myparam = myobject['myparam'];
+var myparam = myobject["myparam"];

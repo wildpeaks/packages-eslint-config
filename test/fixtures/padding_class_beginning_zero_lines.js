@@ -1,8 +1,8 @@
 /* global console */
-'use strict';
+"use strict";
 
 class MyClass {
 	constructor(){
-		console.log('Hello');
+		console.log("Hello");
 	}
 }

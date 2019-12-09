@@ -1,5 +1,5 @@
 /* global console */
-'use strict';
+"use strict";
 
 const myarrow = () => {
 	console.log(this.hello);

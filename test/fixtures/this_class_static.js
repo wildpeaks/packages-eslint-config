@@ -1,5 +1,5 @@
 /* global console */
-'use strict';
+"use strict";
 
 class MyClass {
 	static mystatic(){

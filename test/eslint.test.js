@@ -226,10 +226,18 @@ function runTest(configId){
 		},
 
 		'quotes_property_inconsistent_single.js': {
-			expected: ['quote-props'],
+			expected: ['quotes', 'quote-props'],
 			ignored: ['strict', 'no-implicit-globals', 'no-unused-vars', '@typescript-eslint/no-unused-vars', 'no-var']
 		},
 		'quotes_property_consistent_single.js': {
+			expected: ['quotes'],
+			ignored: ['strict', 'no-implicit-globals', 'no-unused-vars', '@typescript-eslint/no-unused-vars', 'no-var']
+		},
+		'quotes_property_inconsistent_double.js': {
+			expected: ['quote-props'],
+			ignored: ['strict', 'no-implicit-globals', 'no-unused-vars', '@typescript-eslint/no-unused-vars', 'no-var']
+		},
+		'quotes_property_consistent_double.js': {
 			expected: [],
 			ignored: ['strict', 'no-implicit-globals', 'no-unused-vars', '@typescript-eslint/no-unused-vars', 'no-var']
 		},
@@ -238,7 +246,7 @@ function runTest(configId){
 			ignored: ['strict', 'no-implicit-globals', 'no-unused-vars', '@typescript-eslint/no-unused-vars', 'no-var']
 		},
 		'quotes_property_single.js': {
-			expected: [],
+			expected: ['quotes'],
 			ignored: ['strict', 'no-implicit-globals', 'no-unused-vars', '@typescript-eslint/no-unused-vars', 'no-var']
 		},
 		'quotes_backtick.js': {
@@ -246,15 +254,15 @@ function runTest(configId){
 			ignored: ['strict', 'no-implicit-globals', 'no-unused-vars', '@typescript-eslint/no-unused-vars', 'no-var']
 		},
 		'quotes_single.js': {
-			expected: [],
+			expected: ['quotes'],
 			ignored: ['strict', 'no-implicit-globals', 'no-unused-vars', '@typescript-eslint/no-unused-vars', 'no-var']
 		},
 		'quotes_property_double.js': {
-			expected: ['quotes'],
+			expected: [],
 			ignored: ['strict', 'no-implicit-globals', 'no-unused-vars', '@typescript-eslint/no-unused-vars', 'no-var']
 		},
 		'quotes_double.js': {
-			expected: ['quotes'],
+			expected: [],
 			ignored: ['strict', 'no-implicit-globals', 'no-unused-vars', '@typescript-eslint/no-unused-vars', 'no-var']
 		},
 
@@ -263,11 +271,11 @@ function runTest(configId){
 			ignored: ['strict', 'no-implicit-globals', 'no-unused-vars', '@typescript-eslint/no-unused-vars', 'no-var']
 		},
 		'quotes_concatenate_number_string_single.js': {
-			expected: [],
+			expected: ['quotes'],
 			ignored: ['strict', 'no-implicit-globals', 'no-unused-vars', '@typescript-eslint/no-unused-vars', 'no-var']
 		},
 		'quotes_concatenate_number_string_double.js': {
-			expected: ['quotes'],
+			expected: [],
 			ignored: ['strict', 'no-implicit-globals', 'no-unused-vars', '@typescript-eslint/no-unused-vars', 'no-var']
 		},
 		'quotes_concatenate_number_string_backtick.js': {
@@ -275,11 +283,11 @@ function runTest(configId){
 			ignored: ['strict', 'no-implicit-globals', 'no-unused-vars', '@typescript-eslint/no-unused-vars', 'no-var']
 		},
 		'quotes_concatenate_string_string_single.js': {
-			expected: [],
+			expected: ['quotes'],
 			ignored: ['strict', 'no-implicit-globals', 'no-unused-vars', '@typescript-eslint/no-unused-vars', 'no-var']
 		},
 		'quotes_concatenate_string_string_double.js': {
-			expected: ['quotes'],
+			expected: [],
 			ignored: ['strict', 'no-implicit-globals', 'no-unused-vars', '@typescript-eslint/no-unused-vars', 'no-var']
 		},
 		'quotes_concatenate_string_string_backtick.js': {

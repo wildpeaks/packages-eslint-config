@@ -1,1 +1,1 @@
-const mymodule = require('mymodule');
+const mymodule = require("mymodule");

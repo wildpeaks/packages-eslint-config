@@ -1,5 +1,5 @@
 /* global dummy */
-'use strict';
+"use strict";
 
 function myfunction(param1, _param2){
 	return param1 + 1;

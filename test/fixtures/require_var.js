@@ -1,1 +1,1 @@
-var mymodule = require('mymodule');
+var mymodule = require("mymodule");
