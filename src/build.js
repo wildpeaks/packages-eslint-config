@@ -299,7 +299,7 @@ function getEslintSettings({commonjs, es2017, esmodules, typescript}){
 			'sort-keys': 'off',
 			'sort-vars': 'off',
 			'space-before-blocks': ['error', {
-				functions: typescript ? 'always' : 'never',
+				functions: 'always',
 				keywords: 'never',
 				classes: 'always'
 			}],
