@@ -36,91 +36,91 @@ function runTest(configId){
 		},
 		'class_stage0_function_without_return_type.js': {
 			expected: typescript ? ['@typescript-eslint/explicit-member-accessibility', '@typescript-eslint/explicit-function-return-type'] : (es2017 ? [] : ['fatal']),
-			ignored: ['strict', 'no-implicit-globals', 'no-unused-vars', '@typescript-eslint/no-unused-vars', 'space-before-blocks', 'class-methods-use-this']
+			ignored: ['strict', 'no-implicit-globals', 'no-unused-vars', '@typescript-eslint/no-unused-vars', 'class-methods-use-this']
 		},
 
 		'class_stage2_instance_property_without_type.js': {
 			expected: typescript ? ['@typescript-eslint/explicit-member-accessibility'] : ['fatal'],
-			ignored: ['strict', 'no-implicit-globals', 'no-unused-vars', '@typescript-eslint/no-unused-vars', 'space-before-blocks', 'class-methods-use-this'],
+			ignored: ['strict', 'no-implicit-globals', 'no-unused-vars', '@typescript-eslint/no-unused-vars', 'class-methods-use-this'],
 		},
 		'class_stage2_static_property_without_type.js': {
 			expected: typescript ? ['@typescript-eslint/explicit-member-accessibility'] : ['fatal'],
-			ignored: ['strict', 'no-implicit-globals', 'no-unused-vars', '@typescript-eslint/no-unused-vars', 'space-before-blocks', 'class-methods-use-this']
+			ignored: ['strict', 'no-implicit-globals', 'no-unused-vars', '@typescript-eslint/no-unused-vars', 'class-methods-use-this']
 		},
 
 		'class_stage2_instance_function_without_return_type.js': {
 			expected: typescript ? ['@typescript-eslint/explicit-member-accessibility', '@typescript-eslint/explicit-function-return-type', 'no-invalid-this'] : ['fatal'],
-			ignored: ['strict', 'no-implicit-globals', 'no-unused-vars', '@typescript-eslint/no-unused-vars', 'space-before-blocks', 'class-methods-use-this']
+			ignored: ['strict', 'no-implicit-globals', 'no-unused-vars', '@typescript-eslint/no-unused-vars', 'class-methods-use-this']
 		},
 		'class_stage2_static_function_without_return_type.js': {
 			expected: typescript ? ['@typescript-eslint/explicit-member-accessibility', '@typescript-eslint/explicit-function-return-type'] : ['fatal'],
-			ignored: ['strict', 'no-implicit-globals', 'no-unused-vars', '@typescript-eslint/no-unused-vars', 'space-before-blocks', 'class-methods-use-this']
+			ignored: ['strict', 'no-implicit-globals', 'no-unused-vars', '@typescript-eslint/no-unused-vars', 'class-methods-use-this']
 		},
 		'class_stage2_instance_arrow_without_return_type.js': {
 			expected: typescript ? ['@typescript-eslint/explicit-member-accessibility', '@typescript-eslint/explicit-function-return-type', 'no-invalid-this'] : ['fatal'],
-			ignored: ['strict', 'no-implicit-globals', 'no-unused-vars', '@typescript-eslint/no-unused-vars', 'space-before-blocks', 'class-methods-use-this']
+			ignored: ['strict', 'no-implicit-globals', 'no-unused-vars', '@typescript-eslint/no-unused-vars', 'class-methods-use-this']
 		},
 		'class_stage2_static_arrow_without_return_type.js': {
 			expected: typescript ? ['@typescript-eslint/explicit-member-accessibility', '@typescript-eslint/explicit-function-return-type'] : ['fatal'],
-			ignored: ['strict', 'no-implicit-globals', 'no-unused-vars', '@typescript-eslint/no-unused-vars', 'space-before-blocks', 'class-methods-use-this']
+			ignored: ['strict', 'no-implicit-globals', 'no-unused-vars', '@typescript-eslint/no-unused-vars', 'class-methods-use-this']
 		},
 		'class_stage2_instance_expression_without_return_type.js': {
 			expected: typescript ? ['@typescript-eslint/explicit-member-accessibility', '@typescript-eslint/explicit-function-return-type', 'no-invalid-this'] : ['fatal'],
-			ignored: ['strict', 'no-implicit-globals', 'no-unused-vars', '@typescript-eslint/no-unused-vars', 'space-before-blocks', 'class-methods-use-this']
+			ignored: ['strict', 'no-implicit-globals', 'no-unused-vars', '@typescript-eslint/no-unused-vars', 'class-methods-use-this']
 		},
 		'class_stage2_static_expression_without_return_type.js': {
 			expected: typescript ? ['@typescript-eslint/explicit-member-accessibility', '@typescript-eslint/explicit-function-return-type'] : ['fatal'],
-			ignored: ['strict', 'no-implicit-globals', 'no-unused-vars', '@typescript-eslint/no-unused-vars', 'space-before-blocks', 'class-methods-use-this']
+			ignored: ['strict', 'no-implicit-globals', 'no-unused-vars', '@typescript-eslint/no-unused-vars', 'class-methods-use-this']
 		},
 
 		'class_stage2_instance_function_without_params_type.js': {
 			expected: typescript ? ['@typescript-eslint/explicit-member-accessibility'] : ['fatal'],
-			ignored: ['strict', 'no-implicit-globals', 'no-unused-vars', '@typescript-eslint/no-unused-vars', '@typescript-eslint/explicit-function-return-type', 'space-before-blocks', 'class-methods-use-this']
+			ignored: ['strict', 'no-implicit-globals', 'no-unused-vars', '@typescript-eslint/no-unused-vars', '@typescript-eslint/explicit-function-return-type', 'class-methods-use-this']
 		},
 		'class_stage2_static_function_without_params_type.js': {
 			expected: typescript ? ['@typescript-eslint/explicit-member-accessibility'] : ['fatal'],
-			ignored: ['strict', 'no-implicit-globals', 'no-unused-vars', '@typescript-eslint/no-unused-vars', '@typescript-eslint/explicit-function-return-type', 'space-before-blocks', 'class-methods-use-this']
+			ignored: ['strict', 'no-implicit-globals', 'no-unused-vars', '@typescript-eslint/no-unused-vars', '@typescript-eslint/explicit-function-return-type', 'class-methods-use-this']
 		},
 		'class_stage2_instance_arrow_without_params_type.js': {
 			expected: typescript ? ['@typescript-eslint/explicit-member-accessibility'] : ['fatal'],
-			ignored: ['strict', 'no-implicit-globals', 'no-unused-vars', '@typescript-eslint/no-unused-vars', '@typescript-eslint/explicit-function-return-type', 'space-before-blocks', 'class-methods-use-this']
+			ignored: ['strict', 'no-implicit-globals', 'no-unused-vars', '@typescript-eslint/no-unused-vars', '@typescript-eslint/explicit-function-return-type', 'class-methods-use-this']
 		},
 		'class_stage2_static_arrow_without_params_type.js': {
 			expected: typescript ? ['@typescript-eslint/explicit-member-accessibility'] : ['fatal'],
-			ignored: ['strict', 'no-implicit-globals', 'no-unused-vars', '@typescript-eslint/no-unused-vars', '@typescript-eslint/explicit-function-return-type', 'space-before-blocks', 'class-methods-use-this']
+			ignored: ['strict', 'no-implicit-globals', 'no-unused-vars', '@typescript-eslint/no-unused-vars', '@typescript-eslint/explicit-function-return-type', 'class-methods-use-this']
 		},
 		'class_stage2_instance_expression_without_params_type.js': {
 			expected: typescript ? ['@typescript-eslint/explicit-member-accessibility'] : ['fatal'],
-			ignored: ['strict', 'no-implicit-globals', 'no-unused-vars', '@typescript-eslint/no-unused-vars', '@typescript-eslint/explicit-function-return-type', 'space-before-blocks', 'class-methods-use-this']
+			ignored: ['strict', 'no-implicit-globals', 'no-unused-vars', '@typescript-eslint/no-unused-vars', '@typescript-eslint/explicit-function-return-type', 'class-methods-use-this']
 		},
 		'class_stage2_static_expression_without_params_type.js': {
 			expected: typescript ? ['@typescript-eslint/explicit-member-accessibility'] : ['fatal'],
-			ignored: ['strict','no-implicit-globals','no-unused-vars','@typescript-eslint/no-unused-vars', '@typescript-eslint/explicit-function-return-type','space-before-blocks','class-methods-use-this']
+			ignored: ['strict','no-implicit-globals','no-unused-vars','@typescript-eslint/no-unused-vars', '@typescript-eslint/explicit-function-return-type', 'class-methods-use-this']
 		},
 
 		'class_stage2_instance_function_underscore_params_without_type.js': {
 			expected: typescript ? ['@typescript-eslint/explicit-member-accessibility'] : ['fatal'],
-			ignored: ['strict', 'no-implicit-globals', 'no-unused-vars', '@typescript-eslint/no-unused-vars', '@typescript-eslint/explicit-function-return-type', 'space-before-blocks', 'class-methods-use-this']
+			ignored: ['strict', 'no-implicit-globals', 'no-unused-vars', '@typescript-eslint/no-unused-vars', '@typescript-eslint/explicit-function-return-type', 'class-methods-use-this']
 		},
 		'class_stage2_static_function_underscore_params_without_type.js': {
 			expected: typescript ? ['@typescript-eslint/explicit-member-accessibility'] : ['fatal'],
-			ignored: ['strict', 'no-implicit-globals', 'no-unused-vars', '@typescript-eslint/no-unused-vars', '@typescript-eslint/explicit-function-return-type', 'space-before-blocks', 'class-methods-use-this']
+			ignored: ['strict', 'no-implicit-globals', 'no-unused-vars', '@typescript-eslint/no-unused-vars', '@typescript-eslint/explicit-function-return-type', 'class-methods-use-this']
 		},
 		'class_stage2_instance_arrow_underscore_params_without_type.js': {
 			expected: typescript ? ['@typescript-eslint/explicit-member-accessibility'] : ['fatal'],
-			ignored: ['strict', 'no-implicit-globals', 'no-unused-vars', '@typescript-eslint/no-unused-vars', '@typescript-eslint/explicit-function-return-type', 'space-before-blocks', 'class-methods-use-this']
+			ignored: ['strict', 'no-implicit-globals', 'no-unused-vars', '@typescript-eslint/no-unused-vars', '@typescript-eslint/explicit-function-return-type', 'class-methods-use-this']
 		},
 		'class_stage2_static_arrow_underscore_params_without_type.js': {
 			expected: typescript ? ['@typescript-eslint/explicit-member-accessibility'] : ['fatal'],
-			ignored: ['strict', 'no-implicit-globals', 'no-unused-vars', '@typescript-eslint/no-unused-vars', '@typescript-eslint/explicit-function-return-type', 'space-before-blocks', 'class-methods-use-this']
+			ignored: ['strict', 'no-implicit-globals', 'no-unused-vars', '@typescript-eslint/no-unused-vars', '@typescript-eslint/explicit-function-return-type', 'class-methods-use-this']
 		},
 		'class_stage2_instance_expression_underscore_params_without_type.js': {
 			expected: typescript ? ['@typescript-eslint/explicit-member-accessibility'] : ['fatal'],
-			ignored: ['strict', 'no-implicit-globals', 'no-unused-vars', '@typescript-eslint/no-unused-vars', '@typescript-eslint/explicit-function-return-type', 'space-before-blocks', 'class-methods-use-this']
+			ignored: ['strict', 'no-implicit-globals', 'no-unused-vars', '@typescript-eslint/no-unused-vars', '@typescript-eslint/explicit-function-return-type', 'class-methods-use-this']
 		},
 		'class_stage2_static_expression_underscore_params_without_type.js': {
 			expected: typescript ? ['@typescript-eslint/explicit-member-accessibility'] : ['fatal'],
-			ignored: ['strict', 'no-implicit-globals', 'no-unused-vars', '@typescript-eslint/no-unused-vars', '@typescript-eslint/explicit-function-return-type', 'space-before-blocks', 'class-methods-use-this']
+			ignored: ['strict', 'no-implicit-globals', 'no-unused-vars', '@typescript-eslint/no-unused-vars', '@typescript-eslint/explicit-function-return-type', 'class-methods-use-this']
 		},
 
 		'line_80.js': {
@@ -181,11 +181,11 @@ function runTest(configId){
 		},
 		'export_arrow.js': {
 			expected: ['fatal'],
-			ignored: ['strict', 'arrow-body-style', 'space-before-blocks']
+			ignored: ['strict', 'arrow-body-style']
 		},
 		'export_function.js': {
 			expected: typescript ? ['@typescript-eslint/explicit-function-return-type'] : (esmodules ? [] : ['fatal']),
-			ignored: ['strict', 'space-before-blocks']
+			ignored: ['strict']
 		},
 		'export_default_var.js': {
 			expected: esmodules ? [] : ['fatal'],
@@ -197,11 +197,11 @@ function runTest(configId){
 		},
 		'export_default_arrow.js': {
 			expected: typescript ? ['@typescript-eslint/explicit-function-return-type'] : (esmodules ? [] : ['fatal']),
-			ignored: ['strict', 'arrow-body-style', 'space-before-blocks']
+			ignored: ['strict', 'arrow-body-style']
 		},
 		'export_default_function.js': {
 			expected: typescript ? ['@typescript-eslint/explicit-function-return-type'] : (esmodules ? [] : ['fatal']),
-			ignored: ['strict', 'space-before-blocks']
+			ignored: ['strict']
 		},
 
 		// @warning Cannot enable this test because it acts differently in CLI mode and in Node API mode:
@@ -222,7 +222,7 @@ function runTest(configId){
 
 		'await.js': {
 			expected: typescript ? ['@typescript-eslint/explicit-function-return-type'] : (es2017 ? [] : ['fatal']),
-			ignored: ['strict', 'no-unused-vars', '@typescript-eslint/no-unused-vars', 'no-implicit-globals', 'space-before-blocks']
+			ignored: ['strict', 'no-unused-vars', '@typescript-eslint/no-unused-vars', 'no-implicit-globals']
 		},
 
 		'quotes_property_inconsistent_single.js': {
@@ -322,102 +322,102 @@ function runTest(configId){
 
 		'this_root.js': {
 			expected: ['no-invalid-this'],
-			ignored: ['no-unused-vars', '@typescript-eslint/no-unused-vars', 'space-before-blocks', 'strict']
+			ignored: ['no-unused-vars', '@typescript-eslint/no-unused-vars', 'strict']
 		},
 		'this_function.js': {
 			expected: typescript ? ['@typescript-eslint/explicit-function-return-type'] : [],
-			ignored: ['strict', 'no-unused-vars', '@typescript-eslint/no-unused-vars', 'space-before-blocks']
+			ignored: ['strict', 'no-unused-vars', '@typescript-eslint/no-unused-vars']
 		},
 		'this_arrow.js': {
 			expected: typescript ? ['@typescript-eslint/explicit-function-return-type', 'no-invalid-this'] : (es2017 ? ['no-invalid-this'] : ['fatal']),
-			ignored: ['strict', 'no-unused-vars', '@typescript-eslint/no-unused-vars', 'space-before-blocks']
+			ignored: ['strict', 'no-unused-vars', '@typescript-eslint/no-unused-vars']
 		},
 		'this_class_constructor.js': {
 			expected: typescript ? ['@typescript-eslint/explicit-member-accessibility'] : (es2017 ? [] : ['fatal']),
-			ignored: ['strict', 'no-unused-vars', '@typescript-eslint/no-unused-vars', 'space-before-blocks']
+			ignored: ['strict', 'no-unused-vars', '@typescript-eslint/no-unused-vars']
 		},
 		'this_class_method.js': {
 			expected: typescript ? ['@typescript-eslint/explicit-member-accessibility', '@typescript-eslint/explicit-function-return-type'] : (es2017 ? [] : ['fatal']),
-			ignored: ['strict', 'no-unused-vars', '@typescript-eslint/no-unused-vars', 'space-before-blocks']
+			ignored: ['strict', 'no-unused-vars', '@typescript-eslint/no-unused-vars']
 		},
 		'this_class_static.js': {
 			expected: typescript ? ['@typescript-eslint/explicit-member-accessibility', '@typescript-eslint/explicit-function-return-type'] : (es2017 ? [] : ['fatal']),
-			ignored: ['strict', 'no-unused-vars', '@typescript-eslint/no-unused-vars', 'space-before-blocks']
+			ignored: ['strict', 'no-unused-vars', '@typescript-eslint/no-unused-vars']
 		},
 
 		'padding_class_beginning_zero_lines.js': {
 			expected: es2017 ? [] : ['fatal'],
-			ignored: ['strict', 'no-unused-vars', '@typescript-eslint/no-unused-vars', 'space-before-blocks', 'class-methods-use-this', '@typescript-eslint/explicit-member-accessibility']
+			ignored: ['strict', 'no-unused-vars', '@typescript-eslint/no-unused-vars', 'class-methods-use-this', '@typescript-eslint/explicit-member-accessibility']
 		},
 		'padding_class_beginning_one_line.js': {
 			expected: es2017 ? [] : ['fatal'],
-			ignored: ['strict', 'no-unused-vars', '@typescript-eslint/no-unused-vars', 'space-before-blocks', 'class-methods-use-this', '@typescript-eslint/explicit-member-accessibility']
+			ignored: ['strict', 'no-unused-vars', '@typescript-eslint/no-unused-vars', 'class-methods-use-this', '@typescript-eslint/explicit-member-accessibility']
 		},
 		'padding_class_beginning_two_lines.js': {
 			expected: es2017 ? [] : ['fatal'],
-			ignored: ['strict', 'no-unused-vars', '@typescript-eslint/no-unused-vars', 'space-before-blocks', 'class-methods-use-this', '@typescript-eslint/explicit-member-accessibility']
+			ignored: ['strict', 'no-unused-vars', '@typescript-eslint/no-unused-vars', 'class-methods-use-this', '@typescript-eslint/explicit-member-accessibility']
 		},
 		'padding_class_end_zero_lines.js': {
 			expected: es2017 ? [] : ['fatal'],
-			ignored: ['strict', 'no-unused-vars', '@typescript-eslint/no-unused-vars', 'space-before-blocks', 'class-methods-use-this', '@typescript-eslint/explicit-member-accessibility']
+			ignored: ['strict', 'no-unused-vars', '@typescript-eslint/no-unused-vars', 'class-methods-use-this', '@typescript-eslint/explicit-member-accessibility']
 		},
 		'padding_class_end_one_line.js': {
 			expected: es2017 ? [] : ['fatal'],
-			ignored: ['strict', 'no-unused-vars', '@typescript-eslint/no-unused-vars', 'space-before-blocks', 'class-methods-use-this', '@typescript-eslint/explicit-member-accessibility']
+			ignored: ['strict', 'no-unused-vars', '@typescript-eslint/no-unused-vars', 'class-methods-use-this', '@typescript-eslint/explicit-member-accessibility']
 		},
 		'padding_class_end_two_lines.js': {
 			expected: es2017 ? [] : ['fatal'],
-			ignored: ['strict', 'no-unused-vars', '@typescript-eslint/no-unused-vars', 'space-before-blocks', 'class-methods-use-this', '@typescript-eslint/explicit-member-accessibility']
+			ignored: ['strict', 'no-unused-vars', '@typescript-eslint/no-unused-vars', 'class-methods-use-this', '@typescript-eslint/explicit-member-accessibility']
 		},
 
 		'padding_class_method_beginning_zero_lines.js': {
 			expected: es2017 ? [] : ['fatal'],
-			ignored: ['strict', 'no-unused-vars', '@typescript-eslint/no-unused-vars', 'space-before-blocks', 'class-methods-use-this', '@typescript-eslint/explicit-member-accessibility', '@typescript-eslint/explicit-function-return-type']
+			ignored: ['strict', 'no-unused-vars', '@typescript-eslint/no-unused-vars', 'class-methods-use-this', '@typescript-eslint/explicit-member-accessibility', '@typescript-eslint/explicit-function-return-type']
 		},
 		'padding_class_method_beginning_one_line.js': {
 			expected: es2017 ? [] : ['fatal'],
-			ignored: ['strict', 'no-unused-vars', '@typescript-eslint/no-unused-vars', 'space-before-blocks', 'class-methods-use-this', '@typescript-eslint/explicit-member-accessibility', '@typescript-eslint/explicit-function-return-type']
+			ignored: ['strict', 'no-unused-vars', '@typescript-eslint/no-unused-vars', 'class-methods-use-this', '@typescript-eslint/explicit-member-accessibility', '@typescript-eslint/explicit-function-return-type']
 		},
 		'padding_class_method_beginning_two_lines.js': {
 			expected: es2017 ? [] : ['fatal'],
-			ignored: ['strict', 'no-unused-vars', '@typescript-eslint/no-unused-vars', 'space-before-blocks', 'class-methods-use-this', '@typescript-eslint/explicit-member-accessibility', '@typescript-eslint/explicit-function-return-type']
+			ignored: ['strict', 'no-unused-vars', '@typescript-eslint/no-unused-vars', 'class-methods-use-this', '@typescript-eslint/explicit-member-accessibility', '@typescript-eslint/explicit-function-return-type']
 		},
 		'padding_class_method_end_zero_lines.js': {
 			expected: es2017 ? [] : ['fatal'],
-			ignored: ['strict', 'no-unused-vars', '@typescript-eslint/no-unused-vars', 'space-before-blocks', 'class-methods-use-this', '@typescript-eslint/explicit-member-accessibility', '@typescript-eslint/explicit-function-return-type']
+			ignored: ['strict', 'no-unused-vars', '@typescript-eslint/no-unused-vars', 'class-methods-use-this', '@typescript-eslint/explicit-member-accessibility', '@typescript-eslint/explicit-function-return-type']
 		},
 		'padding_class_method_end_one_line.js': {
 			expected: es2017 ? [] : ['fatal'],
-			ignored: ['strict', 'no-unused-vars', '@typescript-eslint/no-unused-vars', 'space-before-blocks', 'class-methods-use-this', '@typescript-eslint/explicit-member-accessibility', '@typescript-eslint/explicit-function-return-type']
+			ignored: ['strict', 'no-unused-vars', '@typescript-eslint/no-unused-vars', 'class-methods-use-this', '@typescript-eslint/explicit-member-accessibility', '@typescript-eslint/explicit-function-return-type']
 		},
 		'padding_class_method_end_two_lines.js': {
 			expected: es2017 ? [] : ['fatal'],
-			ignored: ['strict', 'no-unused-vars', '@typescript-eslint/no-unused-vars', 'space-before-blocks', 'class-methods-use-this', '@typescript-eslint/explicit-member-accessibility', '@typescript-eslint/explicit-function-return-type']
+			ignored: ['strict', 'no-unused-vars', '@typescript-eslint/no-unused-vars', 'class-methods-use-this', '@typescript-eslint/explicit-member-accessibility', '@typescript-eslint/explicit-function-return-type']
 		},
 
 		'padding_function_beginning_zero_lines.js': {
 			expected: [],
-			ignored: ['strict', 'no-unused-vars', '@typescript-eslint/no-unused-vars', 'space-before-blocks', 'class-methods-use-this', '@typescript-eslint/explicit-function-return-type']
+			ignored: ['strict', 'no-unused-vars', '@typescript-eslint/no-unused-vars', 'class-methods-use-this', '@typescript-eslint/explicit-function-return-type']
 		},
 		'padding_function_beginning_one_line.js': {
 			expected: [],
-			ignored: ['strict', 'no-unused-vars', '@typescript-eslint/no-unused-vars', 'space-before-blocks', 'class-methods-use-this', '@typescript-eslint/explicit-function-return-type']
+			ignored: ['strict', 'no-unused-vars', '@typescript-eslint/no-unused-vars', 'class-methods-use-this', '@typescript-eslint/explicit-function-return-type']
 		},
 		'padding_function_beginning_two_lines.js': {
 			expected: [],
-			ignored: ['strict', 'no-unused-vars', '@typescript-eslint/no-unused-vars', 'space-before-blocks', 'class-methods-use-this', '@typescript-eslint/explicit-function-return-type']
+			ignored: ['strict', 'no-unused-vars', '@typescript-eslint/no-unused-vars', 'class-methods-use-this', '@typescript-eslint/explicit-function-return-type']
 		},
 		'padding_function_end_zero_lines.js': {
 			expected: [],
-			ignored: ['strict', 'no-unused-vars', '@typescript-eslint/no-unused-vars', 'space-before-blocks', 'class-methods-use-this', '@typescript-eslint/explicit-function-return-type']
+			ignored: ['strict', 'no-unused-vars', '@typescript-eslint/no-unused-vars', 'class-methods-use-this', '@typescript-eslint/explicit-function-return-type']
 		},
 		'padding_function_end_one_line.js': {
 			expected: [],
-			ignored: ['strict', 'no-unused-vars', '@typescript-eslint/no-unused-vars', 'space-before-blocks', 'class-methods-use-this', '@typescript-eslint/explicit-function-return-type']
+			ignored: ['strict', 'no-unused-vars', '@typescript-eslint/no-unused-vars', 'class-methods-use-this', '@typescript-eslint/explicit-function-return-type']
 		},
 		'padding_function_end_two_lines.js': {
 			expected: [],
-			ignored: ['strict', 'no-unused-vars', '@typescript-eslint/no-unused-vars', 'space-before-blocks', 'class-methods-use-this', '@typescript-eslint/explicit-function-return-type']
+			ignored: ['strict', 'no-unused-vars', '@typescript-eslint/no-unused-vars', 'class-methods-use-this', '@typescript-eslint/explicit-function-return-type']
 		},
 
 		'ternary.js': {
@@ -496,19 +496,19 @@ function runTest(configId){
 
 		'unused_param_without_underscore_first.js': {
 			expected: typescript ? [] : [],
-			ignored: ['strict', 'space-before-blocks', '@typescript-eslint/explicit-function-return-type']
+			ignored: ['strict', '@typescript-eslint/explicit-function-return-type']
 		},
 		'unused_param_without_underscore_last.js': {
 			expected: typescript ? ['@typescript-eslint/no-unused-vars'] : ['no-unused-vars'],
-			ignored: ['strict', 'space-before-blocks', '@typescript-eslint/explicit-function-return-type']
+			ignored: ['strict', '@typescript-eslint/explicit-function-return-type']
 		},
 		'unused_param_with_underscore_first.js': {
 			expected: [],
-			ignored: ['strict', 'space-before-blocks', '@typescript-eslint/explicit-function-return-type']
+			ignored: ['strict', '@typescript-eslint/explicit-function-return-type']
 		},
 		'unused_param_with_underscore_last.js': {
 			expected: [],
-			ignored: ['strict', 'space-before-blocks', '@typescript-eslint/explicit-function-return-type']
+			ignored: ['strict', '@typescript-eslint/explicit-function-return-type']
 		},
 		'unused_var_without_underscore.js': {
 			expected: typescript ? ['@typescript-eslint/no-unused-vars'] : ['no-unused-vars'],
