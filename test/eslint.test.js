@@ -512,7 +512,7 @@ function runTest(configId){
 		},
 		'unused_var_without_underscore.js': {
 			expected: typescript ? ['@typescript-eslint/no-unused-vars'] : ['no-unused-vars'],
-			ignored: []
+			ignored: ['strict', 'no-var']
 		},
 		'unused_var_with_underscore.js': {
 			expected: [],
