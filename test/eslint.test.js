@@ -592,6 +592,23 @@ function runTest(configId){
 		'object_many_props_single_line.js': {
 			expected: [],
 			ignored: ['no-var', 'no-unused-vars', '@typescript-eslint/no-unused-vars', 'max-len']
+		},
+
+		'function_param_per_line_with_space.js': {
+			expected: [],
+			ignored: ['no-unused-vars', '@typescript-eslint/no-unused-vars', '@typescript-eslint/explicit-function-return-type']
+		},
+		'function_param_per_line_without_space.js': {
+			expected: ["space-before-blocks"],
+			ignored: ['no-unused-vars', '@typescript-eslint/no-unused-vars', '@typescript-eslint/explicit-function-return-type']
+		},
+		'function_param_single_line_with_space.js': {
+			expected: [],
+			ignored: ['no-unused-vars', '@typescript-eslint/no-unused-vars', '@typescript-eslint/explicit-function-return-type']
+		},
+		'function_param_single_line_without_space.js': {
+			expected: ["space-before-blocks"],
+			ignored: ['no-unused-vars', '@typescript-eslint/no-unused-vars', '@typescript-eslint/explicit-function-return-type']
 		}
 	};
 

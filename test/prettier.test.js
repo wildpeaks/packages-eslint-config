@@ -20,12 +20,17 @@ const fixtures = {
 		ignore: ["no-unused-vars"],
 		compatible: ["commonjs"]
 	},
-	untyped_function: {
+	function_variable: {
+		ext: "js",
+		ignore: ["no-var", "no-unused-vars", "@typescript-eslint/no-unused-vars", "func-style", "no-empty-function", "@typescript-eslint/explicit-function-return-type", "@typescript-eslint/no-empty-function"],
+		compatible: ["commonjs", "legacy", "typescript"]
+	},
+	function_untyped: {
 		ext: "js",
 		ignore: ["no-unused-vars"],
 		compatible: ["commonjs", "legacy"]
 	},
-	typed_function: {
+	function_typed: {
 		ext: "ts",
 		ignore: ["@typescript-eslint/no-unused-vars"],
 		compatible: ["typescript"]
@@ -73,11 +78,6 @@ const fixtures = {
 	prop_quotes_7: {
 		ext: "js",
 		ignore: ["no-var", "no-unused-vars", "@typescript-eslint/no-unused-vars"],
-		compatible: ["commonjs", "legacy", "typescript"]
-	},
-	function_variable: {
-		ext: "js",
-		ignore: ["no-var", "no-unused-vars", "@typescript-eslint/no-unused-vars", "func-style", "no-empty-function", "@typescript-eslint/explicit-function-return-type", "@typescript-eslint/no-empty-function"],
 		compatible: ["commonjs", "legacy", "typescript"]
 	}
 };
