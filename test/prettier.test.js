@@ -22,7 +22,15 @@ const fixtures = {
 	},
 	function_variable: {
 		ext: "js",
-		ignore: ["no-var", "no-unused-vars", "@typescript-eslint/no-unused-vars", "func-style", "no-empty-function", "@typescript-eslint/explicit-function-return-type", "@typescript-eslint/no-empty-function"],
+		ignore: [
+			"no-var",
+			"no-unused-vars",
+			"@typescript-eslint/no-unused-vars",
+			"func-style",
+			"no-empty-function",
+			"@typescript-eslint/explicit-function-return-type",
+			"@typescript-eslint/no-empty-function"
+		],
 		compatible: ["commonjs", "legacy", "typescript"]
 	},
 	function_untyped: {
