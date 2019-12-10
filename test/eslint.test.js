@@ -131,11 +131,11 @@ function runTest(configId){
 			expected: [],
 			ignored: ['strict']
 		},
-		'line_240.js': {
-			expected: [],
+		'line_150.js': {
+			expected: ['max-len'],
 			ignored: ['strict']
 		},
-		'line_300.js': {
+		'line_240.js': {
 			expected: ['max-len'],
 			ignored: ['strict']
 		},
@@ -552,6 +552,35 @@ function runTest(configId){
 		'require_destructure_import.js': {
 			expected: ['fatal'],
 			ignored: []
+		},
+
+		'object_no_props.js': {
+			expected: [],
+			ignored: ['no-var', 'no-unused-vars', '@typescript-eslint/no-unused-vars']
+		},
+		'object_few_props_mixed_lines.js': {
+			expected: [],
+			ignored: ['no-var', 'no-unused-vars', '@typescript-eslint/no-unused-vars']
+		},
+		'object_few_props_one_per_line.js': {
+			expected: [],
+			ignored: ['no-var', 'no-unused-vars', '@typescript-eslint/no-unused-vars']
+		},
+		'object_few_props_single_line.js': {
+			expected: [],
+			ignored: ['no-var', 'no-unused-vars', '@typescript-eslint/no-unused-vars', 'max-len']
+		},
+		'object_many_props_mixed_lines.js': {
+			expected: [],
+			ignored: ['no-var', 'no-unused-vars', '@typescript-eslint/no-unused-vars']
+		},
+		'object_many_props_one_per_line.js': {
+			expected: [],
+			ignored: ['no-var', 'no-unused-vars', '@typescript-eslint/no-unused-vars']
+		},
+		'object_many_props_single_line.js': {
+			expected: [],
+			ignored: ['no-var', 'no-unused-vars', '@typescript-eslint/no-unused-vars', 'max-len']
 		}
 	};
 

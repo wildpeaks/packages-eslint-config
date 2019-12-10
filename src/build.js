@@ -249,7 +249,7 @@ function getEslintSettings({commonjs, es2017, esmodules, typescript}){
 			'lines-around-comment': 'off',
 			'lines-between-class-members': 'off',
 			'max-depth': ['error', {max: 8}],
-			'max-len': [1, 240, 4, {ignoreComments: true, ignoreUrls: true}],
+			'max-len': [1, 120, 4, {ignoreComments: true, ignoreUrls: true}],
 			'max-lines': [0],
 			'max-nested-callbacks': ['error', 5],
 			'max-params': ['error', 10],
