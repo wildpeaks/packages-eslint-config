@@ -1,7 +1,7 @@
 class BaseClass {}
 
 class MyClass extends BaseClass {
-	mymethod(){
+	mymethod() {
 		return 123;
 	}
 }

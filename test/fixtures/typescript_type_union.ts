@@ -1,1 +1,1 @@
-type MyTypeUnion = 'hello' | 'world' | 123;
+type MyTypeUnion = "hello" | "world" | 123;

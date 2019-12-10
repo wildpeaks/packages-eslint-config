@@ -1,6 +1,6 @@
 /* global console */
-'use strict';
+"use strict";
 
-function MyClass(){
+function MyClass() {
 	console.log(this.hello);
 }

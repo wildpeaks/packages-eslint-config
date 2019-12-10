@@ -1,8 +1,8 @@
 /* global console */
-'use strict';
+"use strict";
 
 class MyClass {
-	mymethod(){
+	mymethod() {
 		console.log(this.hello);
 	}
 }

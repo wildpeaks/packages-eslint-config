@@ -1,1 +1,1 @@
-import {MyClass} = require('mymodule');
+import {MyClass} = require("mymodule");

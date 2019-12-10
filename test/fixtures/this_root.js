@@ -1,4 +1,4 @@
 /* global console */
-'use strict';
+"use strict";
 
 console.log(this.hello);

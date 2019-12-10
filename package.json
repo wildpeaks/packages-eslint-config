@@ -1,15 +1,23 @@
 {
   "private": true,
   "name": "eslint-config",
-  "version": "7.3.0",
+  "version": "8.0.0-alpha1",
   "description": "Eslint configs generator",
   "main": "src/configs.js",
+  "prettier": {
+    "printWidth": 120,
+    "tabWidth": 4,
+    "useTabs": true,
+    "bracketSpacing": false
+  },
   "scripts": {
     "build:reset": "rimraf packages",
     "build:packages": "mocha --exit src/build.js",
     "build": "npm run build:reset && npm run build:packages",
-    "test:mocha": "mocha --exit test/configs.tests.js",
-    "test": "npm run build && npm run test:mocha"
+    "test:lint": "mocha --exit test/lint.test.js",
+    "test:eslint": "mocha --exit test/eslint.test.js",
+    "test:prettier": "mocha --exit test/prettier.test.js",
+    "test": "npm run build && npm run test:lint && npm run test:eslint && npm run test:prettier"
   },
   "repository": "https://github.com/wildpeaks/packages-eslint-config",
   "keywords": [
@@ -26,7 +34,9 @@
     "@typescript-eslint/eslint-plugin": "2.10.0",
     "@typescript-eslint/parser": "2.10.0",
     "eslint": "6.7.2",
+    "fs-extra": "8.1.0",
     "mocha": "6.2.2",
+    "prettier": "1.19.1",
     "rimraf": "3.0.0",
     "typescript": "3.7.3"
   }

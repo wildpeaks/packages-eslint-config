@@ -1,3 +1,3 @@
-async function myfunc(mypromise){
+async function myfunc(mypromise) {
 	await mypromise;
 }
