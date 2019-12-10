@@ -268,6 +268,15 @@ function runTest(configId){
 			ignored: ['strict', 'no-implicit-globals', 'no-unused-vars', '@typescript-eslint/no-unused-vars', 'no-var']
 		},
 
+		'quotes_property_mixed_single.js': {
+			expected: ['quotes'],
+			ignored: ['strict', 'no-implicit-globals', 'no-unused-vars', '@typescript-eslint/no-unused-vars', 'no-var']
+		},
+		'quotes_property_mixed_double.js': {
+			expected: [],
+			ignored: ['strict', 'no-implicit-globals', 'no-unused-vars', '@typescript-eslint/no-unused-vars', 'no-var']
+		},
+
 		'quotes_concatenate_number_number.js': {
 			expected: [],
 			ignored: ['strict', 'no-implicit-globals', 'no-unused-vars', '@typescript-eslint/no-unused-vars', 'no-var']
