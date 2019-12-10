@@ -225,35 +225,20 @@ function runTest(configId){
 			ignored: ['strict', 'no-unused-vars', '@typescript-eslint/no-unused-vars', 'no-implicit-globals']
 		},
 
-		'quotes_property_inconsistent_single.js': {
-			expected: ['quotes', 'quote-props'],
-			ignored: ['strict', 'no-implicit-globals', 'no-unused-vars', '@typescript-eslint/no-unused-vars', 'no-var']
-		},
-		'quotes_property_consistent_single.js': {
+		'quotes_single.js': {
 			expected: ['quotes'],
 			ignored: ['strict', 'no-implicit-globals', 'no-unused-vars', '@typescript-eslint/no-unused-vars', 'no-var']
 		},
-		'quotes_property_inconsistent_double.js': {
-			expected: ['quote-props'],
-			ignored: ['strict', 'no-implicit-globals', 'no-unused-vars', '@typescript-eslint/no-unused-vars', 'no-var']
-		},
-		'quotes_property_consistent_double.js': {
+		'quotes_double.js': {
 			expected: [],
-			ignored: ['strict', 'no-implicit-globals', 'no-unused-vars', '@typescript-eslint/no-unused-vars', 'no-var']
-		},
-		'quotes_property_backtick.js': {
-			expected: ['fatal'],
-			ignored: ['strict', 'no-implicit-globals', 'no-unused-vars', '@typescript-eslint/no-unused-vars', 'no-var']
-		},
-		'quotes_property_single.js': {
-			expected: ['quotes'],
 			ignored: ['strict', 'no-implicit-globals', 'no-unused-vars', '@typescript-eslint/no-unused-vars', 'no-var']
 		},
 		'quotes_backtick.js': {
 			expected: es2017 ? [] : ['fatal'],
 			ignored: ['strict', 'no-implicit-globals', 'no-unused-vars', '@typescript-eslint/no-unused-vars', 'no-var']
 		},
-		'quotes_single.js': {
+
+		'quotes_property_single.js': {
 			expected: ['quotes'],
 			ignored: ['strict', 'no-implicit-globals', 'no-unused-vars', '@typescript-eslint/no-unused-vars', 'no-var']
 		},
@@ -261,8 +246,25 @@ function runTest(configId){
 			expected: [],
 			ignored: ['strict', 'no-implicit-globals', 'no-unused-vars', '@typescript-eslint/no-unused-vars', 'no-var']
 		},
-		'quotes_double.js': {
+		'quotes_property_backtick.js': {
+			expected: ['fatal'],
+			ignored: ['strict', 'no-implicit-globals', 'no-unused-vars', '@typescript-eslint/no-unused-vars', 'no-var']
+		},
+
+		'quotes_property_inconsistent_single.js': {
+			expected: ['quotes'],
+			ignored: ['strict', 'no-implicit-globals', 'no-unused-vars', '@typescript-eslint/no-unused-vars', 'no-var']
+		},
+		'quotes_property_consistent_single.js': {
+			expected: ['quotes', 'quote-props'],
+			ignored: ['strict', 'no-implicit-globals', 'no-unused-vars', '@typescript-eslint/no-unused-vars', 'no-var']
+		},
+		'quotes_property_inconsistent_double.js': {
 			expected: [],
+			ignored: ['strict', 'no-implicit-globals', 'no-unused-vars', '@typescript-eslint/no-unused-vars', 'no-var']
+		},
+		'quotes_property_consistent_double.js': {
+			expected: ['quote-props'],
 			ignored: ['strict', 'no-implicit-globals', 'no-unused-vars', '@typescript-eslint/no-unused-vars', 'no-var']
 		},
 
