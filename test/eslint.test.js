@@ -593,6 +593,10 @@ function runTest(configId){
 			expected: [],
 			ignored: ['no-var', 'no-unused-vars', '@typescript-eslint/no-unused-vars', 'max-len']
 		},
+		'object_props_numbers.js': {
+			expected: [],
+			ignored: ['no-var', 'no-unused-vars', '@typescript-eslint/no-unused-vars']
+		},
 
 		'function_param_per_line_with_space.js': {
 			expected: [],
