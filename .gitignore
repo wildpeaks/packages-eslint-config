@@ -22,3 +22,4 @@
 # Exclude
 .DS_Store
 Thumbs.db
+/test/tmp

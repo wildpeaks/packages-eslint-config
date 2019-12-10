@@ -10,29 +10,64 @@ const pkg = require("../package.json");
 const tmpFolder = join(__dirname, "tmp");
 const fixturesFolder = join(__dirname, "fixtures-prettier");
 const fixtures = {
-	"import": {
+	import: {
 		ext: "ts",
 		ignore: ["@typescript-eslint/no-unused-vars"],
 		compatible: ["typescript"]
 	},
-	"typed_function": {
-		ext: "ts",
-		ignore: ["@typescript-eslint/no-unused-vars"],
-		compatible: ["typescript"]
-	},
-	"untyped_function": {
-		ext: "js",
-		ignore: ["no-unused-vars"],
-		compatible: ["commonjs", "legacy"]
-	},
-	"require": {
+	require: {
 		ext: "js",
 		ignore: ["no-unused-vars"],
 		compatible: ["commonjs"]
 	},
-	"object_props": {
+	untyped_function: {
 		ext: "js",
-		ignore: ['no-var', 'no-unused-vars', '@typescript-eslint/no-unused-vars'],
+		ignore: ["no-unused-vars"],
+		compatible: ["commonjs", "legacy"]
+	},
+	typed_function: {
+		ext: "ts",
+		ignore: ["@typescript-eslint/no-unused-vars"],
+		compatible: ["typescript"]
+	},
+	class: {
+		ext: "ts",
+		ignore: ["@typescript-eslint/no-unused-vars", "@typescript-eslint/explicit-member-accessibility"],
+		compatible: ["typescript"]
+	},
+	prop_newlines: {
+		ext: "js",
+		ignore: ["no-var", "no-unused-vars", "@typescript-eslint/no-unused-vars"],
+		compatible: ["commonjs", "legacy", "typescript"]
+	},
+	prop_quotes_1: {
+		ext: "js",
+		ignore: ["no-var", "no-unused-vars", "@typescript-eslint/no-unused-vars"],
+		compatible: ["commonjs", "legacy", "typescript"]
+	},
+	prop_quotes_2: {
+		ext: "js",
+		ignore: ["no-var", "no-unused-vars", "@typescript-eslint/no-unused-vars"],
+		compatible: ["commonjs", "legacy", "typescript"]
+	},
+	prop_quotes_3: {
+		ext: "js",
+		ignore: ["no-var", "no-unused-vars", "@typescript-eslint/no-unused-vars"],
+		compatible: ["commonjs", "legacy", "typescript"]
+	},
+	prop_quotes_4: {
+		ext: "js",
+		ignore: ["no-var", "no-unused-vars", "@typescript-eslint/no-unused-vars"],
+		compatible: ["commonjs", "legacy", "typescript"]
+	},
+	prop_quotes_5: {
+		ext: "js",
+		ignore: ["no-var", "no-unused-vars", "@typescript-eslint/no-unused-vars"],
+		compatible: ["commonjs", "legacy", "typescript"]
+	},
+	prop_quotes_6: {
+		ext: "js",
+		ignore: ["no-var", "no-unused-vars", "@typescript-eslint/no-unused-vars"],
 		compatible: ["commonjs", "legacy", "typescript"]
 	}
 };
@@ -62,7 +97,7 @@ function runTest(fixtureId) {
 		// TODO check files before
 		//
 		const filepath = join(tmpFolder, `fake.${ext}`);
-		writeFileSync(filepath, actual, 'utf8');
+		writeFileSync(filepath, actual, "utf8");
 		const report = engine.executeOnFiles([tmpFolder]);
 		unlinkSync(filepath);
 		//
@@ -84,10 +119,10 @@ function runTest(fixtureId) {
 	}
 }
 
-before('Before', function(){
-	try{
+before("Before", function() {
+	try {
 		mkdirSync(tmpFolder);
-	} catch(e){}
+	} catch (e) {}
 });
 describe("Prettier", function() {
 	this.slow(8000);
