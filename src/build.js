@@ -289,7 +289,7 @@ function getEslintSettings({commonjs, es2017, esmodules, typescript}){
 			'operator-linebreak': ['error', 'before'],
 			'padded-blocks': 'off', // Not specific enough: I'd want 0 or 1 at the beginning, 0 at the end, 1 or 2 before multiline comments
 			'padding-line-between-statements': 'off',
-			'quote-props': ['error', 'consistent-as-needed'],
+			'quote-props': ['error', 'as-needed'],
 			'quotes': [2, 'double', {avoidEscape: true, allowTemplateLiterals: true}],
 			'require-jsdoc': 'off',
 			'semi': ['error', 'always'],
