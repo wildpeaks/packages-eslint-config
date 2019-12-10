@@ -10,50 +10,30 @@ const pkg = require("../package.json");
 const tmpFolder = join(__dirname, "tmp");
 const fixturesFolder = join(__dirname, "fixtures-prettier");
 const fixtures = {
-	"ts-import-from-few": {
+	"import": {
 		ext: "ts",
 		ignore: ["@typescript-eslint/no-unused-vars"],
 		compatible: ["typescript"]
 	},
-	"ts-import-from-many": {
+	"typed_function": {
 		ext: "ts",
 		ignore: ["@typescript-eslint/no-unused-vars"],
 		compatible: ["typescript"]
 	},
-	"ts-function-no-params": {
-		ext: "ts",
-		ignore: ["@typescript-eslint/no-unused-vars"],
-		compatible: ["typescript"]
-	},
-	"ts-function-few-params": {
-		ext: "ts",
-		ignore: ["@typescript-eslint/no-unused-vars"],
-		compatible: ["typescript"]
-	},
-	"ts-function-many-params": {
-		ext: "ts",
-		ignore: ["@typescript-eslint/no-unused-vars"],
-		compatible: ["typescript"]
-	},
-	"js-function-no-params": {
+	"untyped_function": {
 		ext: "js",
 		ignore: ["no-unused-vars"],
 		compatible: ["commonjs", "legacy"]
 	},
-	"js-function-few-params": {
-		ext: "js",
-		ignore: ["no-unused-vars"],
-		compatible: ["commonjs", "legacy"]
-	},
-	"js-function-many-params": {
-		ext: "js",
-		ignore: ["no-unused-vars"],
-		compatible: ["commonjs", "legacy"]
-	},
-	"js-require-from-few": {
+	"require": {
 		ext: "js",
 		ignore: ["no-unused-vars"],
 		compatible: ["commonjs"]
+	},
+	"object_props": {
+		ext: "js",
+		ignore: ['no-var', 'no-unused-vars', '@typescript-eslint/no-unused-vars'],
+		compatible: ["commonjs", "legacy", "typescript"]
 	}
 };
 
