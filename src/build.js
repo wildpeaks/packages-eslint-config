@@ -252,7 +252,7 @@ function getEslintSettings({commonjs, es2017, esmodules, typescript}) {
 
 			"jsx-quotes": ["error", "prefer-double"],
 			"key-spacing": ["error", {beforeColon: false, afterColon: true}],
-			"line-comment-position": "off",
+			"line-comment-position": ["error", {position: "above", applyDefaultIgnorePatterns: false}],
 			"keyword-spacing": "off",
 			"linebreak-style": ["error", "unix"],
 			"lines-around-comment": "off",

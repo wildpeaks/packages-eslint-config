@@ -385,9 +385,9 @@ function runTest(configId) {
 
 		// @warning Cannot enable this test because it acts differently in CLI mode and in Node API mode:
 		// https://github.com/zaggino/brackets-eslint/issues/51
-		// 'promise.js': {
-		// 	expected: es2017 ? [] : ['no-undef'],
-		// 	ignored: ['strict']
+		// "promise.js": {
+		// 	expected: es2017 ? [] : ["no-undef"],
+		// 	ignored: ["strict"]
 		// },
 
 		"jsx_without_require.jsx": {
@@ -940,6 +940,53 @@ function runTest(configId) {
 				"@typescript-eslint/no-unused-vars",
 				"@typescript-eslint/explicit-function-return-type"
 			]
+		},
+
+		"comment_eslint_line_before.js": {
+			expected: ["no-warning-comments"],
+			ignored: ["fake", "no-undef"]
+		},
+		"comment_eslint_line_end.js": {
+			expected: ["no-warning-comments", "line-comment-position"],
+			ignored: ["fake", "no-undef"]
+		},
+		"comment_eslint_line_after.js": {
+			expected: ["no-warning-comments"],
+			ignored: ["fake", "no-undef"]
+		},
+
+		"comment_line_before.js": {
+			expected: [],
+			ignored: ["fake", "no-undef"]
+		},
+		"comment_line_end.js": {
+			expected: ["line-comment-position"],
+			ignored: ["fake", "no-undef"]
+		},
+		"comment_line_after.js": {
+			expected: [],
+			ignored: ["fake", "no-undef"]
+		},
+
+		"comment_this_before.js": {
+			expected: [],
+			ignored: ["no-invalid-this", "fake", "no-undef"]
+		},
+		"comment_this_start.js": {
+			expected: [],
+			ignored: ["no-invalid-this", "fake", "no-undef"]
+		},
+		"comment_this_between.js": {
+			expected: [],
+			ignored: ["no-invalid-this", "fake", "no-undef"]
+		},
+		"comment_this_end.js": {
+			expected: [],
+			ignored: ["no-invalid-this", "fake", "no-undef", "block-spacing"]
+		},
+		"comment_this_after.js": {
+			expected: [],
+			ignored: ["no-invalid-this", "fake", "no-undef"]
 		}
 	};
 
@@ -960,9 +1007,9 @@ function runTest(configId) {
 	const actual = {};
 	report.results.forEach(result => {
 		const rules = {};
-		// console.log('-----------------------------------------------');
+		// console.log("-----------------------------------------------");
 		// console.log(result.messages);
-		// console.log('-----------------------------------------------');
+		// console.log("-----------------------------------------------");
 		result.messages.forEach(message => {
 			if (message.fatal) {
 				rules.fatal = message.message;
