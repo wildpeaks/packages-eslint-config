@@ -166,7 +166,7 @@ function getEslintSettings({commonjs, es2017, esmodules, typescript}) {
 			"no-warning-comments": [
 				"warn",
 				{
-					terms: ["todo", "todelete", "uncomment"],
+					terms: ["todo", "todelete", "uncomment", "eslint-disable-line"],
 					location: "anywhere"
 				}
 			],
