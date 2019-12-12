@@ -20,6 +20,17 @@ const fixtures = {
 		ignore: ["no-unused-vars"],
 		compatible: ["commonjs"]
 	},
+	condition: {
+		ext: "js",
+		ignore: [
+			"no-var",
+			"no-unused-vars",
+			"@typescript-eslint/no-unused-vars",
+			"no-constant-condition",
+			"no-undef"
+		],
+		compatible: ["commonjs", "legacy", "typescript"]
+	},
 	function_variable: {
 		ext: "js",
 		ignore: [
