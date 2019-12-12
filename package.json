@@ -1,11 +1,11 @@
 {
   "private": true,
   "name": "eslint-config",
-  "version": "8.0.0-alpha2",
+  "version": "8.0.0-alpha3",
   "description": "Eslint configs generator",
   "main": "src/configs.js",
   "prettier": {
-    "printWidth": 120,
+    "printWidth": 180,
     "tabWidth": 4,
     "useTabs": true,
     "bracketSpacing": false
@@ -38,6 +38,6 @@
     "mocha": "6.2.2",
     "prettier": "1.19.1",
     "rimraf": "3.0.0",
-    "typescript": "3.7.3"
+    "typescript": "3.7.2"
   }
 }
