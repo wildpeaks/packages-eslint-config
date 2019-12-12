@@ -987,7 +987,23 @@ function runTest(configId) {
 		"comment_this_after.js": {
 			expected: [],
 			ignored: ["no-invalid-this", "fake", "no-undef"]
+		},
+
+		"if_space_before.js": {
+			expected: ["space-before-blocks"],
+			ignored: ["no-undef", "no-var", "no-unused-vars", "@typescript-eslint/no-unused-vars"]
+		},
+		"if_space_after.js": {
+			expected: ["keyword-spacing"],
+			ignored: ["no-undef","no-var", "no-unused-vars", "@typescript-eslint/no-unused-vars"]
+		},
+		"if_space_before_after.js": {
+			expected: [],
+			ignored: ["no-undef","no-var", "no-unused-vars", "@typescript-eslint/no-unused-vars"]
 		}
+		//
+		// TODO "else" spaces fixtures
+		//
 	};
 
 	const settings = require(`../packages/${configId}`); // eslint-disable-line global-require
