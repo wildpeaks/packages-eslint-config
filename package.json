@@ -1,11 +1,11 @@
 {
   "private": true,
   "name": "eslint-config",
-  "version": "8.0.0-alpha3",
+  "version": "8.0.0-alpha4",
   "description": "Eslint configs generator",
   "main": "src/configs.js",
   "prettier": {
-    "printWidth": 180,
+    "printWidth": 120,
     "tabWidth": 4,
     "useTabs": true,
     "bracketSpacing": false

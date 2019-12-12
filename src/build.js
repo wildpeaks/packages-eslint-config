@@ -253,7 +253,7 @@ function getEslintSettings({commonjs, es2017, esmodules, typescript}) {
 			"jsx-quotes": ["error", "prefer-double"],
 			"key-spacing": ["error", {beforeColon: false, afterColon: true}],
 			"line-comment-position": ["error", {position: "above", applyDefaultIgnorePatterns: false}],
-			"keyword-spacing": "off",
+			"keyword-spacing": ["error", {before: true, after: true}],
 			"linebreak-style": ["error", "unix"],
 			"lines-around-comment": "off",
 			"lines-between-class-members": "off",
@@ -307,14 +307,7 @@ function getEslintSettings({commonjs, es2017, esmodules, typescript}) {
 			"semi-style": ["error", "last"],
 			"sort-keys": "off",
 			"sort-vars": "off",
-			"space-before-blocks": [
-				"error",
-				{
-					functions: "always",
-					keywords: "never",
-					classes: "always"
-				}
-			],
+			"space-before-blocks": ["error", "always"],
 			"space-before-function-paren": ["error", "never"],
 			"space-in-parens": ["error", "never"],
 			"space-infix-ops": "error",
