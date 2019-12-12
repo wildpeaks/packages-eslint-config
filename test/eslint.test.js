@@ -311,7 +311,7 @@ function runTest(configId) {
 			ignored: ["strict"]
 		},
 		"line_150.js": {
-			expected: ["max-len"],
+			expected: [],
 			ignored: ["strict"]
 		},
 		"line_240.js": {
