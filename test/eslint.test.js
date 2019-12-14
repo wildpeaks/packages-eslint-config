@@ -399,9 +399,17 @@ function runTest(configId) {
 			ignored: ["strict"]
 		},
 
-		"await.js": {
+		"async_function.js": {
 			expected: typescript ? ["@typescript-eslint/explicit-function-return-type"] : es2017 ? [] : ["fatal"],
 			ignored: ["strict", "no-unused-vars", "@typescript-eslint/no-unused-vars", "no-implicit-globals"]
+		},
+		"async_arrow_without_space.js": {
+			expected: es2017 ? ["space-before-function-paren"] : ["fatal"],
+			ignored: ["strict", "no-unused-vars", "@typescript-eslint/no-unused-vars", "no-implicit-globals", "require-await", "no-undef"]
+		},
+		"async_arrow_with_space.js": {
+			expected: es2017 ? [] : ["fatal"],
+			ignored: ["strict", "no-unused-vars", "@typescript-eslint/no-unused-vars", "no-implicit-globals", "require-await", "no-undef"]
 		},
 
 		"quotes_single.js": {
@@ -1001,9 +1009,6 @@ function runTest(configId) {
 			expected: [],
 			ignored: ["no-undef","no-var", "no-unused-vars", "@typescript-eslint/no-unused-vars"]
 		}
-		//
-		// TODO "else" spaces fixtures
-		//
 	};
 
 	const settings = require(`../packages/${configId}`); // eslint-disable-line global-require
