@@ -29,7 +29,7 @@ const fixtures = {
 			"no-constant-condition",
 			"no-undef"
 		],
-		compatible: ["commonjs", "legacy", "typescript"]
+		compatible: ["legacy", "commonjs", "typescript"]
 	},
 	function_variable: {
 		ext: "js",
@@ -42,7 +42,7 @@ const fixtures = {
 			"@typescript-eslint/explicit-function-return-type",
 			"@typescript-eslint/no-empty-function"
 		],
-		compatible: ["commonjs", "legacy", "typescript"]
+		compatible: ["legacy", "commonjs", "typescript"]
 	},
 	function_untyped: {
 		ext: "js",
@@ -62,42 +62,52 @@ const fixtures = {
 	prop_newlines: {
 		ext: "js",
 		ignore: ["no-var", "no-unused-vars", "@typescript-eslint/no-unused-vars"],
-		compatible: ["commonjs", "legacy", "typescript"]
+		compatible: ["legacy", "commonjs", "typescript"]
 	},
 	prop_quotes_1: {
 		ext: "js",
 		ignore: ["no-var", "no-unused-vars", "@typescript-eslint/no-unused-vars"],
-		compatible: ["commonjs", "legacy", "typescript"]
+		compatible: ["legacy", "commonjs", "typescript"]
 	},
 	prop_quotes_2: {
 		ext: "js",
 		ignore: ["no-var", "no-unused-vars", "@typescript-eslint/no-unused-vars"],
-		compatible: ["commonjs", "legacy", "typescript"]
+		compatible: ["legacy", "commonjs", "typescript"]
 	},
 	prop_quotes_3: {
 		ext: "js",
 		ignore: ["no-var", "no-unused-vars", "@typescript-eslint/no-unused-vars"],
-		compatible: ["commonjs", "legacy", "typescript"]
+		compatible: ["legacy", "commonjs", "typescript"]
 	},
 	prop_quotes_4: {
 		ext: "js",
 		ignore: ["no-var", "no-unused-vars", "@typescript-eslint/no-unused-vars"],
-		compatible: ["commonjs", "legacy", "typescript"]
+		compatible: ["legacy", "commonjs", "typescript"]
 	},
 	prop_quotes_5: {
 		ext: "js",
 		ignore: ["no-var", "no-unused-vars", "@typescript-eslint/no-unused-vars"],
-		compatible: ["commonjs", "legacy", "typescript"]
+		compatible: ["legacy", "commonjs", "typescript"]
 	},
 	prop_quotes_6: {
 		ext: "js",
 		ignore: ["no-var", "no-unused-vars", "@typescript-eslint/no-unused-vars"],
-		compatible: ["commonjs", "legacy", "typescript"]
+		compatible: ["legacy", "commonjs", "typescript"]
 	},
 	prop_quotes_7: {
 		ext: "js",
 		ignore: ["no-var", "no-unused-vars", "@typescript-eslint/no-unused-vars"],
-		compatible: ["commonjs", "legacy", "typescript"]
+		compatible: ["legacy", "commonjs", "typescript"]
+	},
+	async_js: {
+		ext: "js",
+		ignore: ["require-await", "no-var", "no-unused-vars", "@typescript-eslint/no-unused-vars", "@typescript-eslint/explicit-function-return-type"],
+		compatible: ["commonjs", "typescript"]
+	},
+	async_ts: {
+		ext: "ts",
+		ignore: ["require-await", "@typescript-eslint/no-unused-vars", "@typescript-eslint/explicit-function-return-type"],
+		compatible: ["typescript"]
 	}
 };
 
