@@ -308,7 +308,11 @@ function getEslintSettings({commonjs, es2017, esmodules, typescript}) {
 			"sort-keys": "off",
 			"sort-vars": "off",
 			"space-before-blocks": ["error", "always"],
-			"space-before-function-paren": ["error", "never"],
+			"space-before-function-paren": ["error", {
+				"anonymous": "never",
+				"named": "never",
+				"asyncArrow": "always"
+			}],
 			"space-in-parens": ["error", "never"],
 			"space-infix-ops": "error",
 			"space-unary-ops": ["error", {words: true, nonwords: false}],
