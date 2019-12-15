@@ -1008,6 +1008,14 @@ function runTest(configId) {
 		"if_space_before_after.js": {
 			expected: [],
 			ignored: ["no-undef","no-var", "no-unused-vars", "@typescript-eslint/no-unused-vars"]
+		},
+		"operator_start.js": {
+			expected: ["operator-linebreak"],
+			ignored: ["no-undef"]
+		},
+		"operator_end.js": {
+			expected: [],
+			ignored: ["no-undef"]
 		}
 	};
 
