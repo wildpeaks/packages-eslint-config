@@ -108,6 +108,11 @@ const fixtures = {
 		ext: "ts",
 		ignore: ["require-await", "@typescript-eslint/no-unused-vars", "@typescript-eslint/explicit-function-return-type"],
 		compatible: ["typescript"]
+	},
+	operator_wrapping: {
+		ext: "js",
+		ignore: ["no-undef"],
+		compatible: ["legacy", "commonjs", "typescript"]
 	}
 };
 

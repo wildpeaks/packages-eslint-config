@@ -296,7 +296,7 @@ function getEslintSettings({commonjs, es2017, esmodules, typescript}) {
 			"one-var": ["error", "never"],
 			"one-var-declaration-per-line": ["error", "always"],
 			"operator-assignment": ["error", "always"],
-			"operator-linebreak": ["error", "before"],
+			"operator-linebreak": ["error", "after"],
 			"padded-blocks": "off", // Not specific enough: I'd want 0 or 1 at the beginning, 0 at the end, 1 or 2 before multiline comments
 			"padding-line-between-statements": "off",
 			"quote-props": ["error", "as-needed"], // I'd want to require quotes around numbers, but Prettier has no option for it
