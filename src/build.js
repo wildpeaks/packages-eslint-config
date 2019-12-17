@@ -396,7 +396,7 @@ function getEslintSettings({commonjs, es2017, esmodules, typescript}) {
 				},
 				singleline: {
 					delimiter: "semi",
-					requireLast: true
+					requireLast: false
 				}
 			}
 		];
