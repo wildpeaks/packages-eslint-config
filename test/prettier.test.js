@@ -22,13 +22,7 @@ const fixtures = {
 	},
 	condition: {
 		ext: "js",
-		ignore: [
-			"no-var",
-			"no-unused-vars",
-			"@typescript-eslint/no-unused-vars",
-			"no-constant-condition",
-			"no-undef"
-		],
+		ignore: ["no-var", "no-unused-vars", "@typescript-eslint/no-unused-vars", "no-constant-condition", "no-undef"],
 		compatible: ["legacy", "commonjs", "typescript"]
 	},
 	function_variable: {
@@ -101,12 +95,22 @@ const fixtures = {
 	},
 	async_js: {
 		ext: "js",
-		ignore: ["require-await", "no-var", "no-unused-vars", "@typescript-eslint/no-unused-vars", "@typescript-eslint/explicit-function-return-type"],
+		ignore: [
+			"require-await",
+			"no-var",
+			"no-unused-vars",
+			"@typescript-eslint/no-unused-vars",
+			"@typescript-eslint/explicit-function-return-type"
+		],
 		compatible: ["commonjs", "typescript"]
 	},
 	async_ts: {
 		ext: "ts",
-		ignore: ["require-await", "@typescript-eslint/no-unused-vars", "@typescript-eslint/explicit-function-return-type"],
+		ignore: [
+			"require-await",
+			"@typescript-eslint/no-unused-vars",
+			"@typescript-eslint/explicit-function-return-type"
+		],
 		compatible: ["typescript"]
 	},
 	operator_wrapping: {
@@ -137,16 +141,10 @@ function runTest(fixtureId) {
 	for (const configId of compatible) {
 		const engine = engines[configId];
 
-		//
-		// TODO check files before
-		//
 		const filepath = join(tmpFolder, `fake.${ext}`);
 		writeFileSync(filepath, actual, "utf8");
 		const report = engine.executeOnFiles([tmpFolder]);
 		unlinkSync(filepath);
-		//
-		// TODO check files after
-		//
 
 		const result = report.results[0];
 		const rules = {};
