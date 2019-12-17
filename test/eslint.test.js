@@ -1016,6 +1016,23 @@ function runTest(configId) {
 		"operator_end.js": {
 			expected: [],
 			ignored: ["no-undef"]
+		},
+
+		"typescript_type_single_line_commas_with_last.ts": {
+			expected: typescript ? ["@typescript-eslint/member-delimiter-style"] : ["fatal"],
+			ignored: ["no-undef", "comma-spacing"]
+		},
+		"typescript_type_single_line_commas_without_last.ts": {
+			expected: typescript ? ["@typescript-eslint/member-delimiter-style"] : ["fatal"],
+			ignored: ["no-undef", "comma-spacing"]
+		},
+		"typescript_type_single_line_semicolons_with_last.ts": {
+			expected: typescript ? ["@typescript-eslint/member-delimiter-style"] : ["fatal"],
+			ignored: ["no-undef"]
+		},
+		"typescript_type_single_line_semicolons_without_last.ts": {
+			expected: typescript ? [] : ["fatal"],
+			ignored: ["no-undef"]
 		}
 	};
 
