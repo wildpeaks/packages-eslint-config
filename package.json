@@ -3,13 +3,15 @@
   "name": "eslint-config",
   "version": "8.0.0-alpha7",
   "description": "Eslint configs generator",
-  "main": "src/configs.js",
+  "author": "Cecile Muller",
+  "license": "MIT",
   "prettier": {
     "printWidth": 120,
     "tabWidth": 4,
     "useTabs": true,
     "bracketSpacing": false
   },
+  "main": "src/configs.js",
   "scripts": {
     "build:reset": "rimraf packages",
     "build:packages": "mocha --exit src/build.js",
@@ -24,8 +26,6 @@
     "wildpeaks",
     "eslint"
   ],
-  "author": "Cecile Muller",
-  "license": "MIT",
   "bugs": {
     "url": "https://github.com/wildpeaks/packages-eslint-config/issues"
   },
