@@ -274,7 +274,7 @@ function getEslintSettings({commonjs, es2017, esmodules, typescript}) {
 			"no-continue": "error",
 			"no-inline-comments": "off",
 			"no-lonely-if": "error",
-			"no-mixed-operators": "error",
+			"no-mixed-operators": ["error", {"allowSamePrecedence": true}],
 			"no-mixed-spaces-and-tabs": "error",
 			"no-multi-assign": "error",
 			"no-multiple-empty-lines": ["error", {max: 2, maxEOF: 1, maxBOF: 1}],
