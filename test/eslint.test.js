@@ -1047,6 +1047,23 @@ function runTest(configId) {
 		"typescript_type_single_line_semicolons_without_last.ts": {
 			expected: typescript ? [] : ["fatal"],
 			ignored: ["no-undef"]
+		},
+
+		"mixed_operators_mixed_precedence_with_parens.js": {
+			expected: [],
+			ignored: ["no-undef", "no-var", "no-unused-vars", "@typescript-eslint/no-unused-vars"]
+		},
+		"mixed_operators_mixed_precedence_without_parens.js": {
+			expected: ["no-mixed-operators"],
+			ignored: ["no-undef", "no-var", "no-unused-vars", "@typescript-eslint/no-unused-vars"]
+		},
+		"mixed_operators_same_precedence_with_parens.js": {
+			expected: [],
+			ignored: ["no-undef", "no-var", "no-unused-vars", "@typescript-eslint/no-unused-vars"]
+		},
+		"mixed_operators_same_precedence_without_parens.js": {
+			expected: [],
+			ignored: ["no-undef", "no-var", "no-unused-vars", "@typescript-eslint/no-unused-vars"]
 		}
 	};
 
