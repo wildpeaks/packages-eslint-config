@@ -117,6 +117,14 @@ const fixtures = {
 		ext: "js",
 		ignore: ["no-undef"],
 		compatible: ["legacy", "commonjs", "typescript"]
+	},
+
+	// Prettier triggers "no-mixed-operators" when it mixes precedences levels unfortunately:
+	// https://github.com/wildpeaks/packages-eslint-config/issues/35#issuecomment-567107215
+	mixed_operators: {
+		ext: "js",
+		ignore: ["no-mixed-operators", "no-undef", "no-var", "no-unused-vars", "@typescript-eslint/no-unused-vars"],
+		compatible: ["legacy", "commonjs", "typescript"]
 	}
 };
 
