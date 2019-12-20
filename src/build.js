@@ -20,10 +20,7 @@ function getPackageJson(configId, {description, typescript}) {
 			url: "https://github.com/wildpeaks/packages-eslint-config/issues"
 		},
 		homepage: "https://github.com/wildpeaks/packages-eslint-config#readme",
-		dependencies: {},
-		peerDependencies: {
-			eslint: `>=${dependencies.eslint}`
-		}
+		dependencies: {}
 	};
 	if (typescript) {
 		for (const packageId of ["typescript", "@typescript-eslint/eslint-plugin", "@typescript-eslint/parser"]) {
