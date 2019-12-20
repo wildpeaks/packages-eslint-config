@@ -1,0 +1,9 @@
+{
+  "groups": {
+    "configs": {
+      "packages": [
+        "package.json"
+      ]
+    }
+  }
+}

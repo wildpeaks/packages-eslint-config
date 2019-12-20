@@ -18,11 +18,8 @@
 !/packages
 !/package.json
 !/tsconfig.json
-!/register.typescript.js
 !/azure-pipelines.yml
 !/greenkeeper.json
-!/wallaby.js
 
 # But make sure to ignore these regardless:
 WAS *
-/test/tmp
