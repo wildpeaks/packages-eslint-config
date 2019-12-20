@@ -2,14 +2,29 @@
   "private": true,
   "name": "eslint-config",
   "version": "8.0.0-alpha8",
-  "description": "Eslint configs generator",
   "author": "Cecile Muller",
   "license": "MIT",
+  "description": "Eslint configs generator",
+  "keywords": [
+    "wildpeaks",
+    "eslint"
+  ],
+  "homepage": "https://github.com/wildpeaks/packages-eslint-config#readme",
+  "repository": "https://github.com/wildpeaks/packages-eslint-config",
+  "bugs": {
+    "url": "https://github.com/wildpeaks/packages-eslint-config/issues"
+  },
   "prettier": {
     "printWidth": 120,
     "tabWidth": 4,
     "useTabs": true,
     "bracketSpacing": false
+  },
+  "greenkeeper": {
+    "commitMessages": {
+      "dependencyUpdate": "feat: update ${dependency}",
+      "devDependencyUpdate": "chore: update ${dependency}"
+    }
   },
   "main": "src/configs.js",
   "scripts": {
@@ -21,15 +36,6 @@
     "test:prettier": "mocha --exit test/prettier.test.js",
     "test": "npm run build && npm run test:lint && npm run test:eslint && npm run test:prettier"
   },
-  "repository": "https://github.com/wildpeaks/packages-eslint-config",
-  "keywords": [
-    "wildpeaks",
-    "eslint"
-  ],
-  "bugs": {
-    "url": "https://github.com/wildpeaks/packages-eslint-config/issues"
-  },
-  "homepage": "https://github.com/wildpeaks/packages-eslint-config#readme",
   "dependencies": {
     "@typescript-eslint/eslint-plugin": "2.12.0",
     "@typescript-eslint/parser": "2.12.0",
