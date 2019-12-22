@@ -2,9 +2,9 @@
   "private": true,
   "name": "eslint-config",
   "version": "8.0.0-alpha8",
+  "description": "Eslint configs generator",
   "author": "Cecile Muller",
   "license": "MIT",
-  "description": "Eslint configs generator",
   "keywords": [
     "wildpeaks",
     "eslint"
