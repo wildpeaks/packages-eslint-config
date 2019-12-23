@@ -1,25 +1,24 @@
-# Reset
+# Ignore everything by default:
 /*
 /*/
 
-# Include
+# But allow these files and folders:
+!/LICENSE
+!/README.md
 !/.editorconfig
-!/.eslintrc.json
 !/.gitattributes
 !/.gitignore
-!/.prettierignore
+!/.github
 !/.npmrc
-!/.travis.yml
+!/.prettierignore
 !/.vscode
-!/azure-pipelines.yml
-!/README.md
-!/packages
 !/src
 !/test
+!/packages
 !/package.json
 !/tsconfig.json
+!/azure-pipelines.yml
+!/greenkeeper.json
 
-# Exclude
-.DS_Store
-Thumbs.db
-/test/tmp
+# But make sure to ignore these regardless:
+WAS *

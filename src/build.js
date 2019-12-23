@@ -20,10 +20,7 @@ function getPackageJson(configId, {description, typescript}) {
 			url: "https://github.com/wildpeaks/packages-eslint-config/issues"
 		},
 		homepage: "https://github.com/wildpeaks/packages-eslint-config#readme",
-		dependencies: {},
-		peerDependencies: {
-			eslint: `>=${dependencies.eslint}`
-		}
+		dependencies: {}
 	};
 	if (typescript) {
 		for (const packageId of ["typescript", "@typescript-eslint/eslint-plugin", "@typescript-eslint/parser"]) {
@@ -274,7 +271,7 @@ function getEslintSettings({commonjs, es2017, esmodules, typescript}) {
 			"no-continue": "error",
 			"no-inline-comments": "off",
 			"no-lonely-if": "error",
-			"no-mixed-operators": "error",
+			"no-mixed-operators": ["error", {"allowSamePrecedence": true}],
 			"no-mixed-spaces-and-tabs": "error",
 			"no-multi-assign": "error",
 			"no-multiple-empty-lines": ["error", {max: 2, maxEOF: 1, maxBOF: 1}],

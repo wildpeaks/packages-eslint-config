@@ -405,11 +405,25 @@ function runTest(configId) {
 		},
 		"async_arrow_without_space.js": {
 			expected: es2017 ? ["space-before-function-paren"] : ["fatal"],
-			ignored: ["strict", "no-unused-vars", "@typescript-eslint/no-unused-vars", "no-implicit-globals", "require-await", "no-undef"]
+			ignored: [
+				"strict",
+				"no-unused-vars",
+				"@typescript-eslint/no-unused-vars",
+				"no-implicit-globals",
+				"require-await",
+				"no-undef"
+			]
 		},
 		"async_arrow_with_space.js": {
 			expected: es2017 ? [] : ["fatal"],
-			ignored: ["strict", "no-unused-vars", "@typescript-eslint/no-unused-vars", "no-implicit-globals", "require-await", "no-undef"]
+			ignored: [
+				"strict",
+				"no-unused-vars",
+				"@typescript-eslint/no-unused-vars",
+				"no-implicit-globals",
+				"require-await",
+				"no-undef"
+			]
 		},
 
 		"quotes_single.js": {
@@ -1003,11 +1017,11 @@ function runTest(configId) {
 		},
 		"if_space_after.js": {
 			expected: ["keyword-spacing"],
-			ignored: ["no-undef","no-var", "no-unused-vars", "@typescript-eslint/no-unused-vars"]
+			ignored: ["no-undef", "no-var", "no-unused-vars", "@typescript-eslint/no-unused-vars"]
 		},
 		"if_space_before_after.js": {
 			expected: [],
-			ignored: ["no-undef","no-var", "no-unused-vars", "@typescript-eslint/no-unused-vars"]
+			ignored: ["no-undef", "no-var", "no-unused-vars", "@typescript-eslint/no-unused-vars"]
 		},
 		"operator_start.js": {
 			expected: ["operator-linebreak"],
@@ -1033,6 +1047,23 @@ function runTest(configId) {
 		"typescript_type_single_line_semicolons_without_last.ts": {
 			expected: typescript ? [] : ["fatal"],
 			ignored: ["no-undef"]
+		},
+
+		"mixed_operators_mixed_precedence_with_parens.js": {
+			expected: [],
+			ignored: ["no-undef", "no-var", "no-unused-vars", "@typescript-eslint/no-unused-vars"]
+		},
+		"mixed_operators_mixed_precedence_without_parens.js": {
+			expected: ["no-mixed-operators"],
+			ignored: ["no-undef", "no-var", "no-unused-vars", "@typescript-eslint/no-unused-vars"]
+		},
+		"mixed_operators_same_precedence_with_parens.js": {
+			expected: [],
+			ignored: ["no-undef", "no-var", "no-unused-vars", "@typescript-eslint/no-unused-vars"]
+		},
+		"mixed_operators_same_precedence_without_parens.js": {
+			expected: [],
+			ignored: ["no-undef", "no-var", "no-unused-vars", "@typescript-eslint/no-unused-vars"]
 		}
 	};
 
