@@ -1,7 +1,7 @@
 {
   "private": true,
   "name": "eslint-config",
-  "version": "8.1.0",
+  "version": "8.2.0",
   "description": "Eslint configs generator",
   "author": "Cecile Muller",
   "license": "MIT",
@@ -37,9 +37,9 @@
     "test": "npm run build && npm run test:lint && npm run test:eslint && npm run test:prettier"
   },
   "dependencies": {
-    "@typescript-eslint/eslint-plugin": "2.19.2",
-    "@typescript-eslint/parser": "2.19.2",
-    "typescript": "3.7.5"
+    "@typescript-eslint/eslint-plugin": "2.20.0",
+    "@typescript-eslint/parser": "2.20.0",
+    "typescript": "3.8.2"
   },
   "devDependencies": {
     "eslint": "6.8.0",
