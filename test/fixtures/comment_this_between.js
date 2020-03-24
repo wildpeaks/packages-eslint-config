@@ -1,5 +1,5 @@
 "use strict";
 
-it("Example", /* @this */ function() {
+it("Example", /* @this */ function () {
 	this.timeout();
 });
