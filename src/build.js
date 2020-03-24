@@ -320,7 +320,7 @@ function getEslintSettings({commonjs, es2017, esmodules, typescript}) {
 			"wrap-regex": "off",
 
 			"arrow-body-style": es2017 ? ["error", "as-needed"] : "off",
-			"arrow-parens": es2017 ? ["error", "as-needed"] : "off",
+			"arrow-parens": es2017 ? ["error", "always"] : "off",
 			"arrow-spacing": es2017 ? ["error", {before: true, after: true}] : "off",
 			"constructor-super": es2017 ? "error" : "off",
 			"generator-star-spacing": es2017 ? ["error", {before: false, after: true}] : "off",
