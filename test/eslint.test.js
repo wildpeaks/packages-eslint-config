@@ -19,11 +19,11 @@ function runTest(configId) {
 		},
 
 		"arrow_function_single_param_without_parens.js": {
-			expected: es2017 ? [] : ["fatal"],
+			expected: es2017 ? ["arrow-parens"] : ["fatal"],
 			ignored: ["strict"]
 		},
 		"arrow_function_single_param_with_parens.js": {
-			expected: es2017 ? ["arrow-parens"] : ["fatal"],
+			expected: es2017 ? [] : ["fatal"],
 			ignored: ["strict"]
 		},
 		"arrow_function_multiple_params_without_type.js": {
