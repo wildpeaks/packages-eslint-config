@@ -15,6 +15,36 @@ const fixtures = {
 		ignore: ["@typescript-eslint/no-unused-vars"],
 		compatible: ["typescript"]
 	},
+	export_1: {
+		ext: "ts",
+		ignore: ["@typescript-eslint/no-unused-vars"],
+		compatible: ["typescript"]
+	},
+	export_2: {
+		ext: "ts",
+		ignore: ["@typescript-eslint/no-unused-vars"],
+		compatible: ["typescript"]
+	},
+	export_3: {
+		ext: "ts",
+		ignore: ["@typescript-eslint/no-unused-vars"],
+		compatible: ["typescript"]
+	},
+	export_4: {
+		ext: "ts",
+		ignore: ["@typescript-eslint/no-unused-vars"],
+		compatible: ["typescript"]
+	},
+	export_5: {
+		ext: "ts",
+		ignore: ["@typescript-eslint/no-unused-vars"],
+		compatible: ["typescript"]
+	},
+	export_6: {
+		ext: "ts",
+		ignore: ["@typescript-eslint/no-unused-vars"],
+		compatible: ["typescript"]
+	},
 	require: {
 		ext: "js",
 		ignore: ["no-unused-vars"],
