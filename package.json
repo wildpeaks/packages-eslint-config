@@ -21,12 +21,6 @@
     "bracketSpacing": false,
     "trailingComma": "none"
   },
-  "greenkeeper": {
-    "commitMessages": {
-      "dependencyUpdate": "feat: update ${dependency}",
-      "devDependencyUpdate": "chore: update ${dependency}"
-    }
-  },
   "main": "src/configs.js",
   "scripts": {
     "build:reset": "rimraf packages",
