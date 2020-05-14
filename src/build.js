@@ -216,7 +216,7 @@ function getEslintSettings({commonjs, es2017, esmodules, typescript}) {
 			"no-mixed-requires": "off",
 			"no-new-require": "off",
 			"no-path-concat": "off",
-			"no-process-env": "warn",
+			"no-process-env": "off",
 			"no-process-exit": "error",
 			"no-restricted-modules": "off",
 			"no-sync": "error",
