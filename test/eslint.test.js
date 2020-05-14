@@ -403,6 +403,10 @@ function runTest(configId) {
 			expected: typescript ? ["@typescript-eslint/explicit-function-return-type"] : es2017 ? [] : ["fatal"],
 			ignored: ["strict", "no-unused-vars", "@typescript-eslint/no-unused-vars", "no-implicit-globals"]
 		},
+		"await_in_loop.js": {
+			expected: es2017 ? ["no-await-in-loop"] : ["fatal"],
+			ignored: ["strict", "no-unused-vars", "no-undef", "@typescript-eslint/no-unused-vars", "@typescript-eslint/explicit-function-return-type"]
+		},
 		"async_arrow_without_space.js": {
 			expected: es2017 ? ["space-before-function-paren"] : ["fatal"],
 			ignored: [
