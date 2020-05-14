@@ -210,7 +210,7 @@ function getEslintSettings({commonjs, es2017, esmodules, typescript}) {
 			],
 
 			"callback-return": "off",
-			"global-require": "error",
+			"global-require": "off",
 			"handle-callback-err": "warn",
 			"no-buffer-constructor": "error",
 			"no-mixed-requires": "off",
