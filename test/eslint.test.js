@@ -1068,7 +1068,32 @@ function runTest(configId) {
 		"mixed_operators_same_precedence_without_parens.js": {
 			expected: [],
 			ignored: ["no-undef", "no-var", "no-unused-vars", "@typescript-eslint/no-unused-vars"]
-		}
+		},
+
+		"disable_right_rule_without_comment.js": {
+			expected: [],
+			ignored: []
+		},
+		"disable_right_rule_with_comment.js": {
+			expected: [],
+			ignored: []
+		},
+		"disable_multiple_rule_without_comment.js": {
+			expected: [],
+			ignored: []
+		},
+		"disable_multiple_rule_with_comment.js": {
+			expected: [],
+			ignored: []
+		},
+		"disable_wrong_rule_without_comment.js": {
+			expected: ["no-undef"],
+			ignored: []
+		},
+		"disable_wrong_rule_with_comment.js": {
+			expected: ["no-undef"],
+			ignored: []
+		},
 	};
 
 	const settings = require(`../packages/${configId}`); // eslint-disable-line global-require
