@@ -219,7 +219,7 @@ function getEslintSettings({commonjs, es2017, esmodules, typescript}) {
 			"no-process-env": "off",
 			"no-process-exit": "off",
 			"no-restricted-modules": "off",
-			"no-sync": "error",
+			"no-sync": "off",
 
 			"array-bracket-newline": ["error", "consistent"],
 			"array-bracket-spacing": ["error", "never"],
