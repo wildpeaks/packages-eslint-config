@@ -51,7 +51,7 @@ function getEslintSettings({commonjs, es2017, esmodules, typescript}) {
 		rules: {
 			"for-direction": "error",
 			"getter-return": "error",
-			"no-await-in-loop": es2017 ? "error" : "off",
+			"no-await-in-loop": "off",
 			"no-compare-neg-zero": "error",
 			"no-cond-assign": ["error", "always"],
 			"no-console": "off",
