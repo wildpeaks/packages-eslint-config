@@ -1,7 +1,7 @@
 {
   "private": true,
   "name": "eslint-config",
-  "version": "9.3.0",
+  "version": "10.0.0",
   "description": "Eslint configs generator",
   "author": "Cecile Muller",
   "license": "MIT",
@@ -37,7 +37,7 @@
     "typescript": "3.9.2"
   },
   "devDependencies": {
-    "eslint": "6.8.0",
+    "eslint": "7.0.0",
     "fs-extra": "9.0.0",
     "mocha": "7.1.2",
     "prettier": "2.0.5",

@@ -403,6 +403,10 @@ function runTest(configId) {
 			expected: typescript ? ["@typescript-eslint/explicit-function-return-type"] : es2017 ? [] : ["fatal"],
 			ignored: ["strict", "no-unused-vars", "@typescript-eslint/no-unused-vars", "no-implicit-globals"]
 		},
+		"await_in_loop.js": {
+			expected: es2017 ? [] : ["fatal"],
+			ignored: ["strict", "no-unused-vars", "no-undef", "@typescript-eslint/no-unused-vars", "@typescript-eslint/explicit-function-return-type"]
+		},
 		"async_arrow_without_space.js": {
 			expected: es2017 ? ["space-before-function-paren"] : ["fatal"],
 			ignored: [
@@ -1064,7 +1068,32 @@ function runTest(configId) {
 		"mixed_operators_same_precedence_without_parens.js": {
 			expected: [],
 			ignored: ["no-undef", "no-var", "no-unused-vars", "@typescript-eslint/no-unused-vars"]
-		}
+		},
+
+		"disable_right_rule_without_comment.js": {
+			expected: [],
+			ignored: []
+		},
+		"disable_right_rule_with_comment.js": {
+			expected: [],
+			ignored: []
+		},
+		"disable_multiple_rule_without_comment.js": {
+			expected: [],
+			ignored: []
+		},
+		"disable_multiple_rule_with_comment.js": {
+			expected: [],
+			ignored: []
+		},
+		"disable_wrong_rule_without_comment.js": {
+			expected: ["no-undef"],
+			ignored: []
+		},
+		"disable_wrong_rule_with_comment.js": {
+			expected: ["no-undef"],
+			ignored: []
+		},
 	};
 
 	const settings = require(`../packages/${configId}`); // eslint-disable-line global-require
