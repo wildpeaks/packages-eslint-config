@@ -822,7 +822,7 @@ function runTest(configId) {
 			ignored: ["strict", "dot-notation", "no-unused-vars", "@typescript-eslint/no-unused-vars", "no-var"]
 		},
 		"destructuring_assign_object_param_dot.js": {
-			expected: es2017 ? ["prefer-destructuring"] : [],
+			expected: [],
 			ignored: ["strict", "dot-notation", "no-unused-vars", "@typescript-eslint/no-unused-vars", "no-var"]
 		},
 		"destructuring_declare_object_param_bracket.js": {
@@ -830,7 +830,7 @@ function runTest(configId) {
 			ignored: ["strict", "dot-notation", "no-unused-vars", "@typescript-eslint/no-unused-vars", "no-var"]
 		},
 		"destructuring_assign_object_param_bracket.js": {
-			expected: es2017 ? ["prefer-destructuring"] : [],
+			expected: [],
 			ignored: ["strict", "dot-notation", "no-unused-vars", "@typescript-eslint/no-unused-vars", "no-var"]
 		},
 		"destructuring_declare_object_param_destructured.js": {
