@@ -339,7 +339,11 @@ function getEslintSettings({commonjs, es2017, esmodules, typescript}) {
 			"object-shorthand": es2017 ? "error" : "off",
 			"prefer-arrow-callback": es2017 ? "error" : "off",
 			"prefer-const": ["error", {destructuring: "all"}],
-			"prefer-destructuring": es2017 ? ["error", {array: false, object: true}] : "off",
+			"prefer-destructuring": es2017 ? ["error", {
+				VariableDeclarator: {array: false, object: true},
+				AssignmentExpression: {array: false, object: false}
+			}
+			] : "off",
 			"prefer-numeric-literals": es2017 ? "error" : "off",
 			"prefer-rest-params": es2017 ? "error" : "off",
 			"prefer-spread": "error",

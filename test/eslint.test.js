@@ -817,28 +817,52 @@ function runTest(configId) {
 			ignored: ["no-unused-vars", "@typescript-eslint/no-unused-vars"]
 		},
 
-		"object_param_dot.js": {
+		"destructuring_declare_object_param_dot.js": {
 			expected: es2017 ? ["prefer-destructuring"] : [],
 			ignored: ["strict", "dot-notation", "no-unused-vars", "@typescript-eslint/no-unused-vars", "no-var"]
 		},
-		"object_param_bracket.js": {
+		"destructuring_assign_object_param_dot.js": {
+			expected: [],
+			ignored: ["strict", "dot-notation", "no-unused-vars", "@typescript-eslint/no-unused-vars", "no-var"]
+		},
+		"destructuring_declare_object_param_bracket.js": {
 			expected: es2017 ? ["prefer-destructuring"] : [],
 			ignored: ["strict", "dot-notation", "no-unused-vars", "@typescript-eslint/no-unused-vars", "no-var"]
 		},
-		"object_param_destructured.js": {
+		"destructuring_assign_object_param_bracket.js": {
+			expected: [],
+			ignored: ["strict", "dot-notation", "no-unused-vars", "@typescript-eslint/no-unused-vars", "no-var"]
+		},
+		"destructuring_declare_object_param_destructured.js": {
 			expected: es2017 ? [] : ["fatal"],
 			ignored: ["strict", "no-unused-vars", "@typescript-eslint/no-unused-vars", "no-var"]
 		},
-		"array_value_index.js": {
+		"destructuring_assign_object_param_destructured.js": {
+			expected: es2017 ? [] : ["fatal"],
+			ignored: ["strict", "no-unused-vars", "@typescript-eslint/no-unused-vars", "no-var"]
+		},
+		"destructuring_declare_array_value_index.js": {
 			expected: [],
 			ignored: ["strict", "no-unused-vars", "@typescript-eslint/no-unused-vars", "no-var"]
 		},
-		"array_destructured_first.js": {
+		"destructuring_assign_array_value_index.js": {
+			expected: [],
+			ignored: ["strict", "no-unused-vars", "@typescript-eslint/no-unused-vars", "no-var"]
+		},
+		"destructuring_declare_array_destructured_first.js": {
 			expected: es2017 ? [] : ["fatal"],
 			ignored: ["strict", "no-unused-vars", "@typescript-eslint/no-unused-vars", "no-var"]
 		},
-		"array_destructured_second.js": {
+		"destructuring_assign_array_destructured_first.js": {
+			expected: [],
+			ignored: ["strict", "no-unused-vars", "@typescript-eslint/no-unused-vars", "no-var"]
+		},
+		"destructuring_declare_array_destructured_second.js": {
 			expected: es2017 ? [] : ["fatal"],
+			ignored: ["strict", "no-unused-vars", "@typescript-eslint/no-unused-vars", "no-var"]
+		},
+		"destructuring_assign_array_destructured_second.js": {
+			expected: [],
 			ignored: ["strict", "no-unused-vars", "@typescript-eslint/no-unused-vars", "no-var"]
 		},
 
