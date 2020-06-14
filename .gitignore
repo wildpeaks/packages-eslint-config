@@ -17,8 +17,6 @@
 !/packages
 !/package.json
 !/tsconfig.json
-!/azure-pipelines.yml
-!/greenkeeper.json
 
 # But make sure to ignore these regardless:
-WAS *
+OLD *
