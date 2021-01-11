@@ -1,19 +1,5 @@
 {
   "private": true,
-  "name": "eslint-config",
-  "version": "10.7.0",
-  "description": "Eslint configs generator",
-  "author": "Cecile Muller",
-  "license": "MIT",
-  "keywords": [
-    "wildpeaks",
-    "eslint"
-  ],
-  "homepage": "https://github.com/wildpeaks/packages-eslint-config#readme",
-  "repository": "https://github.com/wildpeaks/packages-eslint-config",
-  "bugs": {
-    "url": "https://github.com/wildpeaks/packages-eslint-config/issues"
-  },
   "prettier": {
     "printWidth": 120,
     "tabWidth": 4,
@@ -21,26 +7,21 @@
     "bracketSpacing": false,
     "trailingComma": "none"
   },
-  "main": "src/configs.js",
   "scripts": {
-    "build:reset": "rimraf packages",
-    "build:packages": "mocha --exit src/build.js",
-    "build": "npm run build:reset && npm run build:packages",
-    "test:lint": "mocha --exit test/lint.test.js",
-    "test:eslint": "mocha --exit test/eslint.test.js",
-    "test:prettier": "mocha --exit test/prettier.test.js",
-    "test": "npm run build && npm run test:lint && npm run test:eslint && npm run test:prettier"
+    "build": "mocha src/build.js --timeout 10000 --slow 5000",
+    "test:eslint": "mocha test/eslint/*.test.js --timeout 10000 --slow 5000",
+    "test:prettier": "mocha test/prettier/*.test.js --timeout 10000 --slow 5000",
+    "test": "npm run build && npm run test:eslint && npm run test:prettier"
   },
   "dependencies": {
-    "@typescript-eslint/eslint-plugin": "3.10.1",
-    "@typescript-eslint/parser": "3.10.1",
-    "typescript": "4.0.2"
+    "@typescript-eslint/eslint-plugin": "4.11.1",
+    "@typescript-eslint/parser": "4.11.1",
+    "eslint": "7.17.0",
+    "prettier": "2.2.1",
+    "typescript": "4.1.3"
   },
   "devDependencies": {
-    "eslint": "7.9.0",
     "fs-extra": "9.0.1",
-    "mocha": "8.1.3",
-    "prettier": "2.1.1",
-    "rimraf": "3.0.2"
+    "mocha": "8.2.1"
   }
 }
