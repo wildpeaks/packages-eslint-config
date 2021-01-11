@@ -1,1 +1,0 @@
-import {MyClass} = require("mymodule");

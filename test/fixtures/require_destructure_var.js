@@ -1,1 +1,0 @@
-var {MyClass} = require("mymodule");

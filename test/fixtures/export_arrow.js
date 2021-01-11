@@ -1,3 +1,0 @@
-export () => {
-	return Date.now();
-};
