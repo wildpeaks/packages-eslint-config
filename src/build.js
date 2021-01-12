@@ -3,7 +3,7 @@
 "use strict";
 const {strictEqual} = require("assert");
 const {join} = require("path");
-const {ensureDir, remove} = require("fs-extra");
+const {emptyDir} = require("fs-extra");
 const {writeFileSync, readFileSync} = require("fs");
 const pkg = require("../package.json");
 
@@ -1651,8 +1651,7 @@ describe("Legacy", function () {
 	const name = `@wildpeaks/eslint-config-${id}`;
 	const folder = join(process.cwd(), "packages", id);
 	before(async function () {
-		await remove(folder);
-		await ensureDir(folder);
+		await emptyDir(folder);
 	});
 	it("README.md", function () {
 		writeReadme({
@@ -1686,8 +1685,7 @@ describe("CommonJS", function () {
 	const name = `@wildpeaks/eslint-config-${id}`;
 	const folder = join(process.cwd(), "packages", id);
 	before(async function () {
-		await remove(folder);
-		await ensureDir(folder);
+		await emptyDir(folder);
 	});
 	it("README.md", function () {
 		writeReadme({
@@ -1728,8 +1726,7 @@ describe("Typescript", function () {
 	const name = `@wildpeaks/eslint-config-${id}`;
 	const folder = join(process.cwd(), "packages", id);
 	before(async function () {
-		await remove(folder);
-		await ensureDir(folder);
+		await emptyDir(folder);
 	});
 	it("README.md", function () {
 		writeReadme({
