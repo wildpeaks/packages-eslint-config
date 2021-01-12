@@ -1608,8 +1608,9 @@ function getRules(id) {
 	return simplified;
 }
 
-function writeReadme({folder, name, title, description}){
-	const data = readFileSync(join(__dirname, "template.readme.txt"), "utf8")
+function writeReadme({id, folder, name, title, description}){
+	const filename = (id === "typescript") ? "template.ts.txt" : "template.js.txt";
+	const data = readFileSync(join(__dirname, filename), "utf8")
 	.replace(/%%name%%/g, name)
 	.replace(/%%title%%/g, title)
 	.replace(/%%description%%/g, description);
@@ -1655,6 +1656,7 @@ describe("Legacy", function () {
 	});
 	it("README.md", function () {
 		writeReadme({
+			id,
 			folder,
 			name,
 			title: "Legacy",
@@ -1689,6 +1691,7 @@ describe("CommonJS", function () {
 	});
 	it("README.md", function () {
 		writeReadme({
+			id,
 			folder,
 			name,
 			title: "CommonJS",
@@ -1730,6 +1733,7 @@ describe("Typescript", function () {
 	});
 	it("README.md", function () {
 		writeReadme({
+			id,
 			folder,
 			name,
 			title: "Typescript",
