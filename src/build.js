@@ -596,7 +596,7 @@ function getRules(id) {
 
 	// Require or disallow strict mode directives
 	// @see https://eslint.org/docs/rules/strict
-	rules["strict"] = ["error", "global"];
+	rules["strict"] = (id === "typescript") ? "off" : ["error", "global"];
 
 	// Require or disallow initialization in variable declarations
 	// @see https://eslint.org/docs/rules/init-declarations
