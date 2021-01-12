@@ -9,9 +9,7 @@
   },
   "scripts": {
     "build": "mocha src/build.js --timeout 10000 --slow 5000",
-    "test:eslint": "mocha test/eslint/*.test.js --timeout 10000 --slow 5000",
-    "test:prettier": "mocha test/prettier/*.test.js --timeout 10000 --slow 5000",
-    "test": "npm run build && npm run test:eslint && npm run test:prettier"
+    "test": "mocha test/*.test.js --timeout 10000 --slow 5000"
   },
   "dependencies": {
     "@typescript-eslint/eslint-plugin": "4.11.1",
