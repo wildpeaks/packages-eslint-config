@@ -1,0 +1,33 @@
+{
+	"compilerOptions": {
+		"newLine": "LF",
+		"alwaysStrict": true,
+		"noEmitOnError": true,
+		"noImplicitAny": true,
+		"noImplicitReturns": true,
+		"noImplicitThis": true,
+		"noUnusedLocals": true,
+		"noUnusedParameters": true,
+		"strictNullChecks": true,
+		"preserveConstEnums": true,
+		"useDefineForClassFields": true,
+
+		"moduleResolution": "node",
+		"resolveJsonModule": true,
+		"allowJs": true,
+		"sourceMap": true,
+		"removeComments": true,
+
+		"jsx": "react",
+		"jsxFactory": "h",
+
+		"module": "es2020",
+		"lib": ["es2020", "dom"],
+		"target": "es2017",
+
+		"noEmit": true
+	},
+	"include": [
+		"./tmp/*.*"
+	]
+}

@@ -163,50 +163,6 @@ const fixtures = {
 describe("Prettier", function () {
 	before("Reset /tmp", async function () {
 		await emptyDir(tmpFolder);
-		writeFileSync(
-			join(tmpFolder, "tsconfig.json"),
-			JSON.stringify({
-				"ts-node": {
-					"skipIgnore": true,
-					"transpileOnly": true,
-					"compilerOptions": {
-						"module": "CommonJS"
-					}
-				},
-				"compilerOptions": {
-					"newLine": "LF",
-					"alwaysStrict": true,
-					"noEmitOnError": true,
-					"noImplicitAny": true,
-					"noImplicitReturns": true,
-					"noImplicitThis": true,
-					"noUnusedLocals": true,
-					"noUnusedParameters": true,
-					"strictNullChecks": true,
-					"preserveConstEnums": true,
-					"useDefineForClassFields": true,
-
-					"moduleResolution": "node",
-					"resolveJsonModule": true,
-					"allowJs": true,
-					"sourceMap": true,
-					"removeComments": true,
-
-					"jsx": "react",
-					"jsxFactory": "h",
-
-					"module": "es2020",
-					"lib": ["es2020", "dom"],
-					"target": "es2017",
-
-					"noEmit": true
-				},
-				"include": [
-					"./*.*"
-				]
-			}),
-			"utf8"
-		);
 	});
 	["legacy", "commonjs", "typescript"].forEach(configId => {
 		it(configId, async function () {
@@ -216,8 +172,6 @@ describe("Prettier", function () {
 			};
 			if (configId === "typescript"){
 				options.extensions = [".js", ".jsx", ".ts", ".tsx"];
-				options.baseConfig.parserOptions.project = "./tmp/tsconfig.json";
-				// options.resolvePluginsRelativeTo = AAAAAAAAAAAAAA;
 			}
 			const engine = new ESLint(options);
 			for (const id in fixtures){
