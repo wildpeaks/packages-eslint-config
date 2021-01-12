@@ -1547,7 +1547,7 @@ function getRules(id) {
 
 		// Recommends using @ts-expect-error over @ts-ignore
 		// @see https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/prefer-ts-expect-error.md
-		rules["@typescript-eslint/prefer-ts-expect-error"] = true; // NEW
+		rules["@typescript-eslint/prefer-ts-expect-error"] = "error"; // NEW
 
 		// Requires any function or method that returns a Promise to be marked async
 		// @see https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/promise-function-async.md
