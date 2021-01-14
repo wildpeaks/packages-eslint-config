@@ -1695,14 +1695,14 @@ describe("CommonJS", function () {
 			folder,
 			name,
 			title: "CommonJS",
-			description: "Settings for **ES2017 Javascript** projects using **CommonJS modules**.\n\nThis is best suited for **Node 14+ scripts**."
+			description: "Settings for **ES2018 Javascript** projects using **CommonJS modules**.\n\nThis is best suited for **Node 14+ scripts**."
 		});
 	});
 	it("package.json", function () {
 		writePackage({
 			folder,
 			name,
-			description: "ESLint config for ES2017 Javascript projects using CommonJS modules"
+			description: "ESLint config for ES2018 Javascript projects using CommonJS modules"
 		});
 	});
 	it("index.js", function () {
@@ -1717,7 +1717,7 @@ describe("CommonJS", function () {
 					module: true
 				},
 				parserOptions: {
-					ecmaVersion: 2017
+					ecmaVersion: 2018
 				},
 				rules: getRules(id)
 			}
