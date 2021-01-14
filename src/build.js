@@ -371,7 +371,7 @@ function getRules(id) {
 	// @see https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/no-invalid-this.md
 	if (id === "typescript"){
 		rules["no-invalid-this"] = "off";
-		rules["@typescript-eslint/no-invalid-this"] = "error";
+		rules["@typescript-eslint/no-invalid-this"] = "off";
 	} else {
 		rules["no-invalid-this"] = "error";
 	}
