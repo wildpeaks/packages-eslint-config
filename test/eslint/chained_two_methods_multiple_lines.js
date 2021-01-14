@@ -1,0 +1,3 @@
+/* global one */
+one()
+.two();

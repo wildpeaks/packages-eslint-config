@@ -1,0 +1,1 @@
+const {MyClass} = require("mymodule");
