@@ -647,7 +647,7 @@ function getRules(id) {
 	// @see https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/no-unused-vars.md
 	if (id === "typescript"){
 		rules["no-unused-vars"] = "off";
-		rules["@typescript-eslint/no-unused-vars"] = ["error", {ignoreRestSiblings: true, argsIgnorePattern: "^_", varsIgnorePattern: "^_"}];
+		rules["@typescript-eslint/no-unused-vars"] = "off";
 	} else {
 		rules["no-unused-vars"] = ["error", {ignoreRestSiblings: true, argsIgnorePattern: "^_", varsIgnorePattern: "^_"}];
 	}
