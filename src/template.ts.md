@@ -16,7 +16,10 @@ Reference it in your `package.json`:
 ````json
 {
   "eslintConfig": {
-    "extends": "%%name%%"
+    "extends": "%%name%%",
+    "parserOptions": {
+      "project": "./example.tsconfig.json"
+    }
   }
 }
 ````
@@ -24,6 +27,24 @@ Reference it in your `package.json`:
 or in `.eslintrc.json`:
 ````json
 {
-  "extends": "%%name%%"
+  "extends": "%%name%%",
+  "parserOptions": {
+    "project": "./example.tsconfig.json"
+  }
+}
+````
+
+---
+## Prettier
+
+This configuration is compatible with the following Prettier settings:
+
+````json
+{
+  "printWidth": 120,
+  "tabWidth": 4,
+  "useTabs": true,
+  "bracketSpacing": false,
+  "trailingComma": "none"
 }
 ````

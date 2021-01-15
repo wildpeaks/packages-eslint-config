@@ -1609,7 +1609,7 @@ function getRules(id) {
 }
 
 function writeReadme({id, folder, name, title, description}){
-	const filename = (id === "typescript") ? "template.ts.txt" : "template.js.txt";
+	const filename = (id === "typescript") ? "template.ts.md" : "template.js.md";
 	const data = readFileSync(join(__dirname, filename), "utf8")
 	.replace(/%%name%%/g, name)
 	.replace(/%%title%%/g, title)
