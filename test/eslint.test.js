@@ -10,6 +10,23 @@ const tmpFolder = join(process.cwd(), "tmp");
 const fixturesFolder = join(__dirname, "eslint");
 
 const fixtures = {
+	"strict_without.js": {
+		expected: {
+			legacy: ["strict"],
+			commonjs: ["strict"],
+			typescript: []
+		},
+		ignored: []
+	},
+	"strict_with.js": {
+		expected: {
+			legacy: [],
+			commonjs: [],
+			typescript: []
+		},
+		ignored: []
+	},
+
 	"var.js": {
 		expected: {
 			legacy: [],
@@ -307,87 +324,6 @@ const fixtures = {
 		expected: {
 			legacy: [],
 			commonjs: [],
-			typescript: []
-		},
-		ignored: []
-	},
-
-	"commonjs.js": {
-		expected: {
-			legacy: ["no-undef"],
-			commonjs: [],
-			typescript: []
-		},
-		ignored: []
-	},
-	"export_var.js": {
-		expected: {
-			legacy: ["fatal"],
-			commonjs: ["fatal"],
-			typescript: ["no-var"]
-		},
-		ignored: []
-	},
-	"export_const.js": {
-		expected: {
-			legacy: ["fatal"],
-			commonjs: ["fatal"],
-			typescript: []
-		},
-		ignored: []
-	},
-	"export_arrow.js": {
-		expected: {
-			legacy: ["fatal"],
-			commonjs: ["fatal"],
-			typescript: ["fatal"]
-		},
-		ignored: []
-	},
-	"export_function.js": {
-		expected: {
-			legacy: ["fatal"],
-			commonjs: ["fatal"],
-			typescript: []
-		},
-		ignored: ["@typescript-eslint/explicit-function-return-type"]
-	},
-	"export_default_var.js": {
-		expected: {
-			legacy: ["fatal"],
-			commonjs: ["fatal"],
-			typescript: ["no-var"]
-		},
-		ignored: []
-	},
-	"export_default_const.js": {
-		expected: {
-			legacy: ["fatal"],
-			commonjs: ["fatal"],
-			typescript: ["fatal"]
-		},
-		ignored: []
-	},
-	"export_default_arrow.js": {
-		expected: {
-			legacy: ["fatal"],
-			commonjs: ["fatal"],
-			typescript: []
-		},
-		ignored: ["@typescript-eslint/explicit-function-return-type", "arrow-body-style"]
-	},
-	"export_default_function.js": {
-		expected: {
-			legacy: ["fatal"],
-			commonjs: ["fatal"],
-			typescript: []
-		},
-		ignored: ["@typescript-eslint/explicit-function-return-type"]
-	},
-	"export_default_number.js": {
-		expected: {
-			legacy: ["fatal"],
-			commonjs: ["fatal"],
 			typescript: []
 		},
 		ignored: []
@@ -1119,6 +1055,14 @@ const fixtures = {
 		ignored: []
 	},
 
+	"module_exports.js": {
+		expected: {
+			legacy: ["no-undef"],
+			commonjs: [],
+			typescript: []
+		},
+		ignored: []
+	},
 	"require_var.js": {
 		expected: {
 			legacy: ["no-undef"],
@@ -1151,14 +1095,6 @@ const fixtures = {
 		},
 		ignored: ["no-unused-vars", "@typescript-eslint/no-unused-vars"]
 	},
-	"require_destructure_import.js": {
-		expected: {
-			legacy: ["fatal"],
-			commonjs: ["fatal"],
-			typescript: ["fatal"]
-		},
-		ignored: []
-	},
 
 	"ts_await_import.ts": {
 		expected: {
@@ -1169,6 +1105,86 @@ const fixtures = {
 		ignored: []
 	},
 	"ts_import_require.ts": {
+		expected: {
+			legacy: ["fatal"],
+			commonjs: ["fatal"],
+			typescript: []
+		},
+		ignored: []
+	},
+	"ts_import_require_destructure.ts": {
+		expected: {
+			legacy: ["fatal"],
+			commonjs: ["fatal"],
+			typescript: ["fatal"]
+		},
+		ignored: []
+	},
+	"ts_export_var.ts": {
+		expected: {
+			legacy: ["fatal"],
+			commonjs: ["fatal"],
+			typescript: ["no-var"]
+		},
+		ignored: []
+	},
+	"ts_export_const.ts": {
+		expected: {
+			legacy: ["fatal"],
+			commonjs: ["fatal"],
+			typescript: []
+		},
+		ignored: []
+	},
+	"ts_export_arrow.ts": {
+		expected: {
+			legacy: ["fatal"],
+			commonjs: ["fatal"],
+			typescript: ["fatal"]
+		},
+		ignored: []
+	},
+	"ts_export_function.ts": {
+		expected: {
+			legacy: ["fatal"],
+			commonjs: ["fatal"],
+			typescript: []
+		},
+		ignored: []
+	},
+	"ts_export_default_var.ts": {
+		expected: {
+			legacy: ["fatal"],
+			commonjs: ["fatal"],
+			typescript: ["no-var"]
+		},
+		ignored: []
+	},
+	"ts_export_default_const.ts": {
+		expected: {
+			legacy: ["fatal"],
+			commonjs: ["fatal"],
+			typescript: ["fatal"]
+		},
+		ignored: []
+	},
+	"ts_export_default_arrow.ts": {
+		expected: {
+			legacy: ["fatal"],
+			commonjs: ["fatal"],
+			typescript: []
+		},
+		ignored: ["arrow-body-style"]
+	},
+	"ts_export_default_function.ts": {
+		expected: {
+			legacy: ["fatal"],
+			commonjs: ["fatal"],
+			typescript: []
+		},
+		ignored: []
+	},
+	"ts_export_default_number.ts": {
 		expected: {
 			legacy: ["fatal"],
 			commonjs: ["fatal"],

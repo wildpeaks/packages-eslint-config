@@ -1,1 +1,3 @@
-import {MyClass} = require("mymodule");
+/* global console */
+import {fake} = require("./fake");
+console.log(fake);
