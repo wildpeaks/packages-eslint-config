@@ -35,6 +35,33 @@ or in `.eslintrc.json`:
 ````
 
 ---
+## Typescript
+
+The following tsconfig is recommended:
+````json
+{
+  "compilerOptions": {
+    "strict": true,
+    "noImplicitReturns": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "useDefineForClassFields": true,
+
+    "moduleResolution": "node",
+    "lib": ["es2020", "dom"],
+    "module": "es2020",
+    "target": "es2017",
+
+    // "jsx": "react-jsx",
+    // "jsxImportSource": "preact",
+
+    //...
+  }
+}
+````
+
+
+---
 ## Prettier
 
 This configuration is compatible with the following Prettier settings:
