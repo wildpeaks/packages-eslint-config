@@ -1120,6 +1120,22 @@ const fixtures = {
 		},
 		ignored: []
 	},
+	"ts_import_type_default.ts": {
+		expected: {
+			legacy: ["fatal"],
+			commonjs: ["fatal"],
+			typescript: []
+		},
+		ignored: []
+	},
+	"ts_import_type_destructure.ts": {
+		expected: {
+			legacy: ["fatal"],
+			commonjs: ["fatal"],
+			typescript: []
+		},
+		ignored: []
+	},
 	"ts_export_var.ts": {
 		expected: {
 			legacy: ["fatal"],
