@@ -419,7 +419,23 @@ const fixtures = {
 		ignored: []
 	},
 
-	"async_function.js": {
+	"await_toplevel.js": {
+		expected: {
+			legacy: ["fatal"],
+			commonjs: ["fatal"],
+			typescript: []
+		},
+		ignored: ["strict", "no-unused-vars", "@typescript-eslint/no-unused-vars"]
+	},
+	"await_import.js": {
+		expected: {
+			legacy: ["fatal"],
+			commonjs: ["fatal"],
+			typescript: [] // TODO I wish it would detect toplevel await
+		},
+		ignored: ["strict", "no-unused-vars", "@typescript-eslint/no-unused-vars"]
+	},
+	"await_in_loop.js": {
 		expected: {
 			legacy: ["fatal"],
 			commonjs: [],
@@ -427,7 +443,8 @@ const fixtures = {
 		},
 		ignored: ["strict", "no-unused-vars", "@typescript-eslint/explicit-function-return-type", "@typescript-eslint/no-unused-vars"]
 	},
-	"await_in_loop.js": {
+
+	"async_function.js": {
 		expected: {
 			legacy: ["fatal"],
 			commonjs: [],
