@@ -16,7 +16,7 @@ const fixtures = {
 			commonjs: ["no-var"],
 			typescript: ["no-var"]
 		},
-		ignored: ["strict"]
+		ignored: []
 	},
 
 	"arrow_function_single_param_without_parens.js": {
@@ -25,7 +25,7 @@ const fixtures = {
 			commonjs: ["arrow-parens"],
 			typescript: ["arrow-parens"]
 		},
-		ignored: ["strict"]
+		ignored: []
 	},
 	"arrow_function_single_param_with_parens.js": {
 		expected: {
@@ -33,7 +33,7 @@ const fixtures = {
 			commonjs: [],
 			typescript: []
 		},
-		ignored: ["strict"]
+		ignored: []
 	},
 	"arrow_function_multiple_params_without_type.js": {
 		expected: {
@@ -41,7 +41,7 @@ const fixtures = {
 			commonjs: [],
 			typescript: []
 		},
-		ignored: ["strict"]
+		ignored: []
 	},
 
 	"class_empty.js": {
@@ -50,7 +50,7 @@ const fixtures = {
 			commonjs: [],
 			typescript: []
 		},
-		ignored: ["strict", "no-unused-vars", "@typescript-eslint/no-unused-vars"]
+		ignored: ["no-unused-vars", "@typescript-eslint/no-unused-vars"]
 	},
 	"class_stage0_function_without_return_type.js": {
 		expected: {
@@ -61,7 +61,7 @@ const fixtures = {
 				"@typescript-eslint/explicit-member-accessibility"
 			]
 		},
-		ignored: ["strict", "class-methods-use-this", "no-unused-vars", "@typescript-eslint/no-unused-vars"]
+		ignored: ["class-methods-use-this", "no-unused-vars", "@typescript-eslint/no-unused-vars"]
 	},
 
 	"class_stage2_instance_property_without_type.js": {
@@ -234,7 +234,7 @@ const fixtures = {
 			commonjs: [],
 			typescript: []
 		},
-		ignored: ["strict"]
+		ignored: []
 	},
 	"line_120.js": {
 		expected: {
@@ -242,7 +242,7 @@ const fixtures = {
 			commonjs: [],
 			typescript: []
 		},
-		ignored: ["strict"]
+		ignored: []
 	},
 	"line_150.js": {
 		expected: {
@@ -250,7 +250,7 @@ const fixtures = {
 			commonjs: [],
 			typescript: []
 		},
-		ignored: ["strict"]
+		ignored: []
 	},
 	"line_240.js": {
 		expected: {
@@ -258,7 +258,7 @@ const fixtures = {
 			commonjs: ["max-len"],
 			typescript: ["max-len"]
 		},
-		ignored: ["strict"]
+		ignored: []
 	},
 
 	"without_env_node.js": {
@@ -267,7 +267,7 @@ const fixtures = {
 			commonjs: ["no-undef"],
 			typescript: ["no-undef"]
 		},
-		ignored: ["strict"]
+		ignored: []
 	},
 	"with_env_node.js": {
 		expected: {
@@ -275,7 +275,7 @@ const fixtures = {
 			commonjs: [],
 			typescript: []
 		},
-		ignored: ["strict"]
+		ignored: []
 	},
 
 	"without_env_browser.js": {
@@ -284,7 +284,7 @@ const fixtures = {
 			commonjs: ["no-undef"],
 			typescript: ["no-undef"]
 		},
-		ignored: ["strict"]
+		ignored: []
 	},
 	"with_env_browser.js": {
 		expected: {
@@ -292,7 +292,7 @@ const fixtures = {
 			commonjs: [],
 			typescript: []
 		},
-		ignored: ["strict"]
+		ignored: []
 	},
 
 	"without_env_mocha.js": {
@@ -301,7 +301,7 @@ const fixtures = {
 			commonjs: ["no-undef"],
 			typescript: ["no-undef"]
 		},
-		ignored: ["strict"]
+		ignored: ["no-unused-vars", "@typescript-eslint/no-unused-vars"]
 	},
 	"with_env_mocha.js": {
 		expected: {
@@ -309,7 +309,7 @@ const fixtures = {
 			commonjs: [],
 			typescript: []
 		},
-		ignored: ["strict"]
+		ignored: []
 	},
 
 	"commonjs.js": {
@@ -318,7 +318,7 @@ const fixtures = {
 			commonjs: [],
 			typescript: []
 		},
-		ignored: ["strict"]
+		ignored: []
 	},
 	"export_var.js": {
 		expected: {
@@ -399,7 +399,7 @@ const fixtures = {
 			commonjs: [],
 			typescript: []
 		},
-		ignored: ["strict"]
+		ignored: []
 	},
 
 	"jsx_without_require.jsx": {
@@ -425,15 +425,7 @@ const fixtures = {
 			commonjs: ["fatal"],
 			typescript: []
 		},
-		ignored: ["strict", "no-unused-vars", "@typescript-eslint/no-unused-vars"]
-	},
-	"await_import.js": {
-		expected: {
-			legacy: ["fatal"],
-			commonjs: ["fatal"],
-			typescript: [] // TODO I wish it would detect toplevel await
-		},
-		ignored: ["strict", "no-unused-vars", "@typescript-eslint/no-unused-vars"]
+		ignored: ["no-unused-vars", "@typescript-eslint/no-unused-vars"]
 	},
 	"await_in_loop.js": {
 		expected: {
@@ -441,7 +433,7 @@ const fixtures = {
 			commonjs: [],
 			typescript: []
 		},
-		ignored: ["strict", "no-unused-vars", "@typescript-eslint/explicit-function-return-type", "@typescript-eslint/no-unused-vars"]
+		ignored: ["no-unused-vars", "@typescript-eslint/explicit-function-return-type", "@typescript-eslint/no-unused-vars"]
 	},
 
 	"async_function.js": {
@@ -450,7 +442,7 @@ const fixtures = {
 			commonjs: [],
 			typescript: []
 		},
-		ignored: ["strict", "no-unused-vars", "@typescript-eslint/explicit-function-return-type", "@typescript-eslint/no-unused-vars"]
+		ignored: ["no-unused-vars", "@typescript-eslint/explicit-function-return-type", "@typescript-eslint/no-unused-vars"]
 	},
 	"async_arrow_without_space.js": {
 		expected: {
@@ -458,7 +450,7 @@ const fixtures = {
 			commonjs: ["space-before-function-paren"],
 			typescript: ["@typescript-eslint/space-before-function-paren"]
 		},
-		ignored: ["strict", "no-undef"]
+		ignored: []
 	},
 	"async_arrow_with_space.js": {
 		expected: {
@@ -466,7 +458,7 @@ const fixtures = {
 			commonjs: [],
 			typescript: []
 		},
-		ignored: ["strict", "no-undef"]
+		ignored: []
 	},
 
 	"quotes_single.js": {
@@ -475,7 +467,7 @@ const fixtures = {
 			commonjs: ["quotes"],
 			typescript: ["@typescript-eslint/quotes"]
 		},
-		ignored: ["strict", "no-unused-vars", "no-var", "@typescript-eslint/no-unused-vars"]
+		ignored: ["no-unused-vars", "no-var", "@typescript-eslint/no-unused-vars"]
 	},
 	"quotes_double.js": {
 		expected: {
@@ -483,7 +475,7 @@ const fixtures = {
 			commonjs: [],
 			typescript: []
 		},
-		ignored: ["strict", "no-unused-vars", "no-var", "@typescript-eslint/no-unused-vars"]
+		ignored: ["no-unused-vars", "no-var", "@typescript-eslint/no-unused-vars"]
 	},
 	"quotes_backtick.js": {
 		expected: {
@@ -491,7 +483,7 @@ const fixtures = {
 			commonjs: [],
 			typescript: []
 		},
-		ignored: ["strict", "no-unused-vars", "no-var", "@typescript-eslint/no-unused-vars"]
+		ignored: ["no-unused-vars", "no-var", "@typescript-eslint/no-unused-vars"]
 	},
 
 	"quotes_property_single.js": {
@@ -500,7 +492,7 @@ const fixtures = {
 			commonjs: ["quotes"],
 			typescript: ["@typescript-eslint/quotes"]
 		},
-		ignored: ["strict", "no-unused-vars", "no-var", "@typescript-eslint/no-unused-vars"]
+		ignored: ["no-unused-vars", "no-var", "@typescript-eslint/no-unused-vars"]
 	},
 	"quotes_property_double.js": {
 		expected: {
@@ -508,7 +500,7 @@ const fixtures = {
 			commonjs: [],
 			typescript: []
 		},
-		ignored: ["strict", "no-unused-vars", "no-var", "@typescript-eslint/no-unused-vars"]
+		ignored: ["no-unused-vars", "no-var", "@typescript-eslint/no-unused-vars"]
 	},
 	"quotes_property_backtick.js": {
 		expected: {
@@ -525,7 +517,7 @@ const fixtures = {
 			commonjs: ["quotes"],
 			typescript: ["@typescript-eslint/quotes"]
 		},
-		ignored: ["strict", "no-unused-vars", "no-var", "@typescript-eslint/no-unused-vars"]
+		ignored: ["no-unused-vars", "no-var", "@typescript-eslint/no-unused-vars"]
 	},
 	"quotes_property_consistent_single.js": {
 		expected: {
@@ -533,7 +525,7 @@ const fixtures = {
 			commonjs: ["quotes", "quote-props"],
 			typescript: ["@typescript-eslint/quotes", "quote-props"]
 		},
-		ignored: ["strict", "no-unused-vars", "no-var", "@typescript-eslint/no-unused-vars"]
+		ignored: ["no-unused-vars", "no-var", "@typescript-eslint/no-unused-vars"]
 	},
 	"quotes_property_inconsistent_double.js": {
 		expected: {
@@ -541,7 +533,7 @@ const fixtures = {
 			commonjs: [],
 			typescript: []
 		},
-		ignored: ["strict", "no-unused-vars", "no-var", "@typescript-eslint/no-unused-vars"]
+		ignored: ["no-unused-vars", "no-var", "@typescript-eslint/no-unused-vars"]
 	},
 	"quotes_property_consistent_double.js": {
 		expected: {
@@ -549,7 +541,7 @@ const fixtures = {
 			commonjs: ["quote-props"],
 			typescript: ["quote-props"]
 		},
-		ignored: ["strict", "no-unused-vars", "no-var", "@typescript-eslint/no-unused-vars"]
+		ignored: ["no-unused-vars", "no-var", "@typescript-eslint/no-unused-vars"]
 	},
 
 	"quotes_property_mixed_single.js": {
@@ -558,7 +550,7 @@ const fixtures = {
 			commonjs: ["quotes"],
 			typescript: ["@typescript-eslint/quotes"]
 		},
-		ignored: ["strict", "no-unused-vars", "no-var", "@typescript-eslint/no-unused-vars"]
+		ignored: ["no-unused-vars", "no-var", "@typescript-eslint/no-unused-vars"]
 	},
 	"quotes_property_mixed_double.js": {
 		expected: {
@@ -566,7 +558,7 @@ const fixtures = {
 			commonjs: [],
 			typescript: []
 		},
-		ignored: ["strict", "no-unused-vars", "no-var", "@typescript-eslint/no-unused-vars"]
+		ignored: ["no-unused-vars", "no-var", "@typescript-eslint/no-unused-vars"]
 	},
 
 	"quotes_concatenate_number_number.js": {
@@ -575,7 +567,7 @@ const fixtures = {
 			commonjs: [],
 			typescript: []
 		},
-		ignored: ["strict", "no-unused-vars", "no-var", "@typescript-eslint/no-unused-vars"]
+		ignored: ["no-unused-vars", "no-var", "@typescript-eslint/no-unused-vars"]
 	},
 	"quotes_concatenate_number_string_single.js": {
 		expected: {
@@ -583,7 +575,7 @@ const fixtures = {
 			commonjs: ["quotes"],
 			typescript: ["@typescript-eslint/quotes"]
 		},
-		ignored: ["strict", "no-unused-vars", "no-var", "@typescript-eslint/no-unused-vars"]
+		ignored: ["no-unused-vars", "no-var", "@typescript-eslint/no-unused-vars"]
 	},
 	"quotes_concatenate_number_string_double.js": {
 		expected: {
@@ -591,7 +583,7 @@ const fixtures = {
 			commonjs: [],
 			typescript: []
 		},
-		ignored: ["strict", "no-unused-vars", "no-var", "@typescript-eslint/no-unused-vars"]
+		ignored: ["no-unused-vars", "no-var", "@typescript-eslint/no-unused-vars"]
 	},
 	"quotes_concatenate_number_string_backtick.js": {
 		expected: {
@@ -599,7 +591,7 @@ const fixtures = {
 			commonjs: [],
 			typescript: []
 		},
-		ignored: ["strict", "no-unused-vars", "no-var", "@typescript-eslint/no-unused-vars"]
+		ignored: ["no-unused-vars", "no-var", "@typescript-eslint/no-unused-vars"]
 	},
 	"quotes_concatenate_string_string_single.js": {
 		expected: {
@@ -607,7 +599,7 @@ const fixtures = {
 			commonjs: ["quotes"],
 			typescript: ["@typescript-eslint/quotes"]
 		},
-		ignored: ["strict", "no-unused-vars", "no-var", "@typescript-eslint/no-unused-vars"]
+		ignored: ["no-unused-vars", "no-var", "@typescript-eslint/no-unused-vars"]
 	},
 	"quotes_concatenate_string_string_double.js": {
 		expected: {
@@ -615,7 +607,7 @@ const fixtures = {
 			commonjs: [],
 			typescript: []
 		},
-		ignored: ["strict", "no-unused-vars", "no-var", "@typescript-eslint/no-unused-vars"]
+		ignored: ["no-unused-vars", "no-var", "@typescript-eslint/no-unused-vars"]
 	},
 	"quotes_concatenate_string_string_backtick.js": {
 		expected: {
@@ -623,7 +615,7 @@ const fixtures = {
 			commonjs: [],
 			typescript: []
 		},
-		ignored: ["strict", "no-unused-vars", "no-var", "@typescript-eslint/no-unused-vars"]
+		ignored: ["no-unused-vars", "no-var", "@typescript-eslint/no-unused-vars"]
 	},
 
 	"chained_two_methods_single_line.js": {
@@ -632,7 +624,7 @@ const fixtures = {
 			commonjs: [],
 			typescript: []
 		},
-		ignored: ["strict"]
+		ignored: []
 	},
 	"chained_two_methods_multiple_lines.js": {
 		expected: {
@@ -640,7 +632,7 @@ const fixtures = {
 			commonjs: [],
 			typescript: []
 		},
-		ignored: ["strict"]
+		ignored: []
 	},
 	"chained_four_methods_single_line.js": {
 		expected: {
@@ -648,7 +640,7 @@ const fixtures = {
 			commonjs: [],
 			typescript: []
 		},
-		ignored: ["strict"]
+		ignored: []
 	},
 	"chained_four_methods_multiple_lines.js": {
 		expected: {
@@ -656,7 +648,7 @@ const fixtures = {
 			commonjs: [],
 			typescript: []
 		},
-		ignored: ["strict"]
+		ignored: []
 	},
 	"chained_six_methods_single_line.js": {
 		expected: {
@@ -664,7 +656,7 @@ const fixtures = {
 			commonjs: ["newline-per-chained-call"],
 			typescript: ["newline-per-chained-call"]
 		},
-		ignored: ["strict"]
+		ignored: []
 	},
 	"chained_six_methods_multiple_lines.js": {
 		expected: {
@@ -672,7 +664,7 @@ const fixtures = {
 			commonjs: [],
 			typescript: []
 		},
-		ignored: ["strict"]
+		ignored: []
 	},
 
 	"this_root.js": {
@@ -970,7 +962,7 @@ const fixtures = {
 			commonjs: ["prefer-destructuring"],
 			typescript: ["prefer-destructuring"]
 		},
-		ignored: ["strict", "no-unused-vars", "no-var", "@typescript-eslint/no-unused-vars"]
+		ignored: ["no-unused-vars", "no-var", "@typescript-eslint/no-unused-vars"]
 	},
 	"destructuring_assign_object_param_dot.js": {
 		expected: {
@@ -978,7 +970,7 @@ const fixtures = {
 			commonjs: [],
 			typescript: []
 		},
-		ignored: ["strict", "no-unused-vars", "no-var", "@typescript-eslint/no-unused-vars"]
+		ignored: ["no-unused-vars", "no-var", "@typescript-eslint/no-unused-vars"]
 	},
 	"destructuring_declare_object_param_bracket.js": {
 		expected: {
@@ -986,7 +978,7 @@ const fixtures = {
 			commonjs: ["prefer-destructuring"],
 			typescript: ["prefer-destructuring"]
 		},
-		ignored: ["strict", "no-unused-vars", "no-var", "dot-notation", "@typescript-eslint/dot-notation", "@typescript-eslint/no-unused-vars"]
+		ignored: ["no-unused-vars", "no-var", "dot-notation", "@typescript-eslint/dot-notation", "@typescript-eslint/no-unused-vars"]
 	},
 	"destructuring_assign_object_param_bracket.js": {
 		expected: {
@@ -994,7 +986,7 @@ const fixtures = {
 			commonjs: [],
 			typescript: []
 		},
-		ignored: ["strict", "no-unused-vars", "no-var", "dot-notation", "@typescript-eslint/dot-notation", "@typescript-eslint/no-unused-vars"]
+		ignored: ["no-unused-vars", "no-var", "dot-notation", "@typescript-eslint/dot-notation", "@typescript-eslint/no-unused-vars"]
 	},
 	"destructuring_declare_object_param_destructured.js": {
 		expected: {
@@ -1002,7 +994,7 @@ const fixtures = {
 			commonjs: [],
 			typescript: []
 		},
-		ignored: ["strict", "no-unused-vars", "no-var", "@typescript-eslint/no-unused-vars"]
+		ignored: ["no-unused-vars", "no-var", "@typescript-eslint/no-unused-vars"]
 	},
 	"destructuring_assign_object_param_destructured.js": {
 		expected: {
@@ -1010,7 +1002,7 @@ const fixtures = {
 			commonjs: [],
 			typescript: []
 		},
-		ignored: ["strict", "no-unused-vars", "no-var", "@typescript-eslint/no-unused-vars"]
+		ignored: ["no-unused-vars", "no-var", "@typescript-eslint/no-unused-vars"]
 	},
 	"destructuring_declare_array_value_index.js": {
 		expected: {
@@ -1018,7 +1010,7 @@ const fixtures = {
 			commonjs: [],
 			typescript: []
 		},
-		ignored: ["strict", "no-unused-vars", "no-var", "@typescript-eslint/no-unused-vars"]
+		ignored: ["no-unused-vars", "no-var", "@typescript-eslint/no-unused-vars"]
 	},
 	"destructuring_assign_array_value_index.js": {
 		expected: {
@@ -1026,7 +1018,7 @@ const fixtures = {
 			commonjs: [],
 			typescript: []
 		},
-		ignored: ["strict", "no-unused-vars", "no-var", "@typescript-eslint/no-unused-vars"]
+		ignored: ["no-unused-vars", "no-var", "@typescript-eslint/no-unused-vars"]
 	},
 	"destructuring_declare_array_destructured_first.js": {
 		expected: {
@@ -1034,7 +1026,7 @@ const fixtures = {
 			commonjs: [],
 			typescript: []
 		},
-		ignored: ["strict", "no-unused-vars", "no-var", "@typescript-eslint/no-unused-vars"]
+		ignored: ["no-unused-vars", "no-var", "@typescript-eslint/no-unused-vars"]
 	},
 	"destructuring_assign_array_destructured_first.js": {
 		expected: {
@@ -1042,7 +1034,7 @@ const fixtures = {
 			commonjs: [],
 			typescript: []
 		},
-		ignored: ["strict", "no-unused-vars", "no-var", "@typescript-eslint/no-unused-vars"]
+		ignored: ["no-unused-vars", "no-var", "@typescript-eslint/no-unused-vars"]
 	},
 	"destructuring_declare_array_destructured_second.js": {
 		expected: {
@@ -1050,7 +1042,7 @@ const fixtures = {
 			commonjs: [],
 			typescript: []
 		},
-		ignored: ["strict", "no-unused-vars", "no-var", "@typescript-eslint/no-unused-vars"]
+		ignored: ["no-unused-vars", "no-var", "@typescript-eslint/no-unused-vars"]
 	},
 	"destructuring_assign_array_destructured_second.js": {
 		expected: {
@@ -1058,7 +1050,7 @@ const fixtures = {
 			commonjs: [],
 			typescript: []
 		},
-		ignored: ["strict", "no-unused-vars", "no-var", "@typescript-eslint/no-unused-vars"]
+		ignored: ["no-unused-vars", "no-var", "@typescript-eslint/no-unused-vars"]
 	},
 
 	"unused_param_without_underscore_first.js": {
@@ -1099,7 +1091,7 @@ const fixtures = {
 			commonjs: ["no-unused-vars"],
 			typescript: ["@typescript-eslint/no-unused-vars"]
 		},
-		ignored: ["strict", "no-var"]
+		ignored: ["no-var"]
 	},
 	"unused_var_with_underscore.js": {
 		expected: {
@@ -1107,7 +1099,7 @@ const fixtures = {
 			commonjs: [],
 			typescript: []
 		},
-		ignored: ["strict", "no-var"]
+		ignored: ["no-var"]
 	},
 
 	"unused_rest_without_underscore.js": {
@@ -1133,7 +1125,7 @@ const fixtures = {
 			commonjs: ["no-var"],
 			typescript: ["no-var"]
 		},
-		ignored: ["strict", "no-unused-vars", "@typescript-eslint/no-unused-vars"]
+		ignored: ["no-unused-vars", "@typescript-eslint/no-unused-vars"]
 	},
 	"require_destructure_var.js": {
 		expected: {
@@ -1141,7 +1133,7 @@ const fixtures = {
 			commonjs: ["no-var"],
 			typescript: ["no-var"]
 		},
-		ignored: ["strict", "no-unused-vars", "@typescript-eslint/no-unused-vars"]
+		ignored: ["no-unused-vars", "@typescript-eslint/no-unused-vars"]
 	},
 	"require_const.js": {
 		expected: {
@@ -1149,7 +1141,7 @@ const fixtures = {
 			commonjs: [],
 			typescript: []
 		},
-		ignored: ["strict", "no-unused-vars", "@typescript-eslint/no-unused-vars"]
+		ignored: ["no-unused-vars", "@typescript-eslint/no-unused-vars"]
 	},
 	"require_destructure_const.js": {
 		expected: {
@@ -1157,21 +1149,30 @@ const fixtures = {
 			commonjs: [],
 			typescript: []
 		},
-		ignored: ["strict", "no-unused-vars", "@typescript-eslint/no-unused-vars"]
-	},
-	"require_import.js": {
-		expected: {
-			legacy: ["fatal"],
-			commonjs: ["fatal"],
-			typescript: []
-		},
-		ignored: ["@typescript-eslint/no-unused-vars"]
+		ignored: ["no-unused-vars", "@typescript-eslint/no-unused-vars"]
 	},
 	"require_destructure_import.js": {
 		expected: {
 			legacy: ["fatal"],
 			commonjs: ["fatal"],
 			typescript: ["fatal"]
+		},
+		ignored: []
+	},
+
+	"ts_await_import.ts": {
+		expected: {
+			legacy: ["fatal"],
+			commonjs: ["fatal"],
+			typescript: []
+		},
+		ignored: []
+	},
+	"ts_import_require.ts": {
+		expected: {
+			legacy: ["fatal"],
+			commonjs: ["fatal"],
+			typescript: []
 		},
 		ignored: []
 	},
@@ -1280,7 +1281,7 @@ const fixtures = {
 			commonjs: [],
 			typescript: []
 		},
-		ignored: ["fake", "no-undef", "no-warning-comments"]
+		ignored: ["fake", "no-warning-comments"]
 	},
 	"comment_eslint_line_end.js": {
 		expected: {
@@ -1288,7 +1289,7 @@ const fixtures = {
 			commonjs: ["line-comment-position"],
 			typescript: ["line-comment-position"]
 		},
-		ignored: ["fake", "no-undef", "no-warning-comments"]
+		ignored: ["fake", "no-warning-comments"]
 	},
 	"comment_eslint_line_after.js": {
 		expected: {
@@ -1296,7 +1297,7 @@ const fixtures = {
 			commonjs: [],
 			typescript: []
 		},
-		ignored: ["fake", "no-undef", "no-warning-comments"]
+		ignored: ["fake", "no-warning-comments"]
 	},
 
 	"comment_line_before.js": {
@@ -1305,7 +1306,7 @@ const fixtures = {
 			commonjs: [],
 			typescript: []
 		},
-		ignored: ["no-undef"]
+		ignored: []
 	},
 	"comment_line_end.js": {
 		expected: {
@@ -1313,7 +1314,7 @@ const fixtures = {
 			commonjs: ["line-comment-position"],
 			typescript: ["line-comment-position"]
 		},
-		ignored: ["no-undef"]
+		ignored: []
 	},
 	"comment_line_after.js": {
 		expected: {
@@ -1321,7 +1322,7 @@ const fixtures = {
 			commonjs: [],
 			typescript: []
 		},
-		ignored: ["no-undef"]
+		ignored: []
 	},
 
 	"comment_this_before.js": {
@@ -1330,7 +1331,7 @@ const fixtures = {
 			commonjs: [],
 			typescript: []
 		},
-		ignored: ["no-invalid-this", "no-undef"]
+		ignored: ["no-invalid-this"]
 	},
 	"comment_this_start.js": {
 		expected: {
@@ -1338,7 +1339,7 @@ const fixtures = {
 			commonjs: [],
 			typescript: []
 		},
-		ignored: ["no-invalid-this", "no-undef"]
+		ignored: ["no-invalid-this"]
 	},
 	"comment_this_between.js": {
 		expected: {
@@ -1346,7 +1347,7 @@ const fixtures = {
 			commonjs: [],
 			typescript: []
 		},
-		ignored: ["no-undef"]
+		ignored: []
 	},
 	"comment_this_end.js": {
 		expected: {
@@ -1354,7 +1355,7 @@ const fixtures = {
 			commonjs: [],
 			typescript: []
 		},
-		ignored: ["block-spacing", "no-invalid-this", "no-undef"]
+		ignored: ["block-spacing", "no-invalid-this"]
 	},
 	"comment_this_after.js": {
 		expected: {
@@ -1362,7 +1363,7 @@ const fixtures = {
 			commonjs: [],
 			typescript: []
 		},
-		ignored: ["no-invalid-this", "no-undef"]
+		ignored: ["no-invalid-this"]
 	},
 
 	"if_space_before.js": {
@@ -1371,7 +1372,7 @@ const fixtures = {
 			commonjs: ["space-before-blocks"],
 			typescript: ["space-before-blocks"]
 		},
-		ignored: ["no-undef"]
+		ignored: []
 	},
 	"if_space_after.js": {
 		expected: {
@@ -1379,7 +1380,7 @@ const fixtures = {
 			commonjs: ["keyword-spacing"],
 			typescript: ["@typescript-eslint/keyword-spacing"]
 		},
-		ignored: ["no-undef"]
+		ignored: []
 	},
 	"if_space_before_after.js": {
 		expected: {
@@ -1387,7 +1388,7 @@ const fixtures = {
 			commonjs: [],
 			typescript: []
 		},
-		ignored: ["no-undef"]
+		ignored: []
 	},
 	"operator_start.js": {
 		expected: {
@@ -1395,7 +1396,7 @@ const fixtures = {
 			commonjs: ["operator-linebreak"],
 			typescript: ["operator-linebreak"]
 		},
-		ignored: ["no-undef"]
+		ignored: []
 	},
 	"operator_end.js": {
 		expected: {
@@ -1403,7 +1404,7 @@ const fixtures = {
 			commonjs: [],
 			typescript: []
 		},
-		ignored: ["no-undef"]
+		ignored: []
 	},
 
 	"ts_type_single_line_commas_with_last.ts": {
@@ -1445,7 +1446,7 @@ const fixtures = {
 			commonjs: [],
 			typescript: []
 		},
-		ignored: ["no-undef", "no-unused-vars", "no-var", "@typescript-eslint/no-unused-vars"]
+		ignored: ["no-unused-vars", "no-var", "@typescript-eslint/no-unused-vars"]
 	},
 	"mixed_operators_mixed_precedence_without_parens.js": {
 		expected: {
@@ -1453,7 +1454,7 @@ const fixtures = {
 			commonjs: ["no-mixed-operators"],
 			typescript: ["no-mixed-operators"]
 		},
-		ignored: ["no-undef", "no-unused-vars", "no-var", "@typescript-eslint/no-unused-vars"]
+		ignored: ["no-unused-vars", "no-var", "@typescript-eslint/no-unused-vars"]
 	},
 	"mixed_operators_same_precedence_with_parens.js": {
 		expected: {
@@ -1461,7 +1462,7 @@ const fixtures = {
 			commonjs: [],
 			typescript: []
 		},
-		ignored: ["no-undef", "no-unused-vars", "no-var", "@typescript-eslint/no-unused-vars"]
+		ignored: ["no-unused-vars", "no-var", "@typescript-eslint/no-unused-vars"]
 	},
 	"mixed_operators_same_precedence_without_parens.js": {
 		expected: {
@@ -1469,7 +1470,7 @@ const fixtures = {
 			commonjs: [],
 			typescript: []
 		},
-		ignored: ["no-undef", "no-unused-vars", "no-var", "@typescript-eslint/no-unused-vars"]
+		ignored: ["no-unused-vars", "no-var", "@typescript-eslint/no-unused-vars"]
 	},
 
 	"disable_correct_rule_without_comment.js": {

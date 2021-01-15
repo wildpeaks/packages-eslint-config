@@ -1,4 +1,5 @@
 "use strict";
+
 var myobj = {
 	long_property_name_1: 111,
 	long_property_name_2: 222,

@@ -1,3 +1,4 @@
+/* global condition */
 /* global console */
 "use strict";
 

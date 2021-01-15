@@ -1,3 +1,4 @@
+/* global console */
 "use strict";
 
 // Hello World

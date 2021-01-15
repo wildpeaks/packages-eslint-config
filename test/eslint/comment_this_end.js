@@ -1,5 +1,6 @@
+/* global myfunction */
 "use strict";
 
-it("Example", function () { /* @this */
+myfunction("Example", function () { /* @this */
 	this.timeout();
 });

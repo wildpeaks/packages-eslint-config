@@ -1,4 +1,5 @@
 "use strict";
+
 var myobj = {
 	myproperty: 1,
 	100: 2,
