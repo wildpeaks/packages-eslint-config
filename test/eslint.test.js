@@ -880,7 +880,7 @@ const fixtures = {
 		ignored: ["no-unused-vars", "no-var", "@typescript-eslint/no-unused-vars"]
 	},
 
-	"typescript_enum_commas.ts": {
+	"ts_enum_commas.ts": {
 		expected: {
 			legacy: ["fatal"],
 			commonjs: ["fatal"],
@@ -888,7 +888,7 @@ const fixtures = {
 		},
 		ignored: ["@typescript-eslint/no-unused-vars"]
 	},
-	"typescript_enum_semicolons.ts": {
+	"ts_enum_semicolons.ts": {
 		expected: {
 			legacy: ["fatal"],
 			commonjs: ["fatal"],
@@ -897,7 +897,7 @@ const fixtures = {
 		ignored: []
 	},
 
-	"typescript_type_union.ts": {
+	"ts_type_union.ts": {
 		expected: {
 			legacy: ["fatal"],
 			commonjs: ["fatal"],
@@ -905,7 +905,7 @@ const fixtures = {
 		},
 		ignored: ["@typescript-eslint/no-unused-vars"]
 	},
-	"typescript_type_commas.ts": {
+	"ts_type_commas.ts": {
 		expected: {
 			legacy: ["fatal"],
 			commonjs: ["fatal"],
@@ -913,7 +913,7 @@ const fixtures = {
 		},
 		ignored: []
 	},
-	"typescript_type_semicolons.ts": {
+	"ts_type_semicolons.ts": {
 		expected: {
 			legacy: ["fatal"],
 			commonjs: ["fatal"],
@@ -922,7 +922,7 @@ const fixtures = {
 		ignored: ["@typescript-eslint/no-unused-vars"]
 	},
 
-	"typescript_interface_commas.ts": {
+	"ts_interface_commas.ts": {
 		expected: {
 			legacy: ["fatal"],
 			commonjs: ["fatal"],
@@ -930,7 +930,7 @@ const fixtures = {
 		},
 		ignored: ["@typescript-eslint/no-unused-vars"]
 	},
-	"typescript_interface_semicolons.ts": {
+	"ts_interface_semicolons.ts": {
 		expected: {
 			legacy: ["fatal"],
 			commonjs: ["fatal"],
@@ -939,7 +939,7 @@ const fixtures = {
 		ignored: ["@typescript-eslint/no-unused-vars"]
 	},
 
-	"typescript_generic.ts": {
+	"ts_generic.ts": {
 		expected: {
 			legacy: ["fatal"],
 			commonjs: ["fatal"],
@@ -947,7 +947,7 @@ const fixtures = {
 		},
 		ignored: ["@typescript-eslint/no-unused-vars"]
 	},
-	"typescript_optional_parameter.ts": {
+	"ts_optional_parameter.ts": {
 		expected: {
 			legacy: ["fatal"],
 			commonjs: ["fatal"],
@@ -955,7 +955,7 @@ const fixtures = {
 		},
 		ignored: ["@typescript-eslint/no-unused-vars"]
 	},
-	"typescript_jsdoc.ts": {
+	"ts_jsdoc.ts": {
 		expected: {
 			legacy: ["fatal"],
 			commonjs: ["fatal"],
@@ -1406,7 +1406,7 @@ const fixtures = {
 		ignored: ["no-undef"]
 	},
 
-	"typescript_type_single_line_commas_with_last.ts": {
+	"ts_type_single_line_commas_with_last.ts": {
 		expected: {
 			legacy: ["fatal"],
 			commonjs: ["fatal"],
@@ -1414,7 +1414,7 @@ const fixtures = {
 		},
 		ignored: ["@typescript-eslint/comma-spacing", "@typescript-eslint/no-unused-vars"]
 	},
-	"typescript_type_single_line_commas_without_last.ts": {
+	"ts_type_single_line_commas_without_last.ts": {
 		expected: {
 			legacy: ["fatal"],
 			commonjs: ["fatal"],
@@ -1422,7 +1422,7 @@ const fixtures = {
 		},
 		ignored: ["@typescript-eslint/no-unused-vars"]
 	},
-	"typescript_type_single_line_semicolons_with_last.ts": {
+	"ts_type_single_line_semicolons_with_last.ts": {
 		expected: {
 			legacy: ["fatal"],
 			commonjs: ["fatal"],
@@ -1430,7 +1430,7 @@ const fixtures = {
 		},
 		ignored: ["@typescript-eslint/no-unused-vars"]
 	},
-	"typescript_type_single_line_semicolons_without_last.ts": {
+	"ts_type_single_line_semicolons_without_last.ts": {
 		expected: {
 			legacy: ["fatal"],
 			commonjs: ["fatal"],
