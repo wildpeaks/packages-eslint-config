@@ -38,7 +38,7 @@ or in `.eslintrc.json`:
 ## Typescript
 
 The following tsconfig is recommended:
-````json
+````jsonc
 {
   "compilerOptions": {
     "strict": true,
