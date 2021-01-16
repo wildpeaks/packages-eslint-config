@@ -20,6 +20,6 @@ jobs:
     - uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node }}
-    - run: npm install --prefer-offline --no-audit --no-fund --no-progress
+    - run: npm install --prefer-offline --no-fund --no-progress
     - run: npm run build
     - run: npm run test
