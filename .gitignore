@@ -10,11 +10,9 @@
 !/.gitignore
 !/.github
 !/.npmrc
-!/.prettierignore
 !/.vscode
 !/src
 !/test
-!/packages
 !/package.json
 !/tsconfig.json
 

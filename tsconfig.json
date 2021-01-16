@@ -1,32 +1,29 @@
 {
 	"compilerOptions": {
 		"newLine": "LF",
-		"alwaysStrict": true,
-		"noEmitOnError": true,
-		"noImplicitAny": true,
+
+		"strict": true,
 		"noImplicitReturns": true,
-		"noImplicitThis": true,
 		"noUnusedLocals": true,
 		"noUnusedParameters": true,
-		"strictNullChecks": true,
-		"preserveConstEnums": true,
 		"useDefineForClassFields": true,
 
+		"allowJs": true,
+		"checkJs": true,
+		"noEmit": true,
+
+		"jsx": "react-jsx",
+		"jsxImportSource": "preact",
+
+		"lib": ["es2020", "dom"],
+		"module": "es2020",
+		"target": "es2017",
 		"moduleResolution": "node",
 		"resolveJsonModule": true,
-		"allowJs": true,
-		"sourceMap": true,
 		"removeComments": true,
-
-		"jsx": "react",
-		"jsxFactory": "h",
-
-		"module": "commonjs",
-		"lib": ["es2017", "dom"],
-		"target": "es5"
+		"sourceMap": true
 	},
 	"include": [
-		"./test/fixtures/**/*.*",
-		"./test/tmp/*.*"
+		"./tmp/*.*"
 	]
 }

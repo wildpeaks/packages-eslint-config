@@ -1,1185 +1,1612 @@
 /* eslint-env node, mocha */
+/* eslint-disable prefer-arrow-callback */
 "use strict";
-const path = require("path");
 const {deepStrictEqual} = require("assert");
-const {CLIEngine} = require("eslint");
-const configs = require("..");
-const dirFixtures = path.join(__dirname, "fixtures");
+const {readFileSync, writeFileSync, unlinkSync} = require("fs");
+const {emptyDir} = require("fs-extra");
+const {join} = require("path");
+const {ESLint} = require("eslint");
+const tmpFolder = join(process.cwd(), "tmp");
+const fixturesFolder = join(__dirname, "eslint");
 
-/**
- * @param {String} configId
- */
-function runTest(configId) {
-	const {commonjs, esmodules, es2017, typescript} = configs[configId];
+const fixtures = {
+	"strict_without.js": {
+		expected: {
+			legacy: ["strict"],
+			commonjs: ["strict"],
+			typescript: []
+		},
+		ignored: []
+	},
+	"strict_with.js": {
+		expected: {
+			legacy: [],
+			commonjs: [],
+			typescript: []
+		},
+		ignored: []
+	},
 
-	const fixtures = {
-		"var.js": {
-			expected: es2017 || typescript ? ["no-var"] : [],
-			ignored: ["strict", "no-implicit-globals"]
+	"var.js": {
+		expected: {
+			legacy: [],
+			commonjs: ["no-var"],
+			typescript: ["no-var"]
 		},
+		ignored: []
+	},
 
-		"arrow_function_single_param_without_parens.js": {
-			expected: es2017 ? ["arrow-parens"] : ["fatal"],
-			ignored: ["strict"]
+	"arrow_function_single_param_without_parens.js": {
+		expected: {
+			legacy: ["fatal"],
+			commonjs: ["arrow-parens"],
+			typescript: ["arrow-parens"]
 		},
-		"arrow_function_single_param_with_parens.js": {
-			expected: es2017 ? [] : ["fatal"],
-			ignored: ["strict"]
+		ignored: []
+	},
+	"arrow_function_single_param_with_parens.js": {
+		expected: {
+			legacy: ["fatal"],
+			commonjs: [],
+			typescript: []
 		},
-		"arrow_function_multiple_params_without_type.js": {
-			expected: es2017 ? [] : ["fatal"],
-			ignored: ["strict"]
+		ignored: []
+	},
+	"arrow_function_multiple_params_without_type.js": {
+		expected: {
+			legacy: ["fatal"],
+			commonjs: [],
+			typescript: []
 		},
+		ignored: []
+	},
 
-		"class_empty.js": {
-			expected: es2017 ? [] : ["fatal"],
-			ignored: ["strict", "no-implicit-globals", "no-unused-vars", "@typescript-eslint/no-unused-vars"]
+	"class_empty.js": {
+		expected: {
+			legacy: ["fatal"],
+			commonjs: [],
+			typescript: []
 		},
-		"class_stage0_function_without_return_type.js": {
-			expected: typescript
-				? [
-						"@typescript-eslint/explicit-member-accessibility",
-						"@typescript-eslint/explicit-function-return-type"
-				  ]
-				: es2017
-				? []
-				: ["fatal"],
-			ignored: [
-				"strict",
-				"no-implicit-globals",
-				"no-unused-vars",
-				"@typescript-eslint/no-unused-vars",
-				"class-methods-use-this"
-			]
-		},
-
-		"class_stage2_instance_property_without_type.js": {
-			expected: typescript ? ["@typescript-eslint/explicit-member-accessibility"] : ["fatal"],
-			ignored: [
-				"strict",
-				"no-implicit-globals",
-				"no-unused-vars",
-				"@typescript-eslint/no-unused-vars",
-				"class-methods-use-this"
-			]
-		},
-		"class_stage2_static_property_without_type.js": {
-			expected: typescript ? ["@typescript-eslint/explicit-member-accessibility"] : ["fatal"],
-			ignored: [
-				"strict",
-				"no-implicit-globals",
-				"no-unused-vars",
-				"@typescript-eslint/no-unused-vars",
-				"class-methods-use-this"
-			]
-		},
-
-		"class_stage2_instance_function_without_return_type.js": {
-			expected: typescript
-				? [
-						"@typescript-eslint/explicit-member-accessibility",
-						"@typescript-eslint/explicit-function-return-type",
-						"no-invalid-this"
-				  ]
-				: ["fatal"],
-			ignored: [
-				"strict",
-				"no-implicit-globals",
-				"no-unused-vars",
-				"@typescript-eslint/no-unused-vars",
-				"class-methods-use-this"
-			]
-		},
-		"class_stage2_static_function_without_return_type.js": {
-			expected: typescript
-				? [
-						"@typescript-eslint/explicit-member-accessibility",
-						"@typescript-eslint/explicit-function-return-type"
-				  ]
-				: ["fatal"],
-			ignored: [
-				"strict",
-				"no-implicit-globals",
-				"no-unused-vars",
-				"@typescript-eslint/no-unused-vars",
-				"class-methods-use-this"
-			]
-		},
-		"class_stage2_instance_arrow_without_return_type.js": {
-			expected: typescript
-				? [
-						"@typescript-eslint/explicit-member-accessibility",
-						"@typescript-eslint/explicit-function-return-type",
-						"no-invalid-this"
-				  ]
-				: ["fatal"],
-			ignored: [
-				"strict",
-				"no-implicit-globals",
-				"no-unused-vars",
-				"@typescript-eslint/no-unused-vars",
-				"class-methods-use-this"
-			]
-		},
-		"class_stage2_static_arrow_without_return_type.js": {
-			expected: typescript
-				? [
-						"@typescript-eslint/explicit-member-accessibility",
-						"@typescript-eslint/explicit-function-return-type"
-				  ]
-				: ["fatal"],
-			ignored: [
-				"strict",
-				"no-implicit-globals",
-				"no-unused-vars",
-				"@typescript-eslint/no-unused-vars",
-				"class-methods-use-this"
-			]
-		},
-		"class_stage2_instance_expression_without_return_type.js": {
-			expected: typescript
-				? [
-						"@typescript-eslint/explicit-member-accessibility",
-						"@typescript-eslint/explicit-function-return-type",
-						"no-invalid-this"
-				  ]
-				: ["fatal"],
-			ignored: [
-				"strict",
-				"no-implicit-globals",
-				"no-unused-vars",
-				"@typescript-eslint/no-unused-vars",
-				"class-methods-use-this"
-			]
-		},
-		"class_stage2_static_expression_without_return_type.js": {
-			expected: typescript
-				? [
-						"@typescript-eslint/explicit-member-accessibility",
-						"@typescript-eslint/explicit-function-return-type"
-				  ]
-				: ["fatal"],
-			ignored: [
-				"strict",
-				"no-implicit-globals",
-				"no-unused-vars",
-				"@typescript-eslint/no-unused-vars",
-				"class-methods-use-this"
-			]
-		},
-
-		"class_stage2_instance_function_without_params_type.js": {
-			expected: typescript ? ["@typescript-eslint/explicit-member-accessibility"] : ["fatal"],
-			ignored: [
-				"strict",
-				"no-implicit-globals",
-				"no-unused-vars",
-				"@typescript-eslint/no-unused-vars",
+		ignored: ["no-unused-vars", "@typescript-eslint/no-unused-vars"]
+	},
+	"class_stage0_function_without_return_type.js": {
+		expected: {
+			legacy: ["fatal"],
+			commonjs: [],
+			typescript: [
 				"@typescript-eslint/explicit-function-return-type",
-				"class-methods-use-this"
-			]
-		},
-		"class_stage2_static_function_without_params_type.js": {
-			expected: typescript ? ["@typescript-eslint/explicit-member-accessibility"] : ["fatal"],
-			ignored: [
-				"strict",
-				"no-implicit-globals",
-				"no-unused-vars",
-				"@typescript-eslint/no-unused-vars",
-				"@typescript-eslint/explicit-function-return-type",
-				"class-methods-use-this"
-			]
-		},
-		"class_stage2_instance_arrow_without_params_type.js": {
-			expected: typescript ? ["@typescript-eslint/explicit-member-accessibility"] : ["fatal"],
-			ignored: [
-				"strict",
-				"no-implicit-globals",
-				"no-unused-vars",
-				"@typescript-eslint/no-unused-vars",
-				"@typescript-eslint/explicit-function-return-type",
-				"class-methods-use-this"
-			]
-		},
-		"class_stage2_static_arrow_without_params_type.js": {
-			expected: typescript ? ["@typescript-eslint/explicit-member-accessibility"] : ["fatal"],
-			ignored: [
-				"strict",
-				"no-implicit-globals",
-				"no-unused-vars",
-				"@typescript-eslint/no-unused-vars",
-				"@typescript-eslint/explicit-function-return-type",
-				"class-methods-use-this"
-			]
-		},
-		"class_stage2_instance_expression_without_params_type.js": {
-			expected: typescript ? ["@typescript-eslint/explicit-member-accessibility"] : ["fatal"],
-			ignored: [
-				"strict",
-				"no-implicit-globals",
-				"no-unused-vars",
-				"@typescript-eslint/no-unused-vars",
-				"@typescript-eslint/explicit-function-return-type",
-				"class-methods-use-this"
-			]
-		},
-		"class_stage2_static_expression_without_params_type.js": {
-			expected: typescript ? ["@typescript-eslint/explicit-member-accessibility"] : ["fatal"],
-			ignored: [
-				"strict",
-				"no-implicit-globals",
-				"no-unused-vars",
-				"@typescript-eslint/no-unused-vars",
-				"@typescript-eslint/explicit-function-return-type",
-				"class-methods-use-this"
-			]
-		},
-
-		"class_stage2_instance_function_underscore_params_without_type.js": {
-			expected: typescript ? ["@typescript-eslint/explicit-member-accessibility"] : ["fatal"],
-			ignored: [
-				"strict",
-				"no-implicit-globals",
-				"no-unused-vars",
-				"@typescript-eslint/no-unused-vars",
-				"@typescript-eslint/explicit-function-return-type",
-				"class-methods-use-this"
-			]
-		},
-		"class_stage2_static_function_underscore_params_without_type.js": {
-			expected: typescript ? ["@typescript-eslint/explicit-member-accessibility"] : ["fatal"],
-			ignored: [
-				"strict",
-				"no-implicit-globals",
-				"no-unused-vars",
-				"@typescript-eslint/no-unused-vars",
-				"@typescript-eslint/explicit-function-return-type",
-				"class-methods-use-this"
-			]
-		},
-		"class_stage2_instance_arrow_underscore_params_without_type.js": {
-			expected: typescript ? ["@typescript-eslint/explicit-member-accessibility"] : ["fatal"],
-			ignored: [
-				"strict",
-				"no-implicit-globals",
-				"no-unused-vars",
-				"@typescript-eslint/no-unused-vars",
-				"@typescript-eslint/explicit-function-return-type",
-				"class-methods-use-this"
-			]
-		},
-		"class_stage2_static_arrow_underscore_params_without_type.js": {
-			expected: typescript ? ["@typescript-eslint/explicit-member-accessibility"] : ["fatal"],
-			ignored: [
-				"strict",
-				"no-implicit-globals",
-				"no-unused-vars",
-				"@typescript-eslint/no-unused-vars",
-				"@typescript-eslint/explicit-function-return-type",
-				"class-methods-use-this"
-			]
-		},
-		"class_stage2_instance_expression_underscore_params_without_type.js": {
-			expected: typescript ? ["@typescript-eslint/explicit-member-accessibility"] : ["fatal"],
-			ignored: [
-				"strict",
-				"no-implicit-globals",
-				"no-unused-vars",
-				"@typescript-eslint/no-unused-vars",
-				"@typescript-eslint/explicit-function-return-type",
-				"class-methods-use-this"
-			]
-		},
-		"class_stage2_static_expression_underscore_params_without_type.js": {
-			expected: typescript ? ["@typescript-eslint/explicit-member-accessibility"] : ["fatal"],
-			ignored: [
-				"strict",
-				"no-implicit-globals",
-				"no-unused-vars",
-				"@typescript-eslint/no-unused-vars",
-				"@typescript-eslint/explicit-function-return-type",
-				"class-methods-use-this"
-			]
-		},
-
-		"line_80.js": {
-			expected: [],
-			ignored: ["strict"]
-		},
-		"line_120.js": {
-			expected: [],
-			ignored: ["strict"]
-		},
-		"line_150.js": {
-			expected: [],
-			ignored: ["strict"]
-		},
-		"line_240.js": {
-			expected: ["max-len"],
-			ignored: ["strict"]
-		},
-
-		"without_env_node.js": {
-			expected: ["no-undef"],
-			ignored: ["strict"]
-		},
-		"with_env_node.js": {
-			expected: [],
-			ignored: ["strict"]
-		},
-
-		"without_env_browser.js": {
-			expected: ["no-undef"],
-			ignored: ["strict"]
-		},
-		"with_env_browser.js": {
-			expected: [],
-			ignored: ["strict"]
-		},
-
-		"without_env_mocha.js": {
-			expected: ["no-undef"],
-			ignored: ["strict"]
-		},
-		"with_env_mocha.js": {
-			expected: [],
-			ignored: ["strict"]
-		},
-
-		"commonjs.js": {
-			expected: commonjs ? [] : ["no-undef"],
-			ignored: ["strict"]
-		},
-		"export_var.js": {
-			expected: esmodules ? ["no-var"] : ["fatal"],
-			ignored: ["strict"]
-		},
-		"export_const.js": {
-			expected: esmodules ? [] : ["fatal"],
-			ignored: ["strict"]
-		},
-		"export_arrow.js": {
-			expected: ["fatal"],
-			ignored: ["strict", "arrow-body-style"]
-		},
-		"export_function.js": {
-			expected: typescript ? ["@typescript-eslint/explicit-function-return-type"] : esmodules ? [] : ["fatal"],
-			ignored: ["strict"]
-		},
-		"export_default_var.js": {
-			expected: esmodules ? [] : ["fatal"],
-			ignored: ["strict", "no-var"]
-		},
-		"export_default_const.js": {
-			expected: ["fatal"],
-			ignored: ["strict"]
-		},
-		"export_default_arrow.js": {
-			expected: typescript ? ["@typescript-eslint/explicit-function-return-type"] : esmodules ? [] : ["fatal"],
-			ignored: ["strict", "arrow-body-style"]
-		},
-		"export_default_function.js": {
-			expected: typescript ? ["@typescript-eslint/explicit-function-return-type"] : esmodules ? [] : ["fatal"],
-			ignored: ["strict"]
-		},
-
-		// @warning Cannot enable this test because it acts differently in CLI mode and in Node API mode:
-		// https://github.com/zaggino/brackets-eslint/issues/51
-		// "promise.js": {
-		// 	expected: es2017 ? [] : ["no-undef"],
-		// 	ignored: ["strict"]
-		// },
-
-		"jsx_without_require.jsx": {
-			expected: typescript ? [] : ["fatal"],
-			ignored: ["strict"]
-		},
-		"tsx_without_import.tsx": {
-			expected: typescript ? [] : ["fatal"],
-			ignored: ["strict"]
-		},
-
-		"async_function.js": {
-			expected: typescript ? ["@typescript-eslint/explicit-function-return-type"] : es2017 ? [] : ["fatal"],
-			ignored: ["strict", "no-unused-vars", "@typescript-eslint/no-unused-vars", "no-implicit-globals"]
-		},
-		"await_in_loop.js": {
-			expected: es2017 ? [] : ["fatal"],
-			ignored: ["strict", "no-unused-vars", "no-undef", "@typescript-eslint/no-unused-vars", "@typescript-eslint/explicit-function-return-type"]
-		},
-		"async_arrow_without_space.js": {
-			expected: es2017 ? ["space-before-function-paren"] : ["fatal"],
-			ignored: [
-				"strict",
-				"no-unused-vars",
-				"@typescript-eslint/no-unused-vars",
-				"no-implicit-globals",
-				"require-await",
-				"no-undef"
-			]
-		},
-		"async_arrow_with_space.js": {
-			expected: es2017 ? [] : ["fatal"],
-			ignored: [
-				"strict",
-				"no-unused-vars",
-				"@typescript-eslint/no-unused-vars",
-				"no-implicit-globals",
-				"require-await",
-				"no-undef"
-			]
-		},
-
-		"quotes_single.js": {
-			expected: ["quotes"],
-			ignored: ["strict", "no-implicit-globals", "no-unused-vars", "@typescript-eslint/no-unused-vars", "no-var"]
-		},
-		"quotes_double.js": {
-			expected: [],
-			ignored: ["strict", "no-implicit-globals", "no-unused-vars", "@typescript-eslint/no-unused-vars", "no-var"]
-		},
-		"quotes_backtick.js": {
-			expected: es2017 ? [] : ["fatal"],
-			ignored: ["strict", "no-implicit-globals", "no-unused-vars", "@typescript-eslint/no-unused-vars", "no-var"]
-		},
-
-		"quotes_property_single.js": {
-			expected: ["quotes"],
-			ignored: ["strict", "no-implicit-globals", "no-unused-vars", "@typescript-eslint/no-unused-vars", "no-var"]
-		},
-		"quotes_property_double.js": {
-			expected: [],
-			ignored: ["strict", "no-implicit-globals", "no-unused-vars", "@typescript-eslint/no-unused-vars", "no-var"]
-		},
-		"quotes_property_backtick.js": {
-			expected: ["fatal"],
-			ignored: ["strict", "no-implicit-globals", "no-unused-vars", "@typescript-eslint/no-unused-vars", "no-var"]
-		},
-
-		"quotes_property_inconsistent_single.js": {
-			expected: ["quotes"],
-			ignored: ["strict", "no-implicit-globals", "no-unused-vars", "@typescript-eslint/no-unused-vars", "no-var"]
-		},
-		"quotes_property_consistent_single.js": {
-			expected: ["quotes", "quote-props"],
-			ignored: ["strict", "no-implicit-globals", "no-unused-vars", "@typescript-eslint/no-unused-vars", "no-var"]
-		},
-		"quotes_property_inconsistent_double.js": {
-			expected: [],
-			ignored: ["strict", "no-implicit-globals", "no-unused-vars", "@typescript-eslint/no-unused-vars", "no-var"]
-		},
-		"quotes_property_consistent_double.js": {
-			expected: ["quote-props"],
-			ignored: ["strict", "no-implicit-globals", "no-unused-vars", "@typescript-eslint/no-unused-vars", "no-var"]
-		},
-
-		"quotes_property_mixed_single.js": {
-			expected: ["quotes"],
-			ignored: ["strict", "no-implicit-globals", "no-unused-vars", "@typescript-eslint/no-unused-vars", "no-var"]
-		},
-		"quotes_property_mixed_double.js": {
-			expected: [],
-			ignored: ["strict", "no-implicit-globals", "no-unused-vars", "@typescript-eslint/no-unused-vars", "no-var"]
-		},
-
-		"quotes_concatenate_number_number.js": {
-			expected: [],
-			ignored: ["strict", "no-implicit-globals", "no-unused-vars", "@typescript-eslint/no-unused-vars", "no-var"]
-		},
-		"quotes_concatenate_number_string_single.js": {
-			expected: ["quotes"],
-			ignored: ["strict", "no-implicit-globals", "no-unused-vars", "@typescript-eslint/no-unused-vars", "no-var"]
-		},
-		"quotes_concatenate_number_string_double.js": {
-			expected: [],
-			ignored: ["strict", "no-implicit-globals", "no-unused-vars", "@typescript-eslint/no-unused-vars", "no-var"]
-		},
-		"quotes_concatenate_number_string_backtick.js": {
-			expected: es2017 ? [] : ["fatal"],
-			ignored: ["strict", "no-implicit-globals", "no-unused-vars", "@typescript-eslint/no-unused-vars", "no-var"]
-		},
-		"quotes_concatenate_string_string_single.js": {
-			expected: ["quotes"],
-			ignored: ["strict", "no-implicit-globals", "no-unused-vars", "@typescript-eslint/no-unused-vars", "no-var"]
-		},
-		"quotes_concatenate_string_string_double.js": {
-			expected: [],
-			ignored: ["strict", "no-implicit-globals", "no-unused-vars", "@typescript-eslint/no-unused-vars", "no-var"]
-		},
-		"quotes_concatenate_string_string_backtick.js": {
-			expected: es2017 ? [] : ["fatal"],
-			ignored: ["strict", "no-implicit-globals", "no-unused-vars", "@typescript-eslint/no-unused-vars", "no-var"]
-		},
-
-		"chained_two_methods_single_line.js": {
-			expected: [],
-			ignored: ["strict"]
-		},
-		"chained_two_methods_multiple_lines.js": {
-			expected: [],
-			ignored: ["strict"]
-		},
-		"chained_four_methods_single_line.js": {
-			expected: [],
-			ignored: ["strict"]
-		},
-		"chained_four_methods_multiple_lines.js": {
-			expected: [],
-			ignored: ["strict"]
-		},
-		"chained_six_methods_single_line.js": {
-			expected: ["newline-per-chained-call"],
-			ignored: ["strict"]
-		},
-		"chained_six_methods_multiple_lines.js": {
-			expected: [],
-			ignored: ["strict"]
-		},
-
-		"this_root.js": {
-			expected: ["no-invalid-this"],
-			ignored: ["no-unused-vars", "@typescript-eslint/no-unused-vars", "strict"]
-		},
-		"this_function.js": {
-			expected: typescript ? ["@typescript-eslint/explicit-function-return-type"] : [],
-			ignored: ["strict", "no-unused-vars", "@typescript-eslint/no-unused-vars"]
-		},
-		"this_arrow.js": {
-			expected: typescript
-				? ["@typescript-eslint/explicit-function-return-type", "no-invalid-this"]
-				: es2017
-				? ["no-invalid-this"]
-				: ["fatal"],
-			ignored: ["strict", "no-unused-vars", "@typescript-eslint/no-unused-vars"]
-		},
-		"this_class_constructor.js": {
-			expected: typescript ? ["@typescript-eslint/explicit-member-accessibility"] : es2017 ? [] : ["fatal"],
-			ignored: ["strict", "no-unused-vars", "@typescript-eslint/no-unused-vars"]
-		},
-		"this_class_method.js": {
-			expected: typescript
-				? [
-						"@typescript-eslint/explicit-member-accessibility",
-						"@typescript-eslint/explicit-function-return-type"
-				  ]
-				: es2017
-				? []
-				: ["fatal"],
-			ignored: ["strict", "no-unused-vars", "@typescript-eslint/no-unused-vars"]
-		},
-		"this_class_static.js": {
-			expected: typescript
-				? [
-						"@typescript-eslint/explicit-member-accessibility",
-						"@typescript-eslint/explicit-function-return-type"
-				  ]
-				: es2017
-				? []
-				: ["fatal"],
-			ignored: ["strict", "no-unused-vars", "@typescript-eslint/no-unused-vars"]
-		},
-
-		"padding_class_beginning_zero_lines.js": {
-			expected: es2017 ? [] : ["fatal"],
-			ignored: [
-				"strict",
-				"no-unused-vars",
-				"@typescript-eslint/no-unused-vars",
-				"class-methods-use-this",
 				"@typescript-eslint/explicit-member-accessibility"
 			]
 		},
-		"padding_class_beginning_one_line.js": {
-			expected: es2017 ? [] : ["fatal"],
-			ignored: [
-				"strict",
-				"no-unused-vars",
-				"@typescript-eslint/no-unused-vars",
-				"class-methods-use-this",
-				"@typescript-eslint/explicit-member-accessibility"
-			]
-		},
-		"padding_class_beginning_two_lines.js": {
-			expected: es2017 ? [] : ["fatal"],
-			ignored: [
-				"strict",
-				"no-unused-vars",
-				"@typescript-eslint/no-unused-vars",
-				"class-methods-use-this",
-				"@typescript-eslint/explicit-member-accessibility"
-			]
-		},
-		"padding_class_end_zero_lines.js": {
-			expected: es2017 ? [] : ["fatal"],
-			ignored: [
-				"strict",
-				"no-unused-vars",
-				"@typescript-eslint/no-unused-vars",
-				"class-methods-use-this",
-				"@typescript-eslint/explicit-member-accessibility"
-			]
-		},
-		"padding_class_end_one_line.js": {
-			expected: es2017 ? [] : ["fatal"],
-			ignored: [
-				"strict",
-				"no-unused-vars",
-				"@typescript-eslint/no-unused-vars",
-				"class-methods-use-this",
-				"@typescript-eslint/explicit-member-accessibility"
-			]
-		},
-		"padding_class_end_two_lines.js": {
-			expected: es2017 ? [] : ["fatal"],
-			ignored: [
-				"strict",
-				"no-unused-vars",
-				"@typescript-eslint/no-unused-vars",
-				"class-methods-use-this",
-				"@typescript-eslint/explicit-member-accessibility"
-			]
-		},
+		ignored: ["class-methods-use-this", "no-unused-vars", "@typescript-eslint/no-unused-vars"]
+	},
 
-		"padding_class_method_beginning_zero_lines.js": {
-			expected: es2017 ? [] : ["fatal"],
-			ignored: [
-				"strict",
-				"no-unused-vars",
-				"@typescript-eslint/no-unused-vars",
-				"class-methods-use-this",
-				"@typescript-eslint/explicit-member-accessibility",
-				"@typescript-eslint/explicit-function-return-type"
-			]
+	"class_stage2_instance_property_without_type.js": {
+		expected: {
+			legacy: ["fatal"],
+			commonjs: ["fatal"],
+			typescript: ["@typescript-eslint/explicit-member-accessibility", "@typescript-eslint/no-unused-vars"]
 		},
-		"padding_class_method_beginning_one_line.js": {
-			expected: es2017 ? [] : ["fatal"],
-			ignored: [
-				"strict",
-				"no-unused-vars",
-				"@typescript-eslint/no-unused-vars",
-				"class-methods-use-this",
-				"@typescript-eslint/explicit-member-accessibility",
-				"@typescript-eslint/explicit-function-return-type"
-			]
+		ignored: []
+	},
+	"class_stage2_static_property_without_type.js": {
+		expected: {
+			legacy: ["fatal"],
+			commonjs: ["fatal"],
+			typescript: ["@typescript-eslint/explicit-member-accessibility", "@typescript-eslint/no-unused-vars"]
 		},
-		"padding_class_method_beginning_two_lines.js": {
-			expected: es2017 ? [] : ["fatal"],
-			ignored: [
-				"strict",
-				"no-unused-vars",
-				"@typescript-eslint/no-unused-vars",
-				"class-methods-use-this",
-				"@typescript-eslint/explicit-member-accessibility",
-				"@typescript-eslint/explicit-function-return-type"
-			]
-		},
-		"padding_class_method_end_zero_lines.js": {
-			expected: es2017 ? [] : ["fatal"],
-			ignored: [
-				"strict",
-				"no-unused-vars",
-				"@typescript-eslint/no-unused-vars",
-				"class-methods-use-this",
-				"@typescript-eslint/explicit-member-accessibility",
-				"@typescript-eslint/explicit-function-return-type"
-			]
-		},
-		"padding_class_method_end_one_line.js": {
-			expected: es2017 ? [] : ["fatal"],
-			ignored: [
-				"strict",
-				"no-unused-vars",
-				"@typescript-eslint/no-unused-vars",
-				"class-methods-use-this",
-				"@typescript-eslint/explicit-member-accessibility",
-				"@typescript-eslint/explicit-function-return-type"
-			]
-		},
-		"padding_class_method_end_two_lines.js": {
-			expected: es2017 ? [] : ["fatal"],
-			ignored: [
-				"strict",
-				"no-unused-vars",
-				"@typescript-eslint/no-unused-vars",
-				"class-methods-use-this",
-				"@typescript-eslint/explicit-member-accessibility",
-				"@typescript-eslint/explicit-function-return-type"
-			]
-		},
+		ignored: []
+	},
 
-		"padding_function_beginning_zero_lines.js": {
-			expected: [],
-			ignored: [
-				"strict",
-				"no-unused-vars",
-				"@typescript-eslint/no-unused-vars",
-				"class-methods-use-this",
-				"@typescript-eslint/explicit-function-return-type"
-			]
+	"class_stage2_instance_function_without_return_type.js": {
+		expected: {
+			legacy: ["fatal"],
+			commonjs: ["fatal"],
+			typescript: ["@typescript-eslint/explicit-function-return-type", "@typescript-eslint/explicit-member-accessibility", "@typescript-eslint/no-unused-vars"]
 		},
-		"padding_function_beginning_one_line.js": {
-			expected: [],
-			ignored: [
-				"strict",
-				"no-unused-vars",
-				"@typescript-eslint/no-unused-vars",
-				"class-methods-use-this",
-				"@typescript-eslint/explicit-function-return-type"
-			]
+		ignored: []
+	},
+	"class_stage2_static_function_without_return_type.js": {
+		expected: {
+			legacy: ["fatal"],
+			commonjs: ["fatal"],
+			typescript: ["@typescript-eslint/explicit-function-return-type", "@typescript-eslint/explicit-member-accessibility", "@typescript-eslint/no-unused-vars"]
 		},
-		"padding_function_beginning_two_lines.js": {
-			expected: [],
-			ignored: [
-				"strict",
-				"no-unused-vars",
-				"@typescript-eslint/no-unused-vars",
-				"class-methods-use-this",
-				"@typescript-eslint/explicit-function-return-type"
-			]
+		ignored: []
+	},
+	"class_stage2_instance_arrow_without_return_type.js": {
+		expected: {
+			legacy: ["fatal"],
+			commonjs: ["fatal"],
+			typescript: ["@typescript-eslint/explicit-function-return-type", "@typescript-eslint/explicit-member-accessibility", "@typescript-eslint/no-unused-vars"]
 		},
-		"padding_function_end_zero_lines.js": {
-			expected: [],
-			ignored: [
-				"strict",
-				"no-unused-vars",
-				"@typescript-eslint/no-unused-vars",
-				"class-methods-use-this",
-				"@typescript-eslint/explicit-function-return-type"
-			]
+		ignored: []
+	},
+	"class_stage2_static_arrow_without_return_type.js": {
+		expected: {
+			legacy: ["fatal"],
+			commonjs: ["fatal"],
+			typescript: ["@typescript-eslint/explicit-function-return-type", "@typescript-eslint/explicit-member-accessibility", "@typescript-eslint/no-unused-vars"]
 		},
-		"padding_function_end_one_line.js": {
-			expected: [],
-			ignored: [
-				"strict",
-				"no-unused-vars",
-				"@typescript-eslint/no-unused-vars",
-				"class-methods-use-this",
-				"@typescript-eslint/explicit-function-return-type"
-			]
+		ignored: []
+	},
+	"class_stage2_instance_expression_without_return_type.js": {
+		expected: {
+			legacy: ["fatal"],
+			commonjs: ["fatal"],
+			typescript: ["@typescript-eslint/explicit-function-return-type", "@typescript-eslint/explicit-member-accessibility", "@typescript-eslint/no-unused-vars"]
 		},
-		"padding_function_end_two_lines.js": {
-			expected: [],
-			ignored: [
-				"strict",
-				"no-unused-vars",
-				"@typescript-eslint/no-unused-vars",
-				"class-methods-use-this",
-				"@typescript-eslint/explicit-function-return-type"
-			]
+		ignored: []
+	},
+	"class_stage2_static_expression_without_return_type.js": {
+		expected: {
+			legacy: ["fatal"],
+			commonjs: ["fatal"],
+			typescript: ["@typescript-eslint/explicit-function-return-type", "@typescript-eslint/explicit-member-accessibility", "@typescript-eslint/no-unused-vars"]
 		},
+		ignored: []
+	},
 
-		"ternary.js": {
-			expected: [],
-			ignored: ["strict", "no-var", "no-unused-vars", "@typescript-eslint/no-unused-vars"]
+	"class_stage2_instance_function_without_params_type.js": {
+		expected: {
+			legacy: ["fatal"],
+			commonjs: ["fatal"],
+			typescript: ["@typescript-eslint/explicit-function-return-type", "@typescript-eslint/explicit-member-accessibility", "@typescript-eslint/no-unused-vars"]
 		},
+		ignored: []
+	},
+	"class_stage2_static_function_without_params_type.js": {
+		expected: {
+			legacy: ["fatal"],
+			commonjs: ["fatal"],
+			typescript: ["@typescript-eslint/explicit-function-return-type", "@typescript-eslint/explicit-member-accessibility", "@typescript-eslint/no-unused-vars"]
+		},
+		ignored: []
+	},
+	"class_stage2_instance_arrow_without_params_type.js": {
+		expected: {
+			legacy: ["fatal"],
+			commonjs: ["fatal"],
+			typescript: ["@typescript-eslint/explicit-function-return-type", "@typescript-eslint/explicit-member-accessibility", "@typescript-eslint/no-unused-vars"]
+		},
+		ignored: []
+	},
+	"class_stage2_static_arrow_without_params_type.js": {
+		expected: {
+			legacy: ["fatal"],
+			commonjs: ["fatal"],
+			typescript: ["@typescript-eslint/explicit-function-return-type", "@typescript-eslint/explicit-member-accessibility", "@typescript-eslint/no-unused-vars"]
+		},
+		ignored: []
+	},
+	"class_stage2_instance_expression_without_params_type.js": {
+		expected: {
+			legacy: ["fatal"],
+			commonjs: ["fatal"],
+			typescript: ["@typescript-eslint/explicit-function-return-type", "@typescript-eslint/explicit-member-accessibility", "@typescript-eslint/no-unused-vars"]
+		},
+		ignored: []
+	},
+	"class_stage2_static_expression_without_params_type.js": {
+		expected: {
+			legacy: ["fatal"],
+			commonjs: ["fatal"],
+			typescript: ["@typescript-eslint/explicit-function-return-type", "@typescript-eslint/explicit-member-accessibility", "@typescript-eslint/no-unused-vars"]
+		},
+		ignored: []
+	},
 
-		"typescript_enum_commas.ts": {
-			expected: typescript ? [] : ["fatal"],
-			ignored: ["no-unused-vars", "@typescript-eslint/no-unused-vars"]
+	"class_stage2_instance_function_underscore_params_without_type.js": {
+		expected: {
+			legacy: ["fatal"],
+			commonjs: ["fatal"],
+			typescript: ["@typescript-eslint/explicit-function-return-type", "@typescript-eslint/explicit-member-accessibility", "@typescript-eslint/no-unused-vars"]
 		},
-		"typescript_enum_semicolons.ts": {
-			expected: ["fatal"],
-			ignored: ["no-unused-vars", "@typescript-eslint/no-unused-vars"]
+		ignored: []
+	},
+	"class_stage2_static_function_underscore_params_without_type.js": {
+		expected: {
+			legacy: ["fatal"],
+			commonjs: ["fatal"],
+			typescript: ["@typescript-eslint/explicit-function-return-type", "@typescript-eslint/explicit-member-accessibility", "@typescript-eslint/no-unused-vars"]
 		},
+		ignored: []
+	},
+	"class_stage2_instance_arrow_underscore_params_without_type.js": {
+		expected: {
+			legacy: ["fatal"],
+			commonjs: ["fatal"],
+			typescript: ["@typescript-eslint/explicit-function-return-type", "@typescript-eslint/explicit-member-accessibility", "@typescript-eslint/no-unused-vars"]
+		},
+		ignored: []
+	},
+	"class_stage2_static_arrow_underscore_params_without_type.js": {
+		expected: {
+			legacy: ["fatal"],
+			commonjs: ["fatal"],
+			typescript: ["@typescript-eslint/explicit-function-return-type", "@typescript-eslint/explicit-member-accessibility", "@typescript-eslint/no-unused-vars"]
+		},
+		ignored: []
+	},
+	"class_stage2_instance_expression_underscore_params_without_type.js": {
+		expected: {
+			legacy: ["fatal"],
+			commonjs: ["fatal"],
+			typescript: ["@typescript-eslint/explicit-function-return-type", "@typescript-eslint/explicit-member-accessibility", "@typescript-eslint/no-unused-vars"]
+		},
+		ignored: []
+	},
+	"class_stage2_static_expression_underscore_params_without_type.js": {
+		expected: {
+			legacy: ["fatal"],
+			commonjs: ["fatal"],
+			typescript: ["@typescript-eslint/explicit-function-return-type", "@typescript-eslint/explicit-member-accessibility", "@typescript-eslint/no-unused-vars"]
+		},
+		ignored: []
+	},
 
-		"typescript_type_union.ts": {
-			expected: typescript ? [] : ["fatal"],
-			ignored: ["no-unused-vars", "@typescript-eslint/no-unused-vars"]
+	"line_80.js": {
+		expected: {
+			legacy: [],
+			commonjs: [],
+			typescript: []
 		},
-		"typescript_type_commas.ts": {
-			expected: typescript ? ["@typescript-eslint/member-delimiter-style"] : ["fatal"],
-			ignored: ["no-unused-vars", "@typescript-eslint/no-unused-vars"]
+		ignored: []
+	},
+	"line_120.js": {
+		expected: {
+			legacy: [],
+			commonjs: [],
+			typescript: []
 		},
-		"typescript_type_semicolons.ts": {
-			expected: typescript ? [] : ["fatal"],
-			ignored: ["no-unused-vars", "@typescript-eslint/no-unused-vars"]
+		ignored: []
+	},
+	"line_150.js": {
+		expected: {
+			legacy: [],
+			commonjs: [],
+			typescript: []
 		},
+		ignored: []
+	},
+	"line_240.js": {
+		expected: {
+			legacy: ["max-len"],
+			commonjs: ["max-len"],
+			typescript: ["max-len"]
+		},
+		ignored: []
+	},
 
-		"typescript_interface_commas.ts": {
-			expected: typescript ? ["@typescript-eslint/member-delimiter-style"] : ["fatal"],
-			ignored: ["no-unused-vars", "@typescript-eslint/no-unused-vars"]
+	"without_env_node.js": {
+		expected: {
+			legacy: ["no-undef"],
+			commonjs: ["no-undef"],
+			typescript: ["no-undef"]
 		},
-		"typescript_interface_semicolons.ts": {
-			expected: typescript ? [] : ["fatal"],
-			ignored: ["no-unused-vars", "@typescript-eslint/no-unused-vars"]
+		ignored: []
+	},
+	"with_env_node.js": {
+		expected: {
+			legacy: [],
+			commonjs: [],
+			typescript: []
 		},
+		ignored: []
+	},
 
-		"typescript_generic.ts": {
-			expected: typescript ? [] : ["fatal"],
-			ignored: ["no-unused-vars", "@typescript-eslint/no-unused-vars"]
+	"without_env_browser.js": {
+		expected: {
+			legacy: ["no-undef"],
+			commonjs: ["no-undef"],
+			typescript: ["no-undef"]
 		},
-		"typescript_optional_parameter.ts": {
-			expected: typescript ? [] : ["fatal"],
-			ignored: ["no-unused-vars", "@typescript-eslint/no-unused-vars"]
+		ignored: []
+	},
+	"with_env_browser.js": {
+		expected: {
+			legacy: [],
+			commonjs: [],
+			typescript: []
 		},
-		"typescript_jsdoc.ts": {
-			expected: typescript ? [] : ["fatal"],
-			ignored: ["no-unused-vars", "@typescript-eslint/no-unused-vars"]
-		},
+		ignored: []
+	},
 
-		"destructuring_declare_object_param_dot.js": {
-			expected: es2017 ? ["prefer-destructuring"] : [],
-			ignored: ["strict", "dot-notation", "no-unused-vars", "@typescript-eslint/no-unused-vars", "no-var"]
+	"without_env_mocha.js": {
+		expected: {
+			legacy: ["no-undef"],
+			commonjs: ["no-undef"],
+			typescript: ["no-undef"]
 		},
-		"destructuring_assign_object_param_dot.js": {
-			expected: [],
-			ignored: ["strict", "dot-notation", "no-unused-vars", "@typescript-eslint/no-unused-vars", "no-var"]
+		ignored: ["no-unused-vars", "@typescript-eslint/no-unused-vars"]
+	},
+	"with_env_mocha.js": {
+		expected: {
+			legacy: [],
+			commonjs: [],
+			typescript: []
 		},
-		"destructuring_declare_object_param_bracket.js": {
-			expected: es2017 ? ["prefer-destructuring"] : [],
-			ignored: ["strict", "dot-notation", "no-unused-vars", "@typescript-eslint/no-unused-vars", "no-var"]
-		},
-		"destructuring_assign_object_param_bracket.js": {
-			expected: [],
-			ignored: ["strict", "dot-notation", "no-unused-vars", "@typescript-eslint/no-unused-vars", "no-var"]
-		},
-		"destructuring_declare_object_param_destructured.js": {
-			expected: es2017 ? [] : ["fatal"],
-			ignored: ["strict", "no-unused-vars", "@typescript-eslint/no-unused-vars", "no-var"]
-		},
-		"destructuring_assign_object_param_destructured.js": {
-			expected: es2017 ? [] : ["fatal"],
-			ignored: ["strict", "no-unused-vars", "@typescript-eslint/no-unused-vars", "no-var"]
-		},
-		"destructuring_declare_array_value_index.js": {
-			expected: [],
-			ignored: ["strict", "no-unused-vars", "@typescript-eslint/no-unused-vars", "no-var"]
-		},
-		"destructuring_assign_array_value_index.js": {
-			expected: [],
-			ignored: ["strict", "no-unused-vars", "@typescript-eslint/no-unused-vars", "no-var"]
-		},
-		"destructuring_declare_array_destructured_first.js": {
-			expected: es2017 ? [] : ["fatal"],
-			ignored: ["strict", "no-unused-vars", "@typescript-eslint/no-unused-vars", "no-var"]
-		},
-		"destructuring_assign_array_destructured_first.js": {
-			expected: [],
-			ignored: ["strict", "no-unused-vars", "@typescript-eslint/no-unused-vars", "no-var"]
-		},
-		"destructuring_declare_array_destructured_second.js": {
-			expected: es2017 ? [] : ["fatal"],
-			ignored: ["strict", "no-unused-vars", "@typescript-eslint/no-unused-vars", "no-var"]
-		},
-		"destructuring_assign_array_destructured_second.js": {
-			expected: [],
-			ignored: ["strict", "no-unused-vars", "@typescript-eslint/no-unused-vars", "no-var"]
-		},
+		ignored: []
+	},
 
-		"unused_param_without_underscore_first.js": {
-			expected: typescript ? [] : [],
-			ignored: ["strict", "@typescript-eslint/explicit-function-return-type"]
+	"promise.js": {
+		expected: {
+			legacy: ["no-undef"],
+			commonjs: [],
+			typescript: []
 		},
-		"unused_param_without_underscore_last.js": {
-			expected: typescript ? ["@typescript-eslint/no-unused-vars"] : ["no-unused-vars"],
-			ignored: ["strict", "@typescript-eslint/explicit-function-return-type"]
-		},
-		"unused_param_with_underscore_first.js": {
-			expected: [],
-			ignored: ["strict", "@typescript-eslint/explicit-function-return-type"]
-		},
-		"unused_param_with_underscore_last.js": {
-			expected: [],
-			ignored: ["strict", "@typescript-eslint/explicit-function-return-type"]
-		},
-		"unused_var_without_underscore.js": {
-			expected: typescript ? ["@typescript-eslint/no-unused-vars"] : ["no-unused-vars"],
-			ignored: ["strict", "no-var"]
-		},
-		"unused_var_with_underscore.js": {
-			expected: [],
-			ignored: ["strict", "no-var"]
-		},
+		ignored: []
+	},
 
-		// I'd rather only variables starting with _ were ignored, but it's all of nothing
-		"unused_rest_without_underscore.js": {
-			expected: typescript ? [] : ["fatal"],
-			ignored: ["strict", "no-var"]
+	"jsx_without_require.jsx": {
+		expected: {
+			legacy: ["fatal"],
+			commonjs: ["fatal"],
+			typescript: []
 		},
-		"unused_rest_with_underscore.js": {
-			expected: typescript ? [] : ["fatal"],
-			ignored: []
+		ignored: []
+	},
+	"tsx_without_import.tsx": {
+		expected: {
+			legacy: ["fatal"],
+			commonjs: ["fatal"],
+			typescript: []
 		},
+		ignored: []
+	},
 
-		"require_var.js": {
-			expected: es2017 ? ["no-var"] : [],
-			ignored: ["strict", "no-undef", "no-unused-vars", "@typescript-eslint/no-unused-vars"]
+	"await_toplevel.js": {
+		expected: {
+			legacy: ["fatal"],
+			commonjs: ["fatal"],
+			typescript: []
 		},
-		"require_destructure_var.js": {
-			expected: typescript ? ["no-var"] : es2017 ? ["no-var"] : ["fatal"],
-			ignored: ["strict", "no-undef", "no-unused-vars", "@typescript-eslint/no-unused-vars"]
+		ignored: ["no-unused-vars", "@typescript-eslint/no-unused-vars"]
+	},
+	"await_in_loop.js": {
+		expected: {
+			legacy: ["fatal"],
+			commonjs: [],
+			typescript: []
 		},
-		"require_const.js": {
-			expected: es2017 ? [] : ["fatal"],
-			ignored: ["strict", "no-undef", "no-unused-vars", "@typescript-eslint/no-unused-vars"]
-		},
-		"require_destructure_const.js": {
-			expected: typescript ? [] : es2017 ? [] : ["fatal"],
-			ignored: ["strict", "no-undef", "no-unused-vars", "@typescript-eslint/no-unused-vars"]
-		},
-		"require_import.js": {
-			expected: typescript ? [] : ["fatal"],
-			ignored: ["strict", "@typescript-eslint/no-unused-vars"]
-		},
-		"require_destructure_import.js": {
-			expected: ["fatal"],
-			ignored: []
-		},
+		ignored: ["no-unused-vars", "@typescript-eslint/explicit-function-return-type", "@typescript-eslint/no-unused-vars"]
+	},
 
-		"object_no_props.js": {
-			expected: [],
-			ignored: ["no-var", "no-unused-vars", "@typescript-eslint/no-unused-vars"]
+	"async_function.js": {
+		expected: {
+			legacy: ["fatal"],
+			commonjs: [],
+			typescript: []
 		},
-		"object_few_props_mixed_lines.js": {
-			expected: [],
-			ignored: ["no-var", "no-unused-vars", "@typescript-eslint/no-unused-vars"]
+		ignored: ["no-unused-vars", "@typescript-eslint/explicit-function-return-type", "@typescript-eslint/no-unused-vars"]
+	},
+	"async_arrow_without_space.js": {
+		expected: {
+			legacy: ["fatal"],
+			commonjs: ["space-before-function-paren"],
+			typescript: ["@typescript-eslint/space-before-function-paren"]
 		},
-		"object_few_props_one_per_line.js": {
-			expected: [],
-			ignored: ["no-var", "no-unused-vars", "@typescript-eslint/no-unused-vars"]
+		ignored: []
+	},
+	"async_arrow_with_space.js": {
+		expected: {
+			legacy: ["fatal"],
+			commonjs: [],
+			typescript: []
 		},
-		"object_few_props_single_line.js": {
-			expected: [],
-			ignored: ["no-var", "no-unused-vars", "@typescript-eslint/no-unused-vars", "max-len"]
-		},
-		"object_many_props_mixed_lines.js": {
-			expected: [],
-			ignored: ["no-var", "no-unused-vars", "@typescript-eslint/no-unused-vars"]
-		},
-		"object_many_props_one_per_line.js": {
-			expected: [],
-			ignored: ["no-var", "no-unused-vars", "@typescript-eslint/no-unused-vars"]
-		},
-		"object_many_props_single_line.js": {
-			expected: [],
-			ignored: ["no-var", "no-unused-vars", "@typescript-eslint/no-unused-vars", "max-len"]
-		},
-		"object_props_numbers.js": {
-			expected: [],
-			ignored: ["no-var", "no-unused-vars", "@typescript-eslint/no-unused-vars"]
-		},
+		ignored: []
+	},
 
-		"function_param_per_line_with_space.js": {
-			expected: [],
-			ignored: [
-				"no-unused-vars",
-				"@typescript-eslint/no-unused-vars",
-				"@typescript-eslint/explicit-function-return-type"
-			]
+	"quotes_single.js": {
+		expected: {
+			legacy: ["quotes"],
+			commonjs: ["quotes"],
+			typescript: ["@typescript-eslint/quotes"]
 		},
-		"function_param_per_line_without_space.js": {
-			expected: ["space-before-blocks"],
-			ignored: [
-				"no-unused-vars",
-				"@typescript-eslint/no-unused-vars",
-				"@typescript-eslint/explicit-function-return-type"
-			]
+		ignored: ["no-unused-vars", "no-var", "@typescript-eslint/no-unused-vars"]
+	},
+	"quotes_double.js": {
+		expected: {
+			legacy: [],
+			commonjs: [],
+			typescript: []
 		},
-		"function_param_single_line_with_space.js": {
-			expected: [],
-			ignored: [
-				"no-unused-vars",
-				"@typescript-eslint/no-unused-vars",
-				"@typescript-eslint/explicit-function-return-type"
-			]
+		ignored: ["no-unused-vars", "no-var", "@typescript-eslint/no-unused-vars"]
+	},
+	"quotes_backtick.js": {
+		expected: {
+			legacy: ["fatal"],
+			commonjs: [],
+			typescript: []
 		},
-		"function_param_single_line_without_space.js": {
-			expected: ["space-before-blocks"],
-			ignored: [
-				"no-unused-vars",
-				"@typescript-eslint/no-unused-vars",
-				"@typescript-eslint/explicit-function-return-type"
-			]
-		},
+		ignored: ["no-unused-vars", "no-var", "@typescript-eslint/no-unused-vars"]
+	},
 
-		"comment_eslint_line_before.js": {
-			expected: ["no-warning-comments"],
-			ignored: ["fake", "no-undef"]
+	"quotes_property_single.js": {
+		expected: {
+			legacy: ["quotes"],
+			commonjs: ["quotes"],
+			typescript: ["@typescript-eslint/quotes"]
 		},
-		"comment_eslint_line_end.js": {
-			expected: ["no-warning-comments", "line-comment-position"],
-			ignored: ["fake", "no-undef"]
+		ignored: ["no-unused-vars", "no-var", "@typescript-eslint/no-unused-vars"]
+	},
+	"quotes_property_double.js": {
+		expected: {
+			legacy: [],
+			commonjs: [],
+			typescript: []
 		},
-		"comment_eslint_line_after.js": {
-			expected: ["no-warning-comments"],
-			ignored: ["fake", "no-undef"]
+		ignored: ["no-unused-vars", "no-var", "@typescript-eslint/no-unused-vars"]
+	},
+	"quotes_property_backtick.js": {
+		expected: {
+			legacy: ["fatal"],
+			commonjs: ["fatal"],
+			typescript: ["fatal"]
 		},
+		ignored: []
+	},
 
-		"comment_line_before.js": {
-			expected: [],
-			ignored: ["fake", "no-undef"]
+	"quotes_property_inconsistent_single.js": {
+		expected: {
+			legacy: ["quotes"],
+			commonjs: ["quotes"],
+			typescript: ["@typescript-eslint/quotes"]
 		},
-		"comment_line_end.js": {
-			expected: ["line-comment-position"],
-			ignored: ["fake", "no-undef"]
+		ignored: ["no-unused-vars", "no-var", "@typescript-eslint/no-unused-vars"]
+	},
+	"quotes_property_consistent_single.js": {
+		expected: {
+			legacy: ["quotes", "quote-props"],
+			commonjs: ["quotes", "quote-props"],
+			typescript: ["@typescript-eslint/quotes", "quote-props"]
 		},
-		"comment_line_after.js": {
-			expected: [],
-			ignored: ["fake", "no-undef"]
+		ignored: ["no-unused-vars", "no-var", "@typescript-eslint/no-unused-vars"]
+	},
+	"quotes_property_inconsistent_double.js": {
+		expected: {
+			legacy: [],
+			commonjs: [],
+			typescript: []
 		},
+		ignored: ["no-unused-vars", "no-var", "@typescript-eslint/no-unused-vars"]
+	},
+	"quotes_property_consistent_double.js": {
+		expected: {
+			legacy: ["quote-props"],
+			commonjs: ["quote-props"],
+			typescript: ["quote-props"]
+		},
+		ignored: ["no-unused-vars", "no-var", "@typescript-eslint/no-unused-vars"]
+	},
 
-		"comment_this_before.js": {
-			expected: [],
-			ignored: ["no-invalid-this", "fake", "no-undef"]
+	"quotes_property_mixed_single.js": {
+		expected: {
+			legacy: ["quotes"],
+			commonjs: ["quotes"],
+			typescript: ["@typescript-eslint/quotes"]
 		},
-		"comment_this_start.js": {
-			expected: [],
-			ignored: ["no-invalid-this", "fake", "no-undef"]
+		ignored: ["no-unused-vars", "no-var", "@typescript-eslint/no-unused-vars"]
+	},
+	"quotes_property_mixed_double.js": {
+		expected: {
+			legacy: [],
+			commonjs: [],
+			typescript: []
 		},
-		"comment_this_between.js": {
-			expected: [],
-			ignored: ["no-invalid-this", "fake", "no-undef"]
-		},
-		"comment_this_end.js": {
-			expected: [],
-			ignored: ["no-invalid-this", "fake", "no-undef", "block-spacing"]
-		},
-		"comment_this_after.js": {
-			expected: [],
-			ignored: ["no-invalid-this", "fake", "no-undef"]
-		},
+		ignored: ["no-unused-vars", "no-var", "@typescript-eslint/no-unused-vars"]
+	},
 
-		"if_space_before.js": {
-			expected: ["space-before-blocks"],
-			ignored: ["no-undef", "no-var", "no-unused-vars", "@typescript-eslint/no-unused-vars"]
+	"quotes_concatenate_number_number.js": {
+		expected: {
+			legacy: [],
+			commonjs: [],
+			typescript: []
 		},
-		"if_space_after.js": {
-			expected: ["keyword-spacing"],
-			ignored: ["no-undef", "no-var", "no-unused-vars", "@typescript-eslint/no-unused-vars"]
+		ignored: ["no-unused-vars", "no-var", "@typescript-eslint/no-unused-vars"]
+	},
+	"quotes_concatenate_number_string_single.js": {
+		expected: {
+			legacy: ["quotes"],
+			commonjs: ["quotes"],
+			typescript: ["@typescript-eslint/quotes"]
 		},
-		"if_space_before_after.js": {
-			expected: [],
-			ignored: ["no-undef", "no-var", "no-unused-vars", "@typescript-eslint/no-unused-vars"]
+		ignored: ["no-unused-vars", "no-var", "@typescript-eslint/no-unused-vars"]
+	},
+	"quotes_concatenate_number_string_double.js": {
+		expected: {
+			legacy: [],
+			commonjs: [],
+			typescript: []
 		},
-		"operator_start.js": {
-			expected: ["operator-linebreak"],
-			ignored: ["no-undef"]
+		ignored: ["no-unused-vars", "no-var", "@typescript-eslint/no-unused-vars"]
+	},
+	"quotes_concatenate_number_string_backtick.js": {
+		expected: {
+			legacy: ["fatal"],
+			commonjs: [],
+			typescript: []
 		},
-		"operator_end.js": {
-			expected: [],
-			ignored: ["no-undef"]
+		ignored: ["no-unused-vars", "no-var", "@typescript-eslint/no-unused-vars"]
+	},
+	"quotes_concatenate_string_string_single.js": {
+		expected: {
+			legacy: ["quotes"],
+			commonjs: ["quotes"],
+			typescript: ["@typescript-eslint/quotes"]
 		},
+		ignored: ["no-unused-vars", "no-var", "@typescript-eslint/no-unused-vars"]
+	},
+	"quotes_concatenate_string_string_double.js": {
+		expected: {
+			legacy: [],
+			commonjs: [],
+			typescript: []
+		},
+		ignored: ["no-unused-vars", "no-var", "@typescript-eslint/no-unused-vars"]
+	},
+	"quotes_concatenate_string_string_backtick.js": {
+		expected: {
+			legacy: ["fatal"],
+			commonjs: [],
+			typescript: []
+		},
+		ignored: ["no-unused-vars", "no-var", "@typescript-eslint/no-unused-vars"]
+	},
 
-		"typescript_type_single_line_commas_with_last.ts": {
-			expected: typescript ? ["@typescript-eslint/member-delimiter-style"] : ["fatal"],
-			ignored: ["no-undef", "comma-spacing"]
+	"chained_two_methods_single_line.js": {
+		expected: {
+			legacy: [],
+			commonjs: [],
+			typescript: []
 		},
-		"typescript_type_single_line_commas_without_last.ts": {
-			expected: typescript ? ["@typescript-eslint/member-delimiter-style"] : ["fatal"],
-			ignored: ["no-undef", "comma-spacing"]
+		ignored: []
+	},
+	"chained_two_methods_multiple_lines.js": {
+		expected: {
+			legacy: [],
+			commonjs: [],
+			typescript: []
 		},
-		"typescript_type_single_line_semicolons_with_last.ts": {
-			expected: typescript ? ["@typescript-eslint/member-delimiter-style"] : ["fatal"],
-			ignored: ["no-undef"]
+		ignored: []
+	},
+	"chained_four_methods_single_line.js": {
+		expected: {
+			legacy: [],
+			commonjs: [],
+			typescript: []
 		},
-		"typescript_type_single_line_semicolons_without_last.ts": {
-			expected: typescript ? [] : ["fatal"],
-			ignored: ["no-undef"]
+		ignored: []
+	},
+	"chained_four_methods_multiple_lines.js": {
+		expected: {
+			legacy: [],
+			commonjs: [],
+			typescript: []
 		},
+		ignored: []
+	},
+	"chained_six_methods_single_line.js": {
+		expected: {
+			legacy: ["newline-per-chained-call"],
+			commonjs: ["newline-per-chained-call"],
+			typescript: ["newline-per-chained-call"]
+		},
+		ignored: []
+	},
+	"chained_six_methods_multiple_lines.js": {
+		expected: {
+			legacy: [],
+			commonjs: [],
+			typescript: []
+		},
+		ignored: []
+	},
 
-		"mixed_operators_mixed_precedence_with_parens.js": {
-			expected: [],
-			ignored: ["no-undef", "no-var", "no-unused-vars", "@typescript-eslint/no-unused-vars"]
+	"this_root.js": {
+		expected: {
+			legacy: ["no-invalid-this"],
+			commonjs: ["no-invalid-this"],
+			typescript: []
 		},
-		"mixed_operators_mixed_precedence_without_parens.js": {
-			expected: ["no-mixed-operators"],
-			ignored: ["no-undef", "no-var", "no-unused-vars", "@typescript-eslint/no-unused-vars"]
+		ignored: []
+	},
+	"this_function.js": {
+		expected: {
+			legacy: [],
+			commonjs: [],
+			typescript: []
 		},
-		"mixed_operators_same_precedence_with_parens.js": {
-			expected: [],
-			ignored: ["no-undef", "no-var", "no-unused-vars", "@typescript-eslint/no-unused-vars"]
+		ignored: ["no-unused-vars", "@typescript-eslint/explicit-function-return-type", "@typescript-eslint/no-unused-vars"]
+	},
+	"this_arrow.js": {
+		expected: {
+			legacy: ["fatal"],
+			commonjs: ["no-invalid-this"],
+			typescript: []
 		},
-		"mixed_operators_same_precedence_without_parens.js": {
-			expected: [],
-			ignored: ["no-undef", "no-var", "no-unused-vars", "@typescript-eslint/no-unused-vars"]
+		ignored: ["no-unused-vars", "@typescript-eslint/explicit-function-return-type", "@typescript-eslint/no-unused-vars"]
+	},
+	"this_class_constructor.js": {
+		expected: {
+			legacy: ["fatal"],
+			commonjs: [],
+			typescript: []
 		},
+		ignored: ["no-unused-vars", "@typescript-eslint/explicit-member-accessibility", "@typescript-eslint/no-unused-vars"]
+	},
+	"this_class_method.js": {
+		expected: {
+			legacy: ["fatal"],
+			commonjs: [],
+			typescript: []
+		},
+		ignored: ["no-unused-vars", "@typescript-eslint/explicit-member-accessibility", "@typescript-eslint/explicit-function-return-type", "@typescript-eslint/no-unused-vars"]
+	},
+	"this_class_static.js": {
+		expected: {
+			legacy: ["fatal"],
+			commonjs: [],
+			typescript: []
+		},
+		ignored: ["no-unused-vars", "@typescript-eslint/explicit-function-return-type", "@typescript-eslint/explicit-member-accessibility", "@typescript-eslint/no-unused-vars"]
+	},
 
-		"disable_right_rule_without_comment.js": {
-			expected: [],
-			ignored: []
+	"padding_class_beginning_zero_lines.js": {
+		expected: {
+			legacy: ["fatal"],
+			commonjs: [],
+			typescript: []
 		},
-		"disable_right_rule_with_comment.js": {
-			expected: [],
-			ignored: []
+		ignored: ["no-unused-vars", "@typescript-eslint/explicit-member-accessibility", "@typescript-eslint/no-unused-vars"]
+	},
+	"padding_class_beginning_one_line.js": {
+		expected: {
+			legacy: ["fatal"],
+			commonjs: [],
+			typescript: []
 		},
-		"disable_multiple_rule_without_comment.js": {
-			expected: [],
-			ignored: []
+		ignored: ["no-unused-vars", "@typescript-eslint/explicit-member-accessibility", "@typescript-eslint/no-unused-vars"]
+	},
+	"padding_class_beginning_two_lines.js": {
+		expected: {
+			legacy: ["fatal"],
+			commonjs: [],
+			typescript: []
 		},
-		"disable_multiple_rule_with_comment.js": {
-			expected: [],
-			ignored: []
+		ignored: ["no-unused-vars", "@typescript-eslint/explicit-member-accessibility", "@typescript-eslint/no-unused-vars"]
+	},
+	"padding_class_end_zero_lines.js": {
+		expected: {
+			legacy: ["fatal"],
+			commonjs: [],
+			typescript: []
 		},
-		"disable_wrong_rule_without_comment.js": {
-			expected: ["no-undef"],
-			ignored: []
+		ignored: ["no-unused-vars", "@typescript-eslint/explicit-member-accessibility", "@typescript-eslint/no-unused-vars"]
+	},
+	"padding_class_end_one_line.js": {
+		expected: {
+			legacy: ["fatal"],
+			commonjs: [],
+			typescript: []
 		},
-		"disable_wrong_rule_with_comment.js": {
-			expected: ["no-undef"],
-			ignored: []
+		ignored: ["no-unused-vars", "@typescript-eslint/explicit-member-accessibility", "@typescript-eslint/no-unused-vars"]
+	},
+	"padding_class_end_two_lines.js": {
+		expected: {
+			legacy: ["fatal"],
+			commonjs: [],
+			typescript: []
 		},
-	};
+		ignored: ["no-unused-vars", "@typescript-eslint/explicit-member-accessibility", "@typescript-eslint/no-unused-vars"]
+	},
 
-	const settings = require(`../packages/${configId}`); // eslint-disable-line global-require
-	settings.useEslintrc = false;
-	settings.extensions = [".js", ".jsx", ".ts", ".tsx"];
+	"padding_class_method_beginning_zero_lines.js": {
+		expected: {
+			legacy: ["fatal"],
+			commonjs: [],
+			typescript: []
+		},
+		ignored: ["class-methods-use-this", "no-unused-vars", "@typescript-eslint/explicit-function-return-type", "@typescript-eslint/explicit-member-accessibility", "@typescript-eslint/no-unused-vars"]
+	},
+	"padding_class_method_beginning_one_line.js": {
+		expected: {
+			legacy: ["fatal"],
+			commonjs: [],
+			typescript: []
+		},
+		ignored: ["class-methods-use-this", "no-unused-vars", "@typescript-eslint/explicit-function-return-type", "@typescript-eslint/explicit-member-accessibility", "@typescript-eslint/no-unused-vars"]
+	},
+	"padding_class_method_beginning_two_lines.js": {
+		expected: {
+			legacy: ["fatal"],
+			commonjs: [],
+			typescript: []
+		},
+		ignored: ["class-methods-use-this", "no-unused-vars", "@typescript-eslint/explicit-function-return-type", "@typescript-eslint/explicit-member-accessibility", "@typescript-eslint/no-unused-vars"]
+	},
+	"padding_class_method_end_zero_lines.js": {
+		expected: {
+			legacy: ["fatal"],
+			commonjs: [],
+			typescript: []
+		},
+		ignored: ["class-methods-use-this", "no-unused-vars", "@typescript-eslint/explicit-function-return-type", "@typescript-eslint/explicit-member-accessibility", "@typescript-eslint/no-unused-vars"]
+	},
+	"padding_class_method_end_one_line.js": {
+		expected: {
+			legacy: ["fatal"],
+			commonjs: [],
+			typescript: []
+		},
+		ignored: ["class-methods-use-this", "no-unused-vars", "@typescript-eslint/explicit-function-return-type", "@typescript-eslint/explicit-member-accessibility", "@typescript-eslint/no-unused-vars"]
+	},
+	"padding_class_method_end_two_lines.js": {
+		expected: {
+			legacy: ["fatal"],
+			commonjs: [],
+			typescript: []
+		},
+		ignored: ["class-methods-use-this", "no-unused-vars", "@typescript-eslint/explicit-function-return-type", "@typescript-eslint/explicit-member-accessibility", "@typescript-eslint/no-unused-vars"]
+	},
 
-	// Real configs need an Object, CLIEngine needs an Array.
-	// @see https://github.com/eslint/eslint/issues/892
-	// @see https://github.com/eslint/eslint/pull/6922
-	// @see https://github.com/eslint/eslint/issues/7967
-	if (typeof settings.globals === "object") {
-		settings.globals = Object.keys(settings.globals);
+	"padding_function_beginning_zero_lines.js": {
+		expected: {
+			legacy: [],
+			commonjs: [],
+			typescript: []
+		},
+		ignored: ["no-unused-vars", "@typescript-eslint/explicit-function-return-type", "@typescript-eslint/no-unused-vars"]
+	},
+	"padding_function_beginning_one_line.js": {
+		expected: {
+			legacy: [],
+			commonjs: [],
+			typescript: []
+		},
+		ignored: ["no-unused-vars", "@typescript-eslint/explicit-function-return-type", "@typescript-eslint/no-unused-vars"]
+	},
+	"padding_function_beginning_two_lines.js": {
+		expected: {
+			legacy: [],
+			commonjs: [],
+			typescript: []
+		},
+		ignored: ["no-unused-vars", "@typescript-eslint/explicit-function-return-type", "@typescript-eslint/no-unused-vars"]
+	},
+	"padding_function_end_zero_lines.js": {
+		expected: {
+			legacy: [],
+			commonjs: [],
+			typescript: []
+		},
+		ignored: ["no-unused-vars", "@typescript-eslint/explicit-function-return-type", "@typescript-eslint/no-unused-vars"]
+	},
+	"padding_function_end_one_line.js": {
+		expected: {
+			legacy: [],
+			commonjs: [],
+			typescript: []
+		},
+		ignored: ["no-unused-vars", "@typescript-eslint/explicit-function-return-type", "@typescript-eslint/no-unused-vars"]
+	},
+	"padding_function_end_two_lines.js": {
+		expected: {
+			legacy: [],
+			commonjs: [],
+			typescript: []
+		},
+		ignored: ["no-unused-vars", "@typescript-eslint/explicit-function-return-type", "@typescript-eslint/no-unused-vars"]
+	},
+
+	"ternary.js": {
+		expected: {
+			legacy: [],
+			commonjs: [],
+			typescript: []
+		},
+		ignored: ["no-unused-vars", "no-var", "@typescript-eslint/no-unused-vars"]
+	},
+
+	"ts_enum_commas.ts": {
+		expected: {
+			legacy: ["fatal"],
+			commonjs: ["fatal"],
+			typescript: []
+		},
+		ignored: ["@typescript-eslint/no-unused-vars"]
+	},
+	"ts_enum_semicolons.ts": {
+		expected: {
+			legacy: ["fatal"],
+			commonjs: ["fatal"],
+			typescript: ["fatal"]
+		},
+		ignored: []
+	},
+
+	"ts_type_union.ts": {
+		expected: {
+			legacy: ["fatal"],
+			commonjs: ["fatal"],
+			typescript: []
+		},
+		ignored: ["@typescript-eslint/no-unused-vars"]
+	},
+	"ts_type_commas.ts": {
+		expected: {
+			legacy: ["fatal"],
+			commonjs: ["fatal"],
+			typescript: ["@typescript-eslint/member-delimiter-style", "@typescript-eslint/no-unused-vars"]
+		},
+		ignored: []
+	},
+	"ts_type_semicolons.ts": {
+		expected: {
+			legacy: ["fatal"],
+			commonjs: ["fatal"],
+			typescript: []
+		},
+		ignored: ["@typescript-eslint/no-unused-vars"]
+	},
+
+	"ts_interface_commas.ts": {
+		expected: {
+			legacy: ["fatal"],
+			commonjs: ["fatal"],
+			typescript: ["@typescript-eslint/member-delimiter-style"]
+		},
+		ignored: ["@typescript-eslint/no-unused-vars"]
+	},
+	"ts_interface_semicolons.ts": {
+		expected: {
+			legacy: ["fatal"],
+			commonjs: ["fatal"],
+			typescript: []
+		},
+		ignored: ["@typescript-eslint/no-unused-vars"]
+	},
+
+	"ts_generic.ts": {
+		expected: {
+			legacy: ["fatal"],
+			commonjs: ["fatal"],
+			typescript: []
+		},
+		ignored: ["@typescript-eslint/no-unused-vars"]
+	},
+	"ts_optional_parameter.ts": {
+		expected: {
+			legacy: ["fatal"],
+			commonjs: ["fatal"],
+			typescript: []
+		},
+		ignored: ["@typescript-eslint/no-unused-vars"]
+	},
+	"ts_jsdoc.ts": {
+		expected: {
+			legacy: ["fatal"],
+			commonjs: ["fatal"],
+			typescript: []
+		},
+		ignored: ["@typescript-eslint/no-unused-vars"]
+	},
+
+	"destructuring_declare_object_param_dot.js": {
+		expected: {
+			legacy: [],
+			commonjs: ["prefer-destructuring"],
+			typescript: ["prefer-destructuring"]
+		},
+		ignored: ["no-unused-vars", "no-var", "@typescript-eslint/no-unused-vars"]
+	},
+	"destructuring_assign_object_param_dot.js": {
+		expected: {
+			legacy: [],
+			commonjs: [],
+			typescript: []
+		},
+		ignored: ["no-unused-vars", "no-var", "@typescript-eslint/no-unused-vars"]
+	},
+	"destructuring_declare_object_param_bracket.js": {
+		expected: {
+			legacy: [],
+			commonjs: ["prefer-destructuring"],
+			typescript: ["prefer-destructuring"]
+		},
+		ignored: ["no-unused-vars", "no-var", "dot-notation", "@typescript-eslint/dot-notation", "@typescript-eslint/no-unused-vars"]
+	},
+	"destructuring_assign_object_param_bracket.js": {
+		expected: {
+			legacy: [],
+			commonjs: [],
+			typescript: []
+		},
+		ignored: ["no-unused-vars", "no-var", "dot-notation", "@typescript-eslint/dot-notation", "@typescript-eslint/no-unused-vars"]
+	},
+	"destructuring_declare_object_param_destructured.js": {
+		expected: {
+			legacy: ["fatal"],
+			commonjs: [],
+			typescript: []
+		},
+		ignored: ["no-unused-vars", "no-var", "@typescript-eslint/no-unused-vars"]
+	},
+	"destructuring_assign_object_param_destructured.js": {
+		expected: {
+			legacy: ["fatal"],
+			commonjs: [],
+			typescript: []
+		},
+		ignored: ["no-unused-vars", "no-var", "@typescript-eslint/no-unused-vars"]
+	},
+	"destructuring_declare_array_value_index.js": {
+		expected: {
+			legacy: [],
+			commonjs: [],
+			typescript: []
+		},
+		ignored: ["no-unused-vars", "no-var", "@typescript-eslint/no-unused-vars"]
+	},
+	"destructuring_assign_array_value_index.js": {
+		expected: {
+			legacy: [],
+			commonjs: [],
+			typescript: []
+		},
+		ignored: ["no-unused-vars", "no-var", "@typescript-eslint/no-unused-vars"]
+	},
+	"destructuring_declare_array_destructured_first.js": {
+		expected: {
+			legacy: ["fatal"],
+			commonjs: [],
+			typescript: []
+		},
+		ignored: ["no-unused-vars", "no-var", "@typescript-eslint/no-unused-vars"]
+	},
+	"destructuring_assign_array_destructured_first.js": {
+		expected: {
+			legacy: [],
+			commonjs: [],
+			typescript: []
+		},
+		ignored: ["no-unused-vars", "no-var", "@typescript-eslint/no-unused-vars"]
+	},
+	"destructuring_declare_array_destructured_second.js": {
+		expected: {
+			legacy: ["fatal"],
+			commonjs: [],
+			typescript: []
+		},
+		ignored: ["no-unused-vars", "no-var", "@typescript-eslint/no-unused-vars"]
+	},
+	"destructuring_assign_array_destructured_second.js": {
+		expected: {
+			legacy: [],
+			commonjs: [],
+			typescript: []
+		},
+		ignored: ["no-unused-vars", "no-var", "@typescript-eslint/no-unused-vars"]
+	},
+
+	"unused_param_without_underscore_first.js": {
+		expected: {
+			legacy: [],
+			commonjs: [],
+			typescript: []
+		},
+		ignored: ["@typescript-eslint/explicit-function-return-type"]
+	},
+	"unused_param_without_underscore_last.js": {
+		expected: {
+			legacy: [],
+			commonjs: [],
+			typescript: []
+		},
+		ignored: ["no-unused-vars", "@typescript-eslint/explicit-function-return-type", "@typescript-eslint/no-unused-vars"]
+	},
+	"unused_param_with_underscore_first.js": {
+		expected: {
+			legacy: [],
+			commonjs: [],
+			typescript: []
+		},
+		ignored: ["@typescript-eslint/explicit-function-return-type"]
+	},
+	"unused_param_with_underscore_last.js": {
+		expected: {
+			legacy: [],
+			commonjs: [],
+			typescript: []
+		},
+		ignored: ["@typescript-eslint/explicit-function-return-type"]
+	},
+	"unused_var_without_underscore.js": {
+		expected: {
+			legacy: ["no-unused-vars"],
+			commonjs: ["no-unused-vars"],
+			typescript: ["@typescript-eslint/no-unused-vars"]
+		},
+		ignored: ["no-var"]
+	},
+	"unused_var_with_underscore.js": {
+		expected: {
+			legacy: [],
+			commonjs: [],
+			typescript: []
+		},
+		ignored: ["no-var"]
+	},
+
+	"unused_rest_without_underscore.js": {
+		expected: {
+			legacy: ["fatal"],
+			commonjs: [],
+			typescript: []
+		},
+		ignored: []
+	},
+	"unused_rest_with_underscore.js": {
+		expected: {
+			legacy: ["fatal"],
+			commonjs: [],
+			typescript: []
+		},
+		ignored: []
+	},
+
+	"module_exports.js": {
+		expected: {
+			legacy: ["no-undef"],
+			commonjs: [],
+			typescript: []
+		},
+		ignored: []
+	},
+	"require_var.js": {
+		expected: {
+			legacy: ["no-undef"],
+			commonjs: ["no-var"],
+			typescript: ["no-var"]
+		},
+		ignored: ["no-unused-vars", "@typescript-eslint/no-unused-vars"]
+	},
+	"require_destructure_var.js": {
+		expected: {
+			legacy: ["fatal"],
+			commonjs: ["no-var"],
+			typescript: ["no-var"]
+		},
+		ignored: ["no-unused-vars", "@typescript-eslint/no-unused-vars"]
+	},
+	"require_const.js": {
+		expected: {
+			legacy: ["fatal"],
+			commonjs: [],
+			typescript: []
+		},
+		ignored: ["no-unused-vars", "@typescript-eslint/no-unused-vars"]
+	},
+	"require_destructure_const.js": {
+		expected: {
+			legacy: ["fatal"],
+			commonjs: [],
+			typescript: []
+		},
+		ignored: ["no-unused-vars", "@typescript-eslint/no-unused-vars"]
+	},
+
+	"ts_await_import.ts": {
+		expected: {
+			legacy: ["fatal"],
+			commonjs: ["fatal"],
+			typescript: []
+		},
+		ignored: []
+	},
+	"ts_import_require.ts": {
+		expected: {
+			legacy: ["fatal"],
+			commonjs: ["fatal"],
+			typescript: []
+		},
+		ignored: []
+	},
+	"ts_import_require_destructure.ts": {
+		expected: {
+			legacy: ["fatal"],
+			commonjs: ["fatal"],
+			typescript: ["fatal"]
+		},
+		ignored: []
+	},
+	"ts_import_type_default.ts": {
+		expected: {
+			legacy: ["fatal"],
+			commonjs: ["fatal"],
+			typescript: []
+		},
+		ignored: []
+	},
+	"ts_import_type_destructure.ts": {
+		expected: {
+			legacy: ["fatal"],
+			commonjs: ["fatal"],
+			typescript: []
+		},
+		ignored: []
+	},
+	"ts_export_var.ts": {
+		expected: {
+			legacy: ["fatal"],
+			commonjs: ["fatal"],
+			typescript: ["no-var"]
+		},
+		ignored: []
+	},
+	"ts_export_const.ts": {
+		expected: {
+			legacy: ["fatal"],
+			commonjs: ["fatal"],
+			typescript: []
+		},
+		ignored: []
+	},
+	"ts_export_arrow.ts": {
+		expected: {
+			legacy: ["fatal"],
+			commonjs: ["fatal"],
+			typescript: ["fatal"]
+		},
+		ignored: []
+	},
+	"ts_export_function.ts": {
+		expected: {
+			legacy: ["fatal"],
+			commonjs: ["fatal"],
+			typescript: []
+		},
+		ignored: []
+	},
+	"ts_export_default_var.ts": {
+		expected: {
+			legacy: ["fatal"],
+			commonjs: ["fatal"],
+			typescript: ["no-var"]
+		},
+		ignored: []
+	},
+	"ts_export_default_const.ts": {
+		expected: {
+			legacy: ["fatal"],
+			commonjs: ["fatal"],
+			typescript: ["fatal"]
+		},
+		ignored: []
+	},
+	"ts_export_default_arrow.ts": {
+		expected: {
+			legacy: ["fatal"],
+			commonjs: ["fatal"],
+			typescript: []
+		},
+		ignored: ["arrow-body-style"]
+	},
+	"ts_export_default_function.ts": {
+		expected: {
+			legacy: ["fatal"],
+			commonjs: ["fatal"],
+			typescript: []
+		},
+		ignored: []
+	},
+	"ts_export_default_number.ts": {
+		expected: {
+			legacy: ["fatal"],
+			commonjs: ["fatal"],
+			typescript: []
+		},
+		ignored: []
+	},
+
+	"object_no_props.js": {
+		expected: {
+			legacy: [],
+			commonjs: [],
+			typescript: []
+		},
+		ignored: ["no-unused-vars", "no-var", "@typescript-eslint/no-unused-vars"]
+	},
+	"object_few_props_mixed_lines.js": {
+		expected: {
+			legacy: [],
+			commonjs: [],
+			typescript: []
+		},
+		ignored: ["no-unused-vars", "no-var", "@typescript-eslint/no-unused-vars"]
+	},
+	"object_few_props_one_per_line.js": {
+		expected: {
+			legacy: [],
+			commonjs: [],
+			typescript: []
+		},
+		ignored: ["no-unused-vars", "no-var", "@typescript-eslint/no-unused-vars"]
+	},
+	"object_few_props_single_line.js": {
+		expected: {
+			legacy: [],
+			commonjs: [],
+			typescript: []
+		},
+		ignored: ["no-unused-vars", "no-var", "@typescript-eslint/no-unused-vars"]
+	},
+	"object_many_props_mixed_lines.js": {
+		expected: {
+			legacy: [],
+			commonjs: [],
+			typescript: []
+		},
+		ignored: ["no-unused-vars", "no-var", "@typescript-eslint/no-unused-vars"]
+	},
+	"object_many_props_one_per_line.js": {
+		expected: {
+			legacy: [],
+			commonjs: [],
+			typescript: []
+		},
+		ignored: ["no-unused-vars", "no-var", "@typescript-eslint/no-unused-vars"]
+	},
+	"object_many_props_single_line.js": {
+		expected: {
+			legacy: [],
+			commonjs: [],
+			typescript: []
+		},
+		ignored: ["no-unused-vars", "no-var", "max-len", "@typescript-eslint/no-unused-vars"]
+	},
+	"object_props_numbers.js": {
+		expected: {
+			legacy: [],
+			commonjs: [],
+			typescript: []
+		},
+		ignored: ["no-unused-vars", "no-var", "@typescript-eslint/no-unused-vars"]
+	},
+
+	"function_param_per_line_with_space.js": {
+		expected: {
+			legacy: [],
+			commonjs: [],
+			typescript: []
+		},
+		ignored: ["no-unused-vars", "@typescript-eslint/explicit-function-return-type", "@typescript-eslint/no-unused-vars"]
+	},
+	"function_param_per_line_without_space.js": {
+		expected: {
+			legacy: ["space-before-blocks"],
+			commonjs: ["space-before-blocks"],
+			typescript: ["space-before-blocks"]
+		},
+		ignored: ["no-unused-vars", "@typescript-eslint/explicit-function-return-type", "@typescript-eslint/no-unused-vars"]
+	},
+	"function_param_single_line_with_space.js": {
+		expected: {
+			legacy: [],
+			commonjs: [],
+			typescript: []
+		},
+		ignored: ["no-unused-vars", "@typescript-eslint/explicit-function-return-type", "@typescript-eslint/no-unused-vars"]
+	},
+	"function_param_single_line_without_space.js": {
+		expected: {
+			legacy: ["space-before-blocks"],
+			commonjs: ["space-before-blocks"],
+			typescript: ["space-before-blocks"]
+		},
+		ignored: ["no-unused-vars", "@typescript-eslint/explicit-function-return-type", "@typescript-eslint/no-unused-vars"]
+	},
+
+	"comment_eslint_line_before.js": {
+		expected: {
+			legacy: [],
+			commonjs: [],
+			typescript: []
+		},
+		ignored: ["fake", "no-warning-comments"]
+	},
+	"comment_eslint_line_end.js": {
+		expected: {
+			legacy: ["line-comment-position"],
+			commonjs: ["line-comment-position"],
+			typescript: ["line-comment-position"]
+		},
+		ignored: ["fake", "no-warning-comments"]
+	},
+	"comment_eslint_line_after.js": {
+		expected: {
+			legacy: [],
+			commonjs: [],
+			typescript: []
+		},
+		ignored: ["fake", "no-warning-comments"]
+	},
+
+	"comment_line_before.js": {
+		expected: {
+			legacy: [],
+			commonjs: [],
+			typescript: []
+		},
+		ignored: []
+	},
+	"comment_line_end.js": {
+		expected: {
+			legacy: ["line-comment-position"],
+			commonjs: ["line-comment-position"],
+			typescript: ["line-comment-position"]
+		},
+		ignored: []
+	},
+	"comment_line_after.js": {
+		expected: {
+			legacy: [],
+			commonjs: [],
+			typescript: []
+		},
+		ignored: []
+	},
+
+	"comment_this_before.js": {
+		expected: {
+			legacy: [],
+			commonjs: [],
+			typescript: []
+		},
+		ignored: ["no-invalid-this"]
+	},
+	"comment_this_start.js": {
+		expected: {
+			legacy: [],
+			commonjs: [],
+			typescript: []
+		},
+		ignored: ["no-invalid-this"]
+	},
+	"comment_this_between.js": {
+		expected: {
+			legacy: [],
+			commonjs: [],
+			typescript: []
+		},
+		ignored: []
+	},
+	"comment_this_end.js": {
+		expected: {
+			legacy: [],
+			commonjs: [],
+			typescript: []
+		},
+		ignored: ["block-spacing", "no-invalid-this"]
+	},
+	"comment_this_after.js": {
+		expected: {
+			legacy: [],
+			commonjs: [],
+			typescript: []
+		},
+		ignored: ["no-invalid-this"]
+	},
+
+	"if_space_before.js": {
+		expected: {
+			legacy: ["space-before-blocks"],
+			commonjs: ["space-before-blocks"],
+			typescript: ["space-before-blocks"]
+		},
+		ignored: []
+	},
+	"if_space_after.js": {
+		expected: {
+			legacy: ["keyword-spacing"],
+			commonjs: ["keyword-spacing"],
+			typescript: ["@typescript-eslint/keyword-spacing"]
+		},
+		ignored: []
+	},
+	"if_space_before_after.js": {
+		expected: {
+			legacy: [],
+			commonjs: [],
+			typescript: []
+		},
+		ignored: []
+	},
+	"operator_start.js": {
+		expected: {
+			legacy: ["operator-linebreak"],
+			commonjs: ["operator-linebreak"],
+			typescript: ["operator-linebreak"]
+		},
+		ignored: []
+	},
+	"operator_end.js": {
+		expected: {
+			legacy: [],
+			commonjs: [],
+			typescript: []
+		},
+		ignored: []
+	},
+
+	"ts_type_single_line_commas_with_last.ts": {
+		expected: {
+			legacy: ["fatal"],
+			commonjs: ["fatal"],
+			typescript: ["@typescript-eslint/member-delimiter-style"]
+		},
+		ignored: ["@typescript-eslint/comma-spacing", "@typescript-eslint/no-unused-vars"]
+	},
+	"ts_type_single_line_commas_without_last.ts": {
+		expected: {
+			legacy: ["fatal"],
+			commonjs: ["fatal"],
+			typescript: ["@typescript-eslint/member-delimiter-style"]
+		},
+		ignored: ["@typescript-eslint/no-unused-vars"]
+	},
+	"ts_type_single_line_semicolons_with_last.ts": {
+		expected: {
+			legacy: ["fatal"],
+			commonjs: ["fatal"],
+			typescript: ["@typescript-eslint/member-delimiter-style"]
+		},
+		ignored: ["@typescript-eslint/no-unused-vars"]
+	},
+	"ts_type_single_line_semicolons_without_last.ts": {
+		expected: {
+			legacy: ["fatal"],
+			commonjs: ["fatal"],
+			typescript: []
+		},
+		ignored: ["@typescript-eslint/no-unused-vars"]
+	},
+
+	"mixed_operators_mixed_precedence_with_parens.js": {
+		expected: {
+			legacy: [],
+			commonjs: [],
+			typescript: []
+		},
+		ignored: ["no-unused-vars", "no-var", "@typescript-eslint/no-unused-vars"]
+	},
+	"mixed_operators_mixed_precedence_without_parens.js": {
+		expected: {
+			legacy: ["no-mixed-operators"],
+			commonjs: ["no-mixed-operators"],
+			typescript: ["no-mixed-operators"]
+		},
+		ignored: ["no-unused-vars", "no-var", "@typescript-eslint/no-unused-vars"]
+	},
+	"mixed_operators_same_precedence_with_parens.js": {
+		expected: {
+			legacy: [],
+			commonjs: [],
+			typescript: []
+		},
+		ignored: ["no-unused-vars", "no-var", "@typescript-eslint/no-unused-vars"]
+	},
+	"mixed_operators_same_precedence_without_parens.js": {
+		expected: {
+			legacy: [],
+			commonjs: [],
+			typescript: []
+		},
+		ignored: ["no-unused-vars", "no-var", "@typescript-eslint/no-unused-vars"]
+	},
+
+	"disable_correct_rule_without_comment.js": {
+		expected: {
+			legacy: [],
+			commonjs: [],
+			typescript: []
+		},
+		ignored: []
+	},
+	"disable_correct_rule_with_comment.js": {
+		expected: {
+			legacy: [],
+			commonjs: [],
+			typescript: []
+		},
+		ignored: []
+	},
+	"disable_wrong_rule_without_comment.js": {
+		expected: {
+			legacy: ["no-undef"],
+			commonjs: ["no-undef"],
+			typescript: ["no-undef"]
+		},
+		ignored: []
+	},
+	"disable_wrong_rule_with_comment.js": {
+		expected: {
+			legacy: ["no-undef"],
+			commonjs: ["no-undef"],
+			typescript: ["no-undef"]
+		},
+		ignored: []
+	},
+	"disable_multiple_rule_without_comment.js": {
+		expected: {
+			legacy: [],
+			commonjs: [],
+			typescript: []
+		},
+		ignored: []
+	},
+	"disable_multiple_rule_with_comment.js": {
+		expected: {
+			legacy: [],
+			commonjs: [],
+			typescript: []
+		},
+		ignored: []
+	},
+
+	"function_returns_promise_without_async.js": {
+		expected: {
+			legacy: ["no-undef"],
+			commonjs: [],
+			typescript: ["@typescript-eslint/promise-function-async"]
+		},
+		ignored: ["no-unused-vars", "@typescript-eslint/explicit-function-return-type", "@typescript-eslint/no-unused-vars"]
+	},
+	"function_returns_promise_with_async.js": {
+		expected: {
+			legacy: ["fatal"],
+			commonjs: [],
+			typescript: []
+		},
+		ignored: ["no-unused-vars", "@typescript-eslint/explicit-function-return-type", "@typescript-eslint/no-unused-vars"]
 	}
+};
 
-	const cli = new CLIEngine(settings);
-	const report = cli.executeOnFiles([dirFixtures]);
-	const actual = {};
-	report.results.forEach(result => {
-		const rules = {};
-		// console.log("-----------------------------------------------");
-		// console.log(result.messages);
-		// console.log("-----------------------------------------------");
-		result.messages.forEach(message => {
-			if (message.fatal) {
-				rules.fatal = message.message;
-			} else {
-				rules[message.ruleId] = message.message;
+describe("Eslint", function () {
+	before("Reset /tmp", async function () {
+		await emptyDir(tmpFolder);
+	});
+	["legacy", "commonjs", "typescript"].forEach(configId => {
+		it(configId, async function () {
+			const options = {
+				useEslintrc: false,
+				baseConfig: require(`../packages/${configId}`)
+			};
+			if (configId === "typescript"){
+				options.extensions = [".js", ".jsx", ".ts", ".tsx"];
+			}
+			const engine = new ESLint(options);
+
+			for (const filename in fixtures){
+				const source = readFileSync(join(fixturesFolder, filename), "utf8");
+				const filepath = join(tmpFolder, filename);
+				writeFileSync(filepath, source, "utf8");
+				const results = await engine.lintFiles([filepath]);
+				unlinkSync(filepath);
+
+				const rules = {};
+				const {expected, ignored} = fixtures[filename];
+				results[0].messages.forEach(result => {
+					if (result.fatal) {
+						rules.fatal = result.message;
+					} else {
+						if (!ignored.includes(result.ruleId)) {
+							rules[result.ruleId] = result.message;
+						}
+					}
+				});
+				deepStrictEqual(Object.keys(rules).sort(), expected[configId].sort(), filename);
 			}
 		});
-		const fixtureId = path.basename(result.filePath);
-		actual[fixtureId] = rules;
 	});
-
-	for (const fixtureId in fixtures) {
-		const messages = [];
-		const actualFixture = actual[fixtureId];
-		if (actualFixture === null || typeof actualFixture !== "object") {
-			messages.push("FIXTURE NOT FOUND");
-		} else {
-			const expectedFixture = fixtures[fixtureId];
-			const expectedErrors = expectedFixture.expected;
-			const ignoredErrors = expectedFixture.ignored;
-			const actualErrors = Object.keys(actualFixture);
-			for (const expectedError of expectedErrors) {
-				if (!actualErrors.includes(expectedError)) {
-					messages.push(`MISSING ${expectedError}`);
-				}
-			}
-			for (const actualError of actualErrors) {
-				if (!expectedErrors.includes(actualError) && !ignoredErrors.includes(actualError)) {
-					messages.push(`UNEXPECTED ${actualError}`);
-				}
-			}
-		}
-		deepStrictEqual(messages, [], fixtureId);
-	}
-}
-
-describe("Eslint", /* @this */ function() {
-	this.slow(8000);
-	this.timeout(10000);
-	for (const configId in configs) {
-		it(configId, runTest.bind(this, configId));
-	}
 });

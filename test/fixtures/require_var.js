@@ -1,1 +1,0 @@
-var mymodule = require("mymodule");

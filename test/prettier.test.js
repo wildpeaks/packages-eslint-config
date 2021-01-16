@@ -1,14 +1,16 @@
+/* eslint-env node, mocha */
+/* eslint-disable prefer-arrow-callback */
 "use strict";
-const {readFileSync, writeFileSync, unlinkSync, mkdirSync} = require("fs");
 const {strictEqual, deepStrictEqual} = require("assert");
+const {readFileSync, writeFileSync, unlinkSync} = require("fs");
+const {emptyDir} = require("fs-extra");
 const {join} = require("path");
-const {CLIEngine} = require("eslint");
+const {ESLint} = require("eslint");
 const {format} = require("prettier");
-const configs = require("..");
 const pkg = require("../package.json");
 
-const tmpFolder = join(__dirname, "tmp");
-const fixturesFolder = join(__dirname, "fixtures-prettier");
+const tmpFolder = join(process.cwd(), "tmp");
+const fixturesFolder = join(__dirname, "prettier");
 const fixtures = {
 	import: {
 		ext: "ts",
@@ -158,56 +160,47 @@ const fixtures = {
 	}
 };
 
-const engines = {};
-for (const configId in configs) {
-	const settings = require(`../packages/${configId}`); // eslint-disable-line global-require
-	settings.useEslintrc = false;
-	settings.extensions = [".js", ".jsx", ".ts", ".tsx"];
-	if (typeof settings.globals === "object") {
-		settings.globals = Object.keys(settings.globals);
-	}
-	engines[configId] = new CLIEngine(settings);
-}
+describe("Prettier", function () {
+	before("Reset /tmp", async function () {
+		await emptyDir(tmpFolder);
+	});
+	["legacy", "commonjs", "typescript"].forEach(configId => {
+		it(configId, async function () {
+			const options = {
+				useEslintrc: false,
+				baseConfig: require(`../packages/${configId}`)
+			};
+			if (configId === "typescript"){
+				options.extensions = [".js", ".jsx", ".ts", ".tsx"];
+			}
+			const engine = new ESLint(options);
+			for (const id in fixtures){
+				const {ext, ignore, compatible} = fixtures[id];
+				const source = readFileSync(join(fixturesFolder, `${id}/source.${ext}`), "utf8");
+				const expected = readFileSync(join(fixturesFolder, `${id}/expected.${ext}`), "utf8");
 
-function runTest(fixtureId) {
-	const {ext, ignore, compatible} = fixtures[fixtureId];
-	const source = readFileSync(join(fixturesFolder, `${fixtureId}/source.${ext}`), "utf8");
-	const expected = readFileSync(join(fixturesFolder, `${fixtureId}/expected.${ext}`), "utf8");
-	const actual = format(source, Object.assign({filepath: `source.${ext}`}, pkg.prettier));
-	strictEqual(actual, expected, "Prettify");
+				const actual = format(source, Object.assign({filepath: `source.${ext}`}, pkg.prettier));
+				strictEqual(actual, expected, `prettier "${id}"`);
 
-	for (const configId of compatible) {
-		const engine = engines[configId];
+				if (compatible.includes(configId)){
+					const filepath = join(tmpFolder, `source.${ext}`);
+					writeFileSync(filepath, actual, "utf8");
+					const results = await engine.lintFiles([filepath]);
+					unlinkSync(filepath);
 
-		const filepath = join(tmpFolder, `fake.${ext}`);
-		writeFileSync(filepath, actual, "utf8");
-		const report = engine.executeOnFiles([tmpFolder]);
-		unlinkSync(filepath);
-
-		const result = report.results[0];
-		const rules = {};
-		result.messages.forEach(message => {
-			if (message.fatal) {
-				rules.fatal = message.message;
-			} else {
-				if (!ignore.includes(message.ruleId)) {
-					rules[message.ruleId] = message.message;
+					const rules = {};
+					results[0].messages.forEach(result => {
+						if (result.fatal) {
+							rules.fatal = result.message;
+						} else {
+							if (!ignore.includes(result.ruleId)) {
+								rules[result.ruleId] = result.message;
+							}
+						}
+					});
+					deepStrictEqual(rules, {}, `eslint "${id}"`);
 				}
 			}
 		});
-		deepStrictEqual(rules, {}, "Eslint rules");
-	}
-}
-
-before("Before", function() {
-	try {
-		mkdirSync(tmpFolder);
-	} catch (e) {}
-});
-describe("Prettier", function() {
-	this.slow(8000);
-	this.timeout(10000);
-	for (const fixtureId in fixtures) {
-		it(fixtureId, runTest.bind(this, fixtureId));
-	}
+	});
 });
