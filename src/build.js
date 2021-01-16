@@ -7,6 +7,9 @@ const {emptyDir} = require("fs-extra");
 const {writeFileSync, readFileSync} = require("fs");
 const pkg = require("../package.json");
 
+const [,,,,,,,param7, param8] = process.argv;
+const version = (param7 === "--version") ? param8 : "0.0.0";
+
 /**
  * @param {"legacy"|"commonjs"|"typescript"} id
  * @return {Object}
@@ -1619,6 +1622,7 @@ function writeReadme({id, folder, name, title, description}){
 function writePackage({folder, name, description, dependencies}){
 	const data = {
 		name,
+		version,
 		description,
 		main: "index.js",
 		files: ["index.js"],
