@@ -1,5 +1,9 @@
-# Eslint configs generator
+# Eslint Configs
 
 ![Github Release](https://img.shields.io/github/v/release/wildpeaks/packages-eslint-config.svg?label=Release&logo=github&logoColor=eceff4&colorA=4c566a&colorB=11abfb)
 
-Generates the `@wildpeaks/eslint-config-*` packages.
+This generates packages for the following [Eslint configs](https://eslint.org/docs/developer-guide/shareable-configs):
+ - [@wildpeaks/legacy](https://www.npmjs.com/package/@wildpeaks/eslint-config-legacy) for ES5 Javascript projects without modules
+ - [@wildpeaks/commonjs](https://www.npmjs.com/package/@wildpeaks/eslint-config-commonjs) for ES2018 Javascript projects using CommonJS modules
+ - [@wildpeaks/typescript](https://www.npmjs.com/package/@wildpeaks/eslint-config-typescript) for ES2020 Typescript projects using ES Modules
+
