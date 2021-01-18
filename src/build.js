@@ -1314,7 +1314,7 @@ function getRules(id) {
 
 		// Enforces consistent usage of type imports
 		// @see https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/consistent-type-imports.md
-		rules["@typescript-eslint/consistent-type-imports"] = "error"; // NEW
+		rules["@typescript-eslint/consistent-type-imports"] = "off"; // NEW
 
 		// Require explicit return types on functions and class methods
 		// @see https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/explicit-function-return-type.md
