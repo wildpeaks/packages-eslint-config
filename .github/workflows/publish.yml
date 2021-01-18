@@ -89,7 +89,7 @@ jobs:
       with:
         upload_url: ${{ steps.release.outputs.upload_url }}
         asset_path: ./packages/legacy/wildpeaks-eslint-config-legacy-${{ github.event.inputs.version }}.tgz
-        asset_name: legacy-${{ github.event.inputs.version }}.tgz
+        asset_name: legacy.tgz
         asset_content_type: application/gzip
 
     - name: Attach "commonjs"
@@ -99,7 +99,7 @@ jobs:
       with:
         upload_url: ${{ steps.release.outputs.upload_url }}
         asset_path: ./packages/commonjs/wildpeaks-eslint-config-commonjs-${{ github.event.inputs.version }}.tgz
-        asset_name: commonjs-${{ github.event.inputs.version }}.tgz
+        asset_name: commonjs.tgz
         asset_content_type: application/gzip
 
     - name: Attach "typescript"
@@ -109,9 +109,8 @@ jobs:
       with:
         upload_url: ${{ steps.release.outputs.upload_url }}
         asset_path: ./packages/typescript/wildpeaks-eslint-config-typescript-${{ github.event.inputs.version }}.tgz
-        asset_name: typescript-${{ github.event.inputs.version }}.tgz
+        asset_name: typescript.tgz
         asset_content_type: application/gzip
-
 
     - name: Set token
       run: echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" >> ~/.npmrc
