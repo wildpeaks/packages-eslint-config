@@ -112,6 +112,24 @@ jobs:
         asset_name: typescript-${{ github.event.inputs.version }}.tgz
         asset_content_type: application/gzip
 
+
+    - name: Set token
+      run: echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" >> ~/.npmrc
+      env:
+        NPM_TOKEN: ${{ secrets.NPM_DEPLOY_KEY }}
+
+    - name: Publish "legacy"
+      run: npm publish --tag ${{ steps.deployment.outputs.tag }}
+      working-directory: packages/legacy
+
+    - name: Publish "commonjs"
+      run: npm publish --tag ${{ steps.deployment.outputs.tag }}
+      working-directory: packages/commonjs
+
+    - name: Publish "typescript"
+      run: npm publish --tag ${{ steps.deployment.outputs.tag }}
+      working-directory: packages/typescript
+
     - name: On success
       if: success()
       uses: actions/github-script@v3.1
