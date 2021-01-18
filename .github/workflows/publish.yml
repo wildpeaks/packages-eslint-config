@@ -14,10 +14,10 @@ jobs:
     steps:
 
     - name: Checkout
-      uses: actions/checkout@v1
+      uses: actions/checkout@v2.3.4
 
     - name: Install node
-      uses: actions/setup-node@v1
+      uses: actions/setup-node@v2.1.4
       with:
         node-version: 14.x
 
@@ -26,7 +26,7 @@ jobs:
 
     - name: Initialize deployment
       id: deployment
-      uses: actions/github-script@v2
+      uses: actions/github-script@v3.1
       with:
         github-token: ${{ secrets.GITHUB_TOKEN }}
         script: |
@@ -54,7 +54,7 @@ jobs:
 
     - name: Create Release
       id: release
-      uses: actions/github-script@v2
+      uses: actions/github-script@v3.1
       with:
         github-token: ${{secrets.GITHUB_TOKEN}}
         script: |
@@ -89,7 +89,7 @@ jobs:
       with:
         upload_url: ${{ steps.release.outputs.upload_url }}
         asset_path: ./packages/legacy/wildpeaks-eslint-config-legacy-${{ github.event.inputs.version }}.tgz
-        asset_name: legacy-${{ github.event.inputs.version }}.tgz
+        asset_name: legacy.tgz
         asset_content_type: application/gzip
 
     - name: Attach "commonjs"
@@ -99,7 +99,7 @@ jobs:
       with:
         upload_url: ${{ steps.release.outputs.upload_url }}
         asset_path: ./packages/commonjs/wildpeaks-eslint-config-commonjs-${{ github.event.inputs.version }}.tgz
-        asset_name: commonjs-${{ github.event.inputs.version }}.tgz
+        asset_name: commonjs.tgz
         asset_content_type: application/gzip
 
     - name: Attach "typescript"
@@ -109,12 +109,29 @@ jobs:
       with:
         upload_url: ${{ steps.release.outputs.upload_url }}
         asset_path: ./packages/typescript/wildpeaks-eslint-config-typescript-${{ github.event.inputs.version }}.tgz
-        asset_name: typescript-${{ github.event.inputs.version }}.tgz
+        asset_name: typescript.tgz
         asset_content_type: application/gzip
+
+    - name: Set token
+      run: echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" >> ~/.npmrc
+      env:
+        NPM_TOKEN: ${{ secrets.NPM_DEPLOY_KEY }}
+
+    - name: Publish "legacy"
+      run: npm publish --tag ${{ steps.deployment.outputs.tag }}
+      working-directory: packages/legacy
+
+    - name: Publish "commonjs"
+      run: npm publish --tag ${{ steps.deployment.outputs.tag }}
+      working-directory: packages/commonjs
+
+    - name: Publish "typescript"
+      run: npm publish --tag ${{ steps.deployment.outputs.tag }}
+      working-directory: packages/typescript
 
     - name: On success
       if: success()
-      uses: actions/github-script@v2
+      uses: actions/github-script@v3.1
       with:
         github-token: ${{ secrets.GITHUB_TOKEN }}
         script: |
@@ -127,7 +144,7 @@ jobs:
 
     - name: On error
       if: failure() || cancelled()
-      uses: actions/github-script@v2
+      uses: actions/github-script@v3.1
       with:
         github-token: ${{ secrets.GITHUB_TOKEN }}
         script: |
