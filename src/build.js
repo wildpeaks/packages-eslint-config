@@ -1534,7 +1534,7 @@ function getRules(id) {
 
 		// Requires that function parameters are typed as readonly to prevent accidental mutation of inputs
 		// @see https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/prefer-readonly-parameter-types.md
-		rules["@typescript-eslint/prefer-readonly-parameter-types"] = "error"; // NEW
+		rules["@typescript-eslint/prefer-readonly-parameter-types"] = "off"; // NEW
 
 		// Prefer using type parameter when calling Array#reduce instead of casting
 		// @see https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/prefer-reduce-type-parameter.md
