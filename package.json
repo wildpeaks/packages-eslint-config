@@ -12,7 +12,7 @@
     "test": "mocha test/*.test.js --timeout 10000 --slow 5000"
   },
   "dependencies": {
-    "@typescript-eslint/eslint-plugin": "4.13.0",
+    "@typescript-eslint/eslint-plugin": "4.14.0",
     "@typescript-eslint/parser": "4.13.0",
     "eslint": "7.18.0",
     "prettier": "2.2.1",
