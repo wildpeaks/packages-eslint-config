@@ -1,11 +1,20 @@
 {
   "private": true,
   "prettier": {
+    "bracketSpacing": false,
     "printWidth": 120,
     "tabWidth": 4,
+    "trailingComma": "none",
     "useTabs": true,
-    "bracketSpacing": false,
-    "trailingComma": "none"
+    "overrides": [
+      {
+        "files": ["package.json", "*.yml"],
+        "options": {
+          "tabWidth": 2,
+          "useTabs": false
+        }
+      }
+    ]
   },
   "scripts": {
     "build": "mocha src/build.js --timeout 10000 --slow 5000",
