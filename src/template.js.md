@@ -31,14 +31,5 @@ or in `.eslintrc.json`:
 ---
 ## Prettier
 
-This configuration is compatible with the following Prettier settings:
+This configuration is compatible with [@wildpeaks/prettier-config](https://www.npmjs.com/package/@wildpeaks/prettier-config).
 
-````json
-{
-  "printWidth": 120,
-  "tabWidth": 4,
-  "useTabs": true,
-  "bracketSpacing": false,
-  "trailingComma": "none"
-}
-````
