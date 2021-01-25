@@ -20,7 +20,11 @@ function runTest(id) {
 		}
 		strictEqual(throws, false, "package.json can be read");
 		strictEqual(typeof packageJson, "object", "package is an Object");
-		strictEqual(packageJson.name, `@wildpeaks/eslint-config-${id}`, "package.name");
+		if (id === "prettier") {
+			strictEqual(packageJson.name, `@wildpeaks/prettier-config`, "package.name");
+		} else {
+			strictEqual(packageJson.name, `@wildpeaks/eslint-config-${id}`, "package.name");
+		}
 		strictEqual(packageJson.main, "index.js", "package.main");
 
 		throws = false;
@@ -48,7 +52,11 @@ function runTest(id) {
 		}
 		strictEqual(throws, false, "Package can be required");
 		strictEqual(typeof settings, "object", "Package exports an Object");
-		strictEqual(typeof settings.rules, "object", "Package contains rules");
+		if (id === "prettier") {
+			strictEqual(typeof settings.useTabs, "boolean", "Package contains useTabs");
+		} else {
+			strictEqual(typeof settings.rules, "object", "Package contains rules");
+		}
 	});
 }
 
@@ -56,4 +64,5 @@ describe("require()", function () {
 	runTest("legacy");
 	runTest("commonjs");
 	runTest("typescript");
+	runTest("prettier");
 });
