@@ -20,7 +20,8 @@
     ]
   },
   "scripts": {
-    "build": "mocha src/*.build.js --timeout 10000 --slow 5000",
+    "build:eslint": "mocha src/eslint.build.js --timeout 10000 --slow 5000",
+    "build:prettier": "mocha src/prettier.build.js --timeout 10000 --slow 5000",
     "test": "mocha test/*.test.js --timeout 10000 --slow 5000"
   },
   "dependencies": {

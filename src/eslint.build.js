@@ -10,9 +10,6 @@ const pkg = require("../package.json");
 const [,,,,,,,param7, param8] = process.argv;
 const version = (param7 === "--version") ? param8 : "0.0.0";
 
-console.log("process.argv", process.argv);
-console.log("version", version);
-
 /**
  * @param {"legacy"|"commonjs"|"typescript"} id
  * @return {Object}

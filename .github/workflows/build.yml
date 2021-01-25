@@ -21,5 +21,6 @@ jobs:
       with:
         node-version: ${{ matrix.node }}
     - run: npm install --prefer-offline --no-fund --no-progress
-    - run: npm run build
+    - run: npm run build:eslint
+    - run: npm run build:prettier
     - run: npm run test

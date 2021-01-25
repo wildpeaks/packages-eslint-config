@@ -49,7 +49,8 @@ jobs:
 
     - name: Build & Test
       run: |
-        npm run build -- --version ${{ github.event.inputs.version }}
+        npm run build:eslint -- --version ${{ github.event.inputs.version }}
+        npm run build:prettier -- --version ${{ github.event.inputs.version }}
         npm run test
 
     - name: Create Release
