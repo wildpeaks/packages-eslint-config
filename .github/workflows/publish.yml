@@ -26,7 +26,7 @@ jobs:
 
     - name: Initialize deployment
       id: deployment
-      uses: actions/github-script@v4.0.1
+      uses: actions/github-script@v4.0.2
       with:
         github-token: ${{ secrets.GITHUB_TOKEN }}
         script: |
@@ -55,7 +55,7 @@ jobs:
 
     - name: Create Release
       id: release
-      uses: actions/github-script@v4.0.1
+      uses: actions/github-script@v4.0.2
       with:
         github-token: ${{secrets.GITHUB_TOKEN}}
         script: |
@@ -150,7 +150,7 @@ jobs:
 
     - name: On success
       if: success()
-      uses: actions/github-script@v4.0.1
+      uses: actions/github-script@v4.0.2
       with:
         github-token: ${{ secrets.GITHUB_TOKEN }}
         script: |
@@ -163,7 +163,7 @@ jobs:
 
     - name: On error
       if: failure() || cancelled()
-      uses: actions/github-script@v4.0.1
+      uses: actions/github-script@v4.0.2
       with:
         github-token: ${{ secrets.GITHUB_TOKEN }}
         script: |
