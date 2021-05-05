@@ -282,7 +282,7 @@ const fixtures = {
 		expected: {
 			legacy: ["no-undef"],
 			commonjs: ["no-undef"],
-			typescript: ["no-undef"]
+			typescript: []
 		},
 		ignored: []
 	},
@@ -299,7 +299,7 @@ const fixtures = {
 		expected: {
 			legacy: ["no-undef"],
 			commonjs: ["no-undef"],
-			typescript: ["no-undef"]
+			typescript: []
 		},
 		ignored: []
 	},
@@ -316,7 +316,7 @@ const fixtures = {
 		expected: {
 			legacy: ["no-undef"],
 			commonjs: ["no-undef"],
-			typescript: ["no-undef"]
+			typescript: []
 		},
 		ignored: ["no-unused-vars", "@typescript-eslint/no-unused-vars"]
 	},
@@ -1525,7 +1525,7 @@ const fixtures = {
 		expected: {
 			legacy: ["no-undef"],
 			commonjs: ["no-undef"],
-			typescript: ["no-undef"]
+			typescript: []
 		},
 		ignored: []
 	},
@@ -1533,7 +1533,7 @@ const fixtures = {
 		expected: {
 			legacy: ["no-undef"],
 			commonjs: ["no-undef"],
-			typescript: ["no-undef"]
+			typescript: []
 		},
 		ignored: []
 	},
