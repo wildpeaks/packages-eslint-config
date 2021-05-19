@@ -1112,7 +1112,7 @@ function getRules(id) {
 
 	// Require or disallow spacing between template tags and their literals
 	// @see https://eslint.org/docs/rules/template-tag-spacing
-	rules["template-tag-spacing"] = (id === "legacy") ? "off" : ["error", "always"]; // NEW commonjs was off
+	rules["template-tag-spacing"] = (id === "legacy") ? "off" : ["error", "never"]; // NEW commonjs was off
 
 	// Require or disallow Unicode byte order mark (BOM)
 	// @see https://eslint.org/docs/rules/unicode-bom
