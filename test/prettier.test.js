@@ -157,6 +157,11 @@ const fixtures = {
 		ext: "js",
 		ignore: ["no-mixed-operators", "no-undef", "no-var", "no-unused-vars", "@typescript-eslint/no-unused-vars"],
 		compatible: ["legacy", "commonjs", "typescript"]
+	},
+	tag: {
+		ext: "js",
+		ignore: ["no-undef"],
+		compatible: ["commonjs", "typescript"]
 	}
 };
 

@@ -1569,6 +1569,23 @@ const fixtures = {
 			typescript: []
 		},
 		ignored: ["no-unused-vars", "@typescript-eslint/explicit-function-return-type", "@typescript-eslint/no-unused-vars"]
+	},
+
+	"tag_with_space.js": {
+		expected: {
+			legacy: ["fatal"],
+			commonjs: ["template-tag-spacing"],
+			typescript: ["template-tag-spacing"]
+		},
+		ignored: ["no-undef"]
+	},
+	"tag_without_space.js": {
+		expected: {
+			legacy: ["fatal"],
+			commonjs: [],
+			typescript: []
+		},
+		ignored: ["no-undef"]
 	}
 };
 
