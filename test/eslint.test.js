@@ -74,7 +74,6 @@ const fixtures = {
 			legacy: ["fatal"],
 			commonjs: [],
 			typescript: [
-				"@typescript-eslint/explicit-function-return-type",
 				"@typescript-eslint/explicit-member-accessibility"
 			]
 		},
@@ -102,7 +101,7 @@ const fixtures = {
 		expected: {
 			legacy: ["fatal"],
 			commonjs: ["fatal"],
-			typescript: ["@typescript-eslint/explicit-function-return-type", "@typescript-eslint/explicit-member-accessibility", "@typescript-eslint/no-unused-vars"]
+			typescript: ["@typescript-eslint/explicit-member-accessibility", "@typescript-eslint/no-unused-vars"]
 		},
 		ignored: []
 	},
@@ -110,7 +109,7 @@ const fixtures = {
 		expected: {
 			legacy: ["fatal"],
 			commonjs: ["fatal"],
-			typescript: ["@typescript-eslint/explicit-function-return-type", "@typescript-eslint/explicit-member-accessibility", "@typescript-eslint/no-unused-vars"]
+			typescript: ["@typescript-eslint/explicit-member-accessibility", "@typescript-eslint/no-unused-vars"]
 		},
 		ignored: []
 	},
@@ -118,7 +117,7 @@ const fixtures = {
 		expected: {
 			legacy: ["fatal"],
 			commonjs: ["fatal"],
-			typescript: ["@typescript-eslint/explicit-function-return-type", "@typescript-eslint/explicit-member-accessibility", "@typescript-eslint/no-unused-vars"]
+			typescript: ["@typescript-eslint/explicit-member-accessibility", "@typescript-eslint/no-unused-vars"]
 		},
 		ignored: []
 	},
@@ -126,7 +125,7 @@ const fixtures = {
 		expected: {
 			legacy: ["fatal"],
 			commonjs: ["fatal"],
-			typescript: ["@typescript-eslint/explicit-function-return-type", "@typescript-eslint/explicit-member-accessibility", "@typescript-eslint/no-unused-vars"]
+			typescript: ["@typescript-eslint/explicit-member-accessibility", "@typescript-eslint/no-unused-vars"]
 		},
 		ignored: []
 	},
@@ -134,7 +133,7 @@ const fixtures = {
 		expected: {
 			legacy: ["fatal"],
 			commonjs: ["fatal"],
-			typescript: ["@typescript-eslint/explicit-function-return-type", "@typescript-eslint/explicit-member-accessibility", "@typescript-eslint/no-unused-vars"]
+			typescript: ["@typescript-eslint/explicit-member-accessibility", "@typescript-eslint/no-unused-vars"]
 		},
 		ignored: []
 	},
@@ -142,7 +141,7 @@ const fixtures = {
 		expected: {
 			legacy: ["fatal"],
 			commonjs: ["fatal"],
-			typescript: ["@typescript-eslint/explicit-function-return-type", "@typescript-eslint/explicit-member-accessibility", "@typescript-eslint/no-unused-vars"]
+			typescript: ["@typescript-eslint/explicit-member-accessibility", "@typescript-eslint/no-unused-vars"]
 		},
 		ignored: []
 	},
@@ -151,7 +150,7 @@ const fixtures = {
 		expected: {
 			legacy: ["fatal"],
 			commonjs: ["fatal"],
-			typescript: ["@typescript-eslint/explicit-function-return-type", "@typescript-eslint/explicit-member-accessibility", "@typescript-eslint/no-unused-vars"]
+			typescript: ["@typescript-eslint/explicit-member-accessibility", "@typescript-eslint/no-unused-vars"]
 		},
 		ignored: []
 	},
@@ -159,7 +158,7 @@ const fixtures = {
 		expected: {
 			legacy: ["fatal"],
 			commonjs: ["fatal"],
-			typescript: ["@typescript-eslint/explicit-function-return-type", "@typescript-eslint/explicit-member-accessibility", "@typescript-eslint/no-unused-vars"]
+			typescript: ["@typescript-eslint/explicit-member-accessibility", "@typescript-eslint/no-unused-vars"]
 		},
 		ignored: []
 	},
@@ -167,7 +166,7 @@ const fixtures = {
 		expected: {
 			legacy: ["fatal"],
 			commonjs: ["fatal"],
-			typescript: ["@typescript-eslint/explicit-function-return-type", "@typescript-eslint/explicit-member-accessibility", "@typescript-eslint/no-unused-vars"]
+			typescript: ["@typescript-eslint/explicit-member-accessibility", "@typescript-eslint/no-unused-vars"]
 		},
 		ignored: []
 	},
@@ -175,7 +174,7 @@ const fixtures = {
 		expected: {
 			legacy: ["fatal"],
 			commonjs: ["fatal"],
-			typescript: ["@typescript-eslint/explicit-function-return-type", "@typescript-eslint/explicit-member-accessibility", "@typescript-eslint/no-unused-vars"]
+			typescript: ["@typescript-eslint/explicit-member-accessibility", "@typescript-eslint/no-unused-vars"]
 		},
 		ignored: []
 	},
@@ -183,7 +182,7 @@ const fixtures = {
 		expected: {
 			legacy: ["fatal"],
 			commonjs: ["fatal"],
-			typescript: ["@typescript-eslint/explicit-function-return-type", "@typescript-eslint/explicit-member-accessibility", "@typescript-eslint/no-unused-vars"]
+			typescript: ["@typescript-eslint/explicit-member-accessibility", "@typescript-eslint/no-unused-vars"]
 		},
 		ignored: []
 	},
@@ -191,7 +190,7 @@ const fixtures = {
 		expected: {
 			legacy: ["fatal"],
 			commonjs: ["fatal"],
-			typescript: ["@typescript-eslint/explicit-function-return-type", "@typescript-eslint/explicit-member-accessibility", "@typescript-eslint/no-unused-vars"]
+			typescript: ["@typescript-eslint/explicit-member-accessibility", "@typescript-eslint/no-unused-vars"]
 		},
 		ignored: []
 	},
@@ -200,7 +199,7 @@ const fixtures = {
 		expected: {
 			legacy: ["fatal"],
 			commonjs: ["fatal"],
-			typescript: ["@typescript-eslint/explicit-function-return-type", "@typescript-eslint/explicit-member-accessibility", "@typescript-eslint/no-unused-vars"]
+			typescript: ["@typescript-eslint/explicit-member-accessibility", "@typescript-eslint/no-unused-vars"]
 		},
 		ignored: []
 	},
@@ -208,7 +207,7 @@ const fixtures = {
 		expected: {
 			legacy: ["fatal"],
 			commonjs: ["fatal"],
-			typescript: ["@typescript-eslint/explicit-function-return-type", "@typescript-eslint/explicit-member-accessibility", "@typescript-eslint/no-unused-vars"]
+			typescript: ["@typescript-eslint/explicit-member-accessibility", "@typescript-eslint/no-unused-vars"]
 		},
 		ignored: []
 	},
@@ -216,7 +215,7 @@ const fixtures = {
 		expected: {
 			legacy: ["fatal"],
 			commonjs: ["fatal"],
-			typescript: ["@typescript-eslint/explicit-function-return-type", "@typescript-eslint/explicit-member-accessibility", "@typescript-eslint/no-unused-vars"]
+			typescript: ["@typescript-eslint/explicit-member-accessibility", "@typescript-eslint/no-unused-vars"]
 		},
 		ignored: []
 	},
@@ -224,7 +223,7 @@ const fixtures = {
 		expected: {
 			legacy: ["fatal"],
 			commonjs: ["fatal"],
-			typescript: ["@typescript-eslint/explicit-function-return-type", "@typescript-eslint/explicit-member-accessibility", "@typescript-eslint/no-unused-vars"]
+			typescript: ["@typescript-eslint/explicit-member-accessibility", "@typescript-eslint/no-unused-vars"]
 		},
 		ignored: []
 	},
@@ -232,7 +231,7 @@ const fixtures = {
 		expected: {
 			legacy: ["fatal"],
 			commonjs: ["fatal"],
-			typescript: ["@typescript-eslint/explicit-function-return-type", "@typescript-eslint/explicit-member-accessibility", "@typescript-eslint/no-unused-vars"]
+			typescript: ["@typescript-eslint/explicit-member-accessibility", "@typescript-eslint/no-unused-vars"]
 		},
 		ignored: []
 	},
@@ -240,7 +239,7 @@ const fixtures = {
 		expected: {
 			legacy: ["fatal"],
 			commonjs: ["fatal"],
-			typescript: ["@typescript-eslint/explicit-function-return-type", "@typescript-eslint/explicit-member-accessibility", "@typescript-eslint/no-unused-vars"]
+			typescript: ["@typescript-eslint/explicit-member-accessibility", "@typescript-eslint/no-unused-vars"]
 		},
 		ignored: []
 	},
@@ -369,7 +368,7 @@ const fixtures = {
 			commonjs: [],
 			typescript: []
 		},
-		ignored: ["no-unused-vars", "@typescript-eslint/explicit-function-return-type", "@typescript-eslint/no-unused-vars"]
+		ignored: ["no-unused-vars", "@typescript-eslint/no-unused-vars"]
 	},
 
 	"async_function.js": {
@@ -378,7 +377,7 @@ const fixtures = {
 			commonjs: [],
 			typescript: []
 		},
-		ignored: ["no-unused-vars", "@typescript-eslint/explicit-function-return-type", "@typescript-eslint/no-unused-vars"]
+		ignored: ["no-unused-vars", "@typescript-eslint/no-unused-vars"]
 	},
 	"async_arrow_without_space.js": {
 		expected: {
@@ -617,7 +616,7 @@ const fixtures = {
 			commonjs: [],
 			typescript: []
 		},
-		ignored: ["no-unused-vars", "@typescript-eslint/explicit-function-return-type", "@typescript-eslint/no-unused-vars"]
+		ignored: ["no-unused-vars", "@typescript-eslint/no-unused-vars"]
 	},
 	"this_arrow.js": {
 		expected: {
@@ -625,7 +624,7 @@ const fixtures = {
 			commonjs: ["no-invalid-this"],
 			typescript: []
 		},
-		ignored: ["no-unused-vars", "@typescript-eslint/explicit-function-return-type", "@typescript-eslint/no-unused-vars"]
+		ignored: ["no-unused-vars", "@typescript-eslint/no-unused-vars"]
 	},
 	"this_class_constructor.js": {
 		expected: {
@@ -641,7 +640,7 @@ const fixtures = {
 			commonjs: [],
 			typescript: []
 		},
-		ignored: ["no-unused-vars", "@typescript-eslint/explicit-member-accessibility", "@typescript-eslint/explicit-function-return-type", "@typescript-eslint/no-unused-vars"]
+		ignored: ["no-unused-vars", "@typescript-eslint/explicit-member-accessibility", "@typescript-eslint/no-unused-vars"]
 	},
 	"this_class_static.js": {
 		expected: {
@@ -649,7 +648,7 @@ const fixtures = {
 			commonjs: [],
 			typescript: []
 		},
-		ignored: ["no-unused-vars", "@typescript-eslint/explicit-function-return-type", "@typescript-eslint/explicit-member-accessibility", "@typescript-eslint/no-unused-vars"]
+		ignored: ["no-unused-vars", "@typescript-eslint/explicit-member-accessibility", "@typescript-eslint/no-unused-vars"]
 	},
 
 	"padding_class_beginning_zero_lines.js": {
@@ -707,7 +706,7 @@ const fixtures = {
 			commonjs: [],
 			typescript: []
 		},
-		ignored: ["class-methods-use-this", "no-unused-vars", "@typescript-eslint/explicit-function-return-type", "@typescript-eslint/explicit-member-accessibility", "@typescript-eslint/no-unused-vars"]
+		ignored: ["class-methods-use-this", "no-unused-vars", "@typescript-eslint/explicit-member-accessibility", "@typescript-eslint/no-unused-vars"]
 	},
 	"padding_class_method_beginning_one_line.js": {
 		expected: {
@@ -715,7 +714,7 @@ const fixtures = {
 			commonjs: [],
 			typescript: []
 		},
-		ignored: ["class-methods-use-this", "no-unused-vars", "@typescript-eslint/explicit-function-return-type", "@typescript-eslint/explicit-member-accessibility", "@typescript-eslint/no-unused-vars"]
+		ignored: ["class-methods-use-this", "no-unused-vars", "@typescript-eslint/explicit-member-accessibility", "@typescript-eslint/no-unused-vars"]
 	},
 	"padding_class_method_beginning_two_lines.js": {
 		expected: {
@@ -723,7 +722,7 @@ const fixtures = {
 			commonjs: [],
 			typescript: []
 		},
-		ignored: ["class-methods-use-this", "no-unused-vars", "@typescript-eslint/explicit-function-return-type", "@typescript-eslint/explicit-member-accessibility", "@typescript-eslint/no-unused-vars"]
+		ignored: ["class-methods-use-this", "no-unused-vars", "@typescript-eslint/explicit-member-accessibility", "@typescript-eslint/no-unused-vars"]
 	},
 	"padding_class_method_end_zero_lines.js": {
 		expected: {
@@ -731,7 +730,7 @@ const fixtures = {
 			commonjs: [],
 			typescript: []
 		},
-		ignored: ["class-methods-use-this", "no-unused-vars", "@typescript-eslint/explicit-function-return-type", "@typescript-eslint/explicit-member-accessibility", "@typescript-eslint/no-unused-vars"]
+		ignored: ["class-methods-use-this", "no-unused-vars", "@typescript-eslint/explicit-member-accessibility", "@typescript-eslint/no-unused-vars"]
 	},
 	"padding_class_method_end_one_line.js": {
 		expected: {
@@ -739,7 +738,7 @@ const fixtures = {
 			commonjs: [],
 			typescript: []
 		},
-		ignored: ["class-methods-use-this", "no-unused-vars", "@typescript-eslint/explicit-function-return-type", "@typescript-eslint/explicit-member-accessibility", "@typescript-eslint/no-unused-vars"]
+		ignored: ["class-methods-use-this", "no-unused-vars", "@typescript-eslint/explicit-member-accessibility", "@typescript-eslint/no-unused-vars"]
 	},
 	"padding_class_method_end_two_lines.js": {
 		expected: {
@@ -747,7 +746,7 @@ const fixtures = {
 			commonjs: [],
 			typescript: []
 		},
-		ignored: ["class-methods-use-this", "no-unused-vars", "@typescript-eslint/explicit-function-return-type", "@typescript-eslint/explicit-member-accessibility", "@typescript-eslint/no-unused-vars"]
+		ignored: ["class-methods-use-this", "no-unused-vars", "@typescript-eslint/explicit-member-accessibility", "@typescript-eslint/no-unused-vars"]
 	},
 
 	"padding_function_beginning_zero_lines.js": {
@@ -756,7 +755,7 @@ const fixtures = {
 			commonjs: [],
 			typescript: []
 		},
-		ignored: ["no-unused-vars", "@typescript-eslint/explicit-function-return-type", "@typescript-eslint/no-unused-vars"]
+		ignored: ["no-unused-vars", "@typescript-eslint/no-unused-vars"]
 	},
 	"padding_function_beginning_one_line.js": {
 		expected: {
@@ -764,7 +763,7 @@ const fixtures = {
 			commonjs: [],
 			typescript: []
 		},
-		ignored: ["no-unused-vars", "@typescript-eslint/explicit-function-return-type", "@typescript-eslint/no-unused-vars"]
+		ignored: ["no-unused-vars", "@typescript-eslint/no-unused-vars"]
 	},
 	"padding_function_beginning_two_lines.js": {
 		expected: {
@@ -772,7 +771,7 @@ const fixtures = {
 			commonjs: [],
 			typescript: []
 		},
-		ignored: ["no-unused-vars", "@typescript-eslint/explicit-function-return-type", "@typescript-eslint/no-unused-vars"]
+		ignored: ["no-unused-vars", "@typescript-eslint/no-unused-vars"]
 	},
 	"padding_function_end_zero_lines.js": {
 		expected: {
@@ -780,7 +779,7 @@ const fixtures = {
 			commonjs: [],
 			typescript: []
 		},
-		ignored: ["no-unused-vars", "@typescript-eslint/explicit-function-return-type", "@typescript-eslint/no-unused-vars"]
+		ignored: ["no-unused-vars", "@typescript-eslint/no-unused-vars"]
 	},
 	"padding_function_end_one_line.js": {
 		expected: {
@@ -788,7 +787,7 @@ const fixtures = {
 			commonjs: [],
 			typescript: []
 		},
-		ignored: ["no-unused-vars", "@typescript-eslint/explicit-function-return-type", "@typescript-eslint/no-unused-vars"]
+		ignored: ["no-unused-vars", "@typescript-eslint/no-unused-vars"]
 	},
 	"padding_function_end_two_lines.js": {
 		expected: {
@@ -796,7 +795,7 @@ const fixtures = {
 			commonjs: [],
 			typescript: []
 		},
-		ignored: ["no-unused-vars", "@typescript-eslint/explicit-function-return-type", "@typescript-eslint/no-unused-vars"]
+		ignored: ["no-unused-vars", "@typescript-eslint/no-unused-vars"]
 	},
 
 	"ternary.js": {
@@ -995,7 +994,7 @@ const fixtures = {
 			commonjs: [],
 			typescript: []
 		},
-		ignored: ["@typescript-eslint/explicit-function-return-type"]
+		ignored: []
 	},
 	"unused_param_without_underscore_last.js": {
 		expected: {
@@ -1003,7 +1002,7 @@ const fixtures = {
 			commonjs: [],
 			typescript: []
 		},
-		ignored: ["no-unused-vars", "@typescript-eslint/explicit-function-return-type", "@typescript-eslint/no-unused-vars"]
+		ignored: ["no-unused-vars", "@typescript-eslint/no-unused-vars"]
 	},
 	"unused_param_with_underscore_first.js": {
 		expected: {
@@ -1011,7 +1010,7 @@ const fixtures = {
 			commonjs: [],
 			typescript: []
 		},
-		ignored: ["@typescript-eslint/explicit-function-return-type"]
+		ignored: []
 	},
 	"unused_param_with_underscore_last.js": {
 		expected: {
@@ -1019,7 +1018,7 @@ const fixtures = {
 			commonjs: [],
 			typescript: []
 		},
-		ignored: ["@typescript-eslint/explicit-function-return-type"]
+		ignored: []
 	},
 	"unused_var_without_underscore.js": {
 		expected: {
@@ -1280,7 +1279,7 @@ const fixtures = {
 			commonjs: [],
 			typescript: []
 		},
-		ignored: ["no-unused-vars", "@typescript-eslint/explicit-function-return-type", "@typescript-eslint/no-unused-vars"]
+		ignored: ["no-unused-vars", "@typescript-eslint/no-unused-vars"]
 	},
 	"function_param_per_line_without_space.js": {
 		expected: {
@@ -1288,7 +1287,7 @@ const fixtures = {
 			commonjs: ["space-before-blocks"],
 			typescript: ["space-before-blocks"]
 		},
-		ignored: ["no-unused-vars", "@typescript-eslint/explicit-function-return-type", "@typescript-eslint/no-unused-vars"]
+		ignored: ["no-unused-vars", "@typescript-eslint/no-unused-vars"]
 	},
 	"function_param_single_line_with_space.js": {
 		expected: {
@@ -1296,7 +1295,7 @@ const fixtures = {
 			commonjs: [],
 			typescript: []
 		},
-		ignored: ["no-unused-vars", "@typescript-eslint/explicit-function-return-type", "@typescript-eslint/no-unused-vars"]
+		ignored: ["no-unused-vars", "@typescript-eslint/no-unused-vars"]
 	},
 	"function_param_single_line_without_space.js": {
 		expected: {
@@ -1304,7 +1303,7 @@ const fixtures = {
 			commonjs: ["space-before-blocks"],
 			typescript: ["space-before-blocks"]
 		},
-		ignored: ["no-unused-vars", "@typescript-eslint/explicit-function-return-type", "@typescript-eslint/no-unused-vars"]
+		ignored: ["no-unused-vars", "@typescript-eslint/no-unused-vars"]
 	},
 
 	"comment_eslint_line_before.js": {
@@ -1560,7 +1559,7 @@ const fixtures = {
 			commonjs: [],
 			typescript: ["@typescript-eslint/promise-function-async"]
 		},
-		ignored: ["no-unused-vars", "@typescript-eslint/explicit-function-return-type", "@typescript-eslint/no-unused-vars"]
+		ignored: ["no-unused-vars", "@typescript-eslint/no-unused-vars"]
 	},
 	"function_returns_promise_with_async.js": {
 		expected: {
@@ -1568,7 +1567,7 @@ const fixtures = {
 			commonjs: [],
 			typescript: []
 		},
-		ignored: ["no-unused-vars", "@typescript-eslint/explicit-function-return-type", "@typescript-eslint/no-unused-vars"]
+		ignored: ["no-unused-vars", "@typescript-eslint/no-unused-vars"]
 	},
 
 	"tag_with_space.js": {
