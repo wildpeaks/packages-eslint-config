@@ -1318,7 +1318,7 @@ function getRules(id) {
 
 		// Require explicit return types on functions and class methods
 		// @see https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/explicit-function-return-type.md
-		rules["@typescript-eslint/explicit-function-return-type"] = ["error", {allowExpressions: true, allowHigherOrderFunctions: true, allowTypedFunctionExpressions: true}];
+		rules["@typescript-eslint/explicit-function-return-type"] = "off";
 
 		// Require explicit accessibility modifiers on class properties and methods
 		// @see https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/explicit-member-accessibility.md
