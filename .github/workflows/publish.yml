@@ -31,7 +31,7 @@ jobs:
         github-token: ${{ secrets.GITHUB_TOKEN }}
         script: |
           const tag = /^[0-9]+\.[0-9]+\.[0-9]+$/.test("${{ github.event.inputs.version }}") ? 'latest' : 'preview';
-          const deployment = await github.repos.createDeployment({
+          const deployment = await github.rest.repos.createDeployment({
             environment: tag,
             ref: '${{ github.sha }}',
             owner: context.repo.owner,
@@ -42,6 +42,7 @@ jobs:
 
     - name: Parameters
       run: |
+        echo SHA ${{ github.sha }}
         echo Branch ${{ github.ref }}
         echo Version ${{ github.event.inputs.version }}
         echo NPM Tag ${{ steps.deployment.outputs.tag }}
@@ -59,7 +60,7 @@ jobs:
       with:
         github-token: ${{secrets.GITHUB_TOKEN}}
         script: |
-          const release = await github.repos.createRelease({
+          const release = await github.rest.repos.createRelease({
             owner: context.repo.owner,
             repo: context.repo.repo,
             tag_name: 'v${{ github.event.inputs.version }}',
@@ -154,7 +155,7 @@ jobs:
       with:
         github-token: ${{ secrets.GITHUB_TOKEN }}
         script: |
-          github.repos.createDeploymentStatus({
+          github.rest.repos.createDeploymentStatus({
             owner: context.repo.owner,
             repo: context.repo.repo,
             deployment_id: '${{ steps.deployment.outputs.id }}',
@@ -167,7 +168,7 @@ jobs:
       with:
         github-token: ${{ secrets.GITHUB_TOKEN }}
         script: |
-          github.repos.createDeploymentStatus({
+          github.rest.repos.createDeploymentStatus({
             owner: context.repo.owner,
             repo: context.repo.repo,
             deployment_id: '${{ steps.deployment.outputs.id }}',
