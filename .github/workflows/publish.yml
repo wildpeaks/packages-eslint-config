@@ -80,6 +80,10 @@ jobs:
       working-directory: packages/commonjs
       run: npm pack
 
+    - name: Pack "esmodules"
+      working-directory: packages/esmodules
+      run: npm pack
+
     - name: Pack "typescript"
       working-directory: packages/typescript
       run: npm pack
@@ -106,6 +110,16 @@ jobs:
         upload_url: ${{ steps.release.outputs.upload_url }}
         asset_path: ./packages/commonjs/wildpeaks-eslint-config-commonjs-${{ github.event.inputs.version }}.tgz
         asset_name: commonjs.tgz
+        asset_content_type: application/gzip
+
+    - name: Attach "esmodules"
+      uses: actions/upload-release-asset@v1.0.2
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.release.outputs.upload_url }}
+        asset_path: ./packages/esmodules/wildpeaks-eslint-config-esmodules-${{ github.event.inputs.version }}.tgz
+        asset_name: esmodules.tgz
         asset_content_type: application/gzip
 
     - name: Attach "typescript"
@@ -140,6 +154,10 @@ jobs:
     - name: Publish "commonjs"
       run: npm publish --tag ${{ steps.deployment.outputs.tag }}
       working-directory: packages/commonjs
+
+    - name: Publish "esmodules"
+      run: npm publish --tag ${{ steps.deployment.outputs.tag }}
+      working-directory: packages/esmodules
 
     - name: Publish "typescript"
       run: npm publish --tag ${{ steps.deployment.outputs.tag }}
