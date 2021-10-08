@@ -635,7 +635,7 @@ function getRules(id) {
 
 	// Disallow the use of undeclared variables unless mentioned in `/ * global * /` comments
 	// @see https://eslint.org/docs/rules/no-undef
-	rules["no-undef"] = (id === "typescript" || id === "esmodules") ? "off" : "error";
+	rules["no-undef"] = (id === "typescript") ? "off" : "error";
 
 	// Disallow initializing variables to `undefined`
 	// @see https://eslint.org/docs/rules/no-undef-init
