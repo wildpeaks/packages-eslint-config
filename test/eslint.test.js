@@ -1224,6 +1224,16 @@ const fixtures = {
 		ignored: ["no-unused-vars", "@typescript-eslint/no-unused-vars"]
 	},
 
+	"await_import.js": {
+		expected: {
+			legacy: ["fatal"],
+			commonjs: ["fatal"],
+			esmodules: [],
+			typescript: []
+		},
+		ignored: ["no-unused-vars", "@typescript-eslint/no-unused-vars"]
+	},
+
 	"ts_await_import.ts": {
 		expected: {
 			legacy: ["fatal"],
