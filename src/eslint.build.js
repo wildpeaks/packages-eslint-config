@@ -27,7 +27,7 @@ function getRules(id) {
 
 	// Disallow using an async function as a Promise executor
 	// @see https://eslint.org/docs/rules/no-async-promise-executor
-	rules["no-async-promise-executor"] = "error"; // NEW
+	rules["no-async-promise-executor"] = "error";
 
 	// Disallow `await` inside of loops
 	// @see https://eslint.org/docs/rules/no-await-in-loop
@@ -63,7 +63,7 @@ function getRules(id) {
 
 	// Disallow duplicate conditions in if-else-if chains
 	// @see https://eslint.org/docs/rules/no-dupe-else-if
-	rules["no-dupe-else-if"] = "error"; // NEW
+	rules["no-dupe-else-if"] = "error";
 
 	// Disallow duplicate keys in object literals
 	// @see https://eslint.org/docs/rules/no-dupe-keys
@@ -113,7 +113,7 @@ function getRules(id) {
 
 	// Disallow assigning to imported bindings
 	// @see https://eslint.org/docs/rules/no-import-assign
-	rules["no-import-assign"] = "off"; // NEW
+	rules["no-import-assign"] = "off";
 
 	// Disallow variable or `function` declarations in nested blocks
 	// @see https://eslint.org/docs/rules/no-inner-declarations
@@ -132,14 +132,14 @@ function getRules(id) {
 	// @see https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/no-loss-of-precision.md
 	if (id === "typescript"){
 		rules["no-loss-of-precision"] = "off";
-		rules["@typescript-eslint/no-loss-of-precision"] = "error"; // NEW
+		rules["@typescript-eslint/no-loss-of-precision"] = "error";
 	} else {
-		rules["no-loss-of-precision"] = "error"; // NEW
+		rules["no-loss-of-precision"] = "error";
 	}
 
 	// Disallow characters which are made with multiple code points in character class syntax
 	// @see https://eslint.org/docs/rules/no-misleading-character-class
-	rules["no-misleading-character-class"] = "error"; // NEW
+	rules["no-misleading-character-class"] = "error";
 
 	// Disallow calling global object properties as functions
 	// @see https://eslint.org/docs/rules/no-obj-calls
@@ -147,7 +147,7 @@ function getRules(id) {
 
 	// Disallow returning values from Promise executor functions
 	// @see https://eslint.org/docs/rules/no-promise-executor-return
-	rules["no-promise-executor-return"] = "error"; // NEW
+	rules["no-promise-executor-return"] = "error";
 
 	// Disallow calling some `Object.prototype` methods directly on objects
 	// @see https://eslint.org/docs/rules/no-prototype-builtins
@@ -159,7 +159,7 @@ function getRules(id) {
 
 	// Disallow returning values from setters
 	// @see https://eslint.org/docs/rules/no-setter-return
-	rules["no-setter-return"] = (id === "legacy") ? "off" : "error"; // NEW
+	rules["no-setter-return"] = (id === "legacy") ? "off" : "error";
 
 	// Disallow sparse arrays
 	// @see https://eslint.org/docs/rules/no-sparse-arrays
@@ -167,7 +167,7 @@ function getRules(id) {
 
 	// Disallow template literal placeholder syntax in regular strings
 	// @see https://eslint.org/docs/rules/no-template-curly-in-string
-	rules["no-template-curly-in-string"] = (id === "legacy") ? "off" : "error"; // NEW commonjs used to be off
+	rules["no-template-curly-in-string"] = (id === "legacy") ? "off" : "error";
 
 	// Disallow confusing multiline expressions
 	// @see https://eslint.org/docs/rules/no-unexpected-multiline
@@ -179,7 +179,7 @@ function getRules(id) {
 
 	// Disallow loops with a body that allows only one iteration
 	// @see https://eslint.org/docs/rules/no-unreachable-loop
-	rules["no-unreachable-loop"] = "off"; // NEW
+	rules["no-unreachable-loop"] = "off";
 
 	// Disallow control flow statements in `finally` blocks
 	// @see https://eslint.org/docs/rules/no-unsafe-finally
@@ -191,15 +191,15 @@ function getRules(id) {
 
 	// Disallow use of optional chaining in contexts where the `undefined` value is not allowed
 	// @see https://eslint.org/docs/rules/no-unsafe-optional-chaining
-	rules["no-unsafe-optional-chaining"] = "off"; // NEW
+	rules["no-unsafe-optional-chaining"] = "off";
 
 	// Disallow useless backreferences in regular expressions
 	// @see https://eslint.org/docs/rules/no-useless-backreference
-	rules["no-useless-backreference"] = "error"; // NEW
+	rules["no-useless-backreference"] = "error";
 
 	// Disallow assignments that can lead to race conditions due to usage of `await` or `yield`
 	// @see https://eslint.org/docs/rules/require-atomic-updates
-	rules["require-atomic-updates"] = (id === "legacy") ? "off" : "error"; // NEW
+	rules["require-atomic-updates"] = (id === "legacy") ? "off" : "error";
 
 	// Require calls to `isNaN()` when checking for `NaN`
 	// @see https://eslint.org/docs/rules/use-isnan
@@ -223,7 +223,7 @@ function getRules(id) {
 
 	// Enforce that class methods utilize `this`
 	// @see https://eslint.org/docs/rules/class-methods-use-this
-	rules["class-methods-use-this"] = (id === "legacy") ? "off" : "error"; // NEW commonjs used to be off
+	rules["class-methods-use-this"] = (id === "legacy") ? "off" : "error";
 
 	// Enforce a maximum cyclomatic complexity allowed in a program
 	// @see https://eslint.org/docs/rules/complexity
@@ -243,13 +243,13 @@ function getRules(id) {
 
 	// Enforce default clauses in switch statements to be last
 	// @see https://eslint.org/docs/rules/default-case-last
-	rules["default-case-last"] = "error"; // NEW
+	rules["default-case-last"] = "error";
 
 	// Enforce default parameters to be last
 	// @see https://eslint.org/docs/rules/default-param-last
 	// @see https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/default-param-last.md
-	rules["default-param-last"] = "off"; // NEW
-	rules["@typescript-eslint/default-param-last"] = "off"; // NEW
+	rules["default-param-last"] = "off";
+	rules["@typescript-eslint/default-param-last"] = "off";
 
 	// Enforce consistent newlines before and after dots
 	// @see https://eslint.org/docs/rules/dot-location
@@ -271,7 +271,7 @@ function getRules(id) {
 
 	// Require grouped accessor pairs in object literals and classes
 	// @see https://eslint.org/docs/rules/grouped-accessor-pairs
-	rules["grouped-accessor-pairs"] = "off"; // NEW
+	rules["grouped-accessor-pairs"] = "off";
 
 	// Require `for-in` loops to include an `if` statement
 	// @see https://eslint.org/docs/rules/guard-for-in
@@ -279,7 +279,7 @@ function getRules(id) {
 
 	// Enforce a maximum number of classes per file
 	// @see https://eslint.org/docs/rules/max-classes-per-file
-	rules["max-classes-per-file"] = "off"; // NEW
+	rules["max-classes-per-file"] = "off";
 
 	// Disallow the use of `alert`, `confirm`, and `prompt`
 	// @see https://eslint.org/docs/rules/no-alert
@@ -295,7 +295,7 @@ function getRules(id) {
 
 	// Disallow returning value from constructor
 	// @see https://eslint.org/docs/rules/no-constructor-return
-	rules["no-constructor-return"] = "error"; // NEW
+	rules["no-constructor-return"] = "error";
 
 	// Disallow division operators explicitly at the beginning of regular expressions
 	// @see https://eslint.org/docs/rules/no-div-regex
@@ -357,7 +357,7 @@ function getRules(id) {
 
 	// Disallow declarations in the global scope
 	// @see https://eslint.org/docs/rules/no-implicit-globals
-	rules["no-implicit-globals"] = (id === "typescript") ? "error" : "off"; // NEW: typescript used to be off
+	rules["no-implicit-globals"] = (id === "typescript") ? "error" : "off";
 
 	// Disallow the use of `eval()`-like methods
 	// @see https://eslint.org/docs/rules/no-implied-eval
@@ -433,7 +433,7 @@ function getRules(id) {
 
 	// Disallow `\8` and `\9` escape sequences in string literals
 	// @see https://eslint.org/docs/rules/no-nonoctal-decimal-escape
-	rules["no-nonoctal-decimal-escape"] = "error"; // NEW
+	rules["no-nonoctal-decimal-escape"] = "error";
 
 	// Disallow octal literals
 	// @see https://eslint.org/docs/rules/no-octal
@@ -476,7 +476,7 @@ function getRules(id) {
 		rules["no-return-await"] = "off";
 		rules["@typescript-eslint/return-await"] = "error"; // slightly different name
 	} else if (id === "typescript"){
-		rules["no-return-await"] = "error"; // NEW commonjs was off
+		rules["no-return-await"] = "error";
 	} else {
 		rules["no-return-await"] = "off";
 	}
@@ -531,7 +531,7 @@ function getRules(id) {
 
 	// Disallow unnecessary `catch` clauses
 	// @see https://eslint.org/docs/rules/no-useless-catch
-	rules["no-useless-catch"] = "error"; // NEW
+	rules["no-useless-catch"] = "error";
 
 	// Disallow unnecessary concatenation of literals or template literals
 	// @see https://eslint.org/docs/rules/no-useless-concat
@@ -559,7 +559,7 @@ function getRules(id) {
 
 	// Enforce using named capture group in regular expression
 	// @see https://eslint.org/docs/rules/prefer-named-capture-group
-	rules["prefer-named-capture-group"] = 'off'; // NEW
+	rules["prefer-named-capture-group"] = 'off';
 
 	// Require using Error objects as Promise rejection reasons
 	// @see https://eslint.org/docs/rules/prefer-promise-reject-errors
@@ -567,7 +567,7 @@ function getRules(id) {
 
 	// Disallow use of the `RegExp` constructor in favor of regular expression literals
 	// @see https://eslint.org/docs/rules/prefer-regex-literals
-	rules["prefer-regex-literals"] = "error"; // NEW
+	rules["prefer-regex-literals"] = "error";
 
 	// Enforce the consistent use of the radix argument when using `parseInt()`
 	// @see https://eslint.org/docs/rules/radix
@@ -583,11 +583,11 @@ function getRules(id) {
 
 	// Enforce the use of `u` flag on RegExp
 	// @see https://eslint.org/docs/rules/require-unicode-regexp
-	rules["require-unicode-regexp"] = "error"; // NEW
+	rules["require-unicode-regexp"] = "error";
 
 	// Require `var` declarations be placed at the top of their containing scope
 	// @see https://eslint.org/docs/rules/vars-on-top
-	rules["vars-on-top"] = (id === "legacy") ? "error" : "off"; // NEW commonjs was error
+	rules["vars-on-top"] = (id === "legacy") ? "error" : "off";
 
 	// Require parentheses around immediate `function` invocations
 	// @see https://eslint.org/docs/rules/wrap-iife
@@ -759,7 +759,7 @@ function getRules(id) {
 
 	// Enforce line breaks between arguments of a function call
 	// @see https://eslint.org/docs/rules/function-call-argument-newline
-	rules["function-call-argument-newline"] = "off"; // NEW
+	rules["function-call-argument-newline"] = "off";
 
 	// Enforce consistent line breaks inside function parentheses
 	// @see https://eslint.org/docs/rules/function-paren-newline
@@ -779,7 +779,7 @@ function getRules(id) {
 
 	// Enforce the location of arrow function bodies
 	// @see https://eslint.org/docs/rules/implicit-arrow-linebreak
-	rules["implicit-arrow-linebreak"] = "off"; // NEW
+	rules["implicit-arrow-linebreak"] = "off";
 
 	// Enforce consistent indentation
 	// @see https://eslint.org/docs/rules/indent
@@ -842,7 +842,7 @@ function getRules(id) {
 
 	// Enforce a maximum number of line of code in a function
 	// @see https://eslint.org/docs/rules/max-lines-per-function
-	rules["max-lines-per-function"] = "off"; // NEW
+	rules["max-lines-per-function"] = "off";
 
 	// Enforce a maximum depth that callbacks can be nested
 	// @see https://eslint.org/docs/rules/max-nested-callbacks
@@ -1023,11 +1023,11 @@ function getRules(id) {
 
 	// Disallow the use of `Math.pow` in favor of the `**` operator
 	// @see https://eslint.org/docs/rules/prefer-exponentiation-operator
-	rules["prefer-exponentiation-operator"] = (id === "legacy") ? "off" : "error"; // NEW
+	rules["prefer-exponentiation-operator"] = (id === "legacy") ? "off" : "error";
 
 	// Disallow using Object.assign with an object literal as the first argument and prefer the use of object spread instead.
 	// @see https://eslint.org/docs/rules/prefer-object-spread
-	rules["prefer-object-spread"] = "off"; // NEW
+	rules["prefer-object-spread"] = "off";
 
 	// Require quotes around object literal property names
 	// I'd want to require quotes around numbers, but Prettier has no option for it
@@ -1112,7 +1112,7 @@ function getRules(id) {
 
 	// Require or disallow spacing between template tags and their literals
 	// @see https://eslint.org/docs/rules/template-tag-spacing
-	rules["template-tag-spacing"] = (id === "legacy") ? "off" : ["error", "never"]; // NEW commonjs was off
+	rules["template-tag-spacing"] = (id === "legacy") ? "off" : ["error", "never"];
 
 	// Require or disallow Unicode byte order mark (BOM)
 	// @see https://eslint.org/docs/rules/unicode-bom
@@ -1124,35 +1124,35 @@ function getRules(id) {
 
 	// Require braces around arrow function bodies
 	// @see https://eslint.org/docs/rules/arrow-body-style
-	rules["arrow-body-style"] = (id === "legacy") ? "off" : ["error", "as-needed"]; // NEW commonjs was off
+	rules["arrow-body-style"] = (id === "legacy") ? "off" : ["error", "as-needed"];
 
 	// Require parentheses around arrow function arguments
 	// @see https://eslint.org/docs/rules/arrow-parens
-	rules["arrow-parens"] = (id === "legacy") ? "off" : ["error", "always"]; // NEW commonjs was off
+	rules["arrow-parens"] = (id === "legacy") ? "off" : ["error", "always"];
 
 	// Enforce consistent spacing before and after the arrow in arrow functions
 	// @see https://eslint.org/docs/rules/arrow-spacing
-	rules["arrow-spacing"] = (id === "legacy") ? "off" : ["error", {before: true, after: true}]; // NEW commonjs was off
+	rules["arrow-spacing"] = (id === "legacy") ? "off" : ["error", {before: true, after: true}];
 
 	// Require `super()` calls in constructors
 	// @see https://eslint.org/docs/rules/constructor-super
-	rules["constructor-super"] = (id === "legacy") ? "off" : "error"; // NEW commonjs was off
+	rules["constructor-super"] = (id === "legacy") ? "off" : "error";
 
 	// Enforce consistent spacing around `*` operators in generator functions
 	// @see https://eslint.org/docs/rules/generator-star-spacing
-	rules["generator-star-spacing"] = (id === "legacy") ? "off" : ["error", {before: false, after: true}]; // NEW commonjs was off
+	rules["generator-star-spacing"] = (id === "legacy") ? "off" : ["error", {before: false, after: true}];
 
 	// Disallow reassigning class members
 	// @see https://eslint.org/docs/rules/no-class-assign
-	rules["no-class-assign"] = (id === "legacy") ? "off" : "error"; // NEW commonjs was off
+	rules["no-class-assign"] = (id === "legacy") ? "off" : "error";
 
 	// Disallow arrow functions where they could be confused with comparisons
 	// @see https://eslint.org/docs/rules/no-confusing-arrow
-	rules["no-confusing-arrow"] = (id === "legacy") ? "off" : "error"; // NEW commonjs was off
+	rules["no-confusing-arrow"] = (id === "legacy") ? "off" : "error";
 
 	// Disallow reassigning `const` variables
 	// @see https://eslint.org/docs/rules/no-const-assign
-	rules["no-const-assign"] = (id === "legacy") ? "off" : "error"; // NEW commonjs was off
+	rules["no-const-assign"] = (id === "legacy") ? "off" : "error";
 
 	// Disallow duplicate class members
 	// @see https://eslint.org/docs/rules/no-dupe-class-members
@@ -1176,11 +1176,11 @@ function getRules(id) {
 
 	// disallow `new` operators with the `Symbol` object
 	// @see https://eslint.org/docs/rules/no-new-symbol
-	rules["no-new-symbol"] = (id === "legacy") ? "off" : "error"; // NEW commonjs was off;
+	rules["no-new-symbol"] = (id === "legacy") ? "off" : "error";
 
 	// disallow specified names in exports
 	// @see https://eslint.org/docs/rules/no-restricted-exports
-	rules["no-restricted-exports"] = "off"; // NEW
+	rules["no-restricted-exports"] = "off";
 
 	// disallow specified modules when loaded by `import`
 	// @see https://eslint.org/docs/rules/no-restricted-imports
@@ -1188,7 +1188,7 @@ function getRules(id) {
 
 	// disallow `this`/`super` before calling `super()` in constructors
 	// @see https://eslint.org/docs/rules/no-this-before-super
-	rules["no-this-before-super"] = (id === "legacy") ? "off" : "error"; // NEW commonjs was off;
+	rules["no-this-before-super"] = (id === "legacy") ? "off" : "error";
 
 	// Disallow unnecessary computed property keys in objects and classes
 	// @see https://eslint.org/docs/rules/no-useless-computed-key
@@ -1201,26 +1201,26 @@ function getRules(id) {
 		rules["no-useless-constructor"] = "off";
 		rules["@typescript-eslint/no-useless-constructor"] = "error";
 	} else if (id === "commonjs"){
-		rules["no-useless-constructor"] = "error"; // new commonjs was off
+		rules["no-useless-constructor"] = "error";
 	} else {
 		rules["no-useless-constructor"] = "off";
 	}
 
 	// Disallow renaming import, export, and destructured assignments to the same name
 	// @see https://eslint.org/docs/rules/no-useless-rename
-	rules["no-useless-rename"] = (id === "legacy") ? "off" : "error"; // NEW commonjs was off;
+	rules["no-useless-rename"] = (id === "legacy") ? "off" : "error";
 
 	// Require `let` or `const` instead of `var`
 	// @see https://eslint.org/docs/rules/no-var
-	rules["no-var"] = (id === "legacy") ? "off" : "error"; // NEW commonjs was off;
+	rules["no-var"] = (id === "legacy") ? "off" : "error";
 
 	// Require or disallow method and property shorthand syntax for object literals
 	// @see https://eslint.org/docs/rules/object-shorthand
-	rules["object-shorthand"] = (id === "legacy") ? "off" : "error"; // NEW commonjs was off;
+	rules["object-shorthand"] = (id === "legacy") ? "off" : "error";
 
 	// Require using arrow functions for callbacks
 	// @see https://eslint.org/docs/rules/prefer-arrow-callback
-	rules["prefer-arrow-callback"] = (id === "legacy") ? "off" : "error"; // NEW commonjs was off;
+	rules["prefer-arrow-callback"] = (id === "legacy") ? "off" : "error";
 
 	// Require `const` declarations for variables that are never reassigned after declared
 	// @see https://eslint.org/docs/rules/prefer-const
@@ -1228,15 +1228,15 @@ function getRules(id) {
 
 	// Require destructuring from arrays and/or objects
 	// @see https://eslint.org/docs/rules/prefer-destructuring
-	rules["prefer-destructuring"] = (id === "legacy") ? "off" : ["error", {VariableDeclarator: {array: false, object: true}, AssignmentExpression: {array: false, object: false}}]; // NEW commonjs was off;
+	rules["prefer-destructuring"] = (id === "legacy") ? "off" : ["error", {VariableDeclarator: {array: false, object: true}, AssignmentExpression: {array: false, object: false}}];
 
 	// Disallow `parseInt()` and `Number.parseInt()` in favor of binary, octal, and hexadecimal literals
 	// @see https://eslint.org/docs/rules/prefer-numeric-literals
-	rules["prefer-numeric-literals"] = (id === "legacy") ? "off" : "error"; // NEW commonjs was off;
+	rules["prefer-numeric-literals"] = (id === "legacy") ? "off" : "error";
 
 	// Require rest parameters instead of `arguments`
 	// @see https://eslint.org/docs/rules/prefer-rest-params
-	rules["prefer-rest-params"] = (id === "legacy") ? "off" : "error"; // NEW commonjs was off;
+	rules["prefer-rest-params"] = (id === "legacy") ? "off" : "error";
 
 	// Require spread operators instead of `.apply()`
 	// @see https://eslint.org/docs/rules/prefer-spread
@@ -1248,7 +1248,7 @@ function getRules(id) {
 
 	// Require generator functions to contain `yield`
 	// @see https://eslint.org/docs/rules/require-yield
-	rules["require-yield"] = (id === "legacy") ? "off" : "error"; // NEW commonjs was off;
+	rules["require-yield"] = (id === "legacy") ? "off" : "error";
 
 	// Enforce spacing between rest and spread operators and their expressions
 	// @see https://eslint.org/docs/rules/rest-spread-spacing
@@ -1264,7 +1264,7 @@ function getRules(id) {
 
 	// Require or disallow spacing around embedded expressions of template strings
 	// @see https://eslint.org/docs/rules/template-curly-spacing
-	rules["template-curly-spacing"] = (id === "legacy") ? "off" : ["error", "never"]; // NEW commonjs was off;
+	rules["template-curly-spacing"] = (id === "legacy") ? "off" : ["error", "never"];
 
 	// Require or disallow spacing around the `*` in `yield*` expressions
 	// @see https://eslint.org/docs/rules/yield-star-spacing
@@ -1285,11 +1285,11 @@ function getRules(id) {
 
 		// Bans @ts-<directive> comments from being used or requires descriptions after directive
 		// @see https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/ban-ts-comment.md
-		rules["@typescript-eslint/ban-ts-comment"] = "off"; // NEW
+		rules["@typescript-eslint/ban-ts-comment"] = "off";
 
 		// Bans // tslint:<rule-flag> comments from being used
 		// @see https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/ban-tslint-comment.md
-		rules["@typescript-eslint/ban-tslint-comment"] = "error"; // NEW
+		rules["@typescript-eslint/ban-tslint-comment"] = "error";
 
 		// Bans specific types from being used
 		// @see https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/ban-types.md
@@ -1298,15 +1298,15 @@ function getRules(id) {
 		// Ensures that literals on classes are exposed in a consistent style
 		// @see https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/class-literal-property-style.md
 		// Disabled because it doesn't have my preference: getter when there is a setter, field otherwise.
-		rules["@typescript-eslint/class-literal-property-style"] = "off"; // NEW
+		rules["@typescript-eslint/class-literal-property-style"] = "off";
 
 		// Enforce or disallow the use of the record type
 		// @see https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/consistent-indexed-object-style.md
-		rules["@typescript-eslint/consistent-indexed-object-style"] = "off"; // NEW
+		rules["@typescript-eslint/consistent-indexed-object-style"] = "off";
 
 		// Enforces consistent usage of type assertions
 		// @see https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/consistent-type-assertions.md
-		rules["@typescript-eslint/consistent-type-assertions"] = "off"; // NEW
+		rules["@typescript-eslint/consistent-type-assertions"] = "off";
 
 		// Consistent with type definition either interface or type
 		// @see https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/consistent-type-definitions.md
@@ -1314,7 +1314,7 @@ function getRules(id) {
 
 		// Enforces consistent usage of type imports
 		// @see https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/consistent-type-imports.md
-		rules["@typescript-eslint/consistent-type-imports"] = "off"; // NEW
+		rules["@typescript-eslint/consistent-type-imports"] = "off";
 
 		// Require explicit return types on functions and class methods
 		// @see https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/explicit-function-return-type.md
@@ -1326,7 +1326,7 @@ function getRules(id) {
 
 		// Require explicit return and argument types on exported functions' and classes' public class methods
 		// @see https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/explicit-module-boundary-types.md
-		rules["@typescript-eslint/explicit-module-boundary-types"] = "off"; // NEW
+		rules["@typescript-eslint/explicit-module-boundary-types"] = "off";
 
 		// Require a specific member delimiter style for interfaces and type literals
 		// @see https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/member-delimiter-style.md
@@ -1350,27 +1350,27 @@ function getRules(id) {
 
 		// Enforces using a particular method signature syntax
 		// @see https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/method-signature-style.md
-		rules["@typescript-eslint/method-signature-style"] = "error"; // NEW
+		rules["@typescript-eslint/method-signature-style"] = "error";
 
 		// Enforces naming conventions for everything across a codebase
 		// @see https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/naming-convention.md
-		rules["@typescript-eslint/naming-convention"] = "off"; // NEW
+		rules["@typescript-eslint/naming-convention"] = "off";
 
 		// Requires that .toString() is only called on objects which provide useful information when stringified
 		// @see https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/no-base-to-string.md
-		rules["@typescript-eslint/no-base-to-string"] = "off"; // NEW
+		rules["@typescript-eslint/no-base-to-string"] = "off";
 
 		// Disallow non-null assertion in locations that may be confusing
 		// @see https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/no-confusing-non-null-assertion.md
-		rules["@typescript-eslint/no-confusing-non-null-assertion"] = "off"; // NEW
+		rules["@typescript-eslint/no-confusing-non-null-assertion"] = "off";
 
 		// Requires expressions of type void to appear in statement position
 		// @see https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/no-confusing-void-expression.md
-		rules["@typescript-eslint/no-confusing-void-expression"] = "off"; // NEW
+		rules["@typescript-eslint/no-confusing-void-expression"] = "off";
 
 		// Disallow the delete operator with computed key expressions
 		// @see https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/no-dynamic-delete.md
-		rules["@typescript-eslint/no-dynamic-delete"] = "off"; // NEW
+		rules["@typescript-eslint/no-dynamic-delete"] = "off";
 
 		// Disallow the declaration of empty interfaces
 		// @see https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/no-empty-interface.md
@@ -1382,7 +1382,7 @@ function getRules(id) {
 
 		// Disallow extra non-null assertion
 		// @see https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/no-extra-non-null-assertion.md
-		rules["@typescript-eslint/no-extra-non-null-assertion"] = "off"; // NEW
+		rules["@typescript-eslint/no-extra-non-null-assertion"] = "off";
 
 		// Forbids the use of classes as namespaces
 		// @see https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/no-extraneous-class.md
@@ -1398,7 +1398,7 @@ function getRules(id) {
 
 		// Disallow usage of the implicit any type in catch clauses
 		// @see https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/no-implicit-any-catch.md
-		rules["@typescript-eslint/no-implicit-any-catch"] = "off"; // NEW
+		rules["@typescript-eslint/no-implicit-any-catch"] = "off";
 
 		// Disallows explicit type declarations for variables or parameters initialized to a number, string, or boolean
 		// @see https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/no-inferrable-types.md
@@ -1406,7 +1406,7 @@ function getRules(id) {
 
 		// Disallows usage of void type outside of generic or return types
 		// @see https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/no-invalid-void-type.md
-		rules["@typescript-eslint/no-invalid-void-type"] = "off"; // NEW
+		rules["@typescript-eslint/no-invalid-void-type"] = "off";
 
 		// Enforce valid definition of new and constructor
 		// @see https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/no-misused-new.md
@@ -1414,7 +1414,7 @@ function getRules(id) {
 
 		// Avoid using promises in places not designed to handle them
 		// @see https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/no-misused-promises.md
-		rules["@typescript-eslint/no-misused-promises"] = "off"; // NEW
+		rules["@typescript-eslint/no-misused-promises"] = "off";
 
 		// Disallow the use of custom TypeScript modules and namespaces
 		// @see https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/no-namespace.md
@@ -1422,7 +1422,7 @@ function getRules(id) {
 
 		// Disallows using a non-null assertion after an optional chain expression
 		// @see https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/no-non-null-asserted-optional-chain.md
-		rules["@typescript-eslint/no-non-null-asserted-optional-chain"] = "error"; // NEW
+		rules["@typescript-eslint/no-non-null-asserted-optional-chain"] = "error";
 
 		// Disallows non-null assertions using the ! postfix operator
 		// @see https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/no-non-null-assertion.md
@@ -1446,11 +1446,11 @@ function getRules(id) {
 
 		// Flags unnecessary equality comparisons against boolean literals
 		// @see https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/no-unnecessary-boolean-literal-compare.md
-		rules["@typescript-eslint/no-unnecessary-boolean-literal-compare"] = "error"; // NEW
+		rules["@typescript-eslint/no-unnecessary-boolean-literal-compare"] = "error";
 
 		// Prevents conditionals where the type is always truthy or always falsy
 		// @see https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/no-unnecessary-condition.md
-		rules["@typescript-eslint/no-unnecessary-condition"] = "off"; // NEW
+		rules["@typescript-eslint/no-unnecessary-condition"] = "off";
 
 		// Warns when a namespace qualifier is unnecessary
 		// @see https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/no-unnecessary-qualifier.md
@@ -1458,7 +1458,7 @@ function getRules(id) {
 
 		// Enforces that type arguments will not be used if not required
 		// @see https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/no-unnecessary-type-arguments.md
-		rules["@typescript-eslint/no-unnecessary-type-arguments"] = "off"; // NEW
+		rules["@typescript-eslint/no-unnecessary-type-arguments"] = "off";
 
 		// Warns if a type assertion does not change the type of an expression
 		// @see https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/no-unnecessary-type-assertion.md
@@ -1466,23 +1466,23 @@ function getRules(id) {
 
 		// Disallows unnecessary constraints on generic types
 		// @see https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/no-unnecessary-type-constraint.md
-		rules["@typescript-eslint/no-unnecessary-type-constraint"] = "off"; // NEW
+		rules["@typescript-eslint/no-unnecessary-type-constraint"] = "off";
 
 		// Disallows assigning any to variables and properties
 		// @see https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/no-unsafe-assignment.md
-		rules["@typescript-eslint/no-unsafe-assignment"] = "off"; // NEW
+		rules["@typescript-eslint/no-unsafe-assignment"] = "off";
 
 		// Disallows calling an any type value
 		// @see https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/no-unsafe-call.md
-		rules["@typescript-eslint/no-unsafe-call"] = "off"; // NEW
+		rules["@typescript-eslint/no-unsafe-call"] = "off";
 
 		// Disallows member access on any typed variables
 		// @see https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/no-unsafe-member-access.md
-		rules["@typescript-eslint/no-unsafe-member-access"] = "off"; // NEW
+		rules["@typescript-eslint/no-unsafe-member-access"] = "off";
 
 		// Disallows returning any from a function
 		// @see https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/no-unsafe-return.md
-		rules["@typescript-eslint/no-unsafe-return"] = "off"; // NEW
+		rules["@typescript-eslint/no-unsafe-return"] = "off";
 
 		// Disallows the use of require statements except in import statements
 		// @see https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/no-var-requires.md
@@ -1490,15 +1490,15 @@ function getRules(id) {
 
 		// Prefers a non-null assertion over explicit type cast when possible
 		// @see https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/non-nullable-type-assertion-style.md
-		rules["@typescript-eslint/non-nullable-type-assertion-style"] = "off"; // NEW
+		rules["@typescript-eslint/non-nullable-type-assertion-style"] = "off";
 
 		// Prefer usage of as const over literal type
 		// @see https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/prefer-as-const.md
-		rules["@typescript-eslint/prefer-as-const"] = "off"; // NEW
+		rules["@typescript-eslint/prefer-as-const"] = "off";
 
 		// Prefer initializing each enums member value
 		// @see https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/prefer-enum-initializers.md
-		rules["@typescript-eslint/prefer-enum-initializers"] = "off"; // NEW
+		rules["@typescript-eslint/prefer-enum-initializers"] = "off";
 
 		// Prefer a ‘for-of’ loop over a standard ‘for’ loop if the index is only used to access the array being iterated
 		// @see https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/prefer-for-of.md
@@ -1514,7 +1514,7 @@ function getRules(id) {
 
 		// Require that all enum members be literal values to prevent unintended enum member name shadow issues
 		// @see https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/prefer-literal-enum-member.md
-		rules["@typescript-eslint/prefer-literal-enum-member"] = "error"; // NEW
+		rules["@typescript-eslint/prefer-literal-enum-member"] = "error";
 
 		// Require the use of the namespace keyword instead of the module keyword to declare custom TypeScript modules
 		// @see https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/prefer-namespace-keyword.md
@@ -1522,23 +1522,23 @@ function getRules(id) {
 
 		// Enforce the usage of the nullish coalescing operator instead of logical chaining
 		// @see https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/prefer-nullish-coalescing.md
-		rules["@typescript-eslint/prefer-nullish-coalescing"] = "off"; // NEW
+		rules["@typescript-eslint/prefer-nullish-coalescing"] = "off";
 
 		// Prefer using concise optional chain expressions instead of chained logical ands
 		// @see https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/prefer-optional-chain.md
-		rules["@typescript-eslint/prefer-optional-chain"] = "off"; // NEW
+		rules["@typescript-eslint/prefer-optional-chain"] = "off";
 
 		// Requires that private members are marked as readonly if they're never modified outside of the constructor
 		// @see https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/prefer-readonly.md
-		rules["@typescript-eslint/prefer-readonly"] = "error"; // NEW
+		rules["@typescript-eslint/prefer-readonly"] = "error";
 
 		// Requires that function parameters are typed as readonly to prevent accidental mutation of inputs
 		// @see https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/prefer-readonly-parameter-types.md
-		rules["@typescript-eslint/prefer-readonly-parameter-types"] = "off"; // NEW
+		rules["@typescript-eslint/prefer-readonly-parameter-types"] = "off";
 
 		// Prefer using type parameter when calling Array#reduce instead of casting
 		// @see https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/prefer-reduce-type-parameter.md
-		rules["@typescript-eslint/prefer-reduce-type-parameter"] = "off"; // NEW
+		rules["@typescript-eslint/prefer-reduce-type-parameter"] = "off";
 
 		// Enforce that RegExp#exec is used instead of String#match if no global flag is provided
 		// @see https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/prefer-regexp-exec.md
@@ -1550,11 +1550,11 @@ function getRules(id) {
 
 		// Recommends using @ts-expect-error over @ts-ignore
 		// @see https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/prefer-ts-expect-error.md
-		rules["@typescript-eslint/prefer-ts-expect-error"] = "error"; // NEW
+		rules["@typescript-eslint/prefer-ts-expect-error"] = "error";
 
 		// Requires any function or method that returns a Promise to be marked async
 		// @see https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/promise-function-async.md
-		rules["@typescript-eslint/promise-function-async"] = "error"; // NEW
+		rules["@typescript-eslint/promise-function-async"] = "error";
 
 		// Requires Array#sort calls to always provide a compareFunction
 		// @see https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/require-array-sort-compare.md
@@ -1566,31 +1566,31 @@ function getRules(id) {
 
 		// Enforce template literal expressions to be of string type
 		// @see https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/restrict-template-expressions.md
-		rules["@typescript-eslint/restrict-template-expressions"] = "off"; // NEW
+		rules["@typescript-eslint/restrict-template-expressions"] = "off";
 
 		// Enforces that members of a type union/intersection are sorted alphabetically
 		// @see https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/sort-type-union-intersection-members.md
-		rules["@typescript-eslint/sort-type-union-intersection-members"] = "off"; // NEW
+		rules["@typescript-eslint/sort-type-union-intersection-members"] = "off";
 
 		// Restricts the types allowed in boolean expressions
 		// @see https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/strict-boolean-expressions.md
-		rules["@typescript-eslint/strict-boolean-expressions"] = "off"; // NEW
+		rules["@typescript-eslint/strict-boolean-expressions"] = "off";
 
 		// Exhaustiveness checking in switch with union type
 		// @see https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/switch-exhaustiveness-check.md
-		rules["@typescript-eslint/switch-exhaustiveness-check"] = "off"; // NEW
+		rules["@typescript-eslint/switch-exhaustiveness-check"] = "off";
 
 		// Sets preference level for triple slash directives versus ES6-style import declarations
 		// @see https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/triple-slash-reference.md
-		rules["@typescript-eslint/triple-slash-reference"] = "off"; // NEW
+		rules["@typescript-eslint/triple-slash-reference"] = "off";
 
 		// Require consistent spacing around type annotations
 		// @see https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/type-annotation-spacing.md
-		rules["@typescript-eslint/type-annotation-spacing"] = "off"; // NEW
+		rules["@typescript-eslint/type-annotation-spacing"] = "off";
 
 		// Requires type annotations to exist
 		// @see https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/typedef.md
-		rules["@typescript-eslint/typedef"] = "off"; // NEW
+		rules["@typescript-eslint/typedef"] = "off";
 
 		// Enforces unbound methods are called with their expected scope
 		// @see https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/unbound-method.md
