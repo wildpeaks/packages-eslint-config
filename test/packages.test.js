@@ -64,5 +64,6 @@ describe("require()", function () {
 	runTest("legacy");
 	runTest("commonjs");
 	runTest("typescript");
+	runTest("esmodules");
 	runTest("prettier");
 });
