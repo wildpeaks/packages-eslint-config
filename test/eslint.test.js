@@ -14,6 +14,7 @@ const fixtures = {
 		expected: {
 			legacy: ["strict"],
 			commonjs: ["strict"],
+			esmodules: [],
 			typescript: []
 		},
 		ignored: []
@@ -22,6 +23,7 @@ const fixtures = {
 		expected: {
 			legacy: [],
 			commonjs: [],
+			esmodules: [],
 			typescript: []
 		},
 		ignored: []
@@ -31,6 +33,7 @@ const fixtures = {
 		expected: {
 			legacy: [],
 			commonjs: ["no-var"],
+			esmodules: ["no-var"],
 			typescript: ["no-var"]
 		},
 		ignored: []
@@ -40,6 +43,7 @@ const fixtures = {
 		expected: {
 			legacy: ["fatal"],
 			commonjs: ["arrow-parens"],
+			esmodules: ["arrow-parens"],
 			typescript: ["arrow-parens"]
 		},
 		ignored: []
@@ -48,6 +52,7 @@ const fixtures = {
 		expected: {
 			legacy: ["fatal"],
 			commonjs: [],
+			esmodules: [],
 			typescript: []
 		},
 		ignored: []
@@ -56,6 +61,7 @@ const fixtures = {
 		expected: {
 			legacy: ["fatal"],
 			commonjs: [],
+			esmodules: [],
 			typescript: []
 		},
 		ignored: []
@@ -65,6 +71,7 @@ const fixtures = {
 		expected: {
 			legacy: ["fatal"],
 			commonjs: [],
+			esmodules: [],
 			typescript: []
 		},
 		ignored: ["no-unused-vars", "@typescript-eslint/no-unused-vars"]
@@ -73,9 +80,8 @@ const fixtures = {
 		expected: {
 			legacy: ["fatal"],
 			commonjs: [],
-			typescript: [
-				"@typescript-eslint/explicit-member-accessibility"
-			]
+			esmodules: [],
+			typescript: ["@typescript-eslint/explicit-member-accessibility"]
 		},
 		ignored: ["class-methods-use-this", "no-unused-vars", "@typescript-eslint/no-unused-vars"]
 	},
@@ -84,6 +90,7 @@ const fixtures = {
 		expected: {
 			legacy: ["fatal"],
 			commonjs: ["fatal"],
+			esmodules: ["fatal"],
 			typescript: ["@typescript-eslint/explicit-member-accessibility", "@typescript-eslint/no-unused-vars"]
 		},
 		ignored: []
@@ -92,6 +99,7 @@ const fixtures = {
 		expected: {
 			legacy: ["fatal"],
 			commonjs: ["fatal"],
+			esmodules: ["fatal"],
 			typescript: ["@typescript-eslint/explicit-member-accessibility", "@typescript-eslint/no-unused-vars"]
 		},
 		ignored: []
@@ -101,6 +109,7 @@ const fixtures = {
 		expected: {
 			legacy: ["fatal"],
 			commonjs: ["fatal"],
+			esmodules: ["fatal"],
 			typescript: ["@typescript-eslint/explicit-member-accessibility", "@typescript-eslint/no-unused-vars"]
 		},
 		ignored: []
@@ -109,6 +118,7 @@ const fixtures = {
 		expected: {
 			legacy: ["fatal"],
 			commonjs: ["fatal"],
+			esmodules: ["fatal"],
 			typescript: ["@typescript-eslint/explicit-member-accessibility", "@typescript-eslint/no-unused-vars"]
 		},
 		ignored: []
@@ -117,6 +127,7 @@ const fixtures = {
 		expected: {
 			legacy: ["fatal"],
 			commonjs: ["fatal"],
+			esmodules: ["fatal"],
 			typescript: ["@typescript-eslint/explicit-member-accessibility", "@typescript-eslint/no-unused-vars"]
 		},
 		ignored: []
@@ -125,6 +136,7 @@ const fixtures = {
 		expected: {
 			legacy: ["fatal"],
 			commonjs: ["fatal"],
+			esmodules: ["fatal"],
 			typescript: ["@typescript-eslint/explicit-member-accessibility", "@typescript-eslint/no-unused-vars"]
 		},
 		ignored: []
@@ -133,6 +145,7 @@ const fixtures = {
 		expected: {
 			legacy: ["fatal"],
 			commonjs: ["fatal"],
+			esmodules: ["fatal"],
 			typescript: ["@typescript-eslint/explicit-member-accessibility", "@typescript-eslint/no-unused-vars"]
 		},
 		ignored: []
@@ -141,6 +154,7 @@ const fixtures = {
 		expected: {
 			legacy: ["fatal"],
 			commonjs: ["fatal"],
+			esmodules: ["fatal"],
 			typescript: ["@typescript-eslint/explicit-member-accessibility", "@typescript-eslint/no-unused-vars"]
 		},
 		ignored: []
@@ -150,6 +164,7 @@ const fixtures = {
 		expected: {
 			legacy: ["fatal"],
 			commonjs: ["fatal"],
+			esmodules: ["fatal"],
 			typescript: ["@typescript-eslint/explicit-member-accessibility", "@typescript-eslint/no-unused-vars"]
 		},
 		ignored: []
@@ -158,6 +173,7 @@ const fixtures = {
 		expected: {
 			legacy: ["fatal"],
 			commonjs: ["fatal"],
+			esmodules: ["fatal"],
 			typescript: ["@typescript-eslint/explicit-member-accessibility", "@typescript-eslint/no-unused-vars"]
 		},
 		ignored: []
@@ -166,6 +182,7 @@ const fixtures = {
 		expected: {
 			legacy: ["fatal"],
 			commonjs: ["fatal"],
+			esmodules: ["fatal"],
 			typescript: ["@typescript-eslint/explicit-member-accessibility", "@typescript-eslint/no-unused-vars"]
 		},
 		ignored: []
@@ -174,6 +191,7 @@ const fixtures = {
 		expected: {
 			legacy: ["fatal"],
 			commonjs: ["fatal"],
+			esmodules: ["fatal"],
 			typescript: ["@typescript-eslint/explicit-member-accessibility", "@typescript-eslint/no-unused-vars"]
 		},
 		ignored: []
@@ -182,6 +200,7 @@ const fixtures = {
 		expected: {
 			legacy: ["fatal"],
 			commonjs: ["fatal"],
+			esmodules: ["fatal"],
 			typescript: ["@typescript-eslint/explicit-member-accessibility", "@typescript-eslint/no-unused-vars"]
 		},
 		ignored: []
@@ -190,6 +209,7 @@ const fixtures = {
 		expected: {
 			legacy: ["fatal"],
 			commonjs: ["fatal"],
+			esmodules: ["fatal"],
 			typescript: ["@typescript-eslint/explicit-member-accessibility", "@typescript-eslint/no-unused-vars"]
 		},
 		ignored: []
@@ -199,6 +219,7 @@ const fixtures = {
 		expected: {
 			legacy: ["fatal"],
 			commonjs: ["fatal"],
+			esmodules: ["fatal"],
 			typescript: ["@typescript-eslint/explicit-member-accessibility", "@typescript-eslint/no-unused-vars"]
 		},
 		ignored: []
@@ -207,6 +228,7 @@ const fixtures = {
 		expected: {
 			legacy: ["fatal"],
 			commonjs: ["fatal"],
+			esmodules: ["fatal"],
 			typescript: ["@typescript-eslint/explicit-member-accessibility", "@typescript-eslint/no-unused-vars"]
 		},
 		ignored: []
@@ -215,6 +237,7 @@ const fixtures = {
 		expected: {
 			legacy: ["fatal"],
 			commonjs: ["fatal"],
+			esmodules: ["fatal"],
 			typescript: ["@typescript-eslint/explicit-member-accessibility", "@typescript-eslint/no-unused-vars"]
 		},
 		ignored: []
@@ -223,6 +246,7 @@ const fixtures = {
 		expected: {
 			legacy: ["fatal"],
 			commonjs: ["fatal"],
+			esmodules: ["fatal"],
 			typescript: ["@typescript-eslint/explicit-member-accessibility", "@typescript-eslint/no-unused-vars"]
 		},
 		ignored: []
@@ -231,6 +255,7 @@ const fixtures = {
 		expected: {
 			legacy: ["fatal"],
 			commonjs: ["fatal"],
+			esmodules: ["fatal"],
 			typescript: ["@typescript-eslint/explicit-member-accessibility", "@typescript-eslint/no-unused-vars"]
 		},
 		ignored: []
@@ -239,6 +264,7 @@ const fixtures = {
 		expected: {
 			legacy: ["fatal"],
 			commonjs: ["fatal"],
+			esmodules: ["fatal"],
 			typescript: ["@typescript-eslint/explicit-member-accessibility", "@typescript-eslint/no-unused-vars"]
 		},
 		ignored: []
@@ -248,6 +274,7 @@ const fixtures = {
 		expected: {
 			legacy: [],
 			commonjs: [],
+			esmodules: [],
 			typescript: []
 		},
 		ignored: []
@@ -256,6 +283,7 @@ const fixtures = {
 		expected: {
 			legacy: [],
 			commonjs: [],
+			esmodules: [],
 			typescript: []
 		},
 		ignored: []
@@ -264,6 +292,7 @@ const fixtures = {
 		expected: {
 			legacy: [],
 			commonjs: [],
+			esmodules: [],
 			typescript: []
 		},
 		ignored: []
@@ -272,6 +301,7 @@ const fixtures = {
 		expected: {
 			legacy: ["max-len"],
 			commonjs: ["max-len"],
+			esmodules: ["max-len"],
 			typescript: ["max-len"]
 		},
 		ignored: []
@@ -281,6 +311,7 @@ const fixtures = {
 		expected: {
 			legacy: ["no-undef"],
 			commonjs: ["no-undef"],
+			esmodules: ["no-undef"],
 			typescript: []
 		},
 		ignored: []
@@ -289,6 +320,7 @@ const fixtures = {
 		expected: {
 			legacy: [],
 			commonjs: [],
+			esmodules: [],
 			typescript: []
 		},
 		ignored: []
@@ -298,6 +330,7 @@ const fixtures = {
 		expected: {
 			legacy: ["no-undef"],
 			commonjs: ["no-undef"],
+			esmodules: ["no-undef"],
 			typescript: []
 		},
 		ignored: []
@@ -306,6 +339,7 @@ const fixtures = {
 		expected: {
 			legacy: [],
 			commonjs: [],
+			esmodules: [],
 			typescript: []
 		},
 		ignored: []
@@ -315,6 +349,7 @@ const fixtures = {
 		expected: {
 			legacy: ["no-undef"],
 			commonjs: ["no-undef"],
+			esmodules: ["no-undef"],
 			typescript: []
 		},
 		ignored: ["no-unused-vars", "@typescript-eslint/no-unused-vars"]
@@ -323,6 +358,7 @@ const fixtures = {
 		expected: {
 			legacy: [],
 			commonjs: [],
+			esmodules: [],
 			typescript: []
 		},
 		ignored: []
@@ -332,6 +368,7 @@ const fixtures = {
 		expected: {
 			legacy: ["no-undef"],
 			commonjs: [],
+			esmodules: [],
 			typescript: []
 		},
 		ignored: []
@@ -341,6 +378,7 @@ const fixtures = {
 		expected: {
 			legacy: ["fatal"],
 			commonjs: ["fatal"],
+			esmodules: ["fatal"],
 			typescript: []
 		},
 		ignored: []
@@ -349,6 +387,7 @@ const fixtures = {
 		expected: {
 			legacy: ["fatal"],
 			commonjs: ["fatal"],
+			esmodules: ["fatal"],
 			typescript: []
 		},
 		ignored: []
@@ -358,6 +397,7 @@ const fixtures = {
 		expected: {
 			legacy: ["fatal"],
 			commonjs: ["fatal"],
+			esmodules: ["fatal"],
 			typescript: []
 		},
 		ignored: ["no-unused-vars", "@typescript-eslint/no-unused-vars"]
@@ -366,6 +406,7 @@ const fixtures = {
 		expected: {
 			legacy: ["fatal"],
 			commonjs: [],
+			esmodules: [],
 			typescript: []
 		},
 		ignored: ["no-unused-vars", "@typescript-eslint/no-unused-vars"]
@@ -375,6 +416,7 @@ const fixtures = {
 		expected: {
 			legacy: ["fatal"],
 			commonjs: [],
+			esmodules: [],
 			typescript: []
 		},
 		ignored: ["no-unused-vars", "@typescript-eslint/no-unused-vars"]
@@ -383,6 +425,7 @@ const fixtures = {
 		expected: {
 			legacy: ["fatal"],
 			commonjs: ["space-before-function-paren"],
+			esmodules: ["space-before-function-paren"],
 			typescript: ["@typescript-eslint/space-before-function-paren"]
 		},
 		ignored: []
@@ -391,6 +434,7 @@ const fixtures = {
 		expected: {
 			legacy: ["fatal"],
 			commonjs: [],
+			esmodules: [],
 			typescript: []
 		},
 		ignored: []
@@ -400,6 +444,7 @@ const fixtures = {
 		expected: {
 			legacy: ["quotes"],
 			commonjs: ["quotes"],
+			esmodules: ["quotes"],
 			typescript: ["@typescript-eslint/quotes"]
 		},
 		ignored: ["no-unused-vars", "no-var", "@typescript-eslint/no-unused-vars"]
@@ -408,6 +453,7 @@ const fixtures = {
 		expected: {
 			legacy: [],
 			commonjs: [],
+			esmodules: [],
 			typescript: []
 		},
 		ignored: ["no-unused-vars", "no-var", "@typescript-eslint/no-unused-vars"]
@@ -416,6 +462,7 @@ const fixtures = {
 		expected: {
 			legacy: ["fatal"],
 			commonjs: [],
+			esmodules: [],
 			typescript: []
 		},
 		ignored: ["no-unused-vars", "no-var", "@typescript-eslint/no-unused-vars"]
@@ -425,6 +472,7 @@ const fixtures = {
 		expected: {
 			legacy: ["quotes"],
 			commonjs: ["quotes"],
+			esmodules: ["quotes"],
 			typescript: ["@typescript-eslint/quotes"]
 		},
 		ignored: ["no-unused-vars", "no-var", "@typescript-eslint/no-unused-vars"]
@@ -433,6 +481,7 @@ const fixtures = {
 		expected: {
 			legacy: [],
 			commonjs: [],
+			esmodules: [],
 			typescript: []
 		},
 		ignored: ["no-unused-vars", "no-var", "@typescript-eslint/no-unused-vars"]
@@ -441,6 +490,7 @@ const fixtures = {
 		expected: {
 			legacy: ["fatal"],
 			commonjs: ["fatal"],
+			esmodules: ["fatal"],
 			typescript: ["fatal"]
 		},
 		ignored: []
@@ -450,6 +500,7 @@ const fixtures = {
 		expected: {
 			legacy: ["quotes"],
 			commonjs: ["quotes"],
+			esmodules: ["quotes"],
 			typescript: ["@typescript-eslint/quotes"]
 		},
 		ignored: ["no-unused-vars", "no-var", "@typescript-eslint/no-unused-vars"]
@@ -458,6 +509,7 @@ const fixtures = {
 		expected: {
 			legacy: ["quotes", "quote-props"],
 			commonjs: ["quotes", "quote-props"],
+			esmodules: ["quotes", "quote-props"],
 			typescript: ["@typescript-eslint/quotes", "quote-props"]
 		},
 		ignored: ["no-unused-vars", "no-var", "@typescript-eslint/no-unused-vars"]
@@ -466,6 +518,7 @@ const fixtures = {
 		expected: {
 			legacy: [],
 			commonjs: [],
+			esmodules: [],
 			typescript: []
 		},
 		ignored: ["no-unused-vars", "no-var", "@typescript-eslint/no-unused-vars"]
@@ -474,6 +527,7 @@ const fixtures = {
 		expected: {
 			legacy: ["quote-props"],
 			commonjs: ["quote-props"],
+			esmodules: ["quote-props"],
 			typescript: ["quote-props"]
 		},
 		ignored: ["no-unused-vars", "no-var", "@typescript-eslint/no-unused-vars"]
@@ -483,6 +537,7 @@ const fixtures = {
 		expected: {
 			legacy: ["quotes"],
 			commonjs: ["quotes"],
+			esmodules: ["quotes"],
 			typescript: ["@typescript-eslint/quotes"]
 		},
 		ignored: ["no-unused-vars", "no-var", "@typescript-eslint/no-unused-vars"]
@@ -491,6 +546,7 @@ const fixtures = {
 		expected: {
 			legacy: [],
 			commonjs: [],
+			esmodules: [],
 			typescript: []
 		},
 		ignored: ["no-unused-vars", "no-var", "@typescript-eslint/no-unused-vars"]
@@ -500,6 +556,7 @@ const fixtures = {
 		expected: {
 			legacy: [],
 			commonjs: [],
+			esmodules: [],
 			typescript: []
 		},
 		ignored: ["no-unused-vars", "no-var", "@typescript-eslint/no-unused-vars"]
@@ -508,6 +565,7 @@ const fixtures = {
 		expected: {
 			legacy: ["quotes"],
 			commonjs: ["quotes"],
+			esmodules: ["quotes"],
 			typescript: ["@typescript-eslint/quotes"]
 		},
 		ignored: ["no-unused-vars", "no-var", "@typescript-eslint/no-unused-vars"]
@@ -516,6 +574,7 @@ const fixtures = {
 		expected: {
 			legacy: [],
 			commonjs: [],
+			esmodules: [],
 			typescript: []
 		},
 		ignored: ["no-unused-vars", "no-var", "@typescript-eslint/no-unused-vars"]
@@ -524,6 +583,7 @@ const fixtures = {
 		expected: {
 			legacy: ["fatal"],
 			commonjs: [],
+			esmodules: [],
 			typescript: []
 		},
 		ignored: ["no-unused-vars", "no-var", "@typescript-eslint/no-unused-vars"]
@@ -532,6 +592,7 @@ const fixtures = {
 		expected: {
 			legacy: ["quotes"],
 			commonjs: ["quotes"],
+			esmodules: ["quotes"],
 			typescript: ["@typescript-eslint/quotes"]
 		},
 		ignored: ["no-unused-vars", "no-var", "@typescript-eslint/no-unused-vars"]
@@ -540,6 +601,7 @@ const fixtures = {
 		expected: {
 			legacy: [],
 			commonjs: [],
+			esmodules: [],
 			typescript: []
 		},
 		ignored: ["no-unused-vars", "no-var", "@typescript-eslint/no-unused-vars"]
@@ -548,6 +610,7 @@ const fixtures = {
 		expected: {
 			legacy: ["fatal"],
 			commonjs: [],
+			esmodules: [],
 			typescript: []
 		},
 		ignored: ["no-unused-vars", "no-var", "@typescript-eslint/no-unused-vars"]
@@ -557,6 +620,7 @@ const fixtures = {
 		expected: {
 			legacy: [],
 			commonjs: [],
+			esmodules: [],
 			typescript: []
 		},
 		ignored: []
@@ -565,6 +629,7 @@ const fixtures = {
 		expected: {
 			legacy: [],
 			commonjs: [],
+			esmodules: [],
 			typescript: []
 		},
 		ignored: []
@@ -573,6 +638,7 @@ const fixtures = {
 		expected: {
 			legacy: [],
 			commonjs: [],
+			esmodules: [],
 			typescript: []
 		},
 		ignored: []
@@ -581,6 +647,7 @@ const fixtures = {
 		expected: {
 			legacy: [],
 			commonjs: [],
+			esmodules: [],
 			typescript: []
 		},
 		ignored: []
@@ -589,6 +656,7 @@ const fixtures = {
 		expected: {
 			legacy: ["newline-per-chained-call"],
 			commonjs: ["newline-per-chained-call"],
+			esmodules: ["newline-per-chained-call"],
 			typescript: ["newline-per-chained-call"]
 		},
 		ignored: []
@@ -597,6 +665,7 @@ const fixtures = {
 		expected: {
 			legacy: [],
 			commonjs: [],
+			esmodules: [],
 			typescript: []
 		},
 		ignored: []
@@ -606,6 +675,7 @@ const fixtures = {
 		expected: {
 			legacy: ["no-invalid-this"],
 			commonjs: ["no-invalid-this"],
+			esmodules: ["no-invalid-this"],
 			typescript: []
 		},
 		ignored: []
@@ -614,6 +684,7 @@ const fixtures = {
 		expected: {
 			legacy: [],
 			commonjs: [],
+			esmodules: [],
 			typescript: []
 		},
 		ignored: ["no-unused-vars", "@typescript-eslint/no-unused-vars"]
@@ -622,6 +693,7 @@ const fixtures = {
 		expected: {
 			legacy: ["fatal"],
 			commonjs: ["no-invalid-this"],
+			esmodules: ["no-invalid-this"],
 			typescript: []
 		},
 		ignored: ["no-unused-vars", "@typescript-eslint/no-unused-vars"]
@@ -630,6 +702,7 @@ const fixtures = {
 		expected: {
 			legacy: ["fatal"],
 			commonjs: [],
+			esmodules: [],
 			typescript: []
 		},
 		ignored: ["no-unused-vars", "@typescript-eslint/explicit-member-accessibility", "@typescript-eslint/no-unused-vars"]
@@ -638,6 +711,7 @@ const fixtures = {
 		expected: {
 			legacy: ["fatal"],
 			commonjs: [],
+			esmodules: [],
 			typescript: []
 		},
 		ignored: ["no-unused-vars", "@typescript-eslint/explicit-member-accessibility", "@typescript-eslint/no-unused-vars"]
@@ -646,6 +720,7 @@ const fixtures = {
 		expected: {
 			legacy: ["fatal"],
 			commonjs: [],
+			esmodules: [],
 			typescript: []
 		},
 		ignored: ["no-unused-vars", "@typescript-eslint/explicit-member-accessibility", "@typescript-eslint/no-unused-vars"]
@@ -655,6 +730,7 @@ const fixtures = {
 		expected: {
 			legacy: ["fatal"],
 			commonjs: [],
+			esmodules: [],
 			typescript: []
 		},
 		ignored: ["no-unused-vars", "@typescript-eslint/explicit-member-accessibility", "@typescript-eslint/no-unused-vars"]
@@ -663,6 +739,7 @@ const fixtures = {
 		expected: {
 			legacy: ["fatal"],
 			commonjs: [],
+			esmodules: [],
 			typescript: []
 		},
 		ignored: ["no-unused-vars", "@typescript-eslint/explicit-member-accessibility", "@typescript-eslint/no-unused-vars"]
@@ -671,6 +748,7 @@ const fixtures = {
 		expected: {
 			legacy: ["fatal"],
 			commonjs: [],
+			esmodules: [],
 			typescript: []
 		},
 		ignored: ["no-unused-vars", "@typescript-eslint/explicit-member-accessibility", "@typescript-eslint/no-unused-vars"]
@@ -679,6 +757,7 @@ const fixtures = {
 		expected: {
 			legacy: ["fatal"],
 			commonjs: [],
+			esmodules: [],
 			typescript: []
 		},
 		ignored: ["no-unused-vars", "@typescript-eslint/explicit-member-accessibility", "@typescript-eslint/no-unused-vars"]
@@ -687,6 +766,7 @@ const fixtures = {
 		expected: {
 			legacy: ["fatal"],
 			commonjs: [],
+			esmodules: [],
 			typescript: []
 		},
 		ignored: ["no-unused-vars", "@typescript-eslint/explicit-member-accessibility", "@typescript-eslint/no-unused-vars"]
@@ -695,6 +775,7 @@ const fixtures = {
 		expected: {
 			legacy: ["fatal"],
 			commonjs: [],
+			esmodules: [],
 			typescript: []
 		},
 		ignored: ["no-unused-vars", "@typescript-eslint/explicit-member-accessibility", "@typescript-eslint/no-unused-vars"]
@@ -704,6 +785,7 @@ const fixtures = {
 		expected: {
 			legacy: ["fatal"],
 			commonjs: [],
+			esmodules: [],
 			typescript: []
 		},
 		ignored: ["class-methods-use-this", "no-unused-vars", "@typescript-eslint/explicit-member-accessibility", "@typescript-eslint/no-unused-vars"]
@@ -712,6 +794,7 @@ const fixtures = {
 		expected: {
 			legacy: ["fatal"],
 			commonjs: [],
+			esmodules: [],
 			typescript: []
 		},
 		ignored: ["class-methods-use-this", "no-unused-vars", "@typescript-eslint/explicit-member-accessibility", "@typescript-eslint/no-unused-vars"]
@@ -720,6 +803,7 @@ const fixtures = {
 		expected: {
 			legacy: ["fatal"],
 			commonjs: [],
+			esmodules: [],
 			typescript: []
 		},
 		ignored: ["class-methods-use-this", "no-unused-vars", "@typescript-eslint/explicit-member-accessibility", "@typescript-eslint/no-unused-vars"]
@@ -728,6 +812,7 @@ const fixtures = {
 		expected: {
 			legacy: ["fatal"],
 			commonjs: [],
+			esmodules: [],
 			typescript: []
 		},
 		ignored: ["class-methods-use-this", "no-unused-vars", "@typescript-eslint/explicit-member-accessibility", "@typescript-eslint/no-unused-vars"]
@@ -736,6 +821,7 @@ const fixtures = {
 		expected: {
 			legacy: ["fatal"],
 			commonjs: [],
+			esmodules: [],
 			typescript: []
 		},
 		ignored: ["class-methods-use-this", "no-unused-vars", "@typescript-eslint/explicit-member-accessibility", "@typescript-eslint/no-unused-vars"]
@@ -744,6 +830,7 @@ const fixtures = {
 		expected: {
 			legacy: ["fatal"],
 			commonjs: [],
+			esmodules: [],
 			typescript: []
 		},
 		ignored: ["class-methods-use-this", "no-unused-vars", "@typescript-eslint/explicit-member-accessibility", "@typescript-eslint/no-unused-vars"]
@@ -753,6 +840,7 @@ const fixtures = {
 		expected: {
 			legacy: [],
 			commonjs: [],
+			esmodules: [],
 			typescript: []
 		},
 		ignored: ["no-unused-vars", "@typescript-eslint/no-unused-vars"]
@@ -761,6 +849,7 @@ const fixtures = {
 		expected: {
 			legacy: [],
 			commonjs: [],
+			esmodules: [],
 			typescript: []
 		},
 		ignored: ["no-unused-vars", "@typescript-eslint/no-unused-vars"]
@@ -769,6 +858,7 @@ const fixtures = {
 		expected: {
 			legacy: [],
 			commonjs: [],
+			esmodules: [],
 			typescript: []
 		},
 		ignored: ["no-unused-vars", "@typescript-eslint/no-unused-vars"]
@@ -777,6 +867,7 @@ const fixtures = {
 		expected: {
 			legacy: [],
 			commonjs: [],
+			esmodules: [],
 			typescript: []
 		},
 		ignored: ["no-unused-vars", "@typescript-eslint/no-unused-vars"]
@@ -785,6 +876,7 @@ const fixtures = {
 		expected: {
 			legacy: [],
 			commonjs: [],
+			esmodules: [],
 			typescript: []
 		},
 		ignored: ["no-unused-vars", "@typescript-eslint/no-unused-vars"]
@@ -793,6 +885,7 @@ const fixtures = {
 		expected: {
 			legacy: [],
 			commonjs: [],
+			esmodules: [],
 			typescript: []
 		},
 		ignored: ["no-unused-vars", "@typescript-eslint/no-unused-vars"]
@@ -802,6 +895,7 @@ const fixtures = {
 		expected: {
 			legacy: [],
 			commonjs: [],
+			esmodules: [],
 			typescript: []
 		},
 		ignored: ["no-unused-vars", "no-var", "@typescript-eslint/no-unused-vars"]
@@ -811,6 +905,7 @@ const fixtures = {
 		expected: {
 			legacy: ["fatal"],
 			commonjs: ["fatal"],
+			esmodules: ["fatal"],
 			typescript: []
 		},
 		ignored: ["@typescript-eslint/no-unused-vars"]
@@ -819,6 +914,7 @@ const fixtures = {
 		expected: {
 			legacy: ["fatal"],
 			commonjs: ["fatal"],
+			esmodules: ["fatal"],
 			typescript: ["fatal"]
 		},
 		ignored: []
@@ -828,6 +924,7 @@ const fixtures = {
 		expected: {
 			legacy: ["fatal"],
 			commonjs: ["fatal"],
+			esmodules: ["fatal"],
 			typescript: []
 		},
 		ignored: ["@typescript-eslint/no-unused-vars"]
@@ -836,6 +933,7 @@ const fixtures = {
 		expected: {
 			legacy: ["fatal"],
 			commonjs: ["fatal"],
+			esmodules: ["fatal"],
 			typescript: ["@typescript-eslint/member-delimiter-style", "@typescript-eslint/no-unused-vars"]
 		},
 		ignored: []
@@ -844,6 +942,7 @@ const fixtures = {
 		expected: {
 			legacy: ["fatal"],
 			commonjs: ["fatal"],
+			esmodules: ["fatal"],
 			typescript: []
 		},
 		ignored: ["@typescript-eslint/no-unused-vars"]
@@ -853,6 +952,7 @@ const fixtures = {
 		expected: {
 			legacy: ["fatal"],
 			commonjs: ["fatal"],
+			esmodules: ["fatal"],
 			typescript: ["@typescript-eslint/member-delimiter-style"]
 		},
 		ignored: ["@typescript-eslint/no-unused-vars"]
@@ -861,6 +961,7 @@ const fixtures = {
 		expected: {
 			legacy: ["fatal"],
 			commonjs: ["fatal"],
+			esmodules: ["fatal"],
 			typescript: []
 		},
 		ignored: ["@typescript-eslint/no-unused-vars"]
@@ -870,6 +971,7 @@ const fixtures = {
 		expected: {
 			legacy: ["fatal"],
 			commonjs: ["fatal"],
+			esmodules: ["fatal"],
 			typescript: []
 		},
 		ignored: ["@typescript-eslint/no-unused-vars"]
@@ -878,6 +980,7 @@ const fixtures = {
 		expected: {
 			legacy: ["fatal"],
 			commonjs: ["fatal"],
+			esmodules: ["fatal"],
 			typescript: []
 		},
 		ignored: ["@typescript-eslint/no-unused-vars"]
@@ -886,6 +989,7 @@ const fixtures = {
 		expected: {
 			legacy: ["fatal"],
 			commonjs: ["fatal"],
+			esmodules: ["fatal"],
 			typescript: []
 		},
 		ignored: ["@typescript-eslint/no-unused-vars"]
@@ -895,6 +999,7 @@ const fixtures = {
 		expected: {
 			legacy: [],
 			commonjs: ["prefer-destructuring"],
+			esmodules: ["prefer-destructuring"],
 			typescript: ["prefer-destructuring"]
 		},
 		ignored: ["no-unused-vars", "no-var", "@typescript-eslint/no-unused-vars"]
@@ -903,6 +1008,7 @@ const fixtures = {
 		expected: {
 			legacy: [],
 			commonjs: [],
+			esmodules: [],
 			typescript: []
 		},
 		ignored: ["no-unused-vars", "no-var", "@typescript-eslint/no-unused-vars"]
@@ -911,6 +1017,7 @@ const fixtures = {
 		expected: {
 			legacy: [],
 			commonjs: ["prefer-destructuring"],
+			esmodules: ["prefer-destructuring"],
 			typescript: ["prefer-destructuring"]
 		},
 		ignored: ["no-unused-vars", "no-var", "dot-notation", "@typescript-eslint/dot-notation", "@typescript-eslint/no-unused-vars"]
@@ -919,6 +1026,7 @@ const fixtures = {
 		expected: {
 			legacy: [],
 			commonjs: [],
+			esmodules: [],
 			typescript: []
 		},
 		ignored: ["no-unused-vars", "no-var", "dot-notation", "@typescript-eslint/dot-notation", "@typescript-eslint/no-unused-vars"]
@@ -927,6 +1035,7 @@ const fixtures = {
 		expected: {
 			legacy: ["fatal"],
 			commonjs: [],
+			esmodules: [],
 			typescript: []
 		},
 		ignored: ["no-unused-vars", "no-var", "@typescript-eslint/no-unused-vars"]
@@ -935,6 +1044,7 @@ const fixtures = {
 		expected: {
 			legacy: ["fatal"],
 			commonjs: [],
+			esmodules: [],
 			typescript: []
 		},
 		ignored: ["no-unused-vars", "no-var", "@typescript-eslint/no-unused-vars"]
@@ -943,6 +1053,7 @@ const fixtures = {
 		expected: {
 			legacy: [],
 			commonjs: [],
+			esmodules: [],
 			typescript: []
 		},
 		ignored: ["no-unused-vars", "no-var", "@typescript-eslint/no-unused-vars"]
@@ -951,6 +1062,7 @@ const fixtures = {
 		expected: {
 			legacy: [],
 			commonjs: [],
+			esmodules: [],
 			typescript: []
 		},
 		ignored: ["no-unused-vars", "no-var", "@typescript-eslint/no-unused-vars"]
@@ -959,6 +1071,7 @@ const fixtures = {
 		expected: {
 			legacy: ["fatal"],
 			commonjs: [],
+			esmodules: [],
 			typescript: []
 		},
 		ignored: ["no-unused-vars", "no-var", "@typescript-eslint/no-unused-vars"]
@@ -967,6 +1080,7 @@ const fixtures = {
 		expected: {
 			legacy: [],
 			commonjs: [],
+			esmodules: [],
 			typescript: []
 		},
 		ignored: ["no-unused-vars", "no-var", "@typescript-eslint/no-unused-vars"]
@@ -975,6 +1089,7 @@ const fixtures = {
 		expected: {
 			legacy: ["fatal"],
 			commonjs: [],
+			esmodules: [],
 			typescript: []
 		},
 		ignored: ["no-unused-vars", "no-var", "@typescript-eslint/no-unused-vars"]
@@ -983,6 +1098,7 @@ const fixtures = {
 		expected: {
 			legacy: [],
 			commonjs: [],
+			esmodules: [],
 			typescript: []
 		},
 		ignored: ["no-unused-vars", "no-var", "@typescript-eslint/no-unused-vars"]
@@ -992,6 +1108,7 @@ const fixtures = {
 		expected: {
 			legacy: [],
 			commonjs: [],
+			esmodules: [],
 			typescript: []
 		},
 		ignored: []
@@ -1000,6 +1117,7 @@ const fixtures = {
 		expected: {
 			legacy: [],
 			commonjs: [],
+			esmodules: [],
 			typescript: []
 		},
 		ignored: ["no-unused-vars", "@typescript-eslint/no-unused-vars"]
@@ -1008,6 +1126,7 @@ const fixtures = {
 		expected: {
 			legacy: [],
 			commonjs: [],
+			esmodules: [],
 			typescript: []
 		},
 		ignored: []
@@ -1016,6 +1135,7 @@ const fixtures = {
 		expected: {
 			legacy: [],
 			commonjs: [],
+			esmodules: [],
 			typescript: []
 		},
 		ignored: []
@@ -1024,6 +1144,7 @@ const fixtures = {
 		expected: {
 			legacy: ["no-unused-vars"],
 			commonjs: ["no-unused-vars"],
+			esmodules: ["no-unused-vars"],
 			typescript: ["@typescript-eslint/no-unused-vars"]
 		},
 		ignored: ["no-var"]
@@ -1032,6 +1153,7 @@ const fixtures = {
 		expected: {
 			legacy: [],
 			commonjs: [],
+			esmodules: [],
 			typescript: []
 		},
 		ignored: ["no-var"]
@@ -1041,6 +1163,7 @@ const fixtures = {
 		expected: {
 			legacy: ["fatal"],
 			commonjs: [],
+			esmodules: [],
 			typescript: []
 		},
 		ignored: []
@@ -1049,6 +1172,7 @@ const fixtures = {
 		expected: {
 			legacy: ["fatal"],
 			commonjs: [],
+			esmodules: [],
 			typescript: []
 		},
 		ignored: []
@@ -1058,6 +1182,7 @@ const fixtures = {
 		expected: {
 			legacy: ["no-undef"],
 			commonjs: [],
+			esmodules: [],
 			typescript: []
 		},
 		ignored: []
@@ -1066,6 +1191,7 @@ const fixtures = {
 		expected: {
 			legacy: ["no-undef"],
 			commonjs: ["no-var"],
+			esmodules: ["no-undef", "no-var"],
 			typescript: ["no-var"]
 		},
 		ignored: ["no-unused-vars", "@typescript-eslint/no-unused-vars"]
@@ -1074,6 +1200,7 @@ const fixtures = {
 		expected: {
 			legacy: ["fatal"],
 			commonjs: ["no-var"],
+			esmodules: ["no-undef", "no-var"],
 			typescript: ["no-var"]
 		},
 		ignored: ["no-unused-vars", "@typescript-eslint/no-unused-vars"]
@@ -1082,6 +1209,7 @@ const fixtures = {
 		expected: {
 			legacy: ["fatal"],
 			commonjs: [],
+			esmodules: ["no-undef"],
 			typescript: []
 		},
 		ignored: ["no-unused-vars", "@typescript-eslint/no-unused-vars"]
@@ -1090,6 +1218,17 @@ const fixtures = {
 		expected: {
 			legacy: ["fatal"],
 			commonjs: [],
+			esmodules: ["no-undef"],
+			typescript: []
+		},
+		ignored: ["no-unused-vars", "@typescript-eslint/no-unused-vars"]
+	},
+
+	"await_import.js": {
+		expected: {
+			legacy: ["fatal"],
+			commonjs: ["fatal"],
+			esmodules: [],
 			typescript: []
 		},
 		ignored: ["no-unused-vars", "@typescript-eslint/no-unused-vars"]
@@ -1099,6 +1238,7 @@ const fixtures = {
 		expected: {
 			legacy: ["fatal"],
 			commonjs: ["fatal"],
+			esmodules: ["fatal"],
 			typescript: []
 		},
 		ignored: []
@@ -1107,6 +1247,7 @@ const fixtures = {
 		expected: {
 			legacy: ["fatal"],
 			commonjs: ["fatal"],
+			esmodules: ["fatal"],
 			typescript: []
 		},
 		ignored: []
@@ -1115,6 +1256,7 @@ const fixtures = {
 		expected: {
 			legacy: ["fatal"],
 			commonjs: ["fatal"],
+			esmodules: ["fatal"],
 			typescript: ["fatal"]
 		},
 		ignored: []
@@ -1123,6 +1265,7 @@ const fixtures = {
 		expected: {
 			legacy: ["fatal"],
 			commonjs: ["fatal"],
+			esmodules: ["fatal"],
 			typescript: []
 		},
 		ignored: []
@@ -1131,6 +1274,7 @@ const fixtures = {
 		expected: {
 			legacy: ["fatal"],
 			commonjs: ["fatal"],
+			esmodules: ["fatal"],
 			typescript: []
 		},
 		ignored: []
@@ -1139,6 +1283,7 @@ const fixtures = {
 		expected: {
 			legacy: ["fatal"],
 			commonjs: ["fatal"],
+			esmodules: ["no-var"],
 			typescript: ["no-var"]
 		},
 		ignored: []
@@ -1147,6 +1292,7 @@ const fixtures = {
 		expected: {
 			legacy: ["fatal"],
 			commonjs: ["fatal"],
+			esmodules: [],
 			typescript: []
 		},
 		ignored: []
@@ -1155,6 +1301,7 @@ const fixtures = {
 		expected: {
 			legacy: ["fatal"],
 			commonjs: ["fatal"],
+			esmodules: ["fatal"],
 			typescript: ["fatal"]
 		},
 		ignored: []
@@ -1163,6 +1310,7 @@ const fixtures = {
 		expected: {
 			legacy: ["fatal"],
 			commonjs: ["fatal"],
+			esmodules: ["fatal"],
 			typescript: []
 		},
 		ignored: []
@@ -1171,6 +1319,7 @@ const fixtures = {
 		expected: {
 			legacy: ["fatal"],
 			commonjs: ["fatal"],
+			esmodules: ["no-var"],
 			typescript: ["no-var"]
 		},
 		ignored: []
@@ -1179,6 +1328,7 @@ const fixtures = {
 		expected: {
 			legacy: ["fatal"],
 			commonjs: ["fatal"],
+			esmodules: ["fatal"],
 			typescript: ["fatal"]
 		},
 		ignored: []
@@ -1187,6 +1337,7 @@ const fixtures = {
 		expected: {
 			legacy: ["fatal"],
 			commonjs: ["fatal"],
+			esmodules: ["fatal"],
 			typescript: []
 		},
 		ignored: ["arrow-body-style"]
@@ -1195,6 +1346,7 @@ const fixtures = {
 		expected: {
 			legacy: ["fatal"],
 			commonjs: ["fatal"],
+			esmodules: ["fatal"],
 			typescript: []
 		},
 		ignored: []
@@ -1203,6 +1355,7 @@ const fixtures = {
 		expected: {
 			legacy: ["fatal"],
 			commonjs: ["fatal"],
+			esmodules: [],
 			typescript: []
 		},
 		ignored: []
@@ -1212,6 +1365,7 @@ const fixtures = {
 		expected: {
 			legacy: [],
 			commonjs: [],
+			esmodules: [],
 			typescript: []
 		},
 		ignored: ["no-unused-vars", "no-var", "@typescript-eslint/no-unused-vars"]
@@ -1220,6 +1374,7 @@ const fixtures = {
 		expected: {
 			legacy: [],
 			commonjs: [],
+			esmodules: [],
 			typescript: []
 		},
 		ignored: ["no-unused-vars", "no-var", "@typescript-eslint/no-unused-vars"]
@@ -1228,6 +1383,7 @@ const fixtures = {
 		expected: {
 			legacy: [],
 			commonjs: [],
+			esmodules: [],
 			typescript: []
 		},
 		ignored: ["no-unused-vars", "no-var", "@typescript-eslint/no-unused-vars"]
@@ -1236,6 +1392,7 @@ const fixtures = {
 		expected: {
 			legacy: [],
 			commonjs: [],
+			esmodules: [],
 			typescript: []
 		},
 		ignored: ["no-unused-vars", "no-var", "@typescript-eslint/no-unused-vars"]
@@ -1244,6 +1401,7 @@ const fixtures = {
 		expected: {
 			legacy: [],
 			commonjs: [],
+			esmodules: [],
 			typescript: []
 		},
 		ignored: ["no-unused-vars", "no-var", "@typescript-eslint/no-unused-vars"]
@@ -1252,6 +1410,7 @@ const fixtures = {
 		expected: {
 			legacy: [],
 			commonjs: [],
+			esmodules: [],
 			typescript: []
 		},
 		ignored: ["no-unused-vars", "no-var", "@typescript-eslint/no-unused-vars"]
@@ -1260,6 +1419,7 @@ const fixtures = {
 		expected: {
 			legacy: [],
 			commonjs: [],
+			esmodules: [],
 			typescript: []
 		},
 		ignored: ["no-unused-vars", "no-var", "max-len", "@typescript-eslint/no-unused-vars"]
@@ -1268,6 +1428,7 @@ const fixtures = {
 		expected: {
 			legacy: [],
 			commonjs: [],
+			esmodules: [],
 			typescript: []
 		},
 		ignored: ["no-unused-vars", "no-var", "@typescript-eslint/no-unused-vars"]
@@ -1277,6 +1438,7 @@ const fixtures = {
 		expected: {
 			legacy: [],
 			commonjs: [],
+			esmodules: [],
 			typescript: []
 		},
 		ignored: ["no-unused-vars", "@typescript-eslint/no-unused-vars"]
@@ -1285,6 +1447,7 @@ const fixtures = {
 		expected: {
 			legacy: ["space-before-blocks"],
 			commonjs: ["space-before-blocks"],
+			esmodules: ["space-before-blocks"],
 			typescript: ["space-before-blocks"]
 		},
 		ignored: ["no-unused-vars", "@typescript-eslint/no-unused-vars"]
@@ -1293,6 +1456,7 @@ const fixtures = {
 		expected: {
 			legacy: [],
 			commonjs: [],
+			esmodules: [],
 			typescript: []
 		},
 		ignored: ["no-unused-vars", "@typescript-eslint/no-unused-vars"]
@@ -1301,6 +1465,7 @@ const fixtures = {
 		expected: {
 			legacy: ["space-before-blocks"],
 			commonjs: ["space-before-blocks"],
+			esmodules: ["space-before-blocks"],
 			typescript: ["space-before-blocks"]
 		},
 		ignored: ["no-unused-vars", "@typescript-eslint/no-unused-vars"]
@@ -1310,6 +1475,7 @@ const fixtures = {
 		expected: {
 			legacy: [],
 			commonjs: [],
+			esmodules: [],
 			typescript: []
 		},
 		ignored: ["fake", "no-warning-comments"]
@@ -1318,6 +1484,7 @@ const fixtures = {
 		expected: {
 			legacy: ["line-comment-position"],
 			commonjs: ["line-comment-position"],
+			esmodules: ["line-comment-position"],
 			typescript: ["line-comment-position"]
 		},
 		ignored: ["fake", "no-warning-comments"]
@@ -1326,6 +1493,7 @@ const fixtures = {
 		expected: {
 			legacy: [],
 			commonjs: [],
+			esmodules: [],
 			typescript: []
 		},
 		ignored: ["fake", "no-warning-comments"]
@@ -1335,6 +1503,7 @@ const fixtures = {
 		expected: {
 			legacy: [],
 			commonjs: [],
+			esmodules: [],
 			typescript: []
 		},
 		ignored: []
@@ -1343,6 +1512,7 @@ const fixtures = {
 		expected: {
 			legacy: ["line-comment-position"],
 			commonjs: ["line-comment-position"],
+			esmodules: ["line-comment-position"],
 			typescript: ["line-comment-position"]
 		},
 		ignored: []
@@ -1351,6 +1521,7 @@ const fixtures = {
 		expected: {
 			legacy: [],
 			commonjs: [],
+			esmodules: [],
 			typescript: []
 		},
 		ignored: []
@@ -1360,6 +1531,7 @@ const fixtures = {
 		expected: {
 			legacy: [],
 			commonjs: [],
+			esmodules: [],
 			typescript: []
 		},
 		ignored: ["no-invalid-this"]
@@ -1368,6 +1540,7 @@ const fixtures = {
 		expected: {
 			legacy: [],
 			commonjs: [],
+			esmodules: [],
 			typescript: []
 		},
 		ignored: ["no-invalid-this"]
@@ -1376,6 +1549,7 @@ const fixtures = {
 		expected: {
 			legacy: [],
 			commonjs: [],
+			esmodules: [],
 			typescript: []
 		},
 		ignored: []
@@ -1384,6 +1558,7 @@ const fixtures = {
 		expected: {
 			legacy: [],
 			commonjs: [],
+			esmodules: [],
 			typescript: []
 		},
 		ignored: ["block-spacing", "no-invalid-this"]
@@ -1392,6 +1567,7 @@ const fixtures = {
 		expected: {
 			legacy: [],
 			commonjs: [],
+			esmodules: [],
 			typescript: []
 		},
 		ignored: ["no-invalid-this"]
@@ -1401,6 +1577,7 @@ const fixtures = {
 		expected: {
 			legacy: ["space-before-blocks"],
 			commonjs: ["space-before-blocks"],
+			esmodules: ["space-before-blocks"],
 			typescript: ["space-before-blocks"]
 		},
 		ignored: []
@@ -1409,6 +1586,7 @@ const fixtures = {
 		expected: {
 			legacy: ["keyword-spacing"],
 			commonjs: ["keyword-spacing"],
+			esmodules: ["keyword-spacing"],
 			typescript: ["@typescript-eslint/keyword-spacing"]
 		},
 		ignored: []
@@ -1417,6 +1595,7 @@ const fixtures = {
 		expected: {
 			legacy: [],
 			commonjs: [],
+			esmodules: [],
 			typescript: []
 		},
 		ignored: []
@@ -1425,6 +1604,7 @@ const fixtures = {
 		expected: {
 			legacy: ["operator-linebreak"],
 			commonjs: ["operator-linebreak"],
+			esmodules: ["operator-linebreak"],
 			typescript: ["operator-linebreak"]
 		},
 		ignored: []
@@ -1433,6 +1613,7 @@ const fixtures = {
 		expected: {
 			legacy: [],
 			commonjs: [],
+			esmodules: [],
 			typescript: []
 		},
 		ignored: []
@@ -1442,6 +1623,7 @@ const fixtures = {
 		expected: {
 			legacy: ["fatal"],
 			commonjs: ["fatal"],
+			esmodules: ["fatal"],
 			typescript: ["@typescript-eslint/member-delimiter-style"]
 		},
 		ignored: ["@typescript-eslint/comma-spacing", "@typescript-eslint/no-unused-vars"]
@@ -1450,6 +1632,7 @@ const fixtures = {
 		expected: {
 			legacy: ["fatal"],
 			commonjs: ["fatal"],
+			esmodules: ["fatal"],
 			typescript: ["@typescript-eslint/member-delimiter-style"]
 		},
 		ignored: ["@typescript-eslint/no-unused-vars"]
@@ -1458,6 +1641,7 @@ const fixtures = {
 		expected: {
 			legacy: ["fatal"],
 			commonjs: ["fatal"],
+			esmodules: ["fatal"],
 			typescript: ["@typescript-eslint/member-delimiter-style"]
 		},
 		ignored: ["@typescript-eslint/no-unused-vars"]
@@ -1466,6 +1650,7 @@ const fixtures = {
 		expected: {
 			legacy: ["fatal"],
 			commonjs: ["fatal"],
+			esmodules: ["fatal"],
 			typescript: []
 		},
 		ignored: ["@typescript-eslint/no-unused-vars"]
@@ -1475,6 +1660,7 @@ const fixtures = {
 		expected: {
 			legacy: [],
 			commonjs: [],
+			esmodules: [],
 			typescript: []
 		},
 		ignored: ["no-unused-vars", "no-var", "@typescript-eslint/no-unused-vars"]
@@ -1483,6 +1669,7 @@ const fixtures = {
 		expected: {
 			legacy: ["no-mixed-operators"],
 			commonjs: ["no-mixed-operators"],
+			esmodules: ["no-mixed-operators"],
 			typescript: ["no-mixed-operators"]
 		},
 		ignored: ["no-unused-vars", "no-var", "@typescript-eslint/no-unused-vars"]
@@ -1491,6 +1678,7 @@ const fixtures = {
 		expected: {
 			legacy: [],
 			commonjs: [],
+			esmodules: [],
 			typescript: []
 		},
 		ignored: ["no-unused-vars", "no-var", "@typescript-eslint/no-unused-vars"]
@@ -1499,6 +1687,7 @@ const fixtures = {
 		expected: {
 			legacy: [],
 			commonjs: [],
+			esmodules: [],
 			typescript: []
 		},
 		ignored: ["no-unused-vars", "no-var", "@typescript-eslint/no-unused-vars"]
@@ -1508,6 +1697,7 @@ const fixtures = {
 		expected: {
 			legacy: [],
 			commonjs: [],
+			esmodules: [],
 			typescript: []
 		},
 		ignored: []
@@ -1516,6 +1706,7 @@ const fixtures = {
 		expected: {
 			legacy: [],
 			commonjs: [],
+			esmodules: [],
 			typescript: []
 		},
 		ignored: []
@@ -1524,6 +1715,7 @@ const fixtures = {
 		expected: {
 			legacy: ["no-undef"],
 			commonjs: ["no-undef"],
+			esmodules: ["no-undef"],
 			typescript: []
 		},
 		ignored: []
@@ -1532,6 +1724,7 @@ const fixtures = {
 		expected: {
 			legacy: ["no-undef"],
 			commonjs: ["no-undef"],
+			esmodules: ["no-undef"],
 			typescript: []
 		},
 		ignored: []
@@ -1540,6 +1733,7 @@ const fixtures = {
 		expected: {
 			legacy: [],
 			commonjs: [],
+			esmodules: [],
 			typescript: []
 		},
 		ignored: []
@@ -1548,6 +1742,7 @@ const fixtures = {
 		expected: {
 			legacy: [],
 			commonjs: [],
+			esmodules: [],
 			typescript: []
 		},
 		ignored: []
@@ -1557,6 +1752,7 @@ const fixtures = {
 		expected: {
 			legacy: ["no-undef"],
 			commonjs: [],
+			esmodules: [],
 			typescript: ["@typescript-eslint/promise-function-async"]
 		},
 		ignored: ["no-unused-vars", "@typescript-eslint/no-unused-vars"]
@@ -1565,6 +1761,7 @@ const fixtures = {
 		expected: {
 			legacy: ["fatal"],
 			commonjs: [],
+			esmodules: [],
 			typescript: []
 		},
 		ignored: ["no-unused-vars", "@typescript-eslint/no-unused-vars"]
@@ -1574,6 +1771,7 @@ const fixtures = {
 		expected: {
 			legacy: ["fatal"],
 			commonjs: ["template-tag-spacing"],
+			esmodules: ["template-tag-spacing"],
 			typescript: ["template-tag-spacing"]
 		},
 		ignored: ["no-undef"]
@@ -1582,6 +1780,7 @@ const fixtures = {
 		expected: {
 			legacy: ["fatal"],
 			commonjs: [],
+			esmodules: [],
 			typescript: []
 		},
 		ignored: ["no-undef"]
@@ -1592,7 +1791,7 @@ describe("Eslint", function () {
 	before("Reset /tmp", async function () {
 		await emptyDir(tmpFolder);
 	});
-	["legacy", "commonjs", "typescript"].forEach(configId => {
+	["legacy", "commonjs", "typescript", "esmodules"].forEach(configId => {
 		it(configId, async function () {
 			const options = {
 				useEslintrc: false,
@@ -1600,6 +1799,8 @@ describe("Eslint", function () {
 			};
 			if (configId === "typescript"){
 				options.extensions = [".js", ".jsx", ".ts", ".tsx"];
+			} else if (configId === "esmodules"){
+				options.extensions = [".js", ".mjs"];
 			}
 			const engine = new ESLint(options);
 
