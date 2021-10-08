@@ -11,7 +11,7 @@ const [,,,,,,,param7, param8] = process.argv;
 const version = (param7 === "--version") ? param8 : "0.0.0";
 
 /**
- * @param {"legacy"|"commonjs"|"typescript"} id
+ * @param {"legacy"|"commonjs"|"typescript"|"esmodules"} id
  * @return {Object}
  */
 function getRules(id) {
@@ -357,7 +357,7 @@ function getRules(id) {
 
 	// Disallow declarations in the global scope
 	// @see https://eslint.org/docs/rules/no-implicit-globals
-	rules["no-implicit-globals"] = (id === "typescript") ? "error" : "off";
+	rules["no-implicit-globals"] = (id === "typescript" || id === "esmodules") ? "error" : "off";
 
 	// Disallow the use of `eval()`-like methods
 	// @see https://eslint.org/docs/rules/no-implied-eval
@@ -475,10 +475,10 @@ function getRules(id) {
 	if (id === "typescript"){
 		rules["no-return-await"] = "off";
 		rules["@typescript-eslint/return-await"] = "error"; // slightly different name
-	} else if (id === "typescript"){
-		rules["no-return-await"] = "error";
-	} else {
+	} else if (id === "legacy"){
 		rules["no-return-await"] = "off";
+	} else {
+		rules["no-return-await"] = "error";
 	}
 
 	// Disallow `javascript:` urls
@@ -599,7 +599,7 @@ function getRules(id) {
 
 	// Require or disallow strict mode directives
 	// @see https://eslint.org/docs/rules/strict
-	rules["strict"] = (id === "typescript") ? "off" : ["error", "global"];
+	rules["strict"] = (id === "typescript" || id === "esmodules") ? "off" : ["error", "global"];
 
 	// Require or disallow initialization in variable declarations
 	// @see https://eslint.org/docs/rules/init-declarations
@@ -635,7 +635,7 @@ function getRules(id) {
 
 	// Disallow the use of undeclared variables unless mentioned in `/ * global * /` comments
 	// @see https://eslint.org/docs/rules/no-undef
-	rules["no-undef"] = (id === "typescript") ? "off" : "error";
+	rules["no-undef"] = (id === "typescript" || id === "esmodules") ? "off" : "error";
 
 	// Disallow initializing variables to `undefined`
 	// @see https://eslint.org/docs/rules/no-undef-init
@@ -1200,10 +1200,10 @@ function getRules(id) {
 	if (id === "typescript"){
 		rules["no-useless-constructor"] = "off";
 		rules["@typescript-eslint/no-useless-constructor"] = "error";
-	} else if (id === "commonjs"){
-		rules["no-useless-constructor"] = "error";
-	} else {
+	} else if (id === "legacy"){
 		rules["no-useless-constructor"] = "off";
+	} else {
+		rules["no-useless-constructor"] = "error";
 	}
 
 	// Disallow renaming import, export, and destructured assignments to the same name
@@ -1774,6 +1774,52 @@ describe("Typescript", function () {
 					sourceType: "module",
 					project: "./tsconfig.json",
 					warnOnUnsupportedTypeScriptVersion: false,
+					allowImportExportEverywhere: false
+				},
+				rules: getRules(id)
+			}
+		});
+	});
+});
+describe("ES Modules", function () {
+	const id = "esmodules";
+	const name = `@wildpeaks/eslint-config-${id}`;
+	const folder = join(process.cwd(), "packages", id);
+	before(async function () {
+		await emptyDir(folder);
+	});
+	it("README.md", function () {
+		writeReadme({
+			id,
+			folder,
+			name,
+			title: "ES Modules",
+			description: "Settings for **ES2020 Javascript** projects using **ES Modules**.\n\nThis is best suited for **non-transpiled MJS and ESM scripts**."
+		});
+	});
+	it("package.json", function () {
+		writePackage({
+			folder,
+			name,
+			description: "ESLint config for ES2020 Javascript projects using ES Modules"
+		});
+	});
+	it("index.js", function () {
+		writeExports({
+			folder,
+			config: {
+				env: {
+					es2020: true
+				},
+				globals: {
+					module: true
+				},
+				parserOptions: {
+					ecmaVersion: 2020,
+					ecmaFeatures: {
+						impliedStrict: true
+					},
+					sourceType: "module",
 					allowImportExportEverywhere: false
 				},
 				rules: getRules(id)
