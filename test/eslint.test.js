@@ -165,7 +165,7 @@ const fixtures = {
 			legacy: ["fatal"],
 			commonjs: ["fatal"],
 			esmodules: ["fatal"],
-			typescript: ["@typescript-eslint/explicit-member-accessibility", "@typescript-eslint/no-unused-vars"]
+			typescript: ["@typescript-eslint/explicit-member-accessibility", "@typescript-eslint/no-unused-vars", "class-methods-use-this"]
 		},
 		ignored: []
 	},
@@ -183,7 +183,7 @@ const fixtures = {
 			legacy: ["fatal"],
 			commonjs: ["fatal"],
 			esmodules: ["fatal"],
-			typescript: ["@typescript-eslint/explicit-member-accessibility", "@typescript-eslint/no-unused-vars"]
+			typescript: ["@typescript-eslint/explicit-member-accessibility", "@typescript-eslint/no-unused-vars", "class-methods-use-this"]
 		},
 		ignored: []
 	},
@@ -201,7 +201,7 @@ const fixtures = {
 			legacy: ["fatal"],
 			commonjs: ["fatal"],
 			esmodules: ["fatal"],
-			typescript: ["@typescript-eslint/explicit-member-accessibility", "@typescript-eslint/no-unused-vars"]
+			typescript: ["@typescript-eslint/explicit-member-accessibility", "@typescript-eslint/no-unused-vars", "class-methods-use-this"]
 		},
 		ignored: []
 	},
@@ -220,7 +220,7 @@ const fixtures = {
 			legacy: ["fatal"],
 			commonjs: ["fatal"],
 			esmodules: ["fatal"],
-			typescript: ["@typescript-eslint/explicit-member-accessibility", "@typescript-eslint/no-unused-vars"]
+			typescript: ["@typescript-eslint/explicit-member-accessibility", "@typescript-eslint/no-unused-vars", "class-methods-use-this"]
 		},
 		ignored: []
 	},
@@ -238,7 +238,7 @@ const fixtures = {
 			legacy: ["fatal"],
 			commonjs: ["fatal"],
 			esmodules: ["fatal"],
-			typescript: ["@typescript-eslint/explicit-member-accessibility", "@typescript-eslint/no-unused-vars"]
+			typescript: ["@typescript-eslint/explicit-member-accessibility", "@typescript-eslint/no-unused-vars", "class-methods-use-this"]
 		},
 		ignored: []
 	},
@@ -256,7 +256,7 @@ const fixtures = {
 			legacy: ["fatal"],
 			commonjs: ["fatal"],
 			esmodules: ["fatal"],
-			typescript: ["@typescript-eslint/explicit-member-accessibility", "@typescript-eslint/no-unused-vars"]
+			typescript: ["@typescript-eslint/explicit-member-accessibility", "@typescript-eslint/no-unused-vars", "class-methods-use-this"]
 		},
 		ignored: []
 	},
