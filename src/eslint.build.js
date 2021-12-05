@@ -1741,14 +1741,14 @@ describe("Typescript", function () {
 			folder,
 			name,
 			title: "Typescript",
-			description: "Settings for **ES2020 Typescript** projects using **ES Modules**.\n\nThis is best suited for **compiled projects** (e.g. Webpack)."
+			description: "Settings for **ES2022 Typescript** projects using **ES Modules**.\n\nThis is best suited for **compiled projects** (e.g. Webpack)."
 		});
 	});
 	it("package.json", function () {
 		writePackage({
 			folder,
 			name,
-			description: "ESLint config for ES2020 Typescript projects using ES Modules",
+			description: "ESLint config for ES2022 Typescript projects using ES Modules",
 			dependencies: ["@typescript-eslint/eslint-plugin", "@typescript-eslint/parser"]
 		});
 	});
@@ -1794,14 +1794,14 @@ describe("ES Modules", function () {
 			folder,
 			name,
 			title: "ES Modules",
-			description: "Settings for **ES2020 Javascript** projects using **ES Modules**.\n\nThis is best suited for **non-transpiled MJS and ESM scripts**."
+			description: "Settings for **ES2022 Javascript** projects using **ES Modules**.\n\nThis is best suited for **non-transpiled MJS and ESM scripts**."
 		});
 	});
 	it("package.json", function () {
 		writePackage({
 			folder,
 			name,
-			description: "ESLint config for ES2020 Javascript projects using ES Modules"
+			description: "ESLint config for ES2022 Javascript projects using ES Modules"
 		});
 	});
 	it("index.js", function () {

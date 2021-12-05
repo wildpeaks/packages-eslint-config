@@ -30,6 +30,6 @@ or in `.prettierrc`:
 This is compatible with the following Eslint configs:
  - [@wildpeaks/legacy](https://www.npmjs.com/package/@wildpeaks/eslint-config-legacy) for ES5 Javascript projects without modules
  - [@wildpeaks/commonjs](https://www.npmjs.com/package/@wildpeaks/eslint-config-commonjs) for ES2018 Javascript projects using CommonJS modules
- - [@wildpeaks/esmodules](https://www.npmjs.com/package/@wildpeaks/eslint-config-esmodules) for ES2020 Javascript projects using ES Modules
- - [@wildpeaks/typescript](https://www.npmjs.com/package/@wildpeaks/eslint-config-typescript) for ES2020 Typescript projects using ES Modules
+ - [@wildpeaks/esmodules](https://www.npmjs.com/package/@wildpeaks/eslint-config-esmodules) for ES2022 Javascript projects using ES Modules
+ - [@wildpeaks/typescript](https://www.npmjs.com/package/@wildpeaks/eslint-config-typescript) for ES2022 Typescript projects using ES Modules
 
