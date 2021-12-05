@@ -1758,7 +1758,7 @@ describe("Typescript", function () {
 			config: {
 				env: {
 					commonjs: true,
-					es2020: true
+					es2021: true
 				},
 				globals: {
 					module: true
@@ -1766,7 +1766,7 @@ describe("Typescript", function () {
 				plugins: ["@typescript-eslint"],
 				parser: "@typescript-eslint/parser",
 				parserOptions: {
-					ecmaVersion: 2020,
+					ecmaVersion: 2022,
 					ecmaFeatures: {
 						jsx: true,
 						impliedStrict: true
@@ -1809,13 +1809,13 @@ describe("ES Modules", function () {
 			folder,
 			config: {
 				env: {
-					es2020: true
+					es2021: true
 				},
 				globals: {
 					module: true
 				},
 				parserOptions: {
-					ecmaVersion: 2020,
+					ecmaVersion: 2022,
 					ecmaFeatures: {
 						impliedStrict: true
 					},
