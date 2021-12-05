@@ -90,184 +90,184 @@ const fixtures = {
 		expected: {
 			legacy: ["fatal"],
 			commonjs: ["fatal"],
-			esmodules: ["fatal"],
+			esmodules: [],
 			typescript: ["@typescript-eslint/explicit-member-accessibility", "@typescript-eslint/no-unused-vars"]
 		},
-		ignored: []
+		ignored: ["no-unused-vars"]
 	},
 	"class_stage2_static_property_without_type.js": {
 		expected: {
 			legacy: ["fatal"],
 			commonjs: ["fatal"],
-			esmodules: ["fatal"],
+			esmodules: [],
 			typescript: ["@typescript-eslint/explicit-member-accessibility", "@typescript-eslint/no-unused-vars"]
 		},
-		ignored: []
+		ignored: ["no-unused-vars"]
 	},
 
 	"class_stage2_instance_function_without_return_type.js": {
 		expected: {
 			legacy: ["fatal"],
 			commonjs: ["fatal"],
-			esmodules: ["fatal"],
+			esmodules: [],
 			typescript: ["@typescript-eslint/explicit-member-accessibility", "@typescript-eslint/no-unused-vars"]
 		},
-		ignored: []
+		ignored: ["no-unused-vars"]
 	},
 	"class_stage2_static_function_without_return_type.js": {
 		expected: {
 			legacy: ["fatal"],
 			commonjs: ["fatal"],
-			esmodules: ["fatal"],
+			esmodules: [],
 			typescript: ["@typescript-eslint/explicit-member-accessibility", "@typescript-eslint/no-unused-vars"]
 		},
-		ignored: []
+		ignored: ["no-unused-vars"]
 	},
 	"class_stage2_instance_arrow_without_return_type.js": {
 		expected: {
 			legacy: ["fatal"],
 			commonjs: ["fatal"],
-			esmodules: ["fatal"],
+			esmodules: [],
 			typescript: ["@typescript-eslint/explicit-member-accessibility", "@typescript-eslint/no-unused-vars"]
 		},
-		ignored: []
+		ignored: ["no-unused-vars"]
 	},
 	"class_stage2_static_arrow_without_return_type.js": {
 		expected: {
 			legacy: ["fatal"],
 			commonjs: ["fatal"],
-			esmodules: ["fatal"],
+			esmodules: [],
 			typescript: ["@typescript-eslint/explicit-member-accessibility", "@typescript-eslint/no-unused-vars"]
 		},
-		ignored: []
+		ignored: ["no-unused-vars"]
 	},
 	"class_stage2_instance_expression_without_return_type.js": {
 		expected: {
 			legacy: ["fatal"],
 			commonjs: ["fatal"],
-			esmodules: ["fatal"],
+			esmodules: [],
 			typescript: ["@typescript-eslint/explicit-member-accessibility", "@typescript-eslint/no-unused-vars"]
 		},
-		ignored: []
+		ignored: ["no-unused-vars"]
 	},
 	"class_stage2_static_expression_without_return_type.js": {
 		expected: {
 			legacy: ["fatal"],
 			commonjs: ["fatal"],
-			esmodules: ["fatal"],
+			esmodules: [],
 			typescript: ["@typescript-eslint/explicit-member-accessibility", "@typescript-eslint/no-unused-vars"]
 		},
-		ignored: []
+		ignored: ["no-unused-vars"]
 	},
 
 	"class_stage2_instance_function_without_params_type.js": {
 		expected: {
 			legacy: ["fatal"],
 			commonjs: ["fatal"],
-			esmodules: ["fatal"],
+			esmodules: ["class-methods-use-this"],
 			typescript: ["@typescript-eslint/explicit-member-accessibility", "@typescript-eslint/no-unused-vars", "class-methods-use-this"]
 		},
-		ignored: []
+		ignored: ["no-unused-vars"]
 	},
 	"class_stage2_static_function_without_params_type.js": {
 		expected: {
 			legacy: ["fatal"],
 			commonjs: ["fatal"],
-			esmodules: ["fatal"],
+			esmodules: [],
 			typescript: ["@typescript-eslint/explicit-member-accessibility", "@typescript-eslint/no-unused-vars"]
 		},
-		ignored: []
+		ignored: ["no-unused-vars"]
 	},
 	"class_stage2_instance_arrow_without_params_type.js": {
 		expected: {
 			legacy: ["fatal"],
 			commonjs: ["fatal"],
-			esmodules: ["fatal"],
+			esmodules: ["class-methods-use-this"],
 			typescript: ["@typescript-eslint/explicit-member-accessibility", "@typescript-eslint/no-unused-vars", "class-methods-use-this"]
 		},
-		ignored: []
+		ignored: ["no-unused-vars"]
 	},
 	"class_stage2_static_arrow_without_params_type.js": {
 		expected: {
 			legacy: ["fatal"],
 			commonjs: ["fatal"],
-			esmodules: ["fatal"],
+			esmodules: [],
 			typescript: ["@typescript-eslint/explicit-member-accessibility", "@typescript-eslint/no-unused-vars"]
 		},
-		ignored: []
+		ignored: ["no-unused-vars"]
 	},
 	"class_stage2_instance_expression_without_params_type.js": {
 		expected: {
 			legacy: ["fatal"],
 			commonjs: ["fatal"],
-			esmodules: ["fatal"],
+			esmodules: ["class-methods-use-this"],
 			typescript: ["@typescript-eslint/explicit-member-accessibility", "@typescript-eslint/no-unused-vars", "class-methods-use-this"]
 		},
-		ignored: []
+		ignored: ["no-unused-vars"]
 	},
 	"class_stage2_static_expression_without_params_type.js": {
 		expected: {
 			legacy: ["fatal"],
 			commonjs: ["fatal"],
-			esmodules: ["fatal"],
+			esmodules: [],
 			typescript: ["@typescript-eslint/explicit-member-accessibility", "@typescript-eslint/no-unused-vars"]
 		},
-		ignored: []
+		ignored: ["no-unused-vars"]
 	},
 
 	"class_stage2_instance_function_underscore_params_without_type.js": {
 		expected: {
 			legacy: ["fatal"],
 			commonjs: ["fatal"],
-			esmodules: ["fatal"],
+			esmodules: ["class-methods-use-this"],
 			typescript: ["@typescript-eslint/explicit-member-accessibility", "@typescript-eslint/no-unused-vars", "class-methods-use-this"]
 		},
-		ignored: []
+		ignored: ["no-unused-vars"]
 	},
 	"class_stage2_static_function_underscore_params_without_type.js": {
 		expected: {
 			legacy: ["fatal"],
 			commonjs: ["fatal"],
-			esmodules: ["fatal"],
+			esmodules: [],
 			typescript: ["@typescript-eslint/explicit-member-accessibility", "@typescript-eslint/no-unused-vars"]
 		},
-		ignored: []
+		ignored: ["no-unused-vars"]
 	},
 	"class_stage2_instance_arrow_underscore_params_without_type.js": {
 		expected: {
 			legacy: ["fatal"],
 			commonjs: ["fatal"],
-			esmodules: ["fatal"],
+			esmodules: ["class-methods-use-this"],
 			typescript: ["@typescript-eslint/explicit-member-accessibility", "@typescript-eslint/no-unused-vars", "class-methods-use-this"]
 		},
-		ignored: []
+		ignored: ["no-unused-vars"]
 	},
 	"class_stage2_static_arrow_underscore_params_without_type.js": {
 		expected: {
 			legacy: ["fatal"],
 			commonjs: ["fatal"],
-			esmodules: ["fatal"],
+			esmodules: [],
 			typescript: ["@typescript-eslint/explicit-member-accessibility", "@typescript-eslint/no-unused-vars"]
 		},
-		ignored: []
+		ignored: ["no-unused-vars"]
 	},
 	"class_stage2_instance_expression_underscore_params_without_type.js": {
 		expected: {
 			legacy: ["fatal"],
 			commonjs: ["fatal"],
-			esmodules: ["fatal"],
+			esmodules: ["class-methods-use-this"],
 			typescript: ["@typescript-eslint/explicit-member-accessibility", "@typescript-eslint/no-unused-vars", "class-methods-use-this"]
 		},
-		ignored: []
+		ignored: ["no-unused-vars"]
 	},
 	"class_stage2_static_expression_underscore_params_without_type.js": {
 		expected: {
 			legacy: ["fatal"],
 			commonjs: ["fatal"],
-			esmodules: ["fatal"],
+			esmodules: [],
 			typescript: ["@typescript-eslint/explicit-member-accessibility", "@typescript-eslint/no-unused-vars"]
 		},
-		ignored: []
+		ignored: ["no-unused-vars"]
 	},
 
 	"line_80.js": {
@@ -397,7 +397,7 @@ const fixtures = {
 		expected: {
 			legacy: ["fatal"],
 			commonjs: ["fatal"],
-			esmodules: ["fatal"],
+			esmodules: [],
 			typescript: []
 		},
 		ignored: ["no-unused-vars", "@typescript-eslint/no-unused-vars"]
