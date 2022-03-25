@@ -1,0 +1,13 @@
+type Union_Level1_Long = {
+	before: string;
+	list?:
+		| "AAAAAAAAAAAAAAAA"
+		| "BBBBBBBBBBBBBBBB"
+		| "CCCCCCCCCCCCCCCC"
+		| "DDDDDDDDDDDDDDDD"
+		| "EEEEEEEEEEEEEEEE"
+		| "FFFFFFFFFFFFFFFF"
+		| "GGGGGGGGGGGGGGGG"
+		| "HHHHHHHHHHHHHHHH";
+	after: boolean;
+};
