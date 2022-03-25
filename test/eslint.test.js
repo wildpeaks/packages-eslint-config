@@ -920,7 +920,7 @@ const fixtures = {
 		ignored: []
 	},
 
-	"ts_type_union.ts": {
+	"ts_type_union_level0_short.ts": {
 		expected: {
 			legacy: ["fatal"],
 			commonjs: ["fatal"],
@@ -929,6 +929,34 @@ const fixtures = {
 		},
 		ignored: ["@typescript-eslint/no-unused-vars"]
 	},
+	"ts_type_union_level1_short.ts": {
+		expected: {
+			legacy: ["fatal"],
+			commonjs: ["fatal"],
+			esmodules: ["fatal"],
+			typescript: []
+		},
+		ignored: ["@typescript-eslint/no-unused-vars"]
+	},
+	"ts_type_union_level0_long.ts": {
+		expected: {
+			legacy: ["fatal"],
+			commonjs: ["fatal"],
+			esmodules: ["fatal"],
+			typescript: []
+		},
+		ignored: ["@typescript-eslint/no-unused-vars"]
+	},
+	"ts_type_union_level1_long.ts": {
+		expected: {
+			legacy: ["fatal"],
+			commonjs: ["fatal"],
+			esmodules: ["fatal"],
+			typescript: []
+		},
+		ignored: ["@typescript-eslint/no-unused-vars"]
+	},
+
 	"ts_type_commas.ts": {
 		expected: {
 			legacy: ["fatal"],

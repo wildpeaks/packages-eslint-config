@@ -167,6 +167,11 @@ const fixtures = {
 		ext: "js",
 		ignore: ["no-undef"],
 		compatible: ["commonjs", "esmodules", "typescript"]
+	},
+	union_ts: {
+		ext: "ts",
+		ignore: [],
+		compatible: ["typescript"]
 	}
 };
 
