@@ -170,7 +170,13 @@ const fixtures = {
 	},
 	union_ts: {
 		ext: "ts",
-		ignore: [],
+		ignore: [
+			"@typescript-eslint/no-unused-vars",
+
+			// Known issue with long unions:
+			// https://github.com/typescript-eslint/typescript-eslint/issues/1824
+			"@typescript-eslint/indent"
+		],
 		compatible: ["typescript"]
 	}
 };

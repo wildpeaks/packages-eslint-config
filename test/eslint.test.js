@@ -952,7 +952,11 @@ const fixtures = {
 			legacy: ["fatal"],
 			commonjs: ["fatal"],
 			esmodules: ["fatal"],
-			typescript: []
+			typescript: [
+				// Known issue with long unions:
+				// https://github.com/typescript-eslint/typescript-eslint/issues/1824
+				"@typescript-eslint/indent"
+			]
 		},
 		ignored: ["@typescript-eslint/no-unused-vars"]
 	},
