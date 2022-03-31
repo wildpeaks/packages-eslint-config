@@ -673,7 +673,7 @@ const fixtures = {
 
 	"this_root.js": {
 		expected: {
-			legacy: ["no-invalid-this"],
+			legacy: [],
 			commonjs: ["no-invalid-this"],
 			esmodules: ["no-invalid-this"],
 			typescript: []
